@@ -15,9 +15,7 @@ install:
 before_script:
     - uname -a
     - printenv | sort
-    - make versions
 
 script:
     - date
     - ls -al
-    - make test
