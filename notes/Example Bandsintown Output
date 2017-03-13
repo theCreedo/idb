@@ -1,0 +1,244 @@
+Example Bandsintown Output:
+	Artist/{artistname}/events: {{base}}artists/adele/events?app_id=boswemianrhapsody
+		[
+		  {
+		    "id": "13337714",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13337714?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-13T19:30:00",
+		    "venue": {
+		      "name": "Adelaide Oval",
+		      "latitude": "-34.91174",
+		      "longitude": "138.5822499",
+		      "city": "North Adelaide",
+		      "region": "SA",
+		      "country": "Australia"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13337714/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13337728",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13337728?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-18T19:30:00",
+		    "venue": {
+		      "name": "Etihad Stadium",
+		      "latitude": "-37.816518",
+		      "longitude": "144.94554",
+		      "city": "Docklands",
+		      "region": "Vic",
+		      "country": "Australia"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13337728/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13344134",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13344134?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-19T19:30:00",
+		    "venue": {
+		      "name": "Etihad Stadium",
+		      "latitude": "-37.816518",
+		      "longitude": "144.94554",
+		      "city": "Docklands",
+		      "region": "Vic",
+		      "country": "Australia"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13344134/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13337715",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13337715?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-23T19:30:00",
+		    "venue": {
+		      "name": "Mt Smart Stadium",
+		      "latitude": "-36.9080244",
+		      "longitude": "174.8254033",
+		      "city": "Auckland",
+		      "region": "Auckland",
+		      "country": "New Zealand"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13337715/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13363660",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13363660?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-25T19:30:00",
+		    "venue": {
+		      "name": "Mt Smart Stadium",
+		      "latitude": "-36.9080244",
+		      "longitude": "174.8254033",
+		      "city": "Auckland",
+		      "region": "Auckland",
+		      "country": "New Zealand"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13363660/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13368267",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13368267?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-03-26T19:30:00",
+		    "venue": {
+		      "name": "Mt Smart Stadium",
+		      "latitude": "-36.9080244",
+		      "longitude": "174.8254033",
+		      "city": "Auckland",
+		      "region": "Auckland",
+		      "country": "New Zealand"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13368267/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13440033",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13440033?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-06-28T19:00:00",
+		    "venue": {
+		      "name": "Wembley Stadium",
+		      "latitude": "51.556711",
+		      "longitude": "-0.279678",
+		      "city": "London",
+		      "region": "",
+		      "country": "United Kingdom"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13440033/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13363727",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13363727?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-06-29T18:00:00",
+		    "venue": {
+		      "name": "Wembley Stadium",
+		      "latitude": "51.5",
+		      "longitude": "-0.1166667",
+		      "city": "London",
+		      "region": "P5",
+		      "country": "United Kingdom"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13363727/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13363661",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13363661?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-07-01T18:00:00",
+		    "venue": {
+		      "name": "Wembley Stadium",
+		      "latitude": "51.5",
+		      "longitude": "-0.1166667",
+		      "city": "London",
+		      "region": "P5",
+		      "country": "United Kingdom"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13363661/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  },
+		  {
+		    "id": "13440046",
+		    "artist_id": "5594",
+		    "url": "http://www.bandsintown.com/event/13440046?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		    "datetime": "2017-07-02T19:00:00",
+		    "venue": {
+		      "name": "Wembley Stadium",
+		      "latitude": "51.556711",
+		      "longitude": "-0.279678",
+		      "city": "London",
+		      "region": "",
+		      "country": "United Kingdom"
+		    },
+		    "offers": [
+		      {
+		        "type": "Tickets",
+		        "url": "http://www.bandsintown.com/event/13440046/buy_tickets?app_id=boswemianrhapsody&artist=Adele&came_from=67",
+		        "status": "available"
+		      }
+		    ],
+		    "lineup": [
+		      "Adele"
+		    ]
+		  }
+		]

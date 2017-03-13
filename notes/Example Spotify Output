@@ -1,0 +1,645 @@
+Example Spotify Output: 
+	Track: {{base}}artists/3XHO7cRUPCLOr6jwp8vsx5
+		{
+		  "album": {
+		    "album_type": "album",
+		    "artists": [
+		      {
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		        },
+		        "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		        "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		        "name": "alt-J",
+		        "type": "artist",
+		        "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		      }
+		    ],
+		    "available_markets": [
+		      "CA",
+		      "MX",
+		      "US"
+		    ],
+		    "external_urls": {
+		      "spotify": "https://open.spotify.com/album/4oktVvRuO1In9B7Hz0xm0a"
+		    },
+		    "href": "https://api.spotify.com/v1/albums/4oktVvRuO1In9B7Hz0xm0a",
+		    "id": "4oktVvRuO1In9B7Hz0xm0a",
+		    "images": [
+		      {
+		        "height": 640,
+		        "url": "https://i.scdn.co/image/c8eafa550f5ce5bf54fa68a615bde6e0c18c13c4",
+		        "width": 640
+		      },
+		      {
+		        "height": 300,
+		        "url": "https://i.scdn.co/image/0ab2f3ca824799684da80e1b3813721f6deb0617",
+		        "width": 300
+		      },
+		      {
+		        "height": 64,
+		        "url": "https://i.scdn.co/image/0f02b0c6051e0fb87143f666d9a8464cde29a712",
+		        "width": 64
+		      }
+		    ],
+		    "name": "This Is All Yours",
+		    "type": "album",
+		    "uri": "spotify:album:4oktVvRuO1In9B7Hz0xm0a"
+		  },
+		  "artists": [
+		    {
+		      "external_urls": {
+		        "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		      },
+		      "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		      "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		      "name": "alt-J",
+		      "type": "artist",
+		      "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		    }
+		  ],
+		  "available_markets": [
+		    "CA",
+		    "MX",
+		    "US"
+		  ],
+		  "disc_number": 1,
+		  "duration_ms": 216004,
+		  "explicit": false,
+		  "external_ids": {
+		    "isrc": "GBZUZ1400276"
+		  },
+		  "external_urls": {
+		    "spotify": "https://open.spotify.com/track/6BVBkKpZK09NmifUMZqj1z"
+		  },
+		  "href": "https://api.spotify.com/v1/tracks/6BVBkKpZK09NmifUMZqj1z",
+		  "id": "6BVBkKpZK09NmifUMZqj1z",
+		  "name": "Every Other Freckle",
+		  "popularity": 58,
+		  "preview_url": "https://p.scdn.co/mp3-preview/e42e058de0125e1efc7eef6ac300fa50d86a844a?cid=null",
+		  "track_number": 4,
+		  "type": "track",
+		  "uri": "spotify:track:6BVBkKpZK09NmifUMZqj1z"
+		}
+	Artist: {{base}}tracks/6BVBkKpZK09NmifUMZqj1z
+		{
+		  "external_urls": {
+		    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		  },
+		  "followers": {
+		    "href": null,
+		    "total": 1352076
+		  },
+		  "genres": [
+		    "folk-pop",
+		    "indie folk",
+		    "indie pop",
+		    "indie rock",
+		    "indietronica"
+		  ],
+		  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		  "images": [
+		    {
+		      "height": 640,
+		      "url": "https://i.scdn.co/image/432a1c06ec9577cc57107fbc3f534a5a62ec0612",
+		      "width": 640
+		    },
+		    {
+		      "height": 320,
+		      "url": "https://i.scdn.co/image/6e335d75d0d4c6a42e67098f30babaafb6214a23",
+		      "width": 320
+		    },
+		    {
+		      "height": 160,
+		      "url": "https://i.scdn.co/image/c63ccd79cbe10abfc76290add471c23e6e5b1222",
+		      "width": 160
+		    }
+		  ],
+		  "name": "alt-J",
+		  "popularity": 73,
+		  "type": "artist",
+		  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		}
+	Album: {{base}}albums/4oktVvRuO1In9B7Hz0xm0a
+		{
+		  "album_type": "album",
+		  "artists": [
+		    {
+		      "external_urls": {
+		        "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		      },
+		      "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		      "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		      "name": "alt-J",
+		      "type": "artist",
+		      "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		    }
+		  ],
+		  "available_markets": [
+		    "CA",
+		    "MX",
+		    "US"
+		  ],
+		  "copyrights": [
+		    {
+		      "text": "2014 Infectious Music Ltd., under exclusive license to Atlantic Recording Corporation for North America. A Warner Music Group Company.",
+		      "type": "C"
+		    },
+		    {
+		      "text": "2014 Infectious Music Ltd., under exclusive license to Atlantic Recording Corporation for North America. A Warner Music Group Company.",
+		      "type": "P"
+		    }
+		  ],
+		  "external_ids": {
+		    "upc": "075679937414"
+		  },
+		  "external_urls": {
+		    "spotify": "https://open.spotify.com/album/4oktVvRuO1In9B7Hz0xm0a"
+		  },
+		  "genres": [],
+		  "href": "https://api.spotify.com/v1/albums/4oktVvRuO1In9B7Hz0xm0a",
+		  "id": "4oktVvRuO1In9B7Hz0xm0a",
+		  "images": [
+		    {
+		      "height": 640,
+		      "url": "https://i.scdn.co/image/c8eafa550f5ce5bf54fa68a615bde6e0c18c13c4",
+		      "width": 640
+		    },
+		    {
+		      "height": 300,
+		      "url": "https://i.scdn.co/image/0ab2f3ca824799684da80e1b3813721f6deb0617",
+		      "width": 300
+		    },
+		    {
+		      "height": 64,
+		      "url": "https://i.scdn.co/image/0f02b0c6051e0fb87143f666d9a8464cde29a712",
+		      "width": 64
+		    }
+		  ],
+		  "label": "Canvasback/ATL",
+		  "name": "This Is All Yours",
+		  "popularity": 65,
+		  "release_date": "2014-09-22",
+		  "release_date_precision": "day",
+		  "tracks": {
+		    "href": "https://api.spotify.com/v1/albums/4oktVvRuO1In9B7Hz0xm0a/tracks?offset=0&limit=50",
+		    "items": [
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 278028,
+		        "explicit": true,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/5hMR6jMlewdi9glfFc3L7q"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/5hMR6jMlewdi9glfFc3L7q",
+		        "id": "5hMR6jMlewdi9glfFc3L7q",
+		        "name": "Intro",
+		        "preview_url": "https://p.scdn.co/mp3-preview/1eee8f9a46fb4d15c7f84408f79dcedcfa79b801?cid=null",
+		        "track_number": 1,
+		        "type": "track",
+		        "uri": "spotify:track:5hMR6jMlewdi9glfFc3L7q"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 253417,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/4BVm9zEoX4Z73LeFAab0PC"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/4BVm9zEoX4Z73LeFAab0PC",
+		        "id": "4BVm9zEoX4Z73LeFAab0PC",
+		        "name": "Arrival In Nara",
+		        "preview_url": "https://p.scdn.co/mp3-preview/d97ce04f0beb50ae7e15c6be0b0bd240eabcfe5b?cid=null",
+		        "track_number": 2,
+		        "type": "track",
+		        "uri": "spotify:track:4BVm9zEoX4Z73LeFAab0PC"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 296057,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/57tzAvfPHXHzCHUNp9AUBm"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/57tzAvfPHXHzCHUNp9AUBm",
+		        "id": "57tzAvfPHXHzCHUNp9AUBm",
+		        "name": "Nara",
+		        "preview_url": "https://p.scdn.co/mp3-preview/e3f1af5782707954821c41fe4e3532134e6f0c78?cid=null",
+		        "track_number": 3,
+		        "type": "track",
+		        "uri": "spotify:track:57tzAvfPHXHzCHUNp9AUBm"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 216004,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/6BVBkKpZK09NmifUMZqj1z"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/6BVBkKpZK09NmifUMZqj1z",
+		        "id": "6BVBkKpZK09NmifUMZqj1z",
+		        "name": "Every Other Freckle",
+		        "preview_url": "https://p.scdn.co/mp3-preview/e42e058de0125e1efc7eef6ac300fa50d86a844a?cid=null",
+		        "track_number": 4,
+		        "type": "track",
+		        "uri": "spotify:track:6BVBkKpZK09NmifUMZqj1z"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 173630,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/4iEOVEULZRvmzYSZY2ViKN"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/4iEOVEULZRvmzYSZY2ViKN",
+		        "id": "4iEOVEULZRvmzYSZY2ViKN",
+		        "name": "Left Hand Free",
+		        "preview_url": "https://p.scdn.co/mp3-preview/99b4aaddb6198c483b852d8d69f3ac545ea56675?cid=null",
+		        "track_number": 5,
+		        "type": "track",
+		        "uri": "spotify:track:4iEOVEULZRvmzYSZY2ViKN"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 67684,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/6onmdzTxsisLDtItnIS5WV"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/6onmdzTxsisLDtItnIS5WV",
+		        "id": "6onmdzTxsisLDtItnIS5WV",
+		        "name": "Garden Of England - Interlude",
+		        "preview_url": "https://p.scdn.co/mp3-preview/22a2070377562af4f4dcf135cb7ca693a09d96ba?cid=null",
+		        "track_number": 6,
+		        "type": "track",
+		        "uri": "spotify:track:6onmdzTxsisLDtItnIS5WV"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 257497,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/2N7jeqGCdaPeXHuudTBO73"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/2N7jeqGCdaPeXHuudTBO73",
+		        "id": "2N7jeqGCdaPeXHuudTBO73",
+		        "name": "Choice Kingdom",
+		        "preview_url": "https://p.scdn.co/mp3-preview/77a64cb86e8babefc701918d814e3c94d120fc73?cid=null",
+		        "track_number": 7,
+		        "type": "track",
+		        "uri": "spotify:track:2N7jeqGCdaPeXHuudTBO73"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 299710,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/2mkv1b3dRFyiJ4Ybq31owf"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/2mkv1b3dRFyiJ4Ybq31owf",
+		        "id": "2mkv1b3dRFyiJ4Ybq31owf",
+		        "name": "Hunger Of The Pine",
+		        "preview_url": "https://p.scdn.co/mp3-preview/1cdb6c31d575705607b42bc91a3401b2c7b6c439?cid=null",
+		        "track_number": 8,
+		        "type": "track",
+		        "uri": "spotify:track:2mkv1b3dRFyiJ4Ybq31owf"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 225017,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/1YUcTZ0ehoHY6G6Prhcbj0"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/1YUcTZ0ehoHY6G6Prhcbj0",
+		        "id": "1YUcTZ0ehoHY6G6Prhcbj0",
+		        "name": "Warm Foothills",
+		        "preview_url": "https://p.scdn.co/mp3-preview/2e6b862ff1f87000f6732568917b7582a4b3b472?cid=null",
+		        "track_number": 9,
+		        "type": "track",
+		        "uri": "spotify:track:1YUcTZ0ehoHY6G6Prhcbj0"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 315524,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/5QZJAcP4nu3xL2NQV4AVHO"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/5QZJAcP4nu3xL2NQV4AVHO",
+		        "id": "5QZJAcP4nu3xL2NQV4AVHO",
+		        "name": "The Gospel of John Hurt",
+		        "preview_url": "https://p.scdn.co/mp3-preview/f0bc04a78af3852d9307ca22891277d0e3054bc9?cid=null",
+		        "track_number": 10,
+		        "type": "track",
+		        "uri": "spotify:track:5QZJAcP4nu3xL2NQV4AVHO"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 209270,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/2H6NbSsccvcT1j4jwAjDmf"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/2H6NbSsccvcT1j4jwAjDmf",
+		        "id": "2H6NbSsccvcT1j4jwAjDmf",
+		        "name": "Pusher",
+		        "preview_url": "https://p.scdn.co/mp3-preview/34e0b0c24138554f9feecaeaf2bc6cc48e033995?cid=null",
+		        "track_number": 11,
+		        "type": "track",
+		        "uri": "spotify:track:2H6NbSsccvcT1j4jwAjDmf"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 319497,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/3TY8GltNNtMpDS3YY6tJqo"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/3TY8GltNNtMpDS3YY6tJqo",
+		        "id": "3TY8GltNNtMpDS3YY6tJqo",
+		        "name": "Bloodflood pt. II",
+		        "preview_url": "https://p.scdn.co/mp3-preview/8cc38f1435c815979e4e687e7af8529bac12748b?cid=null",
+		        "track_number": 12,
+		        "type": "track",
+		        "uri": "spotify:track:3TY8GltNNtMpDS3YY6tJqo"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 180830,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/1ngGQNvLajpyVVzFdx47Pa"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/1ngGQNvLajpyVVzFdx47Pa",
+		        "id": "1ngGQNvLajpyVVzFdx47Pa",
+		        "name": "Leaving Nara",
+		        "preview_url": "https://p.scdn.co/mp3-preview/d006bda2a339ecc8ebb00efec3d64c591ae47f66?cid=null",
+		        "track_number": 13,
+		        "type": "track",
+		        "uri": "spotify:track:1ngGQNvLajpyVVzFdx47Pa"
+		      },
+		      {
+		        "artists": [
+		          {
+		            "external_urls": {
+		              "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+		            },
+		            "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+		            "id": "3XHO7cRUPCLOr6jwp8vsx5",
+		            "name": "alt-J",
+		            "type": "artist",
+		            "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+		          }
+		        ],
+		        "available_markets": [
+		          "CA",
+		          "MX",
+		          "US"
+		        ],
+		        "disc_number": 1,
+		        "duration_ms": 241545,
+		        "explicit": false,
+		        "external_urls": {
+		          "spotify": "https://open.spotify.com/track/4OxtqhSBnOsgGc1yfYAfOn"
+		        },
+		        "href": "https://api.spotify.com/v1/tracks/4OxtqhSBnOsgGc1yfYAfOn",
+		        "id": "4OxtqhSBnOsgGc1yfYAfOn",
+		        "name": "Lovely Day (Bonus Track)",
+		        "preview_url": "https://p.scdn.co/mp3-preview/c154d885f70293229f84c083185555e6110b9838?cid=null",
+		        "track_number": 14,
+		        "type": "track",
+		        "uri": "spotify:track:4OxtqhSBnOsgGc1yfYAfOn"
+		      }
+		    ],
+		    "limit": 50,
+		    "next": null,
+		    "offset": 0,
+		    "previous": null,
+		    "total": 14
+		  },
+		  "type": "album",
+		  "uri": "spotify:album:4oktVvRuO1In9B7Hz0xm0a"
+		}

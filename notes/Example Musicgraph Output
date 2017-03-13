@@ -1,0 +1,27 @@
+Example Musicgraph Output:
+	Artist: {{base}}artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=05037b5542d5f3e47e19dce0a89ca63b
+		{
+		  "status": {
+		    "api": "v2",
+		    "message": "Success",
+		    "code": 0
+		  },
+		  "data": {
+		    "id": "ee2564c7-a6b5-11e0-b446-00251188dd67",
+		    "decade": "2000s / 2010s",
+		    "country_of_origin": "England",
+		    "entity_type": "artist",
+		    "artist_ref_id": "349105",
+		    "main_genre": "Pop",
+		    "musicbrainz_id": "cc2c9c3c-b7bc-4b8b-84d8-4fbd8779e493",
+		    "alternate_names": [
+		      "アデル"
+		    ],
+		    "spotify_id": "4dpARuHxo51G3z768sgnrY",
+		    "name": "Adele",
+		    "gender": "Female",
+		    "popularity": 0.82,
+		    "sort_name": "Adele",
+		    "youtube_id": "UComP_epzeKzvBX156r6pm1Q"
+		  }
+		}

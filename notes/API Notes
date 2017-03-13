@@ -1,0 +1,29 @@
+Spotify:
+	Base url: https://api.spotify.com/v1/
+	Spotify URIs:
+		To get a Spotify URI, right click on an artist, album, or song in Spotify and click copy Spotify URI.
+		You will need a Spotify URI for making any API call and it doesn't seem like there is a better way to get it.
+	Endpoints:
+		artists
+			Ex: {{base}}artists/3XHO7cRUPCLOr6jwp8vsx5
+		albums
+			Ex: {{base}}albums/4oktVvRuO1In9B7Hz0xm0a
+		tracks
+			Ex: {{base}}tracks/6BVBkKpZK09NmifUMZqj1z
+
+Musicgraph:
+	Documentation: https://developer.musicgraph.com/api-docs/v2/artists
+	Base url: http://api.musicgraph.com/api/v2
+	Api key: 05037b5542d5f3e47e19dce0a89ca63b
+	Endpoints:
+		artist
+			Ex: {{base}}artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=05037b5542d5f3e47e19dce0a89ca63b
+		artist/search
+			Ex: {{base}}artist/search?api_key=05037b5542d5f3e47e19dce0a89ca63b&name=Alt-J
+
+Bandsintown:
+	Base url: https://rest.bandsintown.com/
+	Enpoints:
+		artists/{artistname}/events
+			Ex: {{base}}artists/adele/events?app_id=boswemianrhapsody
+			*Note* Each call to API needs an app_id parameter, I use boswemianrhapsody	
