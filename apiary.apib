@@ -1,0 +1,337 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# BoSWEmian Rhapsody (BR) API
+
+BR is a simple API allowing consumers to get information on Artists, Albums, Tracks, and Concerts.
+
+## Key
+
+N/A = Not Available
+
+R = Required
+
+NR = Not Required
+
+## Artists Collection [/artists]
+
+### List All Artists [GET]
+
+TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+
++ Response 200 (application/json)
+
+        [
+            {
+                "artistID": 1,
+                "name": "Taylor Swift",
+                "published_at": "2014-08-05T08:40:51.620Z",
+                "picture": "www.taylorswift.com/picture",
+                "country": "US",
+                "decade": "90s",
+                "popSongID": 1,
+                "genre": ["genre1","genre2"]
+            },
+            {
+                "artistID": 2,
+                "name": "Michael Jackson",
+                "published_at": "2015-06-02T08:40:51.620Z",
+                "picture": "www.michaeljackson.com/picture",
+                "country": "US",
+                "decade": "10s",
+                "popSongID": 2,
+                "genre": ["genre1","genre2"]
+            },
+            {
+                "artistID": 3,
+                "name": "Katie Perry",
+                "published_at": "2012-01-09T08:40:51.620Z",
+                "picture": "www.katieperry.com/picture",
+                "country": "US",
+                "decade": "10s",
+                "popSongID": 3,
+                "genre": ["genre1","genre2"]
+            }
+        ]
+
+### Create a New Artist [POST]
+
+You may create your own artist using this action. It takes a JSON
+object containing a name of artist (R), a picture of artist (NR), country (NR), decade (NR), the most popular song's ID (R), and a list of genres the artist is in (NR).
+
++ Request (application/json)
+
+        {
+            {
+                "name": "John Doe",
+                "picture": "N/A",
+                "country": "US",
+                "popSongID": 0,
+                "decade": "90s",
+                "genre": ["genre1","genre2"]
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /artists/5
+
+    + Body
+
+            
+            {
+                "artistID": 5,
+                "name": "John Doe",
+                "published_at": "2017-03-017T08:40:51.620Z",
+                "picture": "N/A",
+                "country": "US",
+                "popSongID": 0,
+                "decade": "90s",
+                "genre": ["genre1","genre2"]
+            }
+            
+            
+            
+## Albums Collection [/albums]
+
+### List All Albums [GET]
+
+TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+
++ Response 200 (application/json)
+
+        [
+            {
+                "albumID": 1,
+                "published_at": "2014-08-05T08:40:51.620Z",
+                "name": "Broken Hearts",
+                "genre": "pop",
+                "dateReleased": "2014-08-05",
+                "albumCover": "picture_url1",
+                "label": "Idk what this is",
+                "numberOfSongs": 12
+            }
+        ]
+
+### Create a New Album [POST]
+
+You may create your own album using this action. It takes a JSON
+object containing a name of the album (R), genre of album (R), date created (R), an album cover (R), the label (R), and number of songs (R)
+
++ Request (application/json)
+
+        {
+            {
+                "name": "John Doe's Album",
+                "genre": "Rock",
+                "dateReleased": "2017-03-15",
+                "albumCover": "picture_url1",
+                "label": "I still don't know what this is",
+                "numberOfSongs": 15
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /albums/2
+
+    + Body
+
+            
+            {
+                "albumID": 2,
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Album",
+                "genre": "Rock",
+                "dateReleased": "2017-03-15",
+                "albumCover": "picture_url1",
+                "label": "I still don't know what this is",
+                "numberOfSongs": 15
+            }
+            
+            
+## Tracks Collection [/tracks]
+
+### List All Tracks [GET]
+
+TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+
++ Response 200 (application/json)
+
+        [
+            {
+                "trackID": 1,
+                "published_at": "2014-08-05T08:40:51.620Z",
+                "name": "Love Shack",
+                "genre": "pop",
+                "dateReleased": "2014-08-05",
+                "duration": 3.46,
+                "popularity": 8,
+                "preview": "picture_url1",
+                "explicit": false,
+                "artistID": 1,
+                "albumID": 1
+            }
+        ]
+
+### Create a New Track [POST]
+
+You may create your own track using this action. It takes a JSON
+object containing a name of the track (R), genre of track (R), date released (R), duration (R), popularity (R), preview (R), whether it's explicit, artistID it's related to, and albumID it's related to.
+
++ Request (application/json)
+
+        {
+            {
+                "name": "John Doe's Track",
+                "genre": "pop",
+                "dateReleased": "2017-03-15",
+                "duration": 4.5,
+                "popularity": 3,
+                "preview": "picture_url1",
+                "explicit": true,
+                "artistID": 1,
+                "albumID": 1
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /tracks/2
+
+    + Body
+
+            
+            {
+                "albumID": 2,
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Track",
+                "genre": "pop",
+                "dateReleased": "2017-03-15",
+                "duration": 4.5,
+                "popularity": 3,
+                "preview": "picture_url1",
+                "explicit": true,
+                "artistID": 1,
+                "albumID": 1
+            }
+
+
+## Concerts Collection [/concerts]
+
+### List All Concerts [GET]
+
+TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+
++ Response 200 (application/json)
+
+        [
+            {
+                "concertID": 1,
+                "published_at": "2014-08-05T08:40:51.620Z",
+                "name": "SXSW Pop Event",
+                "link": "concert_link",
+                "date/time": "2016-09-02T08:40:51.620Z",
+                "lineup": "list of artists",
+                "venueID": 1
+            }
+        ]
+
+### Create a New Concert [POST]
+
+You may create your own concert using this action. It takes a JSON
+object containing a name of the concert (R), concert link (R), date/time (R), lineup (R), and the associated venue's ID (R)
+
++ Request (application/json)
+
+        {
+            {
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /concerts/2
+
+    + Body
+
+            
+            {
+                "concertID": 2,
+                "published_at": "2016-03-15T08:40:51.620Z",
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
+
+
+## Venues Collection [/venues]
+
+### List All Concerts [GET]
+
+TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+
++ Response 200 (application/json)
+
+        [
+            {
+                "concertID": 1,
+                "published_at": "2014-08-05T08:40:51.620Z",
+                "name": "SXSW Pop Event",
+                "link": "concert_link",
+                "date/time": "2016-09-02T08:40:51.620Z",
+                "lineup": "list of artists",
+                "venueID": 1
+            }
+        ]
+
+### Create a New Concert [POST]
+
+You may create your own concert using this action. It takes a JSON
+object containing a name of the concert (R), concert link (R), date/time (R), lineup (R), and the associated venue's ID (R)
+
++ Request (application/json)
+
+        {
+            {
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /venues/2
+
+    + Body
+
+            
+            {
+                "concertID": 2,
+                "published_at": "2016-03-15T08:40:51.620Z",
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
