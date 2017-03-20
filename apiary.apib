@@ -56,6 +56,7 @@ and future functionalities
             }
         ]
 
+
 ### Create a New Artist [POST]
 
 You may create your own artist using this action. It takes a JSON
@@ -95,9 +96,35 @@ list of genres the artist is in (NR).
                 "decade": "90s",
                 "genre": ["genre1","genre2"]
             }
+          
+
+## Artist [/artists/{id}]
+A single Artist object with all its details
+
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the Artist to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /artists/2
             
+    + Body
+
+            {
+                "artistID": 5,
+                "name": "John Doe",
+                "published_at": "2017-03-017T08:40:51.620Z",
+                "picture": "N/A",
+                "country": "US",
+                "popSongID": 0,
+                "decade": "90s",
+                "genre": ["genre1","genre2"]
+            }
             
-            
+
 ## Albums Collection [/albums]
 
 ### List All Albums [GET]
@@ -159,7 +186,33 @@ date created (R), an album cover (R), the label (R), and number of songs (R)
                 "numberOfSongs": 15
             }
             
+
+## Album [/albums/{id}]
+A single Album object with all its details
+
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the Album to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /albums/2
             
+    + Body
+
+            {
+                "albumID": 2,
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Album",
+                "genre": "Rock",
+                "dateReleased": "2017-03-15",
+                "albumCover": "picture_url1",
+                "label": "I still don't know what this is",
+                "numberOfSongs": 15
+            }
+
 ## Tracks Collection [/tracks]
 
 ### List All Tracks [GET]
@@ -218,7 +271,7 @@ it's explicit, artistID it's related to, and albumID it's related to.
 
             
             {
-                "albumID": 2,
+                "trackID": 2,
                 "published_at": "2017-03-15T08:40:51.620Z",
                 "name": "John Doe's Track",
                 "genre": "pop",
@@ -231,6 +284,34 @@ it's explicit, artistID it's related to, and albumID it's related to.
                 "albumID": 1
             }
 
+## Track [/tracks/{id}]
+A single Track object with all its details
+
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the Track to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /tracks/2
+            
+    + Body
+
+            {
+                "trackID": 2,
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Track",
+                "genre": "pop",
+                "dateReleased": "2017-03-15",
+                "duration": 4.5,
+                "popularity": 3,
+                "preview": "picture_url1",
+                "explicit": true,
+                "artistID": 1,
+                "albumID": 1
+            }
 
 ## Concerts Collection [/concerts]
 
@@ -289,7 +370,31 @@ lineup (R), and the associated venue's ID (R)
                 "lineup": "list of John Doe's Artists",
                 "venueID": 5
             }
+            
+## Concert [/concerts/{id}]
+A single Concert object with all its details
 
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the Concert to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /concerts/2
+            
+    + Body
+
+            {
+                "concertID": 2,
+                "published_at": "2016-03-15T08:40:51.620Z",
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
 
 ## Venues Collection [/venues]
 
@@ -343,6 +448,33 @@ the city (R), the region (R), the country (R), latitude (R), and longitude (R)
     + Body
 
             
+            {
+                "concertID": 2,
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Venue",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
+            }
+                
+## Venue [/venues/{id}]
+A single Venue object with all its details
+
++ Parameters
+    + id (required, Number, `1`) ... Numeric `id` of the Venue to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /venues/2
+            
+    + Body
+
             {
                 "concertID": 2,
                 "published_at": "2017-03-15T08:40:51.620Z",
