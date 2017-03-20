@@ -3,7 +3,8 @@ HOST: http://polls.apiblueprint.org/
 
 # BoSWEmian Rhapsody (BR) API
 
-BR is a simple API allowing consumers to get information on Artists, Albums, Tracks, and Concerts.
+BR is a simple API allowing consumers to get information on Artists, 
+Albums, Tracks, and Concerts.
 
 ## Key
 
@@ -17,7 +18,8 @@ NR = Not Required
 
 ### List All Artists [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+TODO: This could be changed to POST in order for sorting, filtering, 
+and future functionalities
 
 + Response 200 (application/json)
 
@@ -57,7 +59,9 @@ TODO: This could be changed to POST in order for sorting, filtering, and future 
 ### Create a New Artist [POST]
 
 You may create your own artist using this action. It takes a JSON
-object containing a name of artist (R), a picture of artist (NR), country (NR), decade (NR), the most popular song's ID (R), and a list of genres the artist is in (NR).
+object containing a name of artist (R), a picture of artist (NR), 
+country (NR), decade (NR), the most popular song's ID (R), and a 
+list of genres the artist is in (NR).
 
 + Request (application/json)
 
@@ -98,7 +102,8 @@ object containing a name of artist (R), a picture of artist (NR), country (NR), 
 
 ### List All Albums [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+TODO: This could be changed to POST in order for sorting, filtering, 
+and future functionalities
 
 + Response 200 (application/json)
 
@@ -118,7 +123,8 @@ TODO: This could be changed to POST in order for sorting, filtering, and future 
 ### Create a New Album [POST]
 
 You may create your own album using this action. It takes a JSON
-object containing a name of the album (R), genre of album (R), date created (R), an album cover (R), the label (R), and number of songs (R)
+object containing a name of the album (R), genre of album (R), 
+date created (R), an album cover (R), the label (R), and number of songs (R)
 
 + Request (application/json)
 
@@ -158,7 +164,8 @@ object containing a name of the album (R), genre of album (R), date created (R),
 
 ### List All Tracks [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+TODO: This could be changed to POST in order for sorting, filtering, 
+and future functionalities
 
 + Response 200 (application/json)
 
@@ -181,7 +188,9 @@ TODO: This could be changed to POST in order for sorting, filtering, and future 
 ### Create a New Track [POST]
 
 You may create your own track using this action. It takes a JSON
-object containing a name of the track (R), genre of track (R), date released (R), duration (R), popularity (R), preview (R), whether it's explicit, artistID it's related to, and albumID it's related to.
+object containing a name of the track (R), genre of track (R), 
+date released (R), duration (R), popularity (R), preview (R), whether 
+it's explicit, artistID it's related to, and albumID it's related to.
 
 + Request (application/json)
 
@@ -227,7 +236,8 @@ object containing a name of the track (R), genre of track (R), date released (R)
 
 ### List All Concerts [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+TODO: This could be changed to POST in order for sorting, filtering, 
+and future functionalities
 
 + Response 200 (application/json)
 
@@ -246,7 +256,8 @@ TODO: This could be changed to POST in order for sorting, filtering, and future 
 ### Create a New Concert [POST]
 
 You may create your own concert using this action. It takes a JSON
-object containing a name of the concert (R), concert link (R), date/time (R), lineup (R), and the associated venue's ID (R)
+object containing a name of the concert (R), concert link (R), date/time (R), 
+lineup (R), and the associated venue's ID (R)
 
 + Request (application/json)
 
@@ -282,38 +293,44 @@ object containing a name of the concert (R), concert link (R), date/time (R), li
 
 ## Venues Collection [/venues]
 
-### List All Concerts [GET]
+### List All Venues [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, and future functionalities
+TODO: This could be changed to POST in order for sorting, 
+filtering, and future functionalities
 
 + Response 200 (application/json)
 
         [
             {
-                "concertID": 1,
+                "venueID": 1,
                 "published_at": "2014-08-05T08:40:51.620Z",
-                "name": "SXSW Pop Event",
-                "link": "concert_link",
-                "date/time": "2016-09-02T08:40:51.620Z",
-                "lineup": "list of artists",
-                "venueID": 1
+                "name": "Techspace",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
             }
         ]
 
-### Create a New Concert [POST]
+### Create a New Venue [POST]
 
-You may create your own concert using this action. It takes a JSON
-object containing a name of the concert (R), concert link (R), date/time (R), lineup (R), and the associated venue's ID (R)
+You may create your own venue using this action. It takes a JSON
+object containing a name of the venue (R), picture link of venue (R),
+the city (R), the region (R), the country (R), latitude (R), and longitude (R)
 
 + Request (application/json)
 
         {
             {
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
+                "name": "John Doe's Venue",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
             }
         }
 
@@ -328,10 +345,12 @@ object containing a name of the concert (R), concert link (R), date/time (R), li
             
             {
                 "concertID": 2,
-                "published_at": "2016-03-15T08:40:51.620Z",
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
+                "published_at": "2017-03-15T08:40:51.620Z",
+                "name": "John Doe's Venue",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
             }
