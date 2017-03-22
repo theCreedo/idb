@@ -93,9 +93,9 @@ config:
 	git config -l
 
 # format:
-# 	$(AUTOPEP8) -i Collatz.py
+ 	$(AUTOPEP8) -i models.py
 # 	$(AUTOPEP8) -i RunCollatz.py
-# 	$(AUTOPEP8) -i TestCollatz.py
+ 	$(AUTOPEP8) -i tests.py
 
 status:
 	git branch
