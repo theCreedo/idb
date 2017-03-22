@@ -18,8 +18,18 @@ NR = Not Required
 
 ### List All Artists [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, 
-and future functionalities
+You can make queries to the artists collection in order
+to get artists associated to the trackID, albumID
+
+albumID - an associated album to the artists.
+Provide 1 albumID.
+
+ex. /artists?albumID=1
+
+trackID - an associated track to the artists.
+Provide 1 trackID
+
+ex. /artists?trackID=1
 
 + Response 200 (application/json)
 
@@ -104,7 +114,7 @@ A single Artist object with all its details
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Artist to perform action with.
 
-### Retrieve a User [GET]
+### Retrieve an Artist [GET]
 + Response 200 (application/json)
 
     + Headers
@@ -129,8 +139,18 @@ A single Artist object with all its details
 
 ### List All Albums [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, 
-and future functionalities
+You can make queries to the albums collection in order
+to get albums associated to the trackID, artistID
+
+artistID - an associated artist to the albums.
+Provide 1 artistID.
+
+ex. /albums?artistID=1
+
+trackID - an associated track to the album.
+Provide 1 trackID
+
+ex. /albums?trackID=1
 
 + Response 200 (application/json)
 
@@ -193,7 +213,7 @@ A single Album object with all its details
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Album to perform action with.
 
-### Retrieve a User [GET]
+### Retrieve an Album [GET]
 + Response 200 (application/json)
 
     + Headers
@@ -217,8 +237,18 @@ A single Album object with all its details
 
 ### List All Tracks [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, 
-and future functionalities
+You can make queries to the tracks collection in order
+to get tracks associated to the albumID, artistID
+
+albumID - an associated album to the tracks.
+Provide 1 albumID.
+
+ex. /tracks?albumID=1
+
+artistID - an associated artist to the tracks.
+Provide 1 artistID
+
+ex. /tracks?artistID=1
 
 + Response 200 (application/json)
 
@@ -290,7 +320,7 @@ A single Track object with all its details
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Track to perform action with.
 
-### Retrieve a User [GET]
+### Retrieve a Track [GET]
 + Response 200 (application/json)
 
     + Headers
@@ -317,8 +347,19 @@ A single Track object with all its details
 
 ### List All Concerts [GET]
 
-TODO: This could be changed to POST in order for sorting, filtering, 
-and future functionalities
+You can make queries to the concert collection in order
+to get concerts associated to the venueID, artistID
+
+venueID - an associated venue to the concerts.
+Provide 1 venueID.
+
+ex. /concerts?venueID=1
+
+artistID - an associated artist to the concerts.
+Provide 1 artistID
+
+ex. /concerts?artistID=1
+
 
 + Response 200 (application/json)
 
@@ -377,7 +418,7 @@ A single Concert object with all its details
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Concert to perform action with.
 
-### Retrieve a User [GET]
+### Retrieve a Concert [GET]
 + Response 200 (application/json)
 
     + Headers
@@ -400,8 +441,13 @@ A single Concert object with all its details
 
 ### List All Venues [GET]
 
-TODO: This could be changed to POST in order for sorting, 
-filtering, and future functionalities
+You can make queries to the venues collection in order
+to get venues associated to the concertID
+
+ex. /venues?concertID=1
+
+concertID - an associated concert to the venue. Provide 
+1 concertID.
 
 + Response 200 (application/json)
 
@@ -466,7 +512,7 @@ A single Venue object with all its details
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Venue to perform action with.
 
-### Retrieve a User [GET]
+### Retrieve a Venue [GET]
 + Response 200 (application/json)
 
     + Headers
