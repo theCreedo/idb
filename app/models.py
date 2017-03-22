@@ -173,5 +173,5 @@ class Venue(Base) :
 # engine = create_engine('POSTGRES_DB_HERE')
 
 # Create tables in database from classes
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
