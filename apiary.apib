@@ -18,18 +18,30 @@ NR = Not Required
 
 ### List All Artists [GET]
 
-You can make queries to the artists collection in order
-to get artists associated to the trackID, albumID
+    You can make queries to the artists collection in order
+    to get artists associated to the artistID, trackID or albumID:
+        
+    artistID
+    
+    the id of a given artist. Provide 1 artistID.
+    
+    ex. /artists?artistID=1
+    
+    ---
+    
+    albumID
+    
+    an associated album to the artists. Provide 1 albumID.
+    
+    ex. /artists?albumID=1
+    
+    ---
+    
+    trackID
 
-albumID - an associated album to the artists.
-Provide 1 albumID.
+    an associated track to the artists. Provide 1 trackID.
 
-ex. /artists?albumID=1
-
-trackID - an associated track to the artists.
-Provide 1 trackID
-
-ex. /artists?trackID=1
+    ex. /artists?trackID=1
 
 + Response 200 (application/json)
 
@@ -37,7 +49,6 @@ ex. /artists?trackID=1
             {
                 "artistID": 1,
                 "name": "Taylor Swift",
-                "published_at": "2014-08-05T08:40:51.620Z",
                 "picture": "www.taylorswift.com/picture",
                 "country": "US",
                 "decade": "90s",
@@ -47,7 +58,6 @@ ex. /artists?trackID=1
             {
                 "artistID": 2,
                 "name": "Michael Jackson",
-                "published_at": "2015-06-02T08:40:51.620Z",
                 "picture": "www.michaeljackson.com/picture",
                 "country": "US",
                 "decade": "10s",
@@ -57,7 +67,6 @@ ex. /artists?trackID=1
             {
                 "artistID": 3,
                 "name": "Katie Perry",
-                "published_at": "2012-01-09T08:40:51.620Z",
                 "picture": "www.katieperry.com/picture",
                 "country": "US",
                 "decade": "10s",
@@ -69,10 +78,20 @@ ex. /artists?trackID=1
 
 ### Create a New Artist [POST]
 
-You may create your own artist using this action. It takes a JSON
-object containing a name of artist (R), a picture of artist (NR), 
-country (NR), decade (NR), the most popular song's ID (R), and a 
-list of genres the artist is in (NR).
+    You may create your own artist using this action.
+    Create an artist object by providing a JSON object
+    with the following attributes:
+    
+    name of the artist (R),
+
+    a url leading to a picture of the artist (NR),
+
+    country (NR),
+
+    decade (NR),
+
+    and a list of genres pertaining to the artist (NR)
+
 
 + Request (application/json)
 
@@ -99,14 +118,72 @@ list of genres the artist is in (NR).
             {
                 "artistID": 5,
                 "name": "John Doe",
-                "published_at": "2017-03-017T08:40:51.620Z",
                 "picture": "N/A",
                 "country": "US",
                 "popSongID": 0,
                 "decade": "90s",
                 "genre": ["genre1","genre2"]
             }
-          
+            
+            
+### Update an Artist [PUT]
+
+    Update an artist object by providing a JSON object with the following attributes:
+    
+    the artist's ID (R)
+    
+    name of artist (R),
+
+    a url leading to a picture of the artist (NR),
+
+    country (NR),
+
+    decade (NR),
+
+    and a list of genres pertaining to the artist (NR)
+
+If the artistID provided does not exist, the call will fail.
+
++ Request (application/json)
+
+        {
+            {
+                "artistID": 5,
+                "name": "John Doe",
+                "picture": "N/A",
+                "country": "US",
+                "popSongID": 0,
+                "decade": "90s",
+                "genre": ["genre1","genre2"]
+            }
+        }
+
++ Response 200
+
+    + Headers
+
+            status: success
+
++ Request (application/json)
+
+        {
+            {
+                "artistID": 2000,
+                "name": "John Doe",
+                "picture": "N/A",
+                "country": "US",
+                "popSongID": 0,
+                "decade": "90s",
+                "genre": ["genre1","genre2"]
+            }
+        }
+
++ Response 400
+
+    + Headers
+
+            status: fail
+
 
 ## Artist [/artists/{id}]
 A single Artist object with all its details
@@ -119,14 +196,13 @@ A single Artist object with all its details
 
     + Headers
 
-            Location: /artists/2
+            Location: /artists/5
             
     + Body
 
             {
                 "artistID": 5,
                 "name": "John Doe",
-                "published_at": "2017-03-017T08:40:51.620Z",
                 "picture": "N/A",
                 "country": "US",
                 "popSongID": 0,
@@ -139,25 +215,36 @@ A single Artist object with all its details
 
 ### List All Albums [GET]
 
-You can make queries to the albums collection in order
-to get albums associated to the trackID, artistID
+    You can make queries to the albums collection in order
+    to get albums associated to the albumID, trackID or artistID:
+    
+    albumID
+    
+    the id of a given album. Provide 1 albumID.
+    
+    ex. /albums?albumID=1
+    
+    ---
+    
+    artistID 
+    
+    an associated artist to the albums. Provide 1 artistID.
 
-artistID - an associated artist to the albums.
-Provide 1 artistID.
+    ex. /albums?artistID=1
 
-ex. /albums?artistID=1
+    ---
 
-trackID - an associated track to the album.
-Provide 1 trackID
+    trackID
+    
+    an associated track to the album. Provide 1 trackID
 
-ex. /albums?trackID=1
+    ex. /albums?trackID=1
 
 + Response 200 (application/json)
 
         [
             {
                 "albumID": 1,
-                "published_at": "2014-08-05T08:40:51.620Z",
                 "name": "Broken Hearts",
                 "genre": "pop",
                 "dateReleased": "2014-08-05",
@@ -169,9 +256,21 @@ ex. /albums?trackID=1
 
 ### Create a New Album [POST]
 
-You may create your own album using this action. It takes a JSON
-object containing a name of the album (R), genre of album (R), 
-date created (R), an album cover (R), the label (R), and number of songs (R)
+    You may create your own album using this action.
+    Create an album object by providing a JSON object
+    with the following attributes:
+    
+    name of the album (R),
+    
+    genre of album (NR), 
+    
+    date created (NR),
+    
+    a url leading to a picture of the album cover (NR),
+    
+    the label (NR),
+    
+    and number of songs (NR)
 
 + Request (application/json)
 
@@ -197,7 +296,6 @@ date created (R), an album cover (R), the label (R), and number of songs (R)
             
             {
                 "albumID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
                 "name": "John Doe's Album",
                 "genre": "Rock",
                 "dateReleased": "2017-03-15",
@@ -206,6 +304,65 @@ date created (R), an album cover (R), the label (R), and number of songs (R)
                 "numberOfSongs": 15
             }
             
+### Update an Album [PUT]
+
+    Update an album object by providing a JSON object with the following attributes:
+    
+    the album's ID (R),
+    
+    name of the album (NR),
+    
+    genre of album (NR), 
+    
+    date created (NR),
+    
+    a url leading to a picture of the album cover (NR),
+    
+    the label (NR),
+    
+    and number of songs (NR)
+
+If the albumID provided does not exist, the call will fail.
+
++ Request (application/json)
+
+        {
+            {
+                "albumID": 1,
+                "name": "John Doe's Album",
+                "genre": "Rock",
+                "dateReleased": "2017-03-15",
+                "albumCover": "picture_url1",
+                "label": "I still don't know what this is",
+                "numberOfSongs": 15
+            }
+        }
+
++ Response 200
+
+    + Headers
+
+            status: success
+
++ Request (application/json)
+
+        {
+            {
+                "albumID": 2000,
+                "name": "John Doe's Album",
+                "genre": "Rock",
+                "dateReleased": "2017-03-15",
+                "albumCover": "picture_url1",
+                "label": "I still don't know what this is",
+                "numberOfSongs": 15
+            }
+        }
+
++ Response 400
+
+    + Headers
+
+            status: fail
 
 ## Album [/albums/{id}]
 A single Album object with all its details
@@ -224,7 +381,6 @@ A single Album object with all its details
 
             {
                 "albumID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
                 "name": "John Doe's Album",
                 "genre": "Rock",
                 "dateReleased": "2017-03-15",
@@ -237,25 +393,35 @@ A single Album object with all its details
 
 ### List All Tracks [GET]
 
-You can make queries to the tracks collection in order
-to get tracks associated to the albumID, artistID
-
-albumID - an associated album to the tracks.
-Provide 1 albumID.
-
-ex. /tracks?albumID=1
-
-artistID - an associated artist to the tracks.
-Provide 1 artistID
-
-ex. /tracks?artistID=1
+    You can make queries to the tracks collection in order
+    to get tracks associated to the trackID, albumID, or artistID:
+        
+    trackID
+    
+    the id of a given track. Provide 1 artistID.
+    
+    ex. /tracks?trackID=1
+    
+    ---
+    
+    albumID
+    
+    an associated album to the tracks. Provide 1 albumID.
+    
+    ex. /tracks?albumID=1
+    
+    ---
+    
+    artistID - an associated artist to the tracks.
+    Provide 1 artistID
+    
+    ex. /tracks?artistID=1
 
 + Response 200 (application/json)
 
         [
             {
                 "trackID": 1,
-                "published_at": "2014-08-05T08:40:51.620Z",
                 "name": "Love Shack",
                 "genre": "pop",
                 "dateReleased": "2014-08-05",
@@ -270,10 +436,28 @@ ex. /tracks?artistID=1
 
 ### Create a New Track [POST]
 
-You may create your own track using this action. It takes a JSON
-object containing a name of the track (R), genre of track (R), 
-date released (R), duration (R), popularity (R), preview (R), whether 
-it's explicit, artistID it's related to, and albumID it's related to.
+    You may create your own track using this action. 
+    Create a track object by providing a JSON object 
+    with the following attributes:
+    
+    name of the track (R),
+    
+    genre of track (NR), 
+    
+    date released (NR),
+    
+    duration (NR),
+    
+    popularity (NR),
+    
+    a url leading to a preview of the track (NR),
+    
+    whether it's explicit (NR),
+    
+    artistID it's related to (NR),
+    
+    and albumID it's related to (NR).
+
 
 + Request (application/json)
 
@@ -302,7 +486,6 @@ it's explicit, artistID it's related to, and albumID it's related to.
             
             {
                 "trackID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
                 "name": "John Doe's Track",
                 "genre": "pop",
                 "dateReleased": "2017-03-15",
@@ -313,6 +496,78 @@ it's explicit, artistID it's related to, and albumID it's related to.
                 "artistID": 1,
                 "albumID": 1
             }
+
+### Update a Track [PUT]
+
+    Update a track object by providing a JSON object with the following attributes:
+    
+    the track's ID (R)
+    
+    name of the track (R),
+    
+    genre of track (NR), 
+    
+    date released (NR),
+    
+    duration (NR),
+    
+    popularity (NR),
+    
+    a url leading to a preview of the track (NR),
+    
+    whether it's explicit (NR),
+    
+    artistID it's related to (NR),
+    
+    and albumID it's related to (NR).
+
+If the trackID provided does not exist, the call will fail.
+
++ Request (application/json)
+
+        {
+            {
+                "trackID": 1,
+                "name": "John Doe's Track",
+                "genre": "pop",
+                "dateReleased": "2017-03-15",
+                "duration": 4.5,
+                "popularity": 3,
+                "preview": "picture_url1",
+                "explicit": true,
+                "artistID": 1,
+                "albumID": 1
+            }
+        }
++ Response 200
+
+    + Headers
+
+            status: success
+
++ Request (application/json)
+
+        {
+            {
+                "trackID": 2000,
+                "name": "John Doe's Track",
+                "genre": "pop",
+                "dateReleased": "2017-03-15",
+                "duration": 4.5,
+                "popularity": 3,
+                "preview": "picture_url1",
+                "explicit": true,
+                "artistID": 1,
+                "albumID": 1
+            }
+        }
+
++ Response 400
+
+    + Headers
+
+            status: fail
+            
 
 ## Track [/tracks/{id}]
 A single Track object with all its details
@@ -331,7 +586,6 @@ A single Track object with all its details
 
             {
                 "trackID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
                 "name": "John Doe's Track",
                 "genre": "pop",
                 "dateReleased": "2017-03-15",
@@ -347,18 +601,30 @@ A single Track object with all its details
 
 ### List All Concerts [GET]
 
-You can make queries to the concert collection in order
-to get concerts associated to the venueID, artistID
-
-venueID - an associated venue to the concerts.
-Provide 1 venueID.
-
-ex. /concerts?venueID=1
-
-artistID - an associated artist to the concerts.
-Provide 1 artistID
-
-ex. /concerts?artistID=1
+    You can make queries to the concert collection in order
+    to get concerts associated to the concertID, venueID, or artistID:
+    
+    concertID
+    
+    the id of a given concert. Provide 1 concertID.
+    
+    ex. /concerts?concertID=1
+    
+    ---
+    
+    venueID 
+    
+    an associated venue to the concerts. Provide 1 venueID.
+    
+    ex. /concerts?venueID=1
+    
+    ---
+    
+    artistID
+    
+    an associated artist to the concerts. Provide 1 artistID.
+    
+    ex. /concerts?artistID=1
 
 
 + Response 200 (application/json)
@@ -366,7 +632,6 @@ ex. /concerts?artistID=1
         [
             {
                 "concertID": 1,
-                "published_at": "2014-08-05T08:40:51.620Z",
                 "name": "SXSW Pop Event",
                 "link": "concert_link",
                 "date/time": "2016-09-02T08:40:51.620Z",
@@ -377,9 +642,20 @@ ex. /concerts?artistID=1
 
 ### Create a New Concert [POST]
 
-You may create your own concert using this action. It takes a JSON
-object containing a name of the concert (R), concert link (R), date/time (R), 
-lineup (R), and the associated venue's ID (R)
+    You may create your own concert using this action.
+    Create a concert object by providing a JSON object
+    with the following attributes:
+    
+    name of the concert (R),
+    
+    concert link (NR),
+    
+    date/time (NR), 
+
+    lineup (NR),
+    
+    and the associated venue's ID (NR)
+
 
 + Request (application/json)
 
@@ -404,7 +680,6 @@ lineup (R), and the associated venue's ID (R)
             
             {
                 "concertID": 2,
-                "published_at": "2016-03-15T08:40:51.620Z",
                 "name": "John Doe's Event",
                 "link": "concert_link",
                 "date/time": "2017-03-05T08:40:51.620Z",
@@ -412,6 +687,62 @@ lineup (R), and the associated venue's ID (R)
                 "venueID": 5
             }
             
+### Update a Concert [PUT]
+
+    Update a concert object by providing a JSON object with the following attributes:
+    
+    the concert's ID (R),
+    
+    name of the concert (R),
+    
+    concert link (NR),
+    
+    date/time (NR), 
+
+    lineup (NR),
+    
+    and the associated venue's ID (NR)
+
+If the concertID provided does not exist, the call will fail.
+
++ Request (application/json)
+
+        {
+            {
+                "concertID": 2,
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
+        }
+
++ Response 200
+
+    + Headers
+
+            status: success
+
++ Request (application/json)
+
+        {
+            {
+                "concertID": 5000,
+                "name": "John Doe's Event",
+                "link": "concert_link",
+                "date/time": "2017-03-05T08:40:51.620Z",
+                "lineup": "list of John Doe's Artists",
+                "venueID": 5
+            }
+        }
+
++ Response 400
+
+    + Headers
+
+            status: fail
+
 ## Concert [/concerts/{id}]
 A single Concert object with all its details
 
@@ -429,7 +760,6 @@ A single Concert object with all its details
 
             {
                 "concertID": 2,
-                "published_at": "2016-03-15T08:40:51.620Z",
                 "name": "John Doe's Event",
                 "link": "concert_link",
                 "date/time": "2017-03-05T08:40:51.620Z",
@@ -441,20 +771,28 @@ A single Concert object with all its details
 
 ### List All Venues [GET]
 
-You can make queries to the venues collection in order
-to get venues associated to the concertID
-
-ex. /venues?concertID=1
-
-concertID - an associated concert to the venue. Provide 
-1 concertID.
+    You can make queries to the venues collection in order
+    to get venues associated to the venueID or concertID:
+        
+    venueID
+    
+    the id of a given venue. Provide 1 venueID.
+    
+    ex. /venues?venueID=1
+    
+    ---
+    
+    concertID
+    
+    an associated concert to the venue. Provide 1 concertID.
+    
+    ex. /venues?concertID=1
 
 + Response 200 (application/json)
 
         [
             {
                 "venueID": 1,
-                "published_at": "2014-08-05T08:40:51.620Z",
                 "name": "Techspace",
                 "picture": "venue_picture",
                 "city": "Austin",
@@ -467,9 +805,24 @@ concertID - an associated concert to the venue. Provide
 
 ### Create a New Venue [POST]
 
-You may create your own venue using this action. It takes a JSON
-object containing a name of the venue (R), picture link of venue (R),
-the city (R), the region (R), the country (R), latitude (R), and longitude (R)
+    You may create your own venue using this action.
+    Create a venue object by providing a JSON object
+    with the following attributes:
+
+    name of the venue (R),
+    
+    a url leading to a picture of the venue (NR),
+    
+    the city (NR),
+    
+    the region (NR),
+    
+    the country (NR),
+    
+    latitude (NR),
+    
+    and longitude (NR)
+
 
 + Request (application/json)
 
@@ -495,8 +848,7 @@ the city (R), the region (R), the country (R), latitude (R), and longitude (R)
 
             
             {
-                "concertID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
+                "venueID": 2,
                 "name": "John Doe's Venue",
                 "picture": "venue_picture",
                 "city": "Austin",
@@ -505,6 +857,71 @@ the city (R), the region (R), the country (R), latitude (R), and longitude (R)
                 "latitude": 67.436,
                 "longitude": 154.32
             }
+            
+### Update a Venue [PUT]
+
+    Update a venue object by providing a JSON object with the following attributes:
+    
+    the venue's ID (R),
+
+    name of the venue (R),
+    
+    a url leading to a picture of the venue (NR),
+    
+    the city (NR),
+    
+    the region (NR),
+    
+    the country (NR),
+    
+    latitude (NR),
+    
+    and longitude (NR)
+
+If the venueID provided does not exist, the call will fail.
+
++ Request (application/json)
+
+        {
+            {
+                "venueID": 2,
+                "name": "John Doe's Venue",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
+            }
+        }
+
++ Response 200
+
+    + Headers
+
+            status: success
+
++ Request (application/json)
+
+        {
+            {
+                "venueID": 10000,
+                "name": "John Doe's Venue",
+                "picture": "venue_picture",
+                "city": "Austin",
+                "region": "TX",
+                "country": "U.S",
+                "latitude": 67.436,
+                "longitude": 154.32
+            }
+        }
+
++ Response 400
+
+    + Headers
+
+            status: fail
+
                 
 ## Venue [/venues/{id}]
 A single Venue object with all its details
@@ -522,8 +939,7 @@ A single Venue object with all its details
     + Body
 
             {
-                "concertID": 2,
-                "published_at": "2017-03-15T08:40:51.620Z",
+                "venueID": 2,
                 "name": "John Doe's Venue",
                 "picture": "venue_picture",
                 "city": "Austin",
