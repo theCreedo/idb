@@ -11,7 +11,7 @@ class Track(Base) :
 	__tablename__ = 'tracks'
 	
 	id = Column(Integer, primary_key=True)
-	name = Column(String(50))
+	name = Column(String(50), unique=True)
 	genre = Column(String(25))
 	release_date = Column(String(15))
 	duration = Column(Integer)
