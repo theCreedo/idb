@@ -11,8 +11,8 @@ from google.appengine.ext import ndb
 
 # class ExampleModel(ndb.Model):
 #     """Example Model"""
-#     example_name = ndb.StringProperty(required=True)
-#     example_description = ndb.TextProperty(required=True)
+#     example_name = ndb.StringProperty( )
+#     example_description = ndb.TextProperty( )
 #     added_by = ndb.UserProperty()
 #     timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
@@ -29,14 +29,14 @@ Base = declarative_base()
 class Track(ndb.Model) :
 	__tablename__ = 'tracks'
 	
-	id = ndb.IntegerProperty(required=True) #look into making this a primary key
+	id = ndb.IntegerProperty( ) #look into making this a primary key
 	name = ndb.StringProperty(required=True)
-	genre = ndb.StringProperty(required=True)
-	release_date = ndb.StringProperty(required=True)
-	duration = ndb.IntegerProperty(required=True)
-	popularity = ndb.IntegerProperty(required=True)
-	preview_url = ndb.StringProperty(required=True)
-	explicit = ndb.BooleanProperty(required=True)
+	genre = ndb.StringProperty( )
+	release_date = ndb.StringProperty( )
+	duration = ndb.IntegerProperty( )
+	popularity = ndb.IntegerProperty( )
+	preview_url = ndb.StringProperty( )
+	explicit = ndb.BooleanProperty( )
 
 	# Reference to artists table 
 	# Auto-populates Artist.tracks
@@ -55,12 +55,12 @@ class Track(ndb.Model) :
 class Artist(Base) :
 	__tablename__ = 'artists'
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty( )
 	name = ndb.StringProperty(required=True)
-	image_url = ndb.StringProperty(required=True)
-	country = ndb.StringProperty(required=True)
-	decade = ndb.StringProperty(required=True)
-	genre = ndb.StringProperty(required=True)
+	image_url = ndb.StringProperty( )
+	country = ndb.StringProperty( )
+	decade = ndb.StringProperty( )
+	genre = ndb.StringProperty( )
 
 	# Reference to an artist's most popular track
 	most_popular_track_id = Column(Integer, ForeignKey('tracks.id'))
@@ -82,13 +82,13 @@ class Artist(Base) :
 class Album(Base) :
 	__tablename__ = 'albums'
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty()
 	name = ndb.StringProperty(required=True)
-	genre = ndb.StringProperty(required=True)
-	release_date = ndb.StringProperty(required=True)
-	album_cover_url = ndb.StringProperty(required=True)
-	label = ndb.StringProperty(required=True)
-	number_of_tracks = ndb.IntegerProperty(required=True)
+	genre = ndb.StringProperty( )
+	release_date = ndb.StringProperty( )
+	album_cover_url = ndb.StringProperty( )
+	label = ndb.StringProperty( )
+	number_of_tracks = ndb.IntegerProperty( )
 
 	# Relationship to artist_album_pairs table
 	# Auto-populates Artist_Album_Association.album
@@ -108,7 +108,7 @@ class Album(Base) :
 class Artist_Album_Association(Base) :
 	__tablename__ = artist_album_pairs
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty( )
 
 	# Reference to artists table
 	# Auto-populates Artist.albums
@@ -127,11 +127,11 @@ class Artist_Album_Association(Base) :
 class Concert(Base) :
 	__tablename__ = 'concerts'
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty( )
 	name = ndb.StringProperty(required=True)
-	event_link = ndb.StringProperty(required=True)
-	date = ndb.StringProperty(required=True)
-	time = ndb.StringProperty(required=True)
+	event_link = ndb.StringProperty( )
+	date = ndb.StringProperty( )
+	time = ndb.StringProperty( )
 
 	# Reference to venues table
 	# Auto-populates Venue.concerts
@@ -151,7 +151,7 @@ class Concert(Base) :
 class Concert_AA_Association(Base) :
 	__tablename__ = 'concert_aa_pairs'
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty( )
 
 	# Reference to concerts table
 	# Auto-populates Concert.artist_album_pairs
@@ -171,14 +171,14 @@ class Concert_AA_Association(Base) :
 class Venue(Base) :
 	__tablename__ = 'venues'
 
-	id = ndb.IntegerProperty(required=True)
+	id = ndb.IntegerProperty( )
 	name = ndb.StringProperty(required=True)
-	image_url = ndb.StringProperty(required=True)
-	city = ndb.StringProperty(required=True)
-	region = ndb.StringProperty(required=True)
-	country = ndb.StringProperty(required=True)
-	latitude = ndb.FloatProperty(required=True)
-	longitude = ndb.FloatProperty(required=True)
+	image_url = ndb.StringProperty( )
+	city = ndb.StringProperty( )
+	region = ndb.StringProperty( )
+	country = ndb.StringProperty( )
+	latitude = ndb.FloatProperty( )
+	longitude = ndb.FloatProperty( )
 
 	# Relationship with concerts table
 	# Auto-populates Concert.venue
