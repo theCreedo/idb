@@ -45,7 +45,9 @@ endif
 # 	git clone https://github.com/cs373t-spring-2017/collatz-tests.git
 
 IDB1.html: app/models.py
-	pydoc3 -w IDB1
+	pydoc3 -w app/models.py
+	mv models.html IDB1.html
+
 
 IDB1.log:
 	git log > IDB1.log
@@ -81,9 +83,13 @@ check:
     fi;                                           \
     echo "success";
 
-# clean:
-# 	rm -f  .pylintrc
-# 	rm -rf __pycache__
+clean:
+	rm -f  .coverage
+	rm -f  .pylintrc
+	rm -f  *.pyc
+	rm -f  IDB1.html
+	rm -f  IDB1.log
+	rm -rf __pycache__
 
 config:
 	git config -l
