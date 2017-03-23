@@ -1,5 +1,3 @@
-# Insert makefile info
-
 .DEFAULT_GOAL := test
 
 FILES :=                              \
@@ -7,10 +5,8 @@ FILES :=                              \
 	app/tests.py                      \
 	.gitignore                        \
 	.travis.yml                       \
-	
-	# IDB1.pdf                          \
-	# IDB1.html                         \
-	# IDB1.log                          \
+	IDB1.html                         \
+	IDB1.log                          \
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -48,11 +44,11 @@ endif
 # collatz-tests:
 # 	git clone https://github.com/cs373t-spring-2017/collatz-tests.git
 
-# Collatz.html: Collatz.py
-# 	pydoc3 -w Collatz
+IDB1.html: app/models.py
+	pydoc3 -w IDB1
 
-# Collatz.log:
-# 	git log > Collatz.log
+IDB1.log:
+	git log > IDB1.log
 
 # RunCollatz.tmp: Collatz.py RunCollatz.in RunCollatz.out RunCollatz.py .pylintrc
 # 	-$(PYLINT) Collatz.py
@@ -92,10 +88,9 @@ check:
 config:
 	git config -l
 
-# format:
- 	$(AUTOPEP8) -i models.py
-# 	$(AUTOPEP8) -i RunCollatz.py
- 	$(AUTOPEP8) -i tests.py
+format:
+	$(AUTOPEP8) -i app/models.py
+	$(AUTOPEP8) -i app/tests.py
 
 status:
 	git branch
@@ -103,7 +98,7 @@ status:
 	git status
 # 	make clean
 
-test:
+test: IDB1.html IDB1.log
 	ls -al
 	make check
 
