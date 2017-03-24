@@ -1,0 +1,120 @@
+------------------
+Static info for P3
+------------------
+
+Tracks (3) (Name, Genre, Album Art, Date, Duration, Popularity, Preview, Explicit, Artist, Album)
+
+Adventure Of A Lifetime (spotify:track:69uxyAqqPIsUyTO8txoP2M)
+Coldplay (https://api.spotify.com/v1/artists/4gzpq5DPGxSnKTe4SA8HAU)
+Cover (https://i.scdn.co/image/2f66abbf986dcc2fb1dca9bceb892123d5d10c3a)
+A Head Full Of Dreams (spotify:album:3cfAM8b8KqJRoIzt3zLKqw)
+Explicit (False)
+Duration (263786)
+Popularity (78)
+Genre ()
+Date (2015-12-04)
+MP3(https://p.scdn.co/mp3-preview/f5c8203c517a906dd581e0faeca84d1e0206c8b6?cid=null)
+
+-----
+
+Bohemian Rhapsody (spotify:track:7tFiyTwD0nx5a1eklYtX2J)
+Queen (spotify:artist:1dfeR4HaWDbWqFHLkxsg1d)
+Cover (https://i.scdn.co/image/f6e02ce8bc9e91afa0e220703072c20bf72c72c5)
+A Night At The Opera (Deluxe Remastered Version) (spotify:album:6X9k3hSsvQck2OfKYdBbXr)
+Explicit (False)
+Duration (354320)
+Popularity (71)
+Genre ()
+Date ()
+MP3 (https://p.scdn.co/mp3-preview/d5bc71c0bdc98b547a39aeba9538a7c6d33fc342?cid=null)
+
+------
+
+Love Shack (spotify:track:4W4wYHtsrgDiivRASVOINL)
+The B-52's (spotify:artist:3gdbcIdNypBsYNu3iiCjtN)
+Cover (https://i.scdn.co/image/5210fc4d42dce2104eb2dfcf0d221d5c16631a4f)
+Cosmic Thing (spotify:album:5BAzAODqIwttjj7wxmlNMS)
+Explicit (False)
+Duration (321573)
+Popularity (61)
+Genre ()
+Date ()
+MP3 (https://p.scdn.co/mp3-preview/33813193c01f1c42416b328c7f5f3116cb603865?cid=null)
+
+************
+
+Albums (3) (Name, Genre, Date, Album Cover, Label, No. Of songs)
+
+A Head Full Of Dreams (spotify:album:3cfAM8b8KqJRoIzt3zLKqw)
+Coldplay (spotify:artist:4gzpq5DPGxSnKTe4SA8HAU)
+Genre()
+Date(2015-12-04)
+Cover(https://i.scdn.co/image/9c2c4a9ac9726bfd996ff96383178bbb5efc59ab)
+Label(Parlophone UK)
+No Songs(11)
+
+---------
+
+A Night At The Opera (Deluxe Remastered Version) (spotify:album:6X9k3hSsvQck2OfKYdBbXr)
+Queen (spotify:artist:1dfeR4HaWDbWqFHLkxsg1d)
+Genre ()
+Date (1975-11-21)
+Cover (https://i.scdn.co/image/f6e02ce8bc9e91afa0e220703072c20bf72c72c5)
+Label (Hollywood Records)
+No Songs(18)
+
+----------
+
+Cosmic Thing (spotify:album:5BAzAODqIwttjj7wxmlNMS)
+The B-52's (spotify:artist:3gdbcIdNypBsYNu3iiCjtN)
+Genre()
+Date(1989-06-23)
+Cover(https://i.scdn.co/image/5210fc4d42dce2104eb2dfcf0d221d5c16631a4f)
+Label(Warner Bros.)
+No Songs(10)
+
+
+Artists (3) (Name, Picture, Country, Decade, Most popular song, genres)
+
+Coldplay (spotify:artist:4gzpq5DPGxSnKTe4SA8HAU)
+Picture (https://i.scdn.co/image/143b0f286f76ece3a711f673d9ba00b8f499b2c0)
+Country ()
+Decade ()
+Most Popular ()
+Genres ("permanent wave",
+    "pop",
+    "pop christmas")
+
+------
+
+Queen (spotify:artist:1dfeR4HaWDbWqFHLkxsg1d)
+Picture (https://i.scdn.co/image/b040846ceba13c3e9c125d68389491094e7f2982)
+Country ()
+Decade ()
+Most Popular ()
+Genres ( "album rock",
+    "classic rock",
+    "glam rock",
+    "hard rock",
+    "heavy christmas",
+    "rock")
+
+-----------
+
+The B-52's (spotify:artist:3gdbcIdNypBsYNu3iiCjtN)
+Picture (https://i.scdn.co/image/42b6713611a0ba1235c8c84f8ca1862fe7fa1d65)
+Country ()
+Decade ()
+Most Popular ()
+Genres ( "art rock",
+    "dance rock",
+    "new romantic",
+    "new wave",
+    "new wave pop",
+    "permanent wave",
+    "pop rock",
+    "post-punk",
+    "power pop",
+    "rock",
+    "synthpop",
+    "zolo")

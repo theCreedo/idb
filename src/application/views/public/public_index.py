@@ -8,4 +8,4 @@ from flask import redirect, url_for
 class PublicIndex(View):
 
     def dispatch_request(self):
-        return redirect(url_for('list_examples'))
+        return redirect(url_for('static', filename='sweBootstrap/home.html'))
