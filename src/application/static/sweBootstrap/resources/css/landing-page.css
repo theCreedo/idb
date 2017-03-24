@@ -4,13 +4,17 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-body,
+body {
+    background: #333;
+},
 html {
     width: 100%;
     height: 100%;
 }
 
-body,
+body {
+    background: #333;
+},
 h1 {
     text-shadow: 1px 1px 1px #ccc;
 },
@@ -181,7 +185,7 @@ h6 {
 footer {
     padding: 50px 0;
     background-color: #f8f8f8;
-    background-image: url('../images/vertical-wood-bg.jpg');
+    background-image: url('../images/subtle-grid-bg.jpg');
 }
 
 p.copyright {
@@ -431,7 +435,7 @@ html { overflow-y:scroll; }
 }
 .aboutTitle {
     font-family: cagliostro;
-    font-size: 3em;
+    font-size: 4em;
     text-align: center;
     color: #FFF;
     text-shadow: 3px 3px 0px #000;
