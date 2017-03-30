@@ -1,34 +1,31 @@
 #! python
-from sqlalchemy import create_engine, Column, ForeignKey,\
-    Integer, Boolean, Table, Float, String
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-# SQLAlchemy Declarative Base
-Base = declarative_base()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@localhost:5432/postgres'
+db = SQLAlchemy(app) 
 
 
-class Track(Base):
+class Track(db.Model):
     __tablename__ = 'tracks'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    genre = Column(String(25))
-    release_date = Column(String(15))
-    duration = Column(Integer)
-    popularity = Column(Integer)
-    preview_url = Column(String(150))
-    explicit = Column(Boolean)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    genre = db.Column(db.String(25))
+    release_date = db.Column(db.String(15))
+    duration = db.Column(db.Integer)
+    popularity = db.Column(db.Integer)
+    preview_url = db.Column(db.String(150))
+    explicit = db.Column(db.Boolean)
 
     # Reference to artists table
     # Auto-populates Artist.tracks
-    artist_id = Column(Integer, ForeignKey('artists.id'))
-    artist = relationship('Artist', back_populates='tracks')
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
     # Reference to albums table
     # Auto-populates Album.tracks
-    album_id = Column(Integer, ForeignKey('albums.id'))
-    album = relationship('Album', back_populates='tracks')
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     def __init__(self, name, genre, release_date, duration,
                  popularity, preview_url, explicit, artist_id, album_id):
@@ -55,24 +52,20 @@ class Track(Base):
     def __repr__(self):
         return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
 
-# Association Class to model the many-to-many relationship between
+# Association Class to model the many-to-many db.relationship between
 # Artists and Albums
-
-
-class Artist_Album_Association(Base):
+class Artist_Album_Association(db.Model):
     __tablename__ = 'artist_album_pairs'
 
-    id = Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
 
     # Reference to artists table
     # Auto-populates Artist.albums
-    artist_id = Column(Integer, ForeignKey('artists.id'))
-    artist = relationship('Artist', back_populates='albums')
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
     # Reference to albums table
     # Auto-populates Album.artists
-    album_id = Column(Integer, ForeignKey('albums.id'))
-    album = relationship('Album', back_populates='artists')
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     def __init__(artist_id, album_id):
         assert (artist_id > 0)
@@ -86,29 +79,29 @@ class Artist_Album_Association(Base):
             (self.artist.name, self.album.name)
 
 
-class Artist(Base):
+class Artist(db.Model):
     __tablename__ = 'artists'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    image_url = Column(String(150))
-    country = Column(String(50))
-    decade = Column(String(50))
-    genre = Column(String(100))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    image_url = db.Column(db.String(150))
+    country = db.Column(db.String(50))
+    decade = db.Column(db.String(50))
+    genre = db.Column(db.String(100))
 
     # Reference to an artist's most popular track
-    most_popular_track_id = Column(Integer, ForeignKey('tracks.id'))
-    most_popular_track = relationship('Track')
+    most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
+    most_popular_track = db.relationship('Track')
 
-    # Relationship to artist_album_pairs table
+    # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
-    albums = relationship('Artist_Album_Association',
-                          order_by=Artist_Album_Association.id, back_populates='artist')
+    albums = db.relationship('Artist_Album_Association',
+                          order_by=Artist_Album_Association.id, backref='artist')
 
-    # Relationship to tracks table
+    # db.relationship to tracks table
     # Auto-populates Track.artist
-    tracks = relationship('Track',
-                          order_by=Track.id, back_populates='artist')
+    tracks = db.relationship('Track',
+                          order_by=Track.id, backref='artist')
 
     def __init__(self, name, image_url, country, decade, genre, most_popular_track_id):
         assert (name != "")
@@ -129,26 +122,26 @@ class Artist(Base):
         return "<Artist(name='%s')>" % (self.name)
 
 
-class Album(Base):
+class Album(db.Model):
     __tablename__ = 'albums'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    genre = Column(String(100))
-    release_date = Column(String(15))
-    album_cover_url = Column(String(150))
-    label = Column(String(50))
-    number_of_tracks = Column(Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    genre = db.Column(db.String(100))
+    release_date = db.Column(db.String(15))
+    album_cover_url = db.Column(db.String(150))
+    label = db.Column(db.String(50))
+    number_of_tracks = db.Column(db.Integer)
 
-    # Relationship to artist_album_pairs table
+    # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.album
-    artists = relationship('Artist_Album_Association',
-                           order_by=Artist_Album_Association.id, back_populates='album')
+    artists = db.relationship('Artist_Album_Association',
+                           order_by=Artist_Album_Association.id, backref='album')
 
-    # Relationship to tracks table
+    # db.relationship to tracks table
     # Auto-populates Track.album
-    tracks = relationship('Track',
-                          order_by=Track.id, back_populates='album')
+    tracks = db.relationship('Track',
+                          order_by=Track.id, backref='album')
 
     def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks):
         assert (name != "")
@@ -168,24 +161,19 @@ class Album(Base):
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
 
-# Association class to model the many-to-many relationship between
+# Association class to model the many-to-many db.relationship between
 # Concerts and Artists and Albums
-
-
-class Concert_AA_Association(Base):
+class Concert_AA_Association(db.Model):
     __tablename__ = 'concert_aa_pairs'
 
-    id = Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
 
     # Reference to concerts table
     # Auto-populates Concert.artist_album_pairs
-    concert_id = Column(Integer, ForeignKey('concerts.id'))
-    concert = relationship('Concert',
-                           back_populates='artist_album_pairs')
+    concert_id = db.Column(db.Integer, db.ForeignKey('concerts.id'))
 
     # Reference to artist_album_pairs table
-    aa_id = Column(Integer, ForeignKey('artist_album_pairs.id'))
-    artist_album = relationship('Artist_Album_Association')
+    aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
 
     def __init__(concert_id, aa_id):
         assert (concert_id > 0)
@@ -200,24 +188,23 @@ class Concert_AA_Association(Base):
             self.artist_album.album.name)
 
 
-class Concert(Base):
+class Concert(db.Model):
     __tablename__ = 'concerts'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    event_link = Column(String(150))
-    date = Column(String(15))
-    time = Column(String(10))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    event_link = db.Column(db.String(150))
+    date = db.Column(db.String(15))
+    time = db.Column(db.String(10))
 
     # Reference to venues table
     # Auto-populates Venue.concerts
-    venue_id = Column(Integer, ForeignKey('venues.id'))
-    venue = relationship('Venue', back_populates='concerts')
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'))
 
-    # Relationship to artist_album_pairs table
+    # db.relationship to artist_album_pairs table
     # Auto-populates Concert_AA_Association.concert
-    artist_album_pairs = relationship('Concert_AA_Association',
-                                      order_by=Concert_AA_Association.id, back_populates='concert')
+    artist_album_pairs = db.relationship('Concert_AA_Association',
+                                      order_by=Concert_AA_Association.id, backref='concert')
 
     def __init__(self, name, event_link, date, time, venue_id):
         assert (name != "")
@@ -238,21 +225,21 @@ class Concert(Base):
         return "<Concert(name='%s')>" % (self.name)
 
 
-class Venue(Base):
+class Venue(db.Model):
     __tablename__ = 'venues'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    image_url = Column(String(150))
-    city = Column(String(50))
-    region = Column(String(50))
-    country = Column(String(50))
-    latitude = Column(Float)
-    longitude = Column(Float)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    image_url = db.Column(db.String(150))
+    city = db.Column(db.String(50))
+    region = db.Column(db.String(50))
+    country = db.Column(db.String(50))
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
 
-    # Relationship with concerts table
+    # db.relationship with concerts table
     # Auto-populates Concert.venue
-    concerts = relationship('Concert', back_populates='venue')
+    concerts = db.relationship('Concert', backref='venue')
 
     def __init__(self, name, image_url, city, region, country, latitude, longitude):
         assert (name != "")
@@ -274,10 +261,5 @@ class Venue(Base):
     def __repr__(self):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
-# SQLAlchemy's connection to database
-# See SQLAlchemy's documation on PostgreSQL format
-# Commented out for Phase 1
-engine = create_engine('postgres://postgres:swe2017@localhost:5432/postgres')
-
-# Create tables in database from classes
-Base.metadata.create_all(engine)
+# Create the tables
+# db.create_all()
