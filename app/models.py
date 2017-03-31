@@ -29,7 +29,7 @@ class Track(db.Model):
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     def __init__(self, name, genre, release_date, duration,
-                 popularity, preview_url, explicit, artist_id, album_id):
+                 popularity, preview_url, explicit):
         assert (name != "")
         assert (genre != "")
         assert (release_date != "")
@@ -37,8 +37,6 @@ class Track(db.Model):
         assert (popularity >= 0 and popularity <= 100)
         assert (preview_url != "")
         assert (explicit != "")
-        # assert (artist_id > 0)
-        # assert (album_id > 0)
 
         self.name = name
         self.genre = genre
@@ -47,8 +45,6 @@ class Track(db.Model):
         self.popularity = popularity
         self.preview_url = preview_url
         self.explicit = explicit
-        self.artist_id = artist_id
-        self.album_id = album_id
 
     def __repr__(self):
         return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
@@ -68,13 +64,6 @@ class Artist_Album_Association(db.Model):
     # Auto-populates Album.artists
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
-    def __init__(artist_id, album_id):
-        assert (artist_id > 0)
-        assert (album_id > 0)
-
-        self.artist_id = artist_id
-        self.album_id = album_id
-
     def __repr__(self):
         return "<Artist_Album_Association(artist='%s', album='%s')>" %\
             (self.artist.name, self.album.name)
@@ -91,8 +80,8 @@ class Artist(db.Model):
     genre = db.Column(db.String(100))
 
     # Reference to an artist's most popular track
-    most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
-    most_popular_track = db.relationship('Track')
+    # most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
+    # most_popular_track = db.relationship('Track')
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
@@ -104,20 +93,18 @@ class Artist(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.id, backref='artist')
 
-    def __init__(self, name, image_url, country, decade, genre, most_popular_track_id):
+    def __init__(self, name, image_url, country, decade, genre):
         assert (name != "")
         assert (image_url != "")
         assert (country != "")
         assert (decade != "")
         assert (genre != "")
-        assert (most_popular_track > 0)
 
         self.name = name
         self.image_url = image_url
-        self.country = self.country
-        self.decade = self.decade
+        self.country = country
+        self.decade = decade
         self.genre = genre
-        self.most_popular_track_id = most_popular_track_id
 
     def __repr__(self):
         return "<Artist(name='%s')>" % (self.name)
@@ -132,7 +119,7 @@ class Album(db.Model):
     release_date = db.Column(db.String(15))
     album_cover_url = db.Column(db.String(150))
     label = db.Column(db.String(50))
-    number_of_tracks = db.Column(db.Integer)
+    number_of_tracks = db.Column(db.Integer, nullable=True)
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.album
@@ -144,20 +131,18 @@ class Album(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.id, backref='album')
 
-    def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks):
+    def __init__(self, name, genre, release_date, album_cover_url, label):
         assert (name != "")
         assert (genre != "")
         assert (release_date != "")
         assert (album_cover_url != "")
         assert (label != "")
-        assert (number_of_tracks > 0)
 
         self.name = name
         self.genre = genre
         self.release_date = release_date
         self.album_cover_url = album_cover_url
         self.label = label
-        self.number_of_tracks = number_of_tracks
 
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
@@ -175,13 +160,6 @@ class Concert_AA_Association(db.Model):
 
     # Reference to artist_album_pairs table
     aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
-
-    def __init__(concert_id, aa_id):
-        assert (concert_id > 0)
-        assert (aa_id > 0)
-
-        self.concert_id = concert_id
-        self.aa_id = aa_id
 
     def __repr__(self):
         return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
@@ -207,20 +185,16 @@ class Concert(db.Model):
     artist_album_pairs = db.relationship('Concert_AA_Association',
                                       order_by=Concert_AA_Association.id, backref='concert')
 
-    def __init__(self, name, event_link, date, time, venue_id):
+    def __init__(self, name, event_link, date, time):
         assert (name != "")
-        assert (genre != "")
         assert (event_link != "")
         assert (date != "")
         assert (time != "")
-        assert (venue_id > 0)
 
         self.name = name
-        self.genre = genre
         self.event_link = event_link
         self.date = date
         self.time = time
-        self.venue_id = venue_id
 
     def __repr__(self):
         return "<Concert(name='%s')>" % (self.name)
@@ -262,5 +236,6 @@ class Venue(db.Model):
     def __repr__(self):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
-# # Create the tables
-# db.create_all()
+# Create the tables
+db.create_all()
+db.session.commit()
