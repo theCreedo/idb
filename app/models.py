@@ -64,6 +64,7 @@ class Artist_Album_Association(db.Model):
     # Auto-populates Album.artists
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
+
     def __repr__(self):
         return "<Artist_Album_Association(artist='%s', album='%s')>" %\
             (self.artist.name, self.album.name)

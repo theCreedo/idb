@@ -4,9 +4,12 @@ from models import db, Track, Artist, Album, Artist_Album_Association, Concert, 
 track = Track('name', 'genre', 'release', 1, 1, 'url', True)
 artist = Artist('name', 'url', 'country', 'decade', 'genre')
 album = Album('name', 'genre', 'release', 'url', 'label')
+aa = new Artist_Album_Association()
+
 
 artist.tracks.append(track)
 album.tracks.append(track)
+album.albums = aa
 
 concert = Concert('name', 'link', 'date', 'time')
 venue = Venue('name', 'url', 'city', 'region', 'country', 0.0, 0.0)
