@@ -3,7 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@104.154.96.130/postgres'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app) 
 
 
@@ -36,8 +37,8 @@ class Track(db.Model):
         assert (popularity >= 0 and popularity <= 100)
         assert (preview_url != "")
         assert (explicit != "")
-        assert (artist_id > 0)
-        assert (album_id > 0)
+        # assert (artist_id > 0)
+        # assert (album_id > 0)
 
         self.name = name
         self.genre = genre
@@ -261,5 +262,5 @@ class Venue(db.Model):
     def __repr__(self):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
-# Create the tables
+# # Create the tables
 # db.create_all()

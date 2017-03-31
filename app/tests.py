@@ -7,6 +7,8 @@ from google.appengine.ext import testbed
 
 from application import app
 
+from models import Track, Artist, Album, Concert, Artist_Album_Association, Concert_AA_Association, db
+
 
 class TestCase(unittest.TestCase):
 
@@ -121,6 +123,18 @@ class TestCase(unittest.TestCase):
         rv = self.app.get('/missing')
         assert rv.status == '404 NOT FOUND'
         assert '<h1>Not found</h1>' in rv.data
+
+    def test_db_create_track(self):
+        track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 1, 1)
+        db.session.add(track)
+        db.session.commit()
+        track_result = Track.query.filter_by(name='track_name').first()
+        assert track_result is track
+
+    def test_db_delete_track(self):
+        
+
+
 
 if __name__ == '__main__':
     unittest.main()
