@@ -277,7 +277,7 @@ class Venue(Base):
 # SQLAlchemy's connection to database
 # See SQLAlchemy's documation on PostgreSQL format
 # Commented out for Phase 1
-engine = create_engine('postgres://postgres:swe2017@localhost:5432/postgres')
+engine = create_engine('POSTGRESDB')
 
 # Create tables in database from classes
 Base.metadata.create_all(engine)
