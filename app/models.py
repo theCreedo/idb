@@ -49,6 +49,28 @@ class Track(db.Model):
     def __repr__(self):
         return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
 
+# Association class to model the many-to-many db.relationship between
+# Concerts and Artists and Albums
+class Concert_AA_Association(db.Model):
+    __tablename__ = 'concert_aa_pairs'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Reference to concerts table
+    # Auto-populates Concert.artist_album_pairs
+    concert_id = db.Column(db.Integer, db.ForeignKey('concerts.id'))
+
+    # Reference to artist_album_pairs table
+    aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
+
+    # def __init__():
+    #     return 0
+
+    def __repr__(self):
+        return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
+            )>" % (self.concert.name, self.artist_album.artist.name,
+            self.artist_album.album.name)
+
 # Association Class to model the many-to-many db.relationship between
 # Artists and Albums
 class Artist_Album_Association(db.Model):
@@ -64,6 +86,9 @@ class Artist_Album_Association(db.Model):
     # Auto-populates Album.artists
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
+    # Reference to Concert_AA_Association table
+    concerts = db.relationship('Concert_AA_Association',
+        order_by=Concert_AA_Association.id, backref='aa_association')
 
     def __repr__(self):
         return "<Artist_Album_Association(artist='%s', album='%s')>" %\
@@ -147,26 +172,6 @@ class Album(db.Model):
 
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
-
-# Association class to model the many-to-many db.relationship between
-# Concerts and Artists and Albums
-class Concert_AA_Association(db.Model):
-    __tablename__ = 'concert_aa_pairs'
-
-    id = db.Column(db.Integer, primary_key=True)
-
-    # Reference to concerts table
-    # Auto-populates Concert.artist_album_pairs
-    concert_id = db.Column(db.Integer, db.ForeignKey('concerts.id'))
-
-    # Reference to artist_album_pairs table
-    aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
-
-    def __repr__(self):
-        return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
-            )>" % (self.concert.name, self.artist_album.artist.name,
-            self.artist_album.album.name)
-
 
 class Concert(db.Model):
     __tablename__ = 'concerts'
