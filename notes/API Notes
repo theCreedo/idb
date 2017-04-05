@@ -13,7 +13,7 @@ Spotify:
 
 Musicgraph:
 	Documentation: https://developer.musicgraph.com/api-docs/v2/artists
-	Base url: http://api.musicgraph.com/api/v2
+	Base url: http://api.musicgraph.com/api/v2/
 	Api key: 05037b5542d5f3e47e19dce0a89ca63b
 	Endpoints:
 		artist

@@ -90,6 +90,21 @@ def album_decoder(a):
 	return album
 
 def concert_decoder(c, a_name):
+	url = None
+	date = None
+	time = None
+	try :
+		url = c['url']
+	except :
+		url = None
+	try :
+		date = c['datetime'][0:10]
+	except :
+		date = "Unavailable"
+	try :
+		time = c['datetime'][11:]
+	except :
+		time = "Unavailable"
 	concert = Concert(a_name, c['url'], c['datetime'][0:10], c['datetime'][11:])
 
 	#check if its already there
