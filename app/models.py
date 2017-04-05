@@ -157,18 +157,20 @@ class Album(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.id, backref='album')
 
-    def __init__(self, name, genre, release_date, album_cover_url, label):
+    def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks):
         assert (name != "")
         assert (genre != "")
         assert (release_date != "")
         assert (album_cover_url != "")
         assert (label != "")
+        assert (number_of_tracks > 0)
 
         self.name = name
         self.genre = genre
         self.release_date = release_date
         self.album_cover_url = album_cover_url
         self.label = label
+        self.number_of_tracks = number_of_tracks
 
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
