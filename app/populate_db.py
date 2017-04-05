@@ -85,7 +85,10 @@ def artist_decoder(art, album):
 def album_decoder(a):
 	# assert (a['album_type'] == "album")
 	# Should we do array of genres or just 1 genre...?
-	genre = "Unavailable" if len(a['genres']) == 0 else a['genres'][0]
+	try :
+		genre = a['genres'][0]
+	except:
+		genre = "Unavailable"
 	# genre = full['genres'] # IF WE DO A LIST OF GENRES
 
 	# need to get image url from array of image objects
