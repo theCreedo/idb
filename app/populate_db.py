@@ -117,7 +117,7 @@ def concert_decoder(c, a_name):
 		db.session.add(venue)
 	
 	venue.concerts.append(concert)
-	#db.session.commit()
+	db.session.commit()
 
 	return concert
 
@@ -167,7 +167,7 @@ def page_decoder(page):
 			
 		db.session.add_all(tracks)
 		db.session.add(album)
-		#db.session.commit()
+		db.session.commit()
 
 
 def main():
@@ -180,19 +180,19 @@ def main():
 	db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQD1y9e7ODzLQHNPOylqtGGgV38oBliqY6yOZ6w6CVtWGprzZm3vea6cu9w2MzsNDkMptEmYugN1r6ZrOAHP2qWlwsVtyF1FH4OcV3lTBor8x30O0uVOzThRcNDNIHWEA7RhrG4YAPZwQqytxeeK16LHo3I85jWuWvg'}
+	headers = {'Authorization' : 'Bearer BQA0-c2lwO0ad3V-o1aAO83_eWaNbO8zzXGniTdKwoWnzEIwvJ_OAFr_185NX3kgO7l83EopS7fvOF6olWg6S-byXinqhFSx2AJoUICUpxAZ2uE5kpb51I6d7zFzR9euQN5uX1U-CPEOO_Cv10wmuxYbcAKYkUjy5yc'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
 	# tracks = playlist['tracks']
-	page = playlists['tracks']
+	page = playlist['tracks']
 	while page:
 		page_decoder(page)
 		if page["next"]:
 			r2 = requests.get(page["next"], headers=headers)
 			page = json.loads(r2.text)
 		else:
-			page = null
+			page = None
 
 	
 if __name__ == "__main__" : main()
