@@ -186,14 +186,13 @@ def main():
 	playlist = json.loads(r.text)
 	# tracks = playlist['tracks']
 	page = playlists['tracks']
-	while page['next']:
+	while page:
 		page_decoder(page)
-		r2 = requests.get(page['next'])
-		page = json.loads(r2.text)
+		if page["next"]:
+			r2 = requests.get(page["next"], headers=headers)
+			page = json.loads(r2.text)
+		else:
+			page = null
 
 	
 if __name__ == "__main__" : main()
-
-
-
-
