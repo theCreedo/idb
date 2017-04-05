@@ -1,8 +1,8 @@
 #!python
 from models import db, Track, Artist, Album, Artist_Album_Association, Concert, Concert_AA_Association, Venue
-import json
+import json, requests
 
-auth = "BQDtdsbPvqABY0AgQVjjdyYpCcVh-r3V2DvH5crZWlpKMdnaVIZvrdG3UIq4cC1KH9gakEcNOue2EYudE8EMrQiE9qTmaEQGicQmQTvg_L1d5tGSUWbIGczUZ-bZkVexLhYgYAR6nJYTxgsHHQY0E7e8Uf_FH8SADYY"
+auth = "BQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMcBQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMc-1rTji1L8SZNxDVLaPR-iV1HNvlo5JIEv_4NL4PSrdQ3KHz1kAUD6xP4HJQpU1jVu39eIzNWDJgSxKzKJ9W8"
 
 def decoder(spotify_album, artist_exists):
  	# First, grab the album associated with the track so that, we can get the genre and release date
@@ -19,14 +19,14 @@ def decoder(spotify_album, artist_exists):
 		concerts = None
 	else:
 		# Get from array of artists, just the first artist...?
-		art = track['artists'][0]
-		artist = artist_decoder(art)
+		art = spotify_album['artists'][0]
+		artist = artist_decoder(art, album)
 
 		r = requests.get("https://rest.bandsintown.com/artists/" + artist.name + "/events?app_id=boswemianrhapsody")
 		list_concerts = json.loads(r.text)
 		concerts = []
 		for c in list_concerts:
-			concert = concert_decode(c, artist.name)
+			concert = concert_decoder(c, artist.name)
 			concerts.append(concert)
 
 
@@ -36,12 +36,17 @@ def track_decoder(t, album):
 	explicit = True if t['explicit'] == 'true' else False
 	# need to get genre and release date from album
 	# need to get url from external URL object
+
+	spotify_track = requests.get(t['href'])
+	t = json.loads(spotify_track.text)
+
 	track = Track(t['name'], album.genre, album.release_date, t['duration_ms'], 
 		t['popularity'], t['preview_url'], explicit)
 	return track
 
 def artist_decoder(art, album):
-	assert (t['type'] == "artist")
+	assert art != None
+	assert (art['type'] == "artist")
 	# need to get from simplified to full album objects
 	r = requests.get(art['href'])
 	full = json.loads(r.text)
@@ -53,13 +58,31 @@ def artist_decoder(art, album):
 
 	# need to get image url from array of image objects
 	# need to get country/decade from another api
-	artist = Artist(full['name'], full['images'][0]['url'], mg['country_of_origin'], mg['decade'], album.genre)
+	mg_data = mg['data']
+	country = None
+	decade = None
+	image = None
+	try :
+		country = mg_data[0]['country_of_origin']
+	except :
+		country = "Unavailable"
+
+	try :
+		decade = mg_data[0]['decade']
+	except :
+		decade = "Unavailable"
+
+	try :
+		image = full['images'][0]['url']
+	except :
+		image = None
+	artist = Artist(full['name'], image, country, decade, album.genre)
 	return artist
 
 def album_decoder(a):
-	assert (t['album_type'] == "album")
+	# assert (a['album_type'] == "album")
 	# Should we do array of genres or just 1 genre...?
-	genre = "None" if len(full['genres']) == 0 else full['genres'][0]
+	genre = "Unavailable" if len(a['genres']) == 0 else a['genres'][0]
 	# genre = full['genres'] # IF WE DO A LIST OF GENRES
 
 	# need to get image url from array of image objects
@@ -81,34 +104,41 @@ def concert_decoder(c, a_name):
 	return concert
 
 def venue_decoder(v):
-	venue = Venue(v['name'], None, v['city'], v['region'], v['country'], v['latitude'], v['location'])
+	venue = Venue(v['name'], v['city'], v['region'], v['country'], float(v['latitude']), float(v['longitude']))
 	return venue
 
 
-def __main__():
+def main():
 	db.session.query(Track).delete()
+	db.session.query(Concert_AA_Association).delete()
+	db.session.query(Artist_Album_Association).delete()
 	db.session.query(Album).delete()
 	db.session.query(Artist).delete()
 	db.session.query(Concert).delete()
-	db.session.query(Artist_Album_Association).delete()
-	db.session.query(Concert_AA_Association).delete()
 	db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer ' + auth}
+	headers = {'Authorization' : 'Bearer BQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMc-1rTji1L8SZNxDVLaPR-iV1HNvlo5JIEv_4NL4PSrdQ3KHz1kAUD6xP4HJQpU1jVu39eIzNWDJgSxKzKJ9W8'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
 	tracks = playlist['tracks']
 	items = tracks['items']
 
+	assert len(items) > 0
+
+	count = 0
+
 	for obj in items:
+		print(count)
+		count += 1
 		href = obj['track']['album']['href']
 		req = requests.get(href)
 		album_full = json.loads(req.text)
 
 		#check if album already exists
-		album_exists = db.session.query(Album).filter(Album.name == album_full['name']).filter(Album.arist.name == album_full['artist']['name']).first()
+		# album_exists = db.session.query(Album).filter(Album.name == album_full['name']).filter(Album.artists[0].name == album_full['artist']['name']).first()
+		album_exists = db.session.query(Album).filter(Album.name == album_full['name']).first()
 		if album_exists:
 			continue
 		artist_exists = db.session.query(Artist).filter_by(name=album_full['artists'][0]['name']).first()
@@ -131,16 +161,15 @@ def __main__():
 			for c in concerts:
 				c_aa = Concert_AA_Association()
 				aa.concerts.append(c_aa)
-				concert.artist_album_pairs.append(c_aa)
+				c.artist_album_pairs.append(c_aa)
 			db.session.add_all(concerts)
 			db.session.add(artist)
 			
-		# for t in tracks:
 		db.session.add_all(tracks)
 		db.session.add(album)
 		#db.session.commit()
 
-
+if __name__ == "__main__" : main()
 
 
 
