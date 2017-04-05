@@ -103,7 +103,7 @@ class Artist(db.Model):
     image_url = db.Column(db.String(150))
     country = db.Column(db.String(50))
     decade = db.Column(db.String(50))
-    genre = db.Column(db.String(100))
+    genres = db.Column(db.String(100)) #db.Column(db.PickleType(mutable=True)) 
 
     # Reference to an artist's most popular track
     # most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
@@ -141,7 +141,7 @@ class Album(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    genre = db.Column(db.String(100))
+    genres = db.Column(db.PickleType(mutable=True)) #db.Column(db.String(100))
     release_date = db.Column(db.String(15))
     album_cover_url = db.Column(db.String(150))
     label = db.Column(db.String(50))
