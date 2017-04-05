@@ -122,32 +122,13 @@ def concert_decoder(c, a_name):
 	return concert
 
 def venue_decoder(v):
-
 	venue = Venue(v['name'], v['city'], v['region'], v['country'], float(v['latitude']), float(v['longitude']))
 	return venue
 
-
-def main():
-	db.session.query(Track).delete()
-	db.session.query(Concert_AA_Association).delete()
-	db.session.query(Artist_Album_Association).delete()
-	db.session.query(Album).delete()
-	db.session.query(Artist).delete()
-	db.session.query(Concert).delete()
-	db.session.query(Venue).delete()
-
-	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQD1y9e7ODzLQHNPOylqtGGgV38oBliqY6yOZ6w6CVtWGprzZm3vea6cu9w2MzsNDkMptEmYugN1r6ZrOAHP2qWlwsVtyF1FH4OcV3lTBor8x30O0uVOzThRcNDNIHWEA7RhrG4YAPZwQqytxeeK16LHo3I85jWuWvg'}
-
-	r = requests.get(url, headers=headers)
-	playlist = json.loads(r.text)
-	tracks = playlist['tracks']
-	items = tracks['items']
-
+def page_decoder(page):
+	items = page['items']
 	assert len(items) > 0
-
 	count = 0
-
 	for obj in items:
 		print(count)
 		count += 1
@@ -188,6 +169,29 @@ def main():
 		db.session.add(album)
 		#db.session.commit()
 
+
+def main():
+	db.session.query(Track).delete()
+	db.session.query(Concert_AA_Association).delete()
+	db.session.query(Artist_Album_Association).delete()
+	db.session.query(Album).delete()
+	db.session.query(Artist).delete()
+	db.session.query(Concert).delete()
+	db.session.query(Venue).delete()
+
+	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
+	headers = {'Authorization' : 'Bearer BQD1y9e7ODzLQHNPOylqtGGgV38oBliqY6yOZ6w6CVtWGprzZm3vea6cu9w2MzsNDkMptEmYugN1r6ZrOAHP2qWlwsVtyF1FH4OcV3lTBor8x30O0uVOzThRcNDNIHWEA7RhrG4YAPZwQqytxeeK16LHo3I85jWuWvg'}
+
+	r = requests.get(url, headers=headers)
+	playlist = json.loads(r.text)
+	# tracks = playlist['tracks']
+	page = playlists['tracks']
+	while page['next']:
+		page_decoder(page)
+		r2 = requests.get(page['next'])
+		page = json.loads(r2.text)
+
+	
 if __name__ == "__main__" : main()
 
 
