@@ -26,8 +26,11 @@ def decoder(spotify_album, artist_exists):
 		list_concerts = json.loads(r.text)
 		concerts = []
 		for c in list_concerts:
-			concert = concert_decoder(c, artist.name)
-			concerts.append(concert)
+			try :
+				concert = concert_decoder(c, artist.name)
+				concerts.append(concert)
+			except :
+				pass
 
 
 	return {'tracks':tracks, 'artist':artist, 'album':album, 'concerts':concerts}
@@ -105,7 +108,7 @@ def concert_decoder(c, a_name):
 		time = c['datetime'][11:]
 	except :
 		time = "Unavailable"
-	concert = Concert(a_name, c['url'], c['datetime'][0:10], c['datetime'][11:])
+	concert = Concert(a_name, url, date, time)
 
 	#check if its already there
 	venue = db.session.query(Venue).filter_by(name=c['venue']['name']).first()
@@ -119,6 +122,7 @@ def concert_decoder(c, a_name):
 	return concert
 
 def venue_decoder(v):
+
 	venue = Venue(v['name'], v['city'], v['region'], v['country'], float(v['latitude']), float(v['longitude']))
 	return venue
 
@@ -133,7 +137,7 @@ def main():
 	db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMc-1rTji1L8SZNxDVLaPR-iV1HNvlo5JIEv_4NL4PSrdQ3KHz1kAUD6xP4HJQpU1jVu39eIzNWDJgSxKzKJ9W8'}
+	headers = {'Authorization' : 'Bearer BQD1y9e7ODzLQHNPOylqtGGgV38oBliqY6yOZ6w6CVtWGprzZm3vea6cu9w2MzsNDkMptEmYugN1r6ZrOAHP2qWlwsVtyF1FH4OcV3lTBor8x30O0uVOzThRcNDNIHWEA7RhrG4YAPZwQqytxeeK16LHo3I85jWuWvg'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
