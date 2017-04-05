@@ -141,7 +141,7 @@ class Album(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    genres = db.Column(db.PickleType(mutable=True)) #db.Column(db.String(100))
+    genres = db.Column(db.String(50)) #db.Column(db.String(100))
     release_date = db.Column(db.String(15))
     album_cover_url = db.Column(db.String(150))
     label = db.Column(db.String(50))

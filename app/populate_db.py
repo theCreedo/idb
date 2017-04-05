@@ -2,6 +2,8 @@
 from models import db, Track, Artist, Album, Artist_Album_Association, Concert, Concert_AA_Association, Venue
 import json
 
+auth = "BQDtdsbPvqABY0AgQVjjdyYpCcVh-r3V2DvH5crZWlpKMdnaVIZvrdG3UIq4cC1KH9gakEcNOue2EYudE8EMrQiE9qTmaEQGicQmQTvg_L1d5tGSUWbIGczUZ-bZkVexLhYgYAR6nJYTxgsHHQY0E7e8Uf_FH8SADYY"
+
 def decoder(spotify_album, artist_exists):
  	# First, grab the album associated with the track so that, we can get the genre and release date
 	album = album_decoder(spotify_album)
@@ -91,6 +93,9 @@ def __main__():
 	db.session.query(Artist_Album_Association).delete()
 	db.session.query(Concert_AA_Association).delete()
 	db.session.query(Venue).delete()
+
+	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
+	headers = {'Authorization' : 'Bearer ' + auth}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
