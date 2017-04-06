@@ -156,7 +156,7 @@ class Album(db.Model):
     # db.relationship to tracks table
     # Auto-populates Track.album
     tracks = db.relationship('Track',
-                          order_by=Track.id, backref='album')
+                          order_by=Track.popularity, backref='album')
 
     def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks):
         assert (name != "")
