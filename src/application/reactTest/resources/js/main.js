@@ -73,7 +73,7 @@ class ReactGrid extends React.Component {
                 <hr></hr>
                 <p className="sweGridItemContent">Popular Song: <a href="coldplayTrackPage.html">Adventure Of A Lifetime</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
-                <p className="sweGridItemContent">Artist Decades: {data.decades}</p>
+                <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
         );    
     }
