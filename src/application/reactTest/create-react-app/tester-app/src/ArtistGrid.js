@@ -142,13 +142,13 @@ export default class ReactGrid extends React.Component {
         
 //        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
-        var actual_JSON = this.props.data;
+        var actual_JSON = this.state.data;
         
         if (actual_JSON == undefined) {
             
         }
         
-        console.log(this.props.data);
+        console.log(this.state.data);
         
         const num_results = actual_JSON.num_results;
         for (var x in actual_JSON.objects) {
