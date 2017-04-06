@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-const Pagination = require('rc-pagination');
 
-export default class ReactGrid extends React.Component {
+
+class ReactGrid extends React.Component {
     
     triggerFiltering(type) {
         alert("Filtering of type " + type);
@@ -64,10 +62,7 @@ export default class ReactGrid extends React.Component {
     }
     
     pagination() {
-//        const getTotal = this.getTotal();
-        return (
-            <Pagination className="swePagination" defaultCurrent={9} total={9}/>
-        );
+        
     }
     
     render() {
@@ -138,14 +133,14 @@ export default class ReactGrid extends React.Component {
                     </div> 
                 </div>
                 <div className="row">{gridItems}</div>
-                <Pagination className="swePagination" defaultCurrent={9} total={9}/>
+                <div className="row">{pagination}</div>
             </div>
         );
     }
 }
 
 
-//ReactDOM.render(
-//  <ReactGrid/>,
-//  document.getElementById('reactTgt')
-//);
+ReactDOM.render(
+  <ReactGrid/>,
+  document.getElementById('reactTgt')
+);

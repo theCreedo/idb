@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactGrid from './ArtistGrid.js';
+//import './resources/css/landing-page.css';
+import './resources/css/sweStyle.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +11,7 @@ import {
 const BasicExample = () => (
   <Router>
     <div>
+      
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
@@ -25,9 +28,7 @@ const BasicExample = () => (
 )
 
 const Home = () => (
-  <div>
-    <div className="ReactGrid"></div>
-  </div>
+  <ReactGrid />
 )
 
 const About = () => (
