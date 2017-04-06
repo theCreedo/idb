@@ -209,11 +209,24 @@ class TestCase(unittest.TestCase):
         assert (artist.tracks[0].id == track_result.id)
         assert (track.artist_id == artist_result.id)
 
+    def test_db_delete_track_artist_relationship(self):
+        track_result = db.session.query(Track).filter_by(name='track_name').first()
+        artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
+        assert (track_result is not None)
+        assert (artist_result is not None)
+
+        db.session.delete(track_result)
+        db.session.delete(artist_result)
+        db.session.commit()
+        assert db.session.query(Track).filter_by(name='track_name').first() is None
+        assert db.session.query(Artist).filter_by(name='artist_name').first() is None
+
     def test_db_track_album_relationship(self):
-        track = db.session.query(Track).filter_by(name='track_name').first()
+        track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True)
         album = Album('album_name', 'genre', 'release', 'url', 'label', 1)
         album.tracks.append(track)
 
+        db.session.add(track)
         db.session.add(album)
         db.session.commit()
 
@@ -224,14 +237,28 @@ class TestCase(unittest.TestCase):
         assert (album.tracks[0].id == track_result.id)
         assert (track.album_id == albu,_result.id)
 
-    def test_db_artist_album_relationship(self):
-        artist = db.session.query(Artist).filter_by(name='artist_name').first()
-        album = db.session.query(Album).filter_by(name='album_name').first()
+    def test_db_delete_track_album_relationship(self):
+        track_result = db.session.query(Track).filter_by(name='track_name').first()
+        album_result = db.session.query(Album).filter_by(name='album_name').first()
+        assert (track_result is not None)
+        assert (album_result is not None)
+
+        db.session.delete(track_result)
+        db.session.delete(album_result)
+        db.session.commit()
+        assert db.session.query(Track).filter_by(name='track_name').first() is None
+        assert db.session.query(Album).filter_by(name='album_name').first() is None
+
+    def test_db_aa_relationship(self):
+        artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
+        album = Album('album_name', 'genre', 'release', 'url', 'label', 1)
         aa = Artist_Album_Association()
 
         artist.albums.append(aa)
         album.artists.append(aa)
 
+        db.session.add(artist)
+        db.session.add(album)
         db.session.commit()
 
         artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
@@ -244,10 +271,25 @@ class TestCase(unittest.TestCase):
         assert (aa_result.artist_id == artist_result.id)
         assert (aa_result.album_id == album_result.id)
 
+    def test_db_delete_aa_relationship(self):
+        artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
+        album_result = db.session.query(Album).filter_by(name='album_name').first()
+        aa_result = db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id)
+        assert (artist_result is not None)
+        assert (album_result is not None)
+        assert (aa_result is not None)
+
+        db.session.delete(artist_result)
+        db.session.delete(album_result)
+        db.session.delete(aa_result)
+        db.session.commit()
+        assert (db.session.query(Artist).filter_by(name='artist_name').first() is None)
+        assert (db.session.query(Album).filter_by(name='album_name').first() is None)
+        assert (db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id) is None)
+
     def test_db_concert_aa_relationship(self):
-        artist = db.session.query(Artist).filter_by(name='artist_name').first()
-        album = db.session.query(Album).filter_by(name='album_name').first()
-        aa = db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id)
+        aa = Artist_Album_Association()
+
         concert = Concert('concert_name', 'link', 'date', 'time')
         c_aa = Concert_AA_Association()
 
@@ -268,7 +310,21 @@ class TestCase(unittest.TestCase):
         assert (c_aa_result.concert_id = concert_result.id)
         assert (c_aa_result.aa_id == aa_result.id)
 
+    def test_db_delete_concert_aa_relationship(self):
+        aa_result = db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id)
+        concert_result = db.session.query(Concert).filter_by(name='concert_name').first()
+        c_aa_result = db.session.query(Concert_AA_Association).filter(Concert.id==concert_result.id).filter(Artist_Album_Association.id==aa_result.id)
+        assert (aa_result is not None)
+        assert (concert_result is not None)
+        assert (c_aa_result is not None)
 
+        db.session.delete(aa_result)
+        db.session.delete(concert_result)
+        db.session.delete(c_aa_result)
+        db.session.commit()
+        assert (db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id) is None)
+        assert (db.session.query(Concert).filter_by(name='concert_name').first() is None)
+        assert (db.session.query(Concert_AA_Association).filter(Concert.id==concert_result.id).filter(Artist_Album_Association.id==aa_result.id) is None)
 
 
 
