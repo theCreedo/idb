@@ -31,8 +31,18 @@ export default class ReactGrid extends React.Component {
         console.log(e);
    }
 
-   onChangeListener(e) {
-        console.log("I am on change listenr", e);
+   pageChange(pageSize) {
+        console.log("I am on change listenr", pageSize);
+        
+       if(pageSize == 1) {
+           this.setState({data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"}]}')});
+       }
+       else if (pageSize == 2) {
+           this.setState({data: JSON.parse('{"num_results": 3, "objects": [{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"}]}')});
+       }
+       else {
+           this.setState({data: JSON.parse('{"num_results": 3, "objects": [{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')});
+       }
         // console.log(props);
    }
 
@@ -40,6 +50,8 @@ export default class ReactGrid extends React.Component {
       console.log('onChange:current=', current);
       console.log('onChange:pageSize=', pageSize);
       console.log(this);
+        
+//      this.pageChange(current);
 
       // onChangeListener(this);
       // this.setState({
@@ -160,7 +172,17 @@ export default class ReactGrid extends React.Component {
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
         
-        var mostPopularTrack = data.tracks[data.tracks.length - 1];
+        console.log(data.name + " Size: " + data.tracks);
+        
+        var mostPopularTrack;
+        if (data.tracks != undefined)
+            mostPopularTrack = data.tracks[data.tracks.size];
+        else {
+            mostPopularTrack = {
+                id: -1,
+                name: "none"
+            }
+        }
         
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
@@ -176,10 +198,10 @@ export default class ReactGrid extends React.Component {
         );    
     }
     
-    pagination() {
+    pagination(size, num_results) {
 //        const getTotal = this.getTotal();
         return (
-            <Pagination className="swePagination" defaultPageSize={1} defaultCurrent={1} total={27}/>
+            <Pagination pageSize={size} onChange={this.pageChange} total={num_results}/>
         );
     }
     
@@ -206,6 +228,7 @@ export default class ReactGrid extends React.Component {
 //        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
         var actual_JSON = this.state.data;
+        var that = this;
         
         if (actual_JSON == undefined) {
             
@@ -214,11 +237,13 @@ export default class ReactGrid extends React.Component {
         console.log(this.state.data);
         
         const num_results = actual_JSON.num_results;
+
         for (var x in actual_JSON.objects) {
             console.log(actual_JSON.objects[x]);
             gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
           }
         
+        const pagination = this.pagination(1, num_results);
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
         
 //        const length = 9;
@@ -260,8 +285,8 @@ export default class ReactGrid extends React.Component {
                         </div>
                     </div> 
                 </div>
-                <div className="row">{gridItems[this.state.current]}</div>
-                <Pagination pageSize={1} onChange={this.onChange} current={this.state.current} total={num_results}/>
+                <div className="row">{gridItems}</div>
+                {pagination}
             </div>
         );
     }
