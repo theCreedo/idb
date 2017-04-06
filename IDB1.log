@@ -1,8 +1,158 @@
+commit 49fae93fbce1af6a7624dca9976c9bf06e88025b
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-79-33.public.utexas.edu>
+Date:   Mon Apr 3 14:27:14 2017 -0500
+
+    edited models.py to form c_aa and aa relationships and edited db.py to test associations - SUCCESS
+
+commit 88cd310b6bac4aa505db6f2483a50f04c23e68fd
+Author: Jerry Sun <Jerry@jerrys-MBP.lan>
+Date:   Sun Apr 2 17:39:10 2017 -0500
+
+    Trying to establish aa_associations and c_aa associations
+
+commit 840de2abcfcc71c28087c96b0ecbfe315efea87f
+Author: Nandhini Lakuduva <nlak@cs.utexas.edu>
+Date:   Fri Mar 31 18:15:40 2017 -0500
+
+    Trying to figure aa-association
+
+commit 64a0e6b8ee100eb2963c9ba454e1ac44be0b41ae
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 17:31:21 2017 -0500
+
+    test file to create dummy data to each model
+
+commit 40d82288aae32dfcfd83e6640577aa5c14180713
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 17:30:35 2017 -0500
+
+    added create_all and commit messages
+
+commit 1f1e822209e309760199cc4c94ccf63694a4a8b0
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 16:14:05 2017 -0500
+
+    changed IP address to point to Cloud SQL instance instead of VM
+
+commit 32835445a43b744c598924a4567ddec80a13c47f
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 19:28:00 2017 -0500
+
+    commented out db.create_all() call, added create_track test
+
+commit f5f8da1faf595914e2096d722851a5325b51d74d
+Merge: 623790f 9676d14
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 18:07:13 2017 -0500
+
+    fixed merge conflict
+
+commit 623790f86ea6ae88ae8554ece4de0fd3683614e8
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 18:05:20 2017 -0500
+
+    converted sqlalchemy code into flask_sqlalchemy code
+
+commit fec44464f2f3e2e60940da846f11cde0bfc5fa6b
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 17:21:59 2017 -0500
+
+    added postgres connection models.py, reformatted models.py and tests.py with make format
+
+commit ec0109058c6e585956a7461112ec9eb722c5d9f4
+Author: Benjamin Rodgers <rodgers.benjamin@utexas.edu>
+Date:   Tue Mar 28 22:08:08 2017 -0500
+
+    dummy commit to test github integration with slack
+
+commit 72dabb171190273a008f47b422fafc9b0eaead9a
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Mar 23 21:40:08 2017 -0500
+
+    Add files via upload
+
+commit 19b08448aaea81d3a276ae20c5cd5308bcb1b761
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 20:49:53 2017 -0500
+
+    Final Phase 1 API docs Changes
+
+commit 2ea869c793dc7ae8db0289057c958a12d80b45cf
+Merge: 6661ea4 34220ed
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:41:43 2017 -0500
+
+    Merge pull request #27 from theCreedo/emran-dev
+    
+    Completed Flask integration, added frontend files
+
+commit 34220ed3d991f8fcb7cc0edbd67103439f8689a1
+Merge: b0dd014 6661ea4
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:39:55 2017 -0500
+
+    Merge branch 'master' into emran-dev
+
+commit b0dd014aad657bc8b8a0a249d1b908b87e710d65
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:23:58 2017 -0500
+
+    Completed Flask integration, added frontend files
+
+commit 6661ea4dc63a55fad218c6d82013715c8ddc389e
+Author: Nandhini Lakuduva <Nandhini@Nandhinis-MacBook-Pro.local>
+Date:   Thu Mar 23 19:47:02 2017 -0500
+
+    Closes #12: added __init__ implementations and assertions to models.py
+
+commit 168ef69f4183d65dc15a174d95dab4753e97366f
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 18:27:40 2017 -0500
+
+    Added unit tests for Flask routing
+
+commit 1a80a5553895cd3cb05661173df9bf839a2de902
+Merge: b25e55e 13996ec
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 15:22:09 2017 -0500
+
+    Merged branch emran-dev into master
+
+commit b25e55e17798a92f6b1a54623a072fd77132cc32
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 15:21:42 2017 -0500
+
+    Minor Text Changes
+
+commit 13996ec2b880da9662ad91c76adae328afe96afe
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 15:21:14 2017 -0500
+
+    Modified models.py in src to comply with GCP
+
+commit 9d6fa3b5fd1c0954551632d21e98a6444f32e527
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 15:12:08 2017 -0500
+
+    Refactored to Contain 'PUT' requests, and added more formatted descriptions
+
+commit 867194b0863c5faf8719a7038bec7fd9405c8eae
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-34-197.public.utexas.edu>
+Date:   Thu Mar 23 14:37:42 2017 -0500
+
+    successfully added .html and fixed makefile accordingly
+
 commit 81b7983da46367027fff95f1b805af3f7263450c
 Author: Nandhini Lakuduva <Nandhini@wireless-10-145-34-197.public.utexas.edu>
 Date:   Thu Mar 23 12:15:57 2017 -0500
 
     successfully added git log but having trouble with .html
+
+commit 9676d1486c3797a243dfe2ba4a0d63ec40d4812c
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-244-15.public.utexas.edu>
+Date:   Wed Mar 22 19:44:51 2017 -0500
+
+    Made slight adjustment to name by adding unique=True
 
 commit 21ad908118ee6b2b57ae4f44cf738d9a535e0ad4
 Author: brodgers <rodgers.benjamin@utexas.edu>
@@ -28,6 +178,12 @@ Author: brodgers <rodgers.benjamin@utexas.edu>
 Date:   Wed Mar 22 19:03:18 2017 -0400
 
     removed setup_db.py and moved contents into models.py
+
+commit 2a7f4c5cb394a17c41d0e919dfe381d697453ef2
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Wed Mar 22 16:17:42 2017 -0500
+
+    Added src folder from Flask/GCP boilerplate
 
 commit f7474f1d8799d0d9739e5daa4cde4e34a6944040
 Author: Nandhini Lakuduva <Nandhini@wireless-10-147-244-15.public.utexas.edu>

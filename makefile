@@ -104,7 +104,7 @@ status:
 	git status
 # 	make clean
 
-test: IDB1.html IDB1.log
+test: IDB1.html IDB1.log format
 	ls -al
 	make check
 
