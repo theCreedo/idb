@@ -184,16 +184,16 @@ def page_decoder(page):
 
 
 def main():
-	db.session.query(Track).delete()
-	db.session.query(Concert_AA_Association).delete()
-	db.session.query(Artist_Album_Association).delete()
-	db.session.query(Album).delete()
-	db.session.query(Artist).delete()
-	db.session.query(Concert).delete()
-	db.session.query(Venue).delete()
+	# db.session.query(Track).delete()
+	# db.session.query(Concert_AA_Association).delete()
+	# db.session.query(Artist_Album_Association).delete()
+	# db.session.query(Album).delete()
+	# db.session.query(Artist).delete()
+	# db.session.query(Concert).delete()
+	# db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQA0-c2lwO0ad3V-o1aAO83_eWaNbO8zzXGniTdKwoWnzEIwvJ_OAFr_185NX3kgO7l83EopS7fvOF6olWg6S-byXinqhFSx2AJoUICUpxAZ2uE5kpb51I6d7zFzR9euQN5uX1U-CPEOO_Cv10wmuxYbcAKYkUjy5yc'}
+	headers = {'Authorization' : 'Bearer BQCsUmVgZAe0dn83A3H3OAgVB-ekMqrVrq0o3MgOHx0QIpez6KT2Gnh1OjCmsZKuuM1gJIXb8EiJBx5rqQo-CablUerJLRh5ZGJ0VecoKX0X5Rw2KMsm9OtHhhVXIldjiQjq3gx8szjLiOseHgCfSHRvDhvpb9N_TX0'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
