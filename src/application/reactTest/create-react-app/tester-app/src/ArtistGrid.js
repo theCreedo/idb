@@ -79,17 +79,56 @@ export default class ReactGrid extends React.Component {
         xobj.send(null);
      }
     
+    createGridItemConcert(data) {
+        var artist = this.makeAPIcall("boswemianrhapsody.me/api/album/" + data.artist_album_pairs[0].aa_id);
+        return (
+            <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
+                <hr className="sweGridItemSpacer"></hr>
+                <div className="clearfix"></div>
+                <img className="sweGridImage" src={data.artist}></img>
+                 <h2 className="sweGridItemHeading"><a onclick=openConcertModal({data.id})>{data.name}</a></h2>
+                <hr></hr>
+                <p className="sweGridItemContent">Venue: {data.venue.name}</a></p>
+                <p className="sweGridItemContent">Artists: <a>Adventure Of A Lifetime</a></p>
+                <p className="sweGridItemContent">Event Link: {data.}</p>
+                <p className="sweGridItemContent">Date: {data.}</p>
+                <p className="sweGridItemContent">Time: {data.}</p>
+            </div>
+        );    
+    }
+    
     createGridItemTrack(data) {
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
-                <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a>{data.name}</a></h2>
+                <img className="sweGridImage" src={data.album[0].album_cover_url}></img>
+                 <h2 className="sweGridItemHeading"><a onclick=openTrackModal({data.id})>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a href="coldplayTrackPage.html">Adventure Of A Lifetime</a></p>
-                <p className="sweGridItemContent">Artist Country: {data.country}</p>
-                <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
+                <p className="sweGridItemContent">Artist: <a onclick=openArtistModal({data.artist[0].id})>{data.artist[0].name}</a></p>
+                <p className="sweGridItemContent">Album: <a onclick=openAlbumModal({data.album_id})>{data.album[0].name}</a></p>
+                <p className="sweGridItemContent">Released: {data.release_date}</p>
+                <p className="sweGridItemContent">Duration: {data.duration}</p>
+                <p className="sweGridItemContent">Popularity: {data.popularity}</p>
+                <p className="sweGridItemContent">Genre: {data.genre}</p>
+            </div>
+        );    
+    }
+    
+    createGridItemAlbum(data) {
+        var albumArtist = this.makeAPIcall("boswemianrhapsody.me/api/artist/" + data.artists[0].artist_id);
+        return (
+            <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
+                <hr className="sweGridItemSpacer"></hr>
+                <div className="clearfix"></div>
+                <img className="sweGridImage" src={data.album_cover_url}></img>
+                 <h2 className="sweGridItemHeading"><a onclick=openAlbumModal({data.id})>{data.name}</a></h2>
+                <hr></hr>
+                <p className="sweGridItemContent">Artist: <a onclick=openArtistModal({albumArtist.id})>{albumArtist.name}</a></p>
+                <p className="sweGridItemContent">Album: <a onclick=openAlbumModal({data.id})>{data.name}</a></p>
+                <p className="sweGridItemContent">Label: {data.label}</p>
+                <p className="sweGridItemContent">Genre: {data.genre}</p>
+                <p className="sweGridItemContent">Number of Songs: {data.number_of_tracks}</p>
             </div>
         );    
     }
@@ -99,14 +138,16 @@ export default class ReactGrid extends React.Component {
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
         
+        var mostPopularTrack = data.tracks[data.tracks.length - 1];
+        
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onclick=openArtistModal({data.id})>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a href="coldplayTrackPage.html">Adventure Of A Lifetime</a></p>
+                <p className="sweGridItemContent">Popular Song: <a onclick=openTrackModal({mostPopularTrack.id})>{mostPopularTrack.name}</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
