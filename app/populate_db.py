@@ -40,7 +40,7 @@ def decoder(spotify_album, artist_exists):
 	return {'tracks':tracks, 'artist':artist, 'album':album, 'concerts':concerts}
 
 def track_decoder(t, album):
-	explicit = True if t['explicit'] == 'true' else False
+	# explicit = True if t['explicit'] == 'true' else False
 	# need to get genre and release date from album
 	# need to get url from external URL object
 
@@ -48,7 +48,7 @@ def track_decoder(t, album):
 	t = json.loads(spotify_track.text)
 
 	track = Track(t['name'], album.genre, album.release_date, t['duration_ms'], 
-		t['popularity'], t['preview_url'], explicit)
+		t['popularity'], t['preview_url'], t['explicit'])
 	return track
 
 def artist_decoder(art, album):
