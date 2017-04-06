@@ -1,35 +1,31 @@
 #!flask/bin/python
 from flask import Flask, jsonify
-import flask.ext.sqlalchemy
 import flask.ext.restless
 from flask_sqlalchemy import SQLAlchemy
 
 
-from models import db, Venue, Concert, Album, Artist, Track
-
-app = Flask(__name__)
+from models import db, Venue, Concert, Album, Artist, Track, app
 
 # Create the Flask-Restless API manager.
 manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
 # Create API endpoints, which will be available at /api/<tablename> by
 # default. Allowed HTTP methods can be specified as well.
-manager.create_api(Venue, methods=['GET', 'POST'])
-manager.create_api(Concert, methods=['GET', 'POST'])
-manager.create_api(Album, methods=['GET', 'POST'])
-manager.create_api(Artist, methods=['GET', 'POST'])
-manager.create_api(Track, methods=['GET', 'POST'])
+manager.create_api(Venue, methods=['GET', 'POST'], results_per_page=9)
+manager.create_api(Concert, methods=['GET', 'POST'], results_per_page=9)
+manager.create_api(Album, methods=['GET', 'POST'], results_per_page=9)
+manager.create_api(Artist, methods=['GET', 'POST'], results_per_page=9)
+manager.create_api(Track, methods=['GET', 'POST'], results_per_page=9)
 
-
-# Set up getting database connection
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+	db.session.query(Track).all()
+ 	return 'Hello World'
 
-@app.route('/boswe')
-def api():
-    return "Welcome!"
+# @app.route('/boswe')
+# def api():
+#     return "Welcome!"
 
 
 
