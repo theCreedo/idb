@@ -48,7 +48,7 @@ def track_decoder(t, album):
 	t = json.loads(spotify_track.text)
 
 	track = Track(t['name'], album.genre, album.release_date, t['duration_ms'], 
-		t['popularity'], t['preview_url'], t['explicit'])
+		t['popularity'], t['preview_url'], t['explicit'], t['uri'])
 	return track
 
 def artist_decoder(art, album):
@@ -102,7 +102,7 @@ def album_decoder(a):
 	# genre = full['genres'] # IF WE DO A LIST OF GENRES
 
 	# need to get image url from array of image objects
-	album = Album(a['name'], genre, a['release_date'] , a['images'][0]['url'], a['label'], a['tracks']['total'])
+	album = Album(a['name'], genre, a['release_date'] , a['images'][0]['url'], a['label'], a['tracks']['total'], a['uri'])
 	return album
 
 def concert_decoder(c, a_name):
