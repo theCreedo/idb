@@ -5,15 +5,12 @@ import json, requests
 auth = "BQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMcBQAC0kN0ZSRW2lSRI7YXMKgPPc4S6kxeqKTpQVqAdXPCVMDvDem8dermo87D8cEtaggmEgzzzzLcSMc-1rTji1L8SZNxDVLaPR-iV1HNvlo5JIEv_4NL4PSrdQ3KHz1kAUD6xP4HJQpU1jVu39eIzNWDJgSxKzKJ9W8"
 
 def decoder(spotify_album, artist_exists):
- 	# First, grab the album associated with the track so that, we can get the genre and release date
+ 	# ALBUM MAKING
 	album = album_decoder(spotify_album)
 	list_tracks = spotify_album['tracks']['items']
 	tracks = []
 
-	for t in list_tracks:
-		track = track_decoder(t, album)
-		tracks.append(track)
-
+	# ARTIST MAKING
 	if artist_exists:
 		artist = artist_exists
 		concerts = None
@@ -22,6 +19,7 @@ def decoder(spotify_album, artist_exists):
 		art = spotify_album['artists'][0]
 		artist = artist_decoder(art, album)
 
+		# CONCERT MAKING
 		r = requests.get("https://rest.bandsintown.com/artists/" + artist.name + "/events?app_id=boswemianrhapsody")
 		list_concerts = json.loads(r.text)
 		concerts = []
@@ -31,6 +29,12 @@ def decoder(spotify_album, artist_exists):
 				concerts.append(concert)
 			except :
 				pass
+
+	# TRACK MAKING
+	for t in list_tracks:
+		track = track_decoder(t, album)
+		tracks.append(track)
+
 
 
 	return {'tracks':tracks, 'artist':artist, 'album':album, 'concerts':concerts}
@@ -56,8 +60,6 @@ def artist_decoder(art, album):
 	r2 = requests.get("http://api.musicgraph.com/api/v2/artist/search?api_key=05037b5542d5f3e47e19dce0a89ca63b&name=" + full['name'])
 	mg = json.loads(r2.text)
 
-	# Should we do array of genres or just 1 genre...?
-	# genre = full['genres'] # IF WE DO A LIST OF GENRES
 
 	# need to get image url from array of image objects
 	# need to get country/decade from another api
@@ -65,6 +67,14 @@ def artist_decoder(art, album):
 	country = None
 	decade = None
 	image = None
+
+	# Grab genre for album from the aritst in music graph
+	try :
+		genre = mg_data[0]['main_genre']
+	except :
+		genre = "Unavailable"
+	album.genre = genre
+
 	try :
 		country = mg_data[0]['country_of_origin']
 	except :
@@ -79,7 +89,7 @@ def artist_decoder(art, album):
 		image = full['images'][0]['url']
 	except :
 		image = None
-	artist = Artist(full['name'], image, country, decade, album.genre)
+	artist = Artist(full['name'], image, country, decade, genre)
 	return artist
 
 def album_decoder(a):
