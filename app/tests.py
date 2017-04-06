@@ -125,15 +125,34 @@ class TestCase(unittest.TestCase):
         assert '<h1>Not found</h1>' in rv.data
 
     def test_db_create_track(self):
-        track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 1, 1)
+        track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True)
         db.session.add(track)
         db.session.commit()
-        track_result = Track.query.filter_by(name='track_name').first()
-        assert track_result is track
+        track_result = db.session.query(Track).filter_by(name='track_name').first()
+        assert (track_result is track)
 
-    def test_db_delete_track(self):
-        
+    # def test_db_delete_track(self):
 
+    def test_db_create_artist(self):
+        artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
+        db.session.add(artist)
+        db.session.commit()
+        artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
+        assert (artist_result is artist)
+
+    def test_db_create_album(self):
+        album = Album('album_name', 'genre', 'release', 'url', 'label', 1)
+        db.session.add(album)
+        db.session.commit()
+        album_result = db.session.query(Album).filter_by(name='album_name').first()
+        assert (album_result is album)
+
+    def test_db_create_concert(self):
+        concert = Concert('name', 'link', 'date', 'time')
+        db.session.add(concert)
+        db.session.commit()
+        concert_result = db.session.query(Concert).filter_by(name='concert_name').first()
+        assert (concert_result is concert)
 
 
 if __name__ == '__main__':
