@@ -27,18 +27,19 @@ export default class ReactGrid extends React.Component {
     //     this.refs.nv.removeEventListener("nv-enter", this.updateGridData);
     // }
     
-   updateGridData(e) {
-        console.log(e + " this is " + this.state.data);
-       this.pageChange(e);
+   updateGridData(current, pageSize) {
+        console.log("State current " + this.state.currentPage + " passed current " + current + " this is " + this.state.data + " and this " + pageSize);
+        this.state.currentPage = current;
+        this.pageChange(current);
    }
 
-   pageChange(pageSize) {
-        console.log("I am on change listenr", pageSize);
+   pageChange(current) {
+        console.log("I am on change listenr", current);
         
-       if(pageSize == 1) {
+       if(current == 1) {
            this.setState({data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"}]}')});
        }
-       else if (pageSize == 2) {
+       else if (current == 2) {
            this.setState({data: JSON.parse('{"num_results": 3, "objects": [{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"}]}')});
        }
        else {
@@ -287,7 +288,7 @@ export default class ReactGrid extends React.Component {
                     </div> 
                 </div>
                 <div className="row">{gridItems}</div>
-                <Pagination pageSize={1} onChange={this.updateGridData} total={num_results}/>
+                <Pagination pageSize={1} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
             </div>
         );
     }
