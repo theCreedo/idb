@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const Pagination = require('rc-pagination');
+import Pagination from 'rc-pagination';
+// import 'rc-pagination/wassets/index.css';
 
+//var Pagination = require('rc-pagination');
+require('rc-pagination/assets/index.css');
 export default class ReactGrid extends React.Component {
+
+    onChange(current, pageSize) {
+      console.log('onChange:current=', current);
+      console.log('onChange:pageSize=', pageSize);
+    
+      /* Using the current, we can change the query to ask for this specific 
+      page of results. We can use page size if needed? */
+    }
     
     triggerFiltering(type) {
         alert("Filtering of type " + type);
@@ -66,7 +77,7 @@ export default class ReactGrid extends React.Component {
     pagination() {
 //        const getTotal = this.getTotal();
         return (
-            <Pagination className="swePagination" defaultCurrent={9} total={9}/>
+            <Pagination className="swePagination" defaultPageSize={9} defaultCurrent={9} total={27}/>
         );
     }
     
@@ -138,7 +149,7 @@ export default class ReactGrid extends React.Component {
                     </div> 
                 </div>
                 <div className="row">{gridItems}</div>
-                <Pagination className="swePagination" defaultCurrent={9} total={9}/>
+                <Pagination defaultPageSize={9} onShowSizeChange={this.onShowSizeChange} onChange={this.onChange}defaultCurrent={9} total={27}/>
             </div>
         );
     }
