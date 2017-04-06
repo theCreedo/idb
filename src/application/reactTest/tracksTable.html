@@ -33,8 +33,7 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="yamm navbar navbar-default default" style="background: #212020; padding-left: 55px;" role="navigation">
+<nav class="yamm navbar navbar-default default" style="background: #212020; padding-left: 55px;" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <div class="basic-wrapper"> <a class="btn responsive-menu" data-toggle="collapse" data-target=".navbar-collapse"><i></i></a>
@@ -60,11 +59,13 @@
     <!-- /.container --> 
   </nav>
   <!-- /.navbar -->
+
+    <!-- Table container -->
     <div class="content-section-a">
-        <div id="reactTgt">
+        <div class="container sweGridContainer">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="sweGridTitle">Artist Table</h1>
+                    <h1 class="sweGridTitle">Tracks Table</h1>
                 </div>
             </div>
             <div class="row sweGridSorts">
@@ -83,27 +84,65 @@
                         Filter <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu sweSortDropdown">
+                          <li class="disabled"><a href="#">Track Name</a></li>
                           <li class="disabled"><a href="#">Artist Name</a></li>
-                          <li class="disabled"><a href="#">Country</a></li>
-                          <li class="disabled"><a href="#">Decade</a></li>
+                          <li class="disabled"><a href="#">Album Name</a></li>
+                          <li class="disabled"><a href="#">Release Date</a></li>
+                          <li class="disabled"><a href="#">Duration</a></li>
+                          <li class="disabled"><a href="#">Popularity</a></li>
+                          <li class="disabled"><a href="#">Genre</a></li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
-            <div id = "reactGridTgt"></div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/2f66abbf986dcc2fb1dca9bceb892123d5d10c3a">
+                    <h2 class="sweGridItemHeading"><a href="coldplayTrackPage.html">Adventure Of A Lifetime</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="coldplayArtistPage.html">Coldplay</a></p>
+                    <p class="sweGridItemContent">Album: <a href="coldplayAlbumPage.html">A Head Full Of Dreams</a></p>
+                    <p class="sweGridItemContent">Released: 2015-12-04</p>
+                    <p class="sweGridItemContent">Duration: 4:39</p>
+                    <p class="sweGridItemContent">Popularity: 78</p>
+                    <p class="sweGridItemContent">Genre: Pop</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/5210fc4d42dce2104eb2dfcf0d221d5c16631a4f">
+                    <h2 class="sweGridItemHeading"><a href="b52TrackPage.html">Love Shack</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="b52ArtistPage.html">The B-52's</a></p>
+                    <p class="sweGridItemContent">Album: <a href="b52AlbumPage.html">Cosmic Thing</a></p>
+                    <p class="sweGridItemContent">Released: 1989-06-23</p>
+                    <p class="sweGridItemContent">Duration: 5:35</p>
+                    <p class="sweGridItemContent">Popularity: 61</p>
+                    <p class="sweGridItemContent">Genre: Pop</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/f6e02ce8bc9e91afa0e220703072c20bf72c72c5">
+                    <h2 class="sweGridItemHeading"><a href="queenTrackPage.html">Bohemian Rhapsody</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="queenArtistPage.html">Queen</a></p>
+                    <p class="sweGridItemContent">Album: <a href="queenAlbumPage.html">A Night At The Opera (Deluxe...)</a></p>
+                    <p class="sweGridItemContent">Released: 1975-11-21</p>
+                    <p class="sweGridItemContent">Duration: 5:54</p>
+                    <p class="sweGridItemContent">Popularity: 71</p>
+                    <p class="sweGridItemContent">Genre: Rock</p>
+                </div>
+            </div>
         </div>
         <!-- /.container -->
     </div>
 
-    <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/masonry.js"></script>
-    <script type="text/javascript" src="resources/js/scripts.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/babel" src="resources/js/main.js"></script>
 
 </body>
 

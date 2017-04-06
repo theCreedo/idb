@@ -17,7 +17,6 @@
     <link href="resources/css/landing-page.css" rel="stylesheet">
     <link href="resources/css/sweStyle.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/css/navBar.css">
-
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -61,10 +60,10 @@
   </nav>
   <!-- /.navbar -->
     <div class="content-section-a">
-        <div id="reactTgt">
+        <div class="container sweGridContainer">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="sweGridTitle">Artist Table</h1>
+                    <h1 class="sweGridTitle">Albums Table</h1>
                 </div>
             </div>
             <div class="row sweGridSorts">
@@ -83,14 +82,54 @@
                         Filter <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu sweSortDropdown">
+                          <li class="disabled"><a href="#">Album Name</a></li>
                           <li class="disabled"><a href="#">Artist Name</a></li>
-                          <li class="disabled"><a href="#">Country</a></li>
-                          <li class="disabled"><a href="#">Decade</a></li>
+                          <li class="disabled"><a href="#">Release Date</a></li>
+                          <li class="disabled"><a href="#">Label</a></li>
+                          <li class="disabled"><a href="#">Genre</a></li>
+                          <li class="disabled"><a href="#">No. Songs</a></li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
-            <div id = "reactGridTgt"></div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/2f66abbf986dcc2fb1dca9bceb892123d5d10c3a">
+                    <h2 class="sweGridItemHeading"><a href="coldplayAlbumPage.html">A Head Full Of Dreams</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="coldplayArtistPage.html">Coldplay</a> <a data-toggle="tooltip" data-placement="top" title="Yet to implement">Tove Lo</a></p>
+                    <p class="sweGridItemContent">Released: 2015-12-04</p>
+                    <p class="sweGridItemContent">Label: Parlophone UK</p>
+                    <p class="sweGridItemContent">Genre: Pop</p>
+                    <p class="sweGridItemContent">Number of Songs: 11</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/5210fc4d42dce2104eb2dfcf0d221d5c16631a4f">
+                    <h2 class="sweGridItemHeading"><a href="b52AlbumPage.html">Cosmic Thing</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="b52ArtistPage.html">The B-52's</a></p>
+                    <p class="sweGridItemContent">Released: 1989-06-23</p>
+                    <p class="sweGridItemContent">Label: Warner Bros.</p>
+                    <p class="sweGridItemContent">Genre: Pop</p>
+                    <p class="sweGridItemContent">Number of Songs: 10</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/f6e02ce8bc9e91afa0e220703072c20bf72c72c5">
+                    <h2 class="sweGridItemHeading"><a href="queenAlbumPage.html">A Night At The Opera(...)</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Artist: <a href="queenArtistPage.html">Queen</a></p>
+                    <p class="sweGridItemContent">Released: 1975-11-21</p>
+                    <p class="sweGridItemContent">Label: Hollywood Records</p>
+                    <p class="sweGridItemContent">Genre: Rock</p>
+                    <p class="sweGridItemContent">Number of Songs: 18</p>
+                </div>
+            </div>
         </div>
         <!-- /.container -->
     </div>
@@ -100,10 +139,6 @@
     <script type="text/javascript" src="resources/js/masonry.js"></script>
     <script type="text/javascript" src="resources/js/scripts.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/babel" src="resources/js/main.js"></script>
 
 </body>
 

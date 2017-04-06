@@ -60,11 +60,13 @@
     <!-- /.container --> 
   </nav>
   <!-- /.navbar -->
+
+    <!-- Table container -->
     <div class="content-section-a">
-        <div id="reactTgt">
+        <div class="container sweGridContainer">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="sweGridTitle">Artist Table</h1>
+                    <h1 class="sweGridTitle">Concerts Table</h1>
                 </div>
             </div>
             <div class="row sweGridSorts">
@@ -83,27 +85,60 @@
                         Filter <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu sweSortDropdown">
+                          <li class="disabled"><a href="#">Concert Name</a></li>
+                          <li class="disabled"><a href="#">Venue Name</a></li>
                           <li class="disabled"><a href="#">Artist Name</a></li>
-                          <li class="disabled"><a href="#">Country</a></li>
-                          <li class="disabled"><a href="#">Decade</a></li>
+                          <li class="disabled"><a href="#">Date</a></li>
+                          <li class="disabled"><a href="#">Time</a></li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
-            <div id = "reactGridTgt"></div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/143b0f286f76ece3a711f673d9ba00b8f499b2c0">
+                    <h2 class="sweGridItemHeading"><a href="coldplayConcertPage.html">Coldplay</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Venue: <a data-toggle="tooltip" data-placement="top" title="Yet to implement">Singapore National Stadium</a></p>
+                    <p class="sweGridItemContent">Artist(s): <a href="coldplayArtistPage.html">Coldplay</a></p>
+                    <p class="sweGridItemContent">Event Link: <a href="http://www.bandsintown.com/event/13368268">More Info</a></p>
+                    <p class="sweGridItemContent">Date: 2017-03-31</p>
+                    <p class="sweGridItemContent">Time: 19:30:00</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/42b6713611a0ba1235c8c84f8ca1862fe7fa1d65">
+                    <h2 class="sweGridItemHeading"><a href="b52ConcertPage.html">The B-52's</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Venue: <a data-toggle="tooltip" data-placement="top" title="Yet to implement">Austin City Limits Live at The Moody Theater</a></p>
+                    <p class="sweGridItemContent">Artist(s): <a href="b52ArtistPage.html">The B-52's</a></p>
+                    <p class="sweGridItemContent">Event Link: <a href="http://www.bandsintown.com/event/13861349">More Info</a></p>
+                    <p class="sweGridItemContent">Date: 2017-05-18</p>
+                    <p class="sweGridItemContent">Time: 19:00:00</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 sweGridItem">
+                    <hr class="sweGridItemSpacer">
+                    <div class="clearfix"></div>
+                    <img class="sweGridImage" src="https://i.scdn.co/image/42b6713611a0ba1235c8c84f8ca1862fe7fa1d65">
+                    <h2 class="sweGridItemHeading"><a href="b52Concert2Page.html">The B-52's</a><br></h2>
+                    <hr>
+                    <p class="sweGridItemContent">Venue: <a data-toggle="tooltip" data-placement="top" title="Yet to implement">House Of Blues</a></p>
+                    <p class="sweGridItemContent">Artist(s): <a href="b52ArtistPage.html">The B-52's</a></p>
+                    <p class="sweGridItemContent">Event Link: <a href="http://www.bandsintown.com/event/13901212">More Info</a></p>
+                    <p class="sweGridItemContent">Date: 2017-05-20</p>
+                    <p class="sweGridItemContent">Time: 19:00:00</p>
+                </div>
+            </div>
         </div>
         <!-- /.container -->
     </div>
 
-    <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/masonry.js"></script>
-    <script type="text/javascript" src="resources/js/scripts.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/babel" src="resources/js/main.js"></script>
 
 </body>
 

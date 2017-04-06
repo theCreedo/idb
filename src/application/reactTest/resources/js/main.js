@@ -1,48 +1,14 @@
-//var filterbarComponent = React.createClass({
-//    render: function(){
-//        return (
-//            <div className="col-xs-12">
-//                    <div className="btn-group">
-//                      <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                        Sort <span className="caret"></span>
-//                      </button>
-//                      <ul className="dropdown-menu sweSortDropdown">
-//                          <li className="disabled"><a href="#">A to Z</a></li>
-//                          <li className="disabled"><a href="#">Z to A</a></li>
-//                      </ul>
-//                    </div>
-//                    <div className="btn-group">
-//                      <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                        Filter <span className="caret"></span>
-//                      </button>
-//                      <ul className="dropdown-menu sweSortDropdown">
-//                          <li className="disabled"><a href="#">Artist Name</a></li>
-//                          <li className="disabled"><a href="#">Country</a></li>
-//                          <li className="disabled"><a href="#">Decade</a></li>
-//                      </ul>
-//                    </div>
-//            </div>
-//        );
-//    }
-//});
-
-//class DynamicLink extends React.Component {    
-//    constructor(a, b){
-//        super();
-//        this.props.name = a;
-//        this.props.title = b;
-//    }
-//    
-//    render() {
-//        name = this.name;
-//        title = this.title;
-//        return (
-//            <a onClick={handleClick({name})}>{title}</a>
-//        );    
-//    }
-//}
-
 class ReactGrid extends React.Component {
+    
+    triggerFiltering(type) {
+        alert("Filtering of type " + type);
+        // Change data
+        // Reset/Rerender?
+    }
+    
+    triggerSorting(type) {
+        alert("Sorting of type " + type);
+    }
     
     /* Function that gets the spotlight JSON */
     loadSpotlightJSON(callback) {
@@ -59,7 +25,22 @@ class ReactGrid extends React.Component {
         xobj.send(null);
      }
     
-    createGridItem(data) {
+    createGridItemTrack(data) {
+        return (
+            <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
+                <hr className="sweGridItemSpacer"></hr>
+                <div className="clearfix"></div>
+                <img className="sweGridImage" src={data.image_url}></img>
+                 <h2 className="sweGridItemHeading"><a>{data.name}</a></h2>
+                <hr></hr>
+                <p className="sweGridItemContent">Popular Song: <a href="coldplayTrackPage.html">Adventure Of A Lifetime</a></p>
+                <p className="sweGridItemContent">Artist Country: {data.country}</p>
+                <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
+            </div>
+        );    
+    }
+    
+    createGridItemArtist(data) {
         //const popularSong = getSongInfo(data.popularSong);
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
@@ -102,7 +83,7 @@ class ReactGrid extends React.Component {
         
         for (var x in actual_JSON.Artists) {
             console.log(actual_JSON.Artists[x]);
-            gridItems.push(this.createGridItem(actual_JSON.Artists[x]));
+            gridItems.push(this.createGridItemArtist(actual_JSON.Artists[x]));
           }
         
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
@@ -116,58 +97,43 @@ class ReactGrid extends React.Component {
         
         console.log("Lookit: griditems: " + gridItems.length);
         return (
-            <div className="row">{gridItems}</div>
+            <div className="container sweGridContainer">
+                <div className="row">
+                    <div className="col-xs-12">
+                        <h1 className="sweGridTitle">Artist Table</h1>
+                    </div>
+                </div>
+                <div className="row sweGridSorts">
+                    <div className="col-xs-12">
+                        <div className="btn-group">
+                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort <span className="caret"></span>
+                          </button>
+                          <ul className="dropdown-menu sweSortDropdown">
+                              <li className=""><a onClick={() => this.triggerSorting('az')}>A to Z</a></li>
+                              <li className=""><a onClick={() => this.triggerSorting('za')}>Z to A</a></li>
+                            </ul>
+                        </div>
+                        <div className="btn-group">
+                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter <span className="caret"></span>
+                          </button>
+                          <ul className="dropdown-menu sweSortDropdown">
+                              <li className=""><a onClick={() => this.triggerFiltering('name')}>Artist Name</a></li>
+                              <li className=""><a onClick={() => this.triggerFiltering('country')}>Country</a></li>
+                              <li className=""><a onClick={() => this.triggerFiltering('decade')}>Decade</a></li>
+                            </ul>
+                        </div>
+                    </div> 
+                </div>
+                <div className="row">{gridItems}</div>
+            </div>
         );
     }
 }
 
-//class FilterBar extends React.Component {
-//
-//    handleClick(type) {
-//        console.log(type);
-//    }
-//    
-//    createDynamicLink (i, name, title) {
-//        const stringOfName = name.toString();
-//        return (<li key={i}><a key={title} onClick={() => this.handleClick({stringOfName})}>{title}</a></li>);
-//    }
-//    
-//    render() {
-//        const links = ['artist', 'country', 'decade'];
-//        const titles = ['Artist Name', 'Country', 'decade'];
-//        var dynamicLinks = [];
-//        for (var i = 0; i < links.length; i++) {
-//            dynamicLinks.push(this.createDynamicLink(i, links[i], titles[i]));
-//        }
-//        
-//        const az = 'az';
-//        
-//        return (
-//            <div className="col-xs-12">
-//                    <div className="btn-group">
-//                      <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                        Sort <span className="caret"></span>
-//                      </button>
-//                      <ul className="dropdown-menu sweSortDropdown">
-//                          <li className=""><a onClick={() => this.handleClick({az})}>A to Z</a></li>
-//                          <li className=""><a onClick={() => this.handleClick('za')}>Z to A</a></li>
-//                      </ul>
-//                    </div>
-//                    <div className="btn-group">
-//                      <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                        Filter <span className="caret"></span>
-//                      </button>
-//                      <ul className="dropdown-menu sweSortDropdown">
-//                          {dynamicLinks}
-//                      </ul>
-//                    </div>
-//            </div>
-//        );
-//    }
-//}
-
 
 ReactDOM.render(
   <ReactGrid/>,
-  document.getElementById('reactGridTgt')
+  document.getElementById('reactTgt')
 );
