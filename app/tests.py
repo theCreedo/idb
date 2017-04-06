@@ -131,7 +131,12 @@ class TestCase(unittest.TestCase):
         track_result = db.session.query(Track).filter_by(name='track_name').first()
         assert (track_result is track)
 
-    # def test_db_delete_track(self):
+    def test_db_delete_track(self):
+        track = db.session.query(Track).filter_by(name='track_name').first()
+        assert track is not None
+        db.session.delete(track)
+        db.session.commit()
+        assert db.session.query(Track).filter_by(name='track_name').first() is None
 
     def test_db_create_artist(self):
         artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
@@ -140,6 +145,13 @@ class TestCase(unittest.TestCase):
         artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
         assert (artist_result is artist)
 
+    def test_db_delete_artist(self):
+        artist = db.session.query(Artist).filter_by(name='artist_name').first()
+        assert artists is not None
+        db.session.delete(artist)
+        db.session.commit()
+        assert db.session.query(Artist).filter_by(name='artist_name').first() is None
+
     def test_db_create_album(self):
         album = Album('album_name', 'genre', 'release', 'url', 'label', 1)
         db.session.add(album)
@@ -147,12 +159,40 @@ class TestCase(unittest.TestCase):
         album_result = db.session.query(Album).filter_by(name='album_name').first()
         assert (album_result is album)
 
+    def test_db_delete_album(self):
+        album = db.session.query(Album).filter_by(name='album_name').first()
+        assert album is not None
+        db.session.delete(album)
+        db.session.commit()
+        assert db.session.query(Album).filter_by(name='artist_name').first() is None
+
     def test_db_create_concert(self):
         concert = Concert('name', 'link', 'date', 'time')
         db.session.add(concert)
         db.session.commit()
         concert_result = db.session.query(Concert).filter_by(name='concert_name').first()
         assert (concert_result is concert)
+
+    def test_db_delete_concert(self):
+        concert = db.session.query(Concert).filter_by(name='name').first()
+        assert concert is not None
+        db.session.delete(concert)
+        db.session.commit()
+        assert db.session.query(Concert).filter_by(name='name').first() is None
+
+    def test_db_create_venue(self):
+        venue = Venue('name', 'city', 'region', 'country', 0.0, 0.0)
+        db.session.add(venue)
+        db.session.commit()
+        venue_result = db.session.query(Venue).filter_by(name='name').first()
+        assert (venue_result is venue)
+
+    def test_db_delete_venue(self):
+        venue = db.session.query(Venue).filter_by(name='name').first()
+        assert venue is not None
+        db.session.delete(venue)
+        db.session.commit()
+        assert db.session.query(Venue).filter_by(name='name').first() is None
 
 
 if __name__ == '__main__':
