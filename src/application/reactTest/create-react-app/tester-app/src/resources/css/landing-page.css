@@ -423,7 +423,7 @@ html { overflow-y:scroll; }
 /* About Page */
 .aboutHeader {
     padding-top: 30px;
-    margin-top: 50px;
+    margin-top: px;
     width: 100%;
     background-image: url('../images/subtle-grid-bg.jpg');
 }

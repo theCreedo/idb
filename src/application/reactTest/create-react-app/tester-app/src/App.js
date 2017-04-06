@@ -2,6 +2,7 @@ import React from 'react';
 import ReactGrid from './ArtistGrid.js';
 //import './resources/css/landing-page.css';
 import './resources/css/sweStyle.css';
+//import './resources/css/navBar.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,13 +12,37 @@ import {
 const BasicExample = () => (
   <Router>
     <div>
-      
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
-
+      <nav className="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div className="container topnav">
+            <div className="navbar-header">
+                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span className="sr-only">Toggle navigation</span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                </button>
+            </div>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li>
+                        <Link to="/topics">Topics</Link>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
       <hr/>
 
       <Route exact path="/" component={Home}/>
