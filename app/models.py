@@ -191,11 +191,12 @@ class Album(db.Model):
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
 
-# Model a Concert object
-# 
+# Models a Concert object
+# Populated via Bandsintown
 class Concert(db.Model):
     __tablename__ = 'concerts'
 
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     event_link = db.Column(db.String(200))
@@ -211,6 +212,7 @@ class Concert(db.Model):
     artist_album_pairs = db.relationship('Concert_AA_Association',
                                       order_by=Concert_AA_Association.id, backref='concert')
 
+    # Create a Concert manually
     def __init__(self, name, event_link, date, time):
         assert (name != "")
         assert (event_link != "")
@@ -222,13 +224,16 @@ class Concert(db.Model):
         self.date = date
         self.time = time
 
+    # Debug print method
     def __repr__(self):
         return "<Concert(name='%s')>" % (self.name)
 
-
+# Models a Venue object
+# Populated via Bandsintown
 class Venue(db.Model):
     __tablename__ = 'venues'
 
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     city = db.Column(db.String(50))
@@ -241,6 +246,7 @@ class Venue(db.Model):
     # Auto-populates Concert.venue
     concerts = db.relationship('Concert', backref='venue')
 
+    # Create a Venue manually
     def __init__(self, name, city, region, country, latitude, longitude):
         assert (name != "")
         assert (city != "")
@@ -253,11 +259,12 @@ class Venue(db.Model):
         self.latitude = latitude
         self.longitude = longitude
 
+    # Debug print method
     def __repr__(self):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-db.create_all()
+# db.create_all()
 
 # Drop Tables when necessary
 # db.reflect()
