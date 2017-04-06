@@ -20,6 +20,7 @@ class Track(db.Model):
     popularity = db.Column(db.Integer)
     preview_url = db.Column(db.String(200))
     explicit = db.Column(db.Boolean)
+    spotify_uri = db.Column(db.String(100))
 
     # Reference to artists table
     # Auto-populates Artist.tracks
@@ -30,7 +31,7 @@ class Track(db.Model):
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     def __init__(self, name, genre, release_date, duration,
-                 popularity, preview_url, explicit):
+                 popularity, preview_url, explicit, spotify_uri):
         assert (name != "")
         assert (genre != "")
         assert (release_date != "")
@@ -38,6 +39,7 @@ class Track(db.Model):
         assert (popularity >= 0 and popularity <= 100)
         assert (preview_url != "")
         assert (explicit != "")
+        assert (spotify_uri != "")
 
         self.name = name
         self.genre = genre
@@ -46,6 +48,7 @@ class Track(db.Model):
         self.popularity = popularity
         self.preview_url = preview_url
         self.explicit = explicit
+        self.spotify_uri = spotify_uri
 
     def __repr__(self):
         return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
@@ -63,9 +66,6 @@ class Concert_AA_Association(db.Model):
 
     # Reference to artist_album_pairs table
     aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
-
-    # def __init__():
-    #     return 0
 
     def __repr__(self):
         return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
@@ -147,6 +147,7 @@ class Album(db.Model):
     album_cover_url = db.Column(db.String(200))
     label = db.Column(db.String(100))
     number_of_tracks = db.Column(db.Integer, nullable=True)
+    spotify_uri = db.Column(db.String(100))
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.album
@@ -158,13 +159,14 @@ class Album(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.popularity, backref='album')
 
-    def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks):
+    def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks, spotify_uri):
         assert (name != "")
         assert (genre != "")
         assert (release_date != "")
         assert (album_cover_url != "")
         assert (label != "")
         assert (number_of_tracks > 0)
+        assert (spotify_uri != "")
 
         self.name = name
         self.genre = genre
@@ -172,6 +174,7 @@ class Album(db.Model):
         self.album_cover_url = album_cover_url
         self.label = label
         self.number_of_tracks = number_of_tracks
+        self.spotify_uri = spotify_uri
 
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
@@ -244,3 +247,4 @@ db.create_all()
 # db.reflect()
 # db.drop_all()
 db.session.commit()
+
