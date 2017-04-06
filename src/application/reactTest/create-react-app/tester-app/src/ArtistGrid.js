@@ -16,7 +16,7 @@ export default class ReactGrid extends React.Component {
           data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
         };
         
-       // this.updateGridData = this.updateGridData.bind(this);
+        this.updateGridData = this.updateGridData.bind(this);
     }
 
     // componentDidMount() {
@@ -28,7 +28,8 @@ export default class ReactGrid extends React.Component {
     // }
     
    updateGridData(e) {
-        console.log(e);
+        console.log(e + " this is " + this.state.data);
+       this.pageChange(e);
    }
 
    pageChange(pageSize) {
@@ -243,7 +244,7 @@ export default class ReactGrid extends React.Component {
             gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
           }
         
-        const pagination = this.pagination(1, num_results);
+//        const pagination = this.pagination(1, num_results);
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
         
 //        const length = 9;
@@ -286,7 +287,7 @@ export default class ReactGrid extends React.Component {
                     </div> 
                 </div>
                 <div className="row">{gridItems}</div>
-                {pagination}
+                <Pagination pageSize={1} onChange={this.updateGridData} total={num_results}/>
             </div>
         );
     }
