@@ -6,10 +6,25 @@ import 'rc-pagination/assets/index.css';
 //var Pagination = require('rc-pagination');
 
 export default class ReactGrid extends React.Component {
+    
+    constructor(props){
+        super(props);
+        this.state = {
+          gridType: props.gridType,
+          data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
+        };
+        
+//        this.updateGridData = this.updateGridData.bind(this);
+    }
+    
+//    updateGridData(e) {
+//        this.setState({data: })
+//    }
 
     onChange(current, pageSize) {
       console.log('onChange:current=', current);
       console.log('onChange:pageSize=', pageSize);
+//      this.setState({data: })
     
       /* Using the current, we can change the query to ask for this specific 
       page of results. We can use page size if needed? */
@@ -25,8 +40,32 @@ export default class ReactGrid extends React.Component {
         alert("Sorting of type " + type);
     }
     
+    /* Returns parsed JSON object of API results */
+    makeAPIcall( call ) {
+        var xmlHTTP = new XMLHttpRequest();
+
+//        xmlHTTP.open('GET',"https://api-content.dropbox.com/1/files/auto/" + file + "?access_token=" + auth,false);
+        xmlHTTP.open('GET',call,false);
+
+
+        // Arraybuffer response to put into B64
+        //xmlHTTP.responseType = 'text';
+
+        var data;
+        xmlHTTP.onload = function(e)
+        {
+            console.log(this.response);
+            data = this.response;
+        }
+
+        // Send request
+        xmlHTTP.send();
+
+        return data;
+    }
+    
     /* Function that gets the spotlight JSON */
-    loadSpotlightJSON(callback) {
+    makeAPIcallJSON(callback) {
 
         var xobj = new XMLHttpRequest();
             xobj.overrideMimeType("application/json");
@@ -101,11 +140,20 @@ export default class ReactGrid extends React.Component {
 //            
 //        });
         
-        var actual_JSON = JSON.parse('{"Artists": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"}]}');
+//        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
-        for (var x in actual_JSON.Artists) {
-            console.log(actual_JSON.Artists[x]);
-            gridItems.push(this.createGridItemArtist(actual_JSON.Artists[x]));
+        var actual_JSON = this.props.data;
+        
+        if (actual_JSON == undefined) {
+            
+        }
+        
+        console.log(this.props.data);
+        
+        const num_results = actual_JSON.num_results;
+        for (var x in actual_JSON.objects) {
+            console.log(actual_JSON.objects[x]);
+            gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
           }
         
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
@@ -149,7 +197,7 @@ export default class ReactGrid extends React.Component {
                     </div> 
                 </div>
                 <div className="row">{gridItems}</div>
-                <Pagination defaultPageSize={9} onShowSizeChange={this.onShowSizeChange} onChange={this.onChange}defaultCurrent={9} total={27}/>
+                <Pagination defaultPageSize={9} onChange={this.onChange}defaultCurrent={9} total={num_results}/>
             </div>
         );
     }
