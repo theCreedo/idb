@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -107,7 +108,7 @@ class Artist(db.Model):
 
     # Reference to an artist's most popular track
     # most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
-    # most_popular_track = db.relationship('Track')
+    # most_popular_track = db.relationship('Track', foreign_keys=[most_popular_track_id])
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
@@ -117,7 +118,7 @@ class Artist(db.Model):
     # db.relationship to tracks table
     # Auto-populates Track.artist
     tracks = db.relationship('Track',
-                          order_by=Track.id, backref='artist')
+                          order_by=Track.popularity, backref='artist', foreign_keys=[])
 
     def __init__(self, name, image_url, country, decade, genre):
         assert (name != "")

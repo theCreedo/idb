@@ -157,7 +157,7 @@ def page_decoder(page):
 		artist_exists = db.session.query(Artist).filter_by(name=album_full['artists'][0]['name']).first()
 
 		elements = decoder(album_full, artist_exists)
-		tracks = elements['tracks']
+		tracks = elements['tracks'] 	
 		artist = elements['artist']
 		album = elements['album']
 		concerts = elements['concerts']
@@ -193,7 +193,7 @@ def main():
 	# db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQCsUmVgZAe0dn83A3H3OAgVB-ekMqrVrq0o3MgOHx0QIpez6KT2Gnh1OjCmsZKuuM1gJIXb8EiJBx5rqQo-CablUerJLRh5ZGJ0VecoKX0X5Rw2KMsm9OtHhhVXIldjiQjq3gx8szjLiOseHgCfSHRvDhvpb9N_TX0'}
+	headers = {'Authorization' : 'Bearer BQCm8CdwpIc-CMUVM2otN3PLqqa3Hr7RL-xE1fmB1r6h3UGeigkxFpjCt5QUSll4BFCj_958DJNY0P_3dzF7imbg-IR4t-VE05YyYlfVZx38M5TzxI5Z5JcVCBsX68U0YlUh0mV86XJWXIXMeTcXKkMVdB3dO18UE0s'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
