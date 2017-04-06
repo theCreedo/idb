@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactGrid from './ArtistGrid.js';
+import ReactHomeCarousel from './homeCarousel.js';
 //import './resources/css/landing-page.css';
-import './resources/css/sweStyle.css';
+//import './resources/css/sweStyle.css';
+//import './resources/templates/css/plugins.css';
+//import './resources/templates/css/style.css';
+//import './resources/templates/css/blue.css';
+//import './resources/templates/css/plugins.css';
+//import './resources/templates/js/plugins.js';
+//import './resources/templates/js/jquery.themepunch.tools.min.js';
+//import './resources/templates/js/scripts.js';
 //import './resources/css/navBar.css';
+//import './resources/i'
 import {
   BrowserRouter as Router,
   Route,
@@ -34,6 +43,7 @@ const BasicExample = () => (
                         <Link to="/topics">Topics</Link>
                     </li>
                     <li>
+                        <Link to="/artistTable">Artists</Link>
                     </li>
                     <li>
                     </li>
@@ -48,12 +58,17 @@ const BasicExample = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
       <Route path="/topics" component={Topics}/>
+      <Route path="/artistTable" component={ArtistTable}/>
     </div>
   </Router>
 )
 
+const ArtistTable = () => (
+  <ReactGrid type={'artist'}/>
+)
+
 const Home = () => (
-  <ReactGrid />
+  <ReactHomeCarousel/>
 )
 
 const About = () => (
