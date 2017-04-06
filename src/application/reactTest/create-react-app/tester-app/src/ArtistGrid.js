@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
+import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
 
 //var Pagination = require('rc-pagination');
 
@@ -10,20 +11,41 @@ export default class ReactGrid extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+          currentPage: 1,
           gridType: props.gridType,
           data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
         };
         
-//        this.updateGridData = this.updateGridData.bind(this);
+       // this.updateGridData = this.updateGridData.bind(this);
     }
+
+    // componentDidMount() {
+    //     this.refs.nv.addEventListener("nv-enter", this.updateGridData);
+    // }
+
+    // componentWillUnmount() {
+    //     this.refs.nv.removeEventListener("nv-enter", this.updateGridData);
+    // }
     
-//    updateGridData(e) {
-//        this.setState({data: })
-//    }
+   updateGridData(e) {
+        console.log(e);
+   }
+
+   onChangeListener(e) {
+        console.log("I am on change listenr", e);
+        // console.log(props);
+   }
 
     onChange(current, pageSize) {
       console.log('onChange:current=', current);
       console.log('onChange:pageSize=', pageSize);
+      console.log(this);
+
+      // onChangeListener(this);
+      // this.setState({
+      //   currentPage: current
+      // });
+      // this.setState({currentPage: current});
 //      this.setState({data: })
     
       /* Using the current, we can change the query to ask for this specific 
@@ -86,13 +108,13 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.artist}></img>
-                 <h2 className="sweGridItemHeading"><a onclick=openConcertModal({data.id})>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onclick={openConcertModal(data.id)}>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Venue: {data.venue.name}</a></p>
+                <p className="sweGridItemContent">Venue: {data.venue.name}</p>
                 <p className="sweGridItemContent">Artists: <a>Adventure Of A Lifetime</a></p>
-                <p className="sweGridItemContent">Event Link: {data.}</p>
-                <p className="sweGridItemContent">Date: {data.}</p>
-                <p className="sweGridItemContent">Time: {data.}</p>
+                <p className="sweGridItemContent">Event Link: {data.event_link}</p>
+                <p className="sweGridItemContent">Date: {data.date}</p>
+                <p className="sweGridItemContent">Time: {data.time}</p>
             </div>
         );    
     }
@@ -103,10 +125,10 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.album[0].album_cover_url}></img>
-                 <h2 className="sweGridItemHeading"><a onclick=openTrackModal({data.id})>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onclick={openTrackModal(data.id)}>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Artist: <a onclick=openArtistModal({data.artist[0].id})>{data.artist[0].name}</a></p>
-                <p className="sweGridItemContent">Album: <a onclick=openAlbumModal({data.album_id})>{data.album[0].name}</a></p>
+                <p className="sweGridItemContent">Artist: <a onclick={openArtistModal(data.artist[0].id)}>{data.artist[0].name}</a></p>
+                <p className="sweGridItemContent">Album: <a onclick={openAlbumModal(data.album_id)}>{data.album[0].name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
                 <p className="sweGridItemContent">Duration: {data.duration}</p>
                 <p className="sweGridItemContent">Popularity: {data.popularity}</p>
@@ -122,10 +144,10 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.album_cover_url}></img>
-                 <h2 className="sweGridItemHeading"><a onclick=openAlbumModal({data.id})>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onclick={openAlbumModal(data.id)}>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Artist: <a onclick=openArtistModal({albumArtist.id})>{albumArtist.name}</a></p>
-                <p className="sweGridItemContent">Album: <a onclick=openAlbumModal({data.id})>{data.name}</a></p>
+                <p className="sweGridItemContent">Artist: <a onclick={openArtistModal(albumArtist.id)}>{albumArtist.name}</a></p>
+                <p className="sweGridItemContent">Album: <a onclick={openAlbumModal(data.id)}>{data.name}</a></p>
                 <p className="sweGridItemContent">Label: {data.label}</p>
                 <p className="sweGridItemContent">Genre: {data.genre}</p>
                 <p className="sweGridItemContent">Number of Songs: {data.number_of_tracks}</p>
@@ -145,9 +167,9 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a onclick=openArtistModal({data.id})>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onclick={openArtistModal(data.id)}>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a onclick=openTrackModal({mostPopularTrack.id})>{mostPopularTrack.name}</a></p>
+                <p className="sweGridItemContent">Popular Song: <a onclick={openTrackModal(mostPopularTrack.id)}>{mostPopularTrack.name}</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
@@ -157,7 +179,7 @@ export default class ReactGrid extends React.Component {
     pagination() {
 //        const getTotal = this.getTotal();
         return (
-            <Pagination className="swePagination" defaultPageSize={9} defaultCurrent={9} total={27}/>
+            <Pagination className="swePagination" defaultPageSize={1} defaultCurrent={1} total={27}/>
         );
     }
     
@@ -207,6 +229,7 @@ export default class ReactGrid extends React.Component {
 //        }
         
         console.log("Lookit: griditems: " + gridItems.length);
+        var curState = this.state;
         return (
             <div className="container sweGridContainer">
                 <div className="row">
@@ -237,8 +260,8 @@ export default class ReactGrid extends React.Component {
                         </div>
                     </div> 
                 </div>
-                <div className="row">{gridItems}</div>
-                <Pagination defaultPageSize={9} onChange={this.onChange}defaultCurrent={9} total={num_results}/>
+                <div className="row">{gridItems[this.state.current]}</div>
+                <Pagination pageSize={1} onChange={this.onChange} current={this.state.current} total={num_results}/>
             </div>
         );
     }
