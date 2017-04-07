@@ -9,11 +9,11 @@ manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 
 # Create API endpoints, which will be available at /api/<tablename> by
 # default. Allowed HTTP methods can be specified as well.
-manager.create_api(Venue, methods=['GET', 'POST'], results_per_page=9)
-manager.create_api(Concert, methods=['GET', 'POST'], results_per_page=9)
-manager.create_api(Album, methods=['GET', 'POST'], results_per_page=9)
-manager.create_api(Artist, methods=['GET', 'POST'], results_per_page=9)
-manager.create_api(Track, methods=['GET', 'POST'], results_per_page=9)
+manager.create_api(Venue, methods=['GET'], results_per_page=9)
+manager.create_api(Concert, methods=['GET'], results_per_page=9)
+manager.create_api(Album, methods=['GET'], results_per_page=9)
+manager.create_api(Artist, methods=['GET'], results_per_page=9)
+manager.create_api(Track, methods=['GET'], results_per_page=9)
 
 
 @app.route('/')
@@ -59,22 +59,21 @@ do a Get request with queries.
 ALMOST CONFIRMED 3 WILL PROBABLY NOT WORK, but WORTH A TRY IF 1 AND 2 DON'T
 '''
 
-@app.route('/api/sort/<string:collection>/<string:attribute>')
-@app.route('/api/sort/<string:collection>/<string:attribute>/')
-@app.route('/api/sort/<string:collection>/<string:attribute>/<string:direction>')
-def collection_process(collection, attribute, direction='asc'):
+@app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>')
+@app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>/')
+@app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>/<string:direction>')
+@app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>/<string:direction>/')
+def collection_process(collection, page, attribute, direction='asc'):
 
-	string = "/api/%s?q={\"order_by\":[{\"field\":\"%s\",\"direction\":\"%s\"}]}" % (collection, attribute, direction)
+	string = "/api/%s?page=%s&q={\"order_by\":[{\"field\":\"%s\",\"direction\":\"%s\"}]}" % (collection, page, attribute, direction)
 	return redirect(string)
 
-
-
-@app.route('/api/filter/<collection>/<name>/<op>/<value>')
-@app.route('/api/filters/<collection>/<name>/<op>/<value>')
-@app.route('/api/filter/<collection>/<name>/<op>/<value>/')
-@app.route('/api/filters/<collection>/<name>/<op>/<value>/')
-def collection_process1(collection, name, op, value):
-	string = "/api/%s?q={\"filters\":[{\"name\":\"%s\",\"op\":\"%s\", \"val\":\"%s\"}]}" % (collection, name, op, value)
+@app.route('/api/filter/<string:collection>/<int:page>/<name>/<op>/<value>')
+@app.route('/api/filters/<string:collection>/<int:page>/<name>/<op>/<value>')
+@app.route('/api/filter/<string:collection>/<int:page>/<name>/<op>/<value>/')
+@app.route('/api/filters/<string:collection>/<int:page>/<name>/<op>/<value>/')
+def collection_process1(collection, page, name, op, value):
+	string = "/api/%s?page=%s&q={\"filters\":[{\"name\":\"%s\",\"op\":\"%s\", \"val\":\"%s\"}]}" % (collection, page, name, op, value)
 	return redirect(string)
 
 @app.route('/api')
