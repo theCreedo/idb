@@ -6,17 +6,70 @@ import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from 
 
 //var Pagination = require('rc-pagination');
 
+class SortingForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {sortMode: 'az',
+                 filterMode: 'name'};
+
+    this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSortChange(event) {
+    this.setState({sortMode: event.target.value});
+  }
+
+  handleFilterChange(event) {
+    this.setState({filterMode: event.target.value});
+  }
+    
+  handleSubmit(event) {
+    alert('Sorting ' + this.state.sortMode + " with filter " + this.state.filterMode);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Sort:
+          <select value={this.state.value} onChange={this.handleSortChange}>
+            <option value="az">A to Z</option>
+            <option value="za">Z to A</option>
+          </select>
+        </label>
+        <label>
+          Filter: 
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Artist Name</option>
+            <option value="country">Country</option>
+            <option value="decade">Decade</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
 export default class ReactGrid extends React.Component {
     
     constructor(props){
         super(props);
         this.state = {
+          filterMode: 0,
+          sortMode: 0,
           currentPage: 1,
+          pageSize: 1,
           gridType: props.gridType,
           data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
         };
         
         this.updateGridData = this.updateGridData.bind(this);
+        this.triggerFiltering = this.triggerFiltering.bind(this);
+        this.triggerSorting = this.triggerSorting.bind(this);
     }
 
     // componentDidMount() {
@@ -29,7 +82,7 @@ export default class ReactGrid extends React.Component {
     
    updateGridData(current, pageSize) {
         console.log("State current " + this.state.currentPage + " passed current " + current + " this is " + this.state.data + " and this " + pageSize);
-        this.state.currentPage = current;
+        this.setState({currentPage: current});
         this.pageChange(current);
    }
 
@@ -66,14 +119,19 @@ export default class ReactGrid extends React.Component {
       page of results. We can use page size if needed? */
     }
     
-    triggerFiltering(type) {
-        alert("Filtering of type " + type);
+    triggerFiltering(a) {
+        
+//        this.setState({filterMode: a});
+//        this.preventDefault();
+//        alert("Filtering of type " + a + " sort is " + this.state.sortMode);
         // Change data
         // Reset/Rerender?
     }
     
-    triggerSorting(type) {
-        alert("Sorting of type " + type);
+    triggerSorting(b) {
+//        this.setState({sortMode: b});
+//        this.preventDefault();
+//        alert("Sorting of type " + type + " filtering is " + this.state.filterMode);
     }
     
     /* Returns parsed JSON object of API results */
@@ -239,6 +297,7 @@ export default class ReactGrid extends React.Component {
         console.log(this.state.data);
         
         const num_results = actual_JSON.num_results;
+        const pageSize = this.state.pageSize;
 
         for (var x in actual_JSON.objects) {
             console.log(actual_JSON.objects[x]);
@@ -264,31 +323,9 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">Artist Table</h1>
                     </div>
                 </div>
-                <div className="row sweGridSorts">
-                    <div className="col-xs-12">
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort <span className="caret"></span>
-                          </button>
-                          <ul className="dropdown-menu sweSortDropdown">
-                              <li className=""><a onClick={() => this.triggerSorting('az')}>A to Z</a></li>
-                              <li className=""><a onClick={() => this.triggerSorting('za')}>Z to A</a></li>
-                            </ul>
-                        </div>
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter <span className="caret"></span>
-                          </button>
-                          <ul className="dropdown-menu sweSortDropdown">
-                              <li className=""><a onClick={() => this.triggerFiltering('name')}>Artist Name</a></li>
-                              <li className=""><a onClick={() => this.triggerFiltering('country')}>Country</a></li>
-                              <li className=""><a onClick={() => this.triggerFiltering('decade')}>Decade</a></li>
-                            </ul>
-                        </div>
-                    </div> 
-                </div>
+                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode}/>
                 <div className="row">{gridItems}</div>
-                <Pagination pageSize={1} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
+                <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
             </div>
         );
     }
