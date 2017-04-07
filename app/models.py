@@ -1,4 +1,13 @@
 #! python
+
+# pylint: disable = bad-whitespace
+# pylint: disable = invalid-name
+# pylint: disable = missing-docstring
+# pylint: disable = no-member
+# pylint: disable = too-many-arguments
+# pylint: disable = too-many-instance-attributes
+# pylint: disable = too-few-public-methods
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -12,8 +21,6 @@ db = SQLAlchemy(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
-
-
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -39,14 +46,14 @@ class Track(db.Model):
     # Creates a Track object manually
     def __init__(self, name, genre, release_date, duration,
                  popularity, preview_url, explicit, spotify_uri):
-        assert (name != "")
-        assert (genre != "")
-        assert (release_date != "")
-        assert (duration > 0)
-        assert (popularity >= 0 and popularity <= 100)
-        assert (preview_url != "")
-        assert (explicit != "")
-        assert (spotify_uri != "")
+        assert name != ""
+        assert genre != ""
+        assert release_date != ""
+        assert duration > 0
+        assert popularity >= 0 and popularity <= 100
+        assert preview_url != ""
+        assert explicit != ""
+        assert spotify_uri != ""
 
         self.name = name
         self.genre = genre
@@ -142,11 +149,11 @@ class Artist(db.Model):
 
     # Create an Artist manually
     def __init__(self, name, image_url, country, decade, genre):
-        assert (name != "")
-        assert (image_url != "")
-        assert (country != "")
-        assert (decade != "")
-        assert (genre != "")
+        assert name != ""
+        assert image_url != ""
+        assert country != ""
+        assert decade != ""
+        assert genre != ""
 
         self.name = name
         self.image_url = image_url
@@ -189,13 +196,13 @@ class Album(db.Model):
     # Creates an Album manually
     def __init__(self, name, genre, release_date, album_cover_url, label,
                  number_of_tracks, spotify_uri):
-        assert (name != "")
-        assert (genre != "")
-        assert (release_date != "")
-        assert (album_cover_url != "")
-        assert (label != "")
-        assert (number_of_tracks > 0)
-        assert (spotify_uri != "")
+        assert name != ""
+        assert genre != ""
+        assert release_date != ""
+        assert album_cover_url != ""
+        assert label != ""
+        assert number_of_tracks > 0
+        assert spotify_uri != ""
 
         self.name = name
         self.genre = genre
@@ -235,10 +242,10 @@ class Concert(db.Model):
 
     # Create a Concert manually
     def __init__(self, name, event_link, date, time):
-        assert (name != "")
-        assert (event_link != "")
-        assert (date != "")
-        assert (time != "")
+        assert name != ""
+        assert event_link != ""
+        assert date != ""
+        assert time != ""
 
         self.name = name
         self.event_link = event_link
@@ -271,9 +278,9 @@ class Venue(db.Model):
 
     # Create a Venue manually
     def __init__(self, name, city, region, country, latitude, longitude):
-        assert (name != "")
-        assert (city != "")
-        assert (country != "")
+        assert name != ""
+        assert city != ""
+        assert country != ""
 
         self.name = name
         self.city = city
