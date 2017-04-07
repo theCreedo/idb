@@ -7,6 +7,7 @@ FILES :=                              \
 	.travis.yml                       \
 	IDB2.html                         \
 	IDB2.log                          \
+	IDB2.tmp
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -104,7 +105,7 @@ status:
 	git status
 # 	make clean
 
-test: IDB1.html IDB1.log format
+test: IDB2.html IDB2.log format IDB2.tmp
 	ls -al
 	make check
 
