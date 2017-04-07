@@ -59,9 +59,9 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-IDB2.tmp: models.py tests.py main.py .pylintrc
-	-$(PYLINT) tests.py
-	$(COVERAGE) run    --branch tests.py >  tests.tmp 2>&1
+IDB2.tmp: app/models.py app/tests.py app/main.py .pylintrc
+	-$(PYLINT) app/tests.py
+	$(COVERAGE) run    --branch app/tests.py >  tests.tmp 2>&1
 	$(COVERAGE) report -m                      >> tests.tmp
 	cat tests.tmp 
 
