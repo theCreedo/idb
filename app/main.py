@@ -58,17 +58,24 @@ it build correctly. This may be completely wrong in that you can't
 do a Get request with queries.
 ALMOST CONFIRMED 3 WILL PROBABLY NOT WORK, but WORTH A TRY IF 1 AND 2 DON'T
 '''
-@app.route('/sort/<collection>/<name>/<direction>')
-def collection_process(collection, name, direction='asc'):
-	return redirect(url_for('/api/' + collection + '?q={' + "\"order_by\":[{\"field\":\"" + name + "\",\"direction\":\"" + direction + "\"}])"))
-	# string = 'http://127.0.0.1:5000/api/' + collection + '?q={' + "\"order_by\":[{\"field\":\"" + name + "\",\"direction\":\"" + direction + "\"}])"
-	# r = requests.get(string)
+
+@app.route('/api/sort/<string:collection>/<string:attribute>')
+@app.route('/api/sort/<string:collection>/<string:attribute>/')
+@app.route('/api/sort/<string:collection>/<string:attribute>/<string:direction>')
+def collection_process(collection, attribute, direction='asc'):
+
+	string = "/api/%s?q={\"order_by\":[{\"field\":\"%s\",\"direction\":\"%s\"}]}" % (collection, attribute, direction)
+	return redirect(string)
 
 
-@app.route('/api/<collection>/filter/<name>/<op>/<value>')
+
+@app.route('/api/filter/<collection>/<name>/<op>/<value>')
+@app.route('/api/filters/<collection>/<name>/<op>/<value>')
+@app.route('/api/filter/<collection>/<name>/<op>/<value>/')
+@app.route('/api/filters/<collection>/<name>/<op>/<value>/')
 def collection_process1(collection, name, op, value):
-	if isinstance(value, int):
-		return redirect(url_for('/api/' + collection + '?q={' + "\"filters\":[{\"name\":" + name + ",\"op\":" + op + ",\"val\":" + value + "\"}])"))
+	string = "/api/%s?q={\"filters\":[{\"name\":\"%s\",\"op\":\"%s\", \"val\":\"%s\"}]}" % (collection, name, op, value)
+	return redirect(string)
 
 @app.route('/api')
 @app.route('/api/')
