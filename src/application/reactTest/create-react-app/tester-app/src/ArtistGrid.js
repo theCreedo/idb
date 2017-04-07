@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
-
+import Modal from './modalTest';
 //var Pagination = require('rc-pagination');
 
 class SortingForm extends React.Component {

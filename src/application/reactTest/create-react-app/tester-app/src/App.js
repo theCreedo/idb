@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactGrid from './ArtistGrid.js';
 import ReactHomeCarousel from './homeCarousel.js';
+import Modal from './modalTest.js';
 //import './resources/css/landing-page.css';
 //import './resources/css/sweStyle.css';
 //import './resources/templates/css/plugins.css';
@@ -64,7 +65,9 @@ const BasicExample = () => (
 )
 
 const ArtistTable = () => (
-  <ReactGrid type={'artist'}/>
+  // <ReactGrid type={'artist'}/>
+  
+  <Modal />
 )
 
 const Home = () => (
