@@ -3,11 +3,11 @@
 import os
 import unittest
 
-from google.appengine.ext import testbed
+# from google.appengine.ext import testbed
 
-from application import app
+# from application import app
 
-from models import Track, Artist, Album, Concert, Artist_Album_Association, Concert_AA_Association, db
+from models import Track, Artist, Album, Concert, Artist_Album_Association, Concert_AA_Association, db, app
 
 
 class TestCase(unittest.TestCase):
@@ -19,14 +19,14 @@ class TestCase(unittest.TestCase):
         self.app = app.test_client()
         # Setups app engine test bed. See:
         # http://code.google.com/appengine/docs/python/tools/localunittesting.html#Introducing_the_Python_Testing_Utilities
-        self.testbed = testbed.Testbed()
-        self.testbed.activate()
-        self.testbed.init_datastore_v3_stub()
-        self.testbed.init_user_stub()
-        self.testbed.init_memcache_stub()
+    #     self.testbed = testbed.Testbed()
+    #     self.testbed.activate()
+    #     self.testbed.init_datastore_v3_stub()
+    #     self.testbed.init_user_stub()
+    #     self.testbed.init_memcache_stub()
 
-    def tearDown(self):
-        self.testbed.deactivate()
+    # def tearDown(self):
+    #     self.testbed.deactivate()
 
     # # Test to see if going to the main URL actually works
     # def test_home_redirects(self):
