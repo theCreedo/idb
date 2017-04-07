@@ -279,9 +279,9 @@ class TestCase(unittest.TestCase):
     #     assert (album_result is not None)
     #     assert (aa_result is not None)
 
+    #     db.session.delete(aa_result)
     #     db.session.delete(artist_result)
     #     db.session.delete(album_result)
-    #     db.session.delete(aa_result)
     #     db.session.commit()
     #     assert (Artist.query.filter_by(name='artist_name').first() is None)
     #     assert (Album.query.filter_by(name='album_name').first() is None)
@@ -332,9 +332,9 @@ class TestCase(unittest.TestCase):
     #     assert (concert_result is not None)
     #     assert (c_aa_result is not None)
 
+    #     db.session.delete(c_aa_result)
     #     db.session.delete(aa_result)
     #     db.session.delete(concert_result)
-    #     db.session.delete(c_aa_result)
     #     db.session.commit()
     #     assert (db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id).first() is None)
     #     assert (Concert.query.filter_by(name='concert_name').first() is None)
