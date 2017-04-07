@@ -288,6 +288,8 @@ class TestCase(unittest.TestCase):
         assert (db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id) is None)
 
     def test_db_concert_aa_relationship(self):
+        artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
+        album = Album('album_name', 'genre', 'release', 'url', 'label', 1, 'uri')
         aa = Artist_Album_Association()
 
         concert = Concert('concert_name', 'link', 'date', 'time')
@@ -296,9 +298,17 @@ class TestCase(unittest.TestCase):
         aa.concerts.append(c_aa)
         concert.artist_album_pairs.append(c_aa)
 
+        artist.albums.append(aa)
+        album.artists.append(aa)
+
+        db.session.add(artist)
+        db.session.add(album)
+
         db.session.add(concert)
         db.session.commit()
-
+        
+        artist_result = db.session.query(Artist).filter_by(name='artist_name').first()
+        album_result = db.session.query(Album).filter_by(name='album_name').first()
         aa_result = db.session.query(Artist_Album_Association).filter(Artist.id==artist_result.id).filter(Album.id==album_result.id)
         concert_result = db.session.query(Concert).filter_by(name='concert_name').first()
         c_aa_result = db.session.query(Concert_AA_Association).filter(Concert.id==concert_result.id).filter(Artist_Album_Association.id==aa_result.id)
