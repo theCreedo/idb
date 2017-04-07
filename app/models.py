@@ -2,16 +2,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-
+# Establish connection between Flask app and Postgres database
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@35.184.149.32/boswe'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app) 
 
-
+# Models a Track (Song) object
+# Populated via Spotify and Musicgraph APIs
 class Track(db.Model):
     __tablename__ = 'tracks'
 
+    # Define columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     genre = db.Column(db.String(25))
@@ -30,6 +32,7 @@ class Track(db.Model):
     # Auto-populates Album.tracks
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
+    # Creates a Track object manually
     def __init__(self, name, genre, release_date, duration,
                  popularity, preview_url, explicit, spotify_uri):
         assert (name != "")
@@ -50,6 +53,7 @@ class Track(db.Model):
         self.explicit = explicit
         self.spotify_uri = spotify_uri
 
+    # Debug print method
     def __repr__(self):
         return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
 
@@ -58,6 +62,7 @@ class Track(db.Model):
 class Concert_AA_Association(db.Model):
     __tablename__ = 'concert_aa_pairs'
 
+    # Define columns
     id = db.Column(db.Integer, primary_key=True)
 
     # Reference to concerts table
@@ -67,6 +72,7 @@ class Concert_AA_Association(db.Model):
     # Reference to artist_album_pairs table
     aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
 
+    # Debug print method
     def __repr__(self):
         return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
             )>" % (self.concert.name, self.artist_album.artist.name,
@@ -77,6 +83,7 @@ class Concert_AA_Association(db.Model):
 class Artist_Album_Association(db.Model):
     __tablename__ = 'artist_album_pairs'
 
+    # Define Column
     id = db.Column(db.Integer, primary_key=True)
 
     # Reference to artists table
@@ -91,24 +98,23 @@ class Artist_Album_Association(db.Model):
     concerts = db.relationship('Concert_AA_Association',
         order_by=Concert_AA_Association.id, backref='aa_association')
 
+    # Debug print method
     def __repr__(self):
         return "<Artist_Album_Association(artist='%s', album='%s')>" %\
             (self.artist.name, self.album.name)
 
-
+# Models an Artist object
+# Populated via Spotify and Musicgraph
 class Artist(db.Model):
     __tablename__ = 'artists'
 
+    # Define columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     image_url = db.Column(db.String(200))
     country = db.Column(db.String(50))
     decade = db.Column(db.String(100))
     genre = db.Column(db.String(100)) #db.Column(db.PickleType(mutable=True)) 
-
-    # Reference to an artist's most popular track
-    # most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
-    # most_popular_track = db.relationship('Track', foreign_keys=[most_popular_track_id])
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
@@ -120,6 +126,7 @@ class Artist(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.popularity, backref='artist', foreign_keys=[])
 
+    # Create an Artist manually
     def __init__(self, name, image_url, country, decade, genre):
         assert (name != "")
         assert (image_url != "")
@@ -133,13 +140,16 @@ class Artist(db.Model):
         self.decade = decade
         self.genre = genre
 
+    # Debug print method
     def __repr__(self):
         return "<Artist(name='%s')>" % (self.name)
 
-
+# Models and Album object
+# Populated via Spotify and Musicgraph
 class Album(db.Model):
     __tablename__ = 'albums'
 
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     genre = db.Column(db.String(50)) #db.Column(db.String(100))
@@ -159,6 +169,7 @@ class Album(db.Model):
     tracks = db.relationship('Track',
                           order_by=Track.popularity, backref='album')
 
+    # Creates an Album manually
     def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks, spotify_uri):
         assert (name != "")
         assert (genre != "")
@@ -176,12 +187,16 @@ class Album(db.Model):
         self.number_of_tracks = number_of_tracks
         self.spotify_uri = spotify_uri
 
+    # Debug print method
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
 
+# Models a Concert object
+# Populated via Bandsintown
 class Concert(db.Model):
     __tablename__ = 'concerts'
 
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     event_link = db.Column(db.String(200))
@@ -197,6 +212,7 @@ class Concert(db.Model):
     artist_album_pairs = db.relationship('Concert_AA_Association',
                                       order_by=Concert_AA_Association.id, backref='concert')
 
+    # Create a Concert manually
     def __init__(self, name, event_link, date, time):
         assert (name != "")
         assert (event_link != "")
@@ -208,13 +224,16 @@ class Concert(db.Model):
         self.date = date
         self.time = time
 
+    # Debug print method
     def __repr__(self):
         return "<Concert(name='%s')>" % (self.name)
 
-
+# Models a Venue object
+# Populated via Bandsintown
 class Venue(db.Model):
     __tablename__ = 'venues'
 
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     city = db.Column(db.String(50))
@@ -227,6 +246,7 @@ class Venue(db.Model):
     # Auto-populates Concert.venue
     concerts = db.relationship('Concert', backref='venue')
 
+    # Create a Venue manually
     def __init__(self, name, city, region, country, latitude, longitude):
         assert (name != "")
         assert (city != "")
@@ -239,12 +259,17 @@ class Venue(db.Model):
         self.latitude = latitude
         self.longitude = longitude
 
+    # Debug print method
     def __repr__(self):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-db.create_all()
+# db.create_all()
+
+# Drop Tables when necessary
 # db.reflect()
 # db.drop_all()
+
+# Commit changes
 db.session.commit()
 

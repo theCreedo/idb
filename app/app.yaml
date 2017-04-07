@@ -1,0 +1,21 @@
+runtime: python
+env: flex
+
+runtime_config:
+    python_version: 3
+api_version: 1
+threadsafe: true
+
+entrypoint: gunicorn -b :$PORT main:app
+
+env_variables:
+    # Replace user, password, database, and instance connection name with the values obtained
+    # when configuring your Cloud SQL instance.
+    SQLALCHEMY_DATABASE_URI: >-
+      postgresql+psycopg2://postgres:SoftwareEngineering!420@/35.184.149.32/boswe?host=/cloudsql/boswemian-rhapsody:us-central1:boswe
+beta_settings:
+    cloud_sql_instances: boswemian-rhapsody:us-central1:boswe
+
+handlers:
+- url: /.*
+  script: main.app
