@@ -64,13 +64,15 @@ export default class ReactGrid extends React.Component {
           currentPage: 1,
           pageSize: 1,
           gridType: props.gridType,
-          data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
+          data: ''
         };
         
         this.updateGridData = this.updateGridData.bind(this);
         this.triggerFiltering = this.triggerFiltering.bind(this);
         this.triggerSorting = this.triggerSorting.bind(this);
     }
+    
+//    JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
 
     // componentDidMount() {
     //     this.refs.nv.addEventListener("nv-enter", this.updateGridData);
@@ -143,6 +145,7 @@ export default class ReactGrid extends React.Component {
         var xmlHTTP = new XMLHttpRequest();
 
 //        xmlHTTP.open('GET',"https://api-content.dropbox.com/1/files/auto/" + file + "?access_token=" + auth,false);
+        xmlHTTP.overrideMimeType("application/json");
         xmlHTTP.open('GET',call,false);
 
 
@@ -158,8 +161,26 @@ export default class ReactGrid extends React.Component {
 
         // Send request
         xmlHTTP.send();
+        
+        console.log(data);
 
         return data;
+    }
+    
+    fetchData( url ) {
+        fetch("www.boswemianrhapsody.me/api/artists", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(function(response) {
+          console.log(response.status);
+          console.log(response.text());
+//          console.log(response.json());
+          return response.json();
+        }, function(error) {
+          console.log(error.message);
+        })
     }
     
     /* Function that gets the spotlight JSON */
@@ -167,10 +188,11 @@ export default class ReactGrid extends React.Component {
 
         var xobj = new XMLHttpRequest();
             xobj.overrideMimeType("application/json");
-        xobj.open('GET', 'resources/js/artistsTest.json', true); // Replace 'my_data' with the path to your file
+        xobj.open('GET', 'www.boswemianrhapsody.me/api/artists', true); // Replace 'my_data' with the path to your file
         xobj.onreadystatechange = function () {
               if (xobj.readyState == 4 && xobj.status == "200") {
                 // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                console.log(xobj.responseText);
                 callback(xobj.responseText);
               }
         };
@@ -274,7 +296,7 @@ export default class ReactGrid extends React.Component {
         
         var gridItems = [];
 //        var that = this;
-//        this.loadSpotlightJSON(function(response) {
+//        this.makeAPIcallJSON(function(response) {
 //          // Parse JSON string into object
 //          var actual_JSON = JSON.parse(response);
 ////          console.log(actual_JSON);
@@ -292,14 +314,16 @@ export default class ReactGrid extends React.Component {
         
 //        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
-        var actual_JSON = this.state.data;
+//        var actual_JSON = this.state.data;
+        var actual_JSON = this.makeAPIcall( 'www.boswemianrhapsody.me/api/artists' );
+//        var actual_JSON = this.fetchData('www.boswemianrhapsody.me/api/artists');
         var that = this;
         
         if (actual_JSON == undefined) {
             
         }
         
-        console.log(this.state.data);
+        console.log(actual_JSON);
         
         const num_results = actual_JSON.num_results;
         const pageSize = this.state.pageSize;
