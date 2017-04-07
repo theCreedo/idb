@@ -281,6 +281,8 @@ class Venue(db.Model):
         assert name != ""
         assert city != ""
         assert country != ""
+        assert latitude >= -90 and latitude <= 90
+        assert longitude >= -180 and longitude <= 180
 
         self.name = name
         self.city = city
