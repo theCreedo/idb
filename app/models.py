@@ -55,7 +55,7 @@ class Track(db.Model):
 
     # Debug print method
     def __repr__(self):
-        return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
+        return "<Track(name='%s')>" % (self.name)
 
 # Association class to model the many-to-many db.relationship between
 # Concerts and Artists and Albums

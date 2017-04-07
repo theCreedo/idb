@@ -124,102 +124,102 @@ class TestCase(unittest.TestCase):
     #     assert rv.status == '404 NOT FOUND'
     #     assert '<h1>Not found</h1>' in rv.data
 
-    def test_db_create_track(self):
+    def test_db01_create_track(self):
         track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 'uri')
         db.session.add(track)
         db.session.commit()
+        track_result = Track.query.filter(Track.name=='track_name').first()
+        assert (track_result is track)
+
+    def test_db02_delete_track(self):
+        track = Track.query.filter_by(name='track_name').first()
+        assert track is not None
+        db.session.delete(track)
+        db.session.commit()
+        assert Track.query.filter_by(name='track_name').first() is None
+
+    def test_db03_create_artist(self):
+        artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
+        db.session.add(artist)
+        db.session.commit()
+        artist_result = Artist.query.filter_by(name='artist_name').first()
+        assert (artist_result is artist)
+
+    def test_db04_delete_artist(self):
+        artist = Artist.query.filter_by(name='artist_name').first()
+        assert artist is not None
+        db.session.delete(artist)
+        db.session.commit()
+        assert Artist.query.filter_by(name='artist_name').first() is None
+
+    def test_db05_create_album(self):
+        album = Album('album_name', 'genre', 'release', 'url', 'label', 1, 'uri')
+        db.session.add(album)
+        db.session.commit()
+        album_result = Album.query.filter_by(name='album_name').first()
+        assert (album_result is album)
+
+    def test_db06_delete_album(self):
+        album = Album.query.filter_by(name='album_name').first()
+        assert album is not None
+        db.session.delete(album)
+        db.session.commit()
+        assert Album.query.filter_by(name='album_name').first() is None
+
+    def test_db07_create_concert(self):
+        concert = Concert('name', 'link', 'date', 'time')
+        db.session.add(concert)
+        db.session.commit()
+        concert_result = Concert.query.filter_by(name='name').first()
+        assert (concert_result is concert)
+
+    def test_db08_delete_concert(self):
+        concert = Concert.query.filter_by(name='name').first()
+        assert concert is not None
+        db.session.delete(concert)
+        db.session.commit()
+        assert Concert.query.filter_by(name='name').first() is None
+
+    def test_db09_create_venue(self):
+        venue = Venue('name', 'city', 'region', 'country', 0.0, 0.0)
+        db.session.add(venue)
+        db.session.commit()
+        venue_result = Venue.query.filter_by(name='name').first()
+        assert (venue_result is venue)
+
+    def test_db10_delete_venue(self):
+        venue = Venue.query.filter_by(name='name').first()
+        assert venue is not None
+        db.session.delete(venue)
+        db.session.commit()
+        assert Venue.query.filter_by(name='name').first() is None
+
+    def test_db11_create_track_artist_relationship(self):
+        track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 'uri')
+        artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
+        artist.tracks.append(track)
+        db.session.add(track)
+        db.session.add(artist)
+        db.session.commit()
+
         track_result = Track.query.filter_by(name='track_name').first()
-        assert (track_result.id == track.id)
+        artist_result = Artist.query.filter_by(name='artist_name').first()
+        assert (track_result is track)
+        assert (artist_result is artist)
+        assert (artist.tracks[0] is track_result)
+        assert (track.artist is artist_result)
 
-    # def test_db_delete_track(self):
-    #     track = Track.query.filter_by(name='track_name').first()
-    #     assert track is not None
-    #     db.session.delete(track)
-    #     db.session.commit()
-    #     assert Track.query.filter_by(name='track_name').first() is None
+    def test_db12_delete_track_artist_relationship(self):
+        track_result = Track.query.filter_by(name='track_name').first()
+        artist_result = Artist.query.filter_by(name='artist_name').first()
+        assert (track_result is not None)
+        assert (artist_result is not None)
 
-    # def test_db_create_artist(self):
-    #     artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
-    #     db.session.add(artist)
-    #     db.session.commit()
-    #     artist_result = Artist.query.filter_by(name='artist_name').first()
-    #     assert (artist_result.id == artist.id)
-
-    # def test_db_delete_artist(self):
-    #     artist = Artist.query.filter_by(name='artist_name').first()
-    #     assert artist is not None
-    #     db.session.delete(artist)
-    #     db.session.commit()
-    #     assert Artist.query.filter_by(name='artist_name').first() is None
-
-    # def test_db_create_album(self):
-    #     album = Album('album_name', 'genre', 'release', 'url', 'label', 1, 'uri')
-    #     db.session.add(album)
-    #     db.session.commit()
-    #     album_result = Album.query.filter_by(name='album_name').first()
-    #     assert (album_result.id == album.id)
-
-    # def test_db_delete_album(self):
-    #     album = Album.query.filter_by(name='album_name').first()
-    #     assert album is not None
-    #     db.session.delete(album)
-    #     db.session.commit()
-    #     assert Album.query.filter_by(name='artist_name').first() is None
-
-    # def test_db_create_concert(self):
-    #     concert = Concert('name', 'link', 'date', 'time')
-    #     db.session.add(concert)
-    #     db.session.commit()
-    #     concert_result = Concert.query.filter_by(name='concert_name').first()
-    #     assert (concert_result.id == concert.id)
-
-    # def test_db_delete_concert(self):
-    #     concert = Concert.query.filter_by(name='name').first()
-    #     assert concert is not None
-    #     db.session.delete(concert)
-    #     db.session.commit()
-    #     assert Concert.query.filter_by(name='name').first() is None
-
-    # def test_db_create_venue(self):
-    #     venue = Venue('name', 'city', 'region', 'country', 0.0, 0.0)
-    #     db.session.add(venue)
-    #     db.session.commit()
-    #     venue_result = Venue.query.filter_by(name='name').first()
-    #     assert (venue_result is venue)
-
-    # def test_db_delete_venue(self):
-    #     venue = Venue.query.filter_by(name='name').first()
-    #     assert venue is not None
-    #     db.session.delete(venue)
-    #     db.session.commit()
-    #     assert Venue.query.filter_by(name='name').first() is None
-
-    # def test_db_track_artist_relationship(self):
-    #     track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 'uri')
-    #     artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
-    #     artist.tracks.append(track)
-    #     db.session.add(track)
-    #     db.session.add(artist)
-    #     db.session.commit()
-
-    #     track_result = Track.query.filter_by(name='track_name').first()
-    #     artist_result = Artist.query.filter_by(name='artist_name').first()
-    #     # assert (track_result is track)
-    #     # assert (artist_result is artist)
-    #     assert (artist.tracks[0].id == track_result.id)
-    #     assert (track.artist_id == artist_result.id)
-
-    # def test_db_delete_track_artist_relationship(self):
-    #     track_result = Track.query.filter_by(name='track_name').first()
-    #     artist_result = Artist.query.filter_by(name='artist_name').first()
-    #     assert (track_result is not None)
-    #     assert (artist_result is not None)
-
-    #     db.session.delete(track_result)
-    #     db.session.delete(artist_result)
-    #     db.session.commit()
-    #     assert Track.query.filter_by(name='track_name').first() is None
-    #     assert Artist.query.filter_by(name='artist_name').first() is None
+        db.session.delete(track_result)
+        db.session.delete(artist_result)
+        db.session.commit()
+        assert Track.query.filter_by(name='track_name').first() is None
+        assert Artist.query.filter_by(name='artist_name').first() is None
 
     # def test_db_track_album_relationship(self):
     #     track = Track('track_name', 'genre_name', 'release_date', 1, 0, 'url', True, 'uri')
