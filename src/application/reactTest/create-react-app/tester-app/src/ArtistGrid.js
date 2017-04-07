@@ -248,13 +248,13 @@ export default class ReactGrid extends React.Component {
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
-                <img className="sweGridImage" src={data.album[0].album_cover_url}></img>
+                <img className="sweGridImage" src={data.album.album_cover_url}></img>
                  <h2 className="sweGridItemHeading"><a onclick={openTrackModal(data.id)}>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Artist: <a onclick={openArtistModal(data.artist[0].id)}>{data.artist[0].name}</a></p>
-                <p className="sweGridItemContent">Album: <a onclick={openAlbumModal(data.album_id)}>{data.album[0].name}</a></p>
+                <p className="sweGridItemContent">Artist: <a onclick={openArtistModal(data.artist.id)}>{data.artist.name}</a></p>
+                <p className="sweGridItemContent">Album: <a onclick={openAlbumModal(data.album_id)}>{data.album.name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
-                <p className="sweGridItemContent">Duration: {data.duration}</p>
+                <p className="sweGridItemContent">Duration: {(data.duration/1000)} Seconds</p>
                 <p className="sweGridItemContent">Popularity: {data.popularity}</p>
                 <p className="sweGridItemContent">Genre: {data.genre}</p>
             </div>
@@ -394,15 +394,15 @@ export default class ReactGrid extends React.Component {
         
         /* TRACK */
         
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
-//          }
+        for (var x in actual_JSON.objects) {
+            console.log(x);
+            if(x < 3)
+                gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
+            else if(x < 6)
+                gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
+            else
+                gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
+          }
         
 //        const pagination = this.pagination(1, num_results);
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
