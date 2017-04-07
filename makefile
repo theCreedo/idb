@@ -62,7 +62,7 @@ IDB2.tmp: models.py tests.py main.py .pylintrc
 	-$(PYLINT) tests.py
 	$(COVERAGE) run    --branch tests.py >  tests.tmp 2>&1
 	$(COVERAGE) report -m                      >> tests.tmp
-	cat tests.tmp
+	cat tests.tmp 
 
 check:
 	@not_found=0;                                 \
