@@ -14,11 +14,63 @@ R = Required
 
 NR = Not Required
 
+    Filter Query Operations (op)
+    
+    ==, eq, equals, equals_to
+    !=, neq, does_not_equal, not_equal_to
+    >, gt, <, lt
+    >=, ge, gte, geq, <=, le, lte, leq
+    in, not_in
+    is_null, is_not_null
+    like
+    has
+    any
+
+    
+
 ## Artists Collection [/artists]
 
 ### List All Artists [GET]
 
-    You can make queries to the artists collection in order
+    You can make queries to the artists collection in order to do
+    search, sort, and filter requests.
+    
+    queries:
+    
+    Sort
+    field - contains the key name that will be sorted on.
+    (country, genre, id, name)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/artists?q={"order_by":[{"field":"country","direction":"asc"}]}
+    
+    ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (country, genre, id, name)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/artists?q={"filters":[{"name":"name","op":"eq","val":"Smash%20Mouth"},...]}
+
+    
+    
 
 + Response 200 (application/json)
     
@@ -306,7 +358,44 @@ A single Artist object with all its details
 
 ### List All Albums [GET]
 
-    You can make queries to the albums collection 
+    You can make queries to the albums collection in order to do
+    search, sort, and filter requests.
+    
+    queries:
+    
+    Sort
+    field - contains the key name that will be sorted on.
+    (genre, id, label, name, number_of_tracks, release_date)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/albums?q={"order_by":[{"field":"label","direction":"asc"}]}
+    
+    ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (genre, id, label, name, number_of_tracks, release_date)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/albums?q={"filters":[{"name":"name","op":"eq","val":"Astro%20Lounge"},...]}
+
+   
 
 + Response 200 (application/json)
 
@@ -768,7 +857,43 @@ A single Album object with all its details
 
 ### List All Tracks [GET]
 
-    You can make queries to the tracks collection 
+    You can make queries to the tracks collection in order to do
+    search, sort, and filter requests.
+    
+    queries:
+    
+    Sort
+    field - contains the key name that will be sorted on.
+    (album_id, artist_id, duration, explicit, genre, id, name, popularity, release_date)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/tracks?q={"order_by":[{"field":"genre","direction":"asc"}]}
+    
+    ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (album_id, artist_id, duration, explicit, genre, id, name, popularity, release_date)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/tracks?q={"filters":[{"name":"name","op":"eq","val":"Who's%20There"},...]}
+
 
 + Response 200 (application/json)
 
@@ -862,7 +987,43 @@ A single Track object with all its details
 
 ### List All Concerts [GET]
 
-    You can make queries to the concert collection 
+    You can make queries to the concert collection in order to do
+    search, sort, and filter requests.
+    
+    queries:
+    
+    Sort
+    field - contains the key name that will be sorted on.
+    (date, id, name, time, venue_id)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/concerts?q={"order_by":[{"field":"name","direction":"asc"}]}
+    
+    ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (date, id, name, time, venue_id)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/concerts?q={"filters":[{"name":"name","op":"eq","val":"Smash%20Mouth"},...]}
+
 
 + Response 200 (application/json)
 
@@ -942,7 +1103,43 @@ A single Concert object with all its details
 
 ### List All Venues [GET]
 
-    You can make queries to the venues collection 
+    You can make queries to the venues collection in order to do
+    search, sort, and filter requests.
+    
+    queries:
+    
+    Sort
+    field - contains the key name that will be sorted on.
+    (city, country, id, latitude, longitude, name, region)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/concerts?q={"order_by":[{"field":"name","direction":"asc"}]}
+    
+    ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (city, country, id, latitude, longitude, name, region)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/concerts?q={"filters":[{"name":"name","op":"eq","val":"THE%20FRED"},...]}
+
 
 + Response 200 (application/json)
 
@@ -974,7 +1171,7 @@ A single Concert object with all its details
         }
 
 ## Single Venue [/venues/{id}]
-A single Venue object with all its details
+A single Venue object with all its details 
 
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Venue to perform action with.
