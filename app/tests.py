@@ -348,7 +348,5 @@ class TestCase(unittest.TestCase):
         assert (Artist.query.filter_by(name='artist_name').first() is None)
         assert (Album.query.filter_by(name='album_name').first() is None)
 
-
-
 if __name__ == '__main__':
     unittest.main()
