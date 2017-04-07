@@ -70,8 +70,10 @@ def collection_process1(collection, name, op, value):
 	if isinstance(value, int):
 		return redirect(url_for('/api/' + collection + '?q={' + "\"filters\":[{\"name\":" + name + ",\"op\":" + op + ",\"val\":" + value + "\"}])"))
 
-
-
+@app.route('/api')
+@app.route('/api/')
+def api():
+	return render_template('api.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
