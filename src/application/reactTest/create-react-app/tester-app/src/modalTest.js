@@ -147,10 +147,10 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('main')
-);
+//ReactDOM.render(
+//  <App />,
+//  document.getElementById('main')
+//);
 
 
 

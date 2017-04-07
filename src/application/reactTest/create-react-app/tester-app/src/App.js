@@ -65,9 +65,9 @@ const BasicExample = () => (
 )
 
 const ArtistTable = () => (
-  // <ReactGrid type={'artist'}/>
+   <ReactGrid type={'artist'}/>
   
-  <Modal />
+//  <Modal />
 )
 
 const Home = () => (

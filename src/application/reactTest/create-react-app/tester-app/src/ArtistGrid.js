@@ -86,6 +86,10 @@ export default class ReactGrid extends React.Component {
         this.pageChange(current);
    }
 
+   makeSortFilter() {
+       console.log("Sort " + this.state.sortMode + " filter " + this.state.filterMode);   
+   }
+    
    pageChange(current) {
         console.log("I am on change listenr", current);
         
@@ -324,10 +328,9 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">Artist Table</h1>
                     </div>
                 </div>
-                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode}/>
+                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={this.makeSortFilter}/>
                 <div className="row">{gridItems}</div>
                 <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
-                <Modal isModalOpen={true} closeModal={this.closeModal}/>
             </div>
         );
     }
