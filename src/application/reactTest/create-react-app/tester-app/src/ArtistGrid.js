@@ -308,17 +308,11 @@ export default class ReactGrid extends React.Component {
         );    
     }
     
-    
-    pagination(size, num_results) {
-//        const getTotal = this.getTotal();
-        return (
-            <Pagination pageSize={size} onChange={this.pageChange} total={num_results}/>
-        );
-    }
-    
     render() {
         
         var gridItems = [];
+        var gridItems2 = [];
+        var gridItems3 = [];
 //        var that = this;
 //        this.makeAPIcallJSON(function(response) {
 //          // Parse JSON string into object
@@ -351,11 +345,55 @@ export default class ReactGrid extends React.Component {
         
         const num_results = actual_JSON.num_results;
         const pageSize = this.state.pageSize;
+        
 
+        /* ARTIST OK */
+        
+//        for (var x in actual_JSON.objects) {
+//            console.log(x);
+//            if(x < 3)
+//                gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
+//            else if(x < 6)
+//                gridItems2.push(this.createGridItemArtist(actual_JSON.objects[x]));
+//            else
+//                gridItems3.push(this.createGridItemArtist(actual_JSON.objects[x]));
+//          }
+        
+        /* ALBUM */
+        
         for (var x in actual_JSON.objects) {
-            console.log(actual_JSON.objects[x]);
-            gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
+            console.log(x);
+            if(x < 3)
+                gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+            else if(x < 6)
+                gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+            else
+                gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
           }
+        
+        /* CONCERT */
+        
+//        for (var x in actual_JSON.objects) {
+//            console.log(x);
+//            if(x < 3)
+//                gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+//            else if(x < 6)
+//                gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+//            else
+//                gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+//          }
+        
+        /* TRACK */
+        
+//        for (var x in actual_JSON.objects) {
+//            console.log(x);
+//            if(x < 3)
+//                gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
+//            else if(x < 6)
+//                gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
+//            else
+//                gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
+//          }
         
 //        const pagination = this.pagination(1, num_results);
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
@@ -378,6 +416,8 @@ export default class ReactGrid extends React.Component {
                 </div>
                 <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode) => this.makeSortFilter(sortMode, filterMode)}/>
                 <div className="row">{gridItems}</div>
+                <div className="row">{gridItems2}</div>
+                <div className="row">{gridItems3}</div>
                 <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
             </div>
         );
