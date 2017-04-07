@@ -1,5 +1,5 @@
 Example Spotify Output: 
-	Track: {{base}}artists/3XHO7cRUPCLOr6jwp8vsx5
+	Track: {{base}}tracks/6BVBkKpZK09NmifUMZqj1z
 		{
 		  "album": {
 		    "album_type": "album",
@@ -81,7 +81,7 @@ Example Spotify Output:
 		  "type": "track",
 		  "uri": "spotify:track:6BVBkKpZK09NmifUMZqj1z"
 		}
-	Artist: {{base}}tracks/6BVBkKpZK09NmifUMZqj1z
+	Artist: {{base}}artists/3XHO7cRUPCLOr6jwp8vsx5
 		{
 		  "external_urls": {
 		    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
