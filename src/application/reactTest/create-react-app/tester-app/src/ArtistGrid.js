@@ -258,6 +258,7 @@ export default class ReactGrid extends React.Component {
         );    
     }
     
+    
     pagination(size, num_results) {
 //        const getTotal = this.getTotal();
         return (
@@ -326,6 +327,7 @@ export default class ReactGrid extends React.Component {
                 <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode}/>
                 <div className="row">{gridItems}</div>
                 <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
+                <Modal isModalOpen={true} closeModal={this.closeModal}/>
             </div>
         );
     }
