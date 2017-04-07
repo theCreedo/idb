@@ -4,12 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 # Establish connection between Flask app and Postgres database
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app) 
+db = SQLAlchemy(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
+
+
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -59,6 +62,8 @@ class Track(db.Model):
 
 # Association class to model the many-to-many db.relationship between
 # Concerts and Artists and Albums
+
+
 class Concert_AA_Association(db.Model):
     __tablename__ = 'concert_aa_pairs'
 
@@ -76,10 +81,12 @@ class Concert_AA_Association(db.Model):
     def __repr__(self):
         return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
             )>" % (self.concert.name, self.artist_album.artist.name,
-            self.artist_album.album.name)
+                   self.artist_album.album.name)
 
 # Association Class to model the many-to-many db.relationship between
 # Artists and Albums
+
+
 class Artist_Album_Association(db.Model):
     __tablename__ = 'artist_album_pairs'
 
@@ -96,7 +103,7 @@ class Artist_Album_Association(db.Model):
 
     # Reference to Concert_AA_Association table
     concerts = db.relationship('Concert_AA_Association',
-        order_by=Concert_AA_Association.id, backref='aa_association')
+                               order_by=Concert_AA_Association.id, backref='aa_association')
 
     # Debug print method
     def __repr__(self):
@@ -105,6 +112,8 @@ class Artist_Album_Association(db.Model):
 
 # Models an Artist object
 # Populated via Spotify and Musicgraph
+
+
 class Artist(db.Model):
     __tablename__ = 'artists'
 
@@ -114,17 +123,17 @@ class Artist(db.Model):
     image_url = db.Column(db.String(200))
     country = db.Column(db.String(50))
     decade = db.Column(db.String(100))
-    genre = db.Column(db.String(100)) #db.Column(db.PickleType(mutable=True)) 
+    genre = db.Column(db.String(100))  # db.Column(db.PickleType(mutable=True))
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
     albums = db.relationship('Artist_Album_Association',
-                          order_by=Artist_Album_Association.id, backref='artist')
+                             order_by=Artist_Album_Association.id, backref='artist')
 
     # db.relationship to tracks table
     # Auto-populates Track.artist
     tracks = db.relationship('Track',
-                          order_by=Track.popularity, backref='artist', foreign_keys=[])
+                             order_by=Track.popularity, backref='artist', foreign_keys=[])
 
     # Create an Artist manually
     def __init__(self, name, image_url, country, decade, genre):
@@ -146,13 +155,15 @@ class Artist(db.Model):
 
 # Models and Album object
 # Populated via Spotify and Musicgraph
+
+
 class Album(db.Model):
     __tablename__ = 'albums'
 
     # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
-    genre = db.Column(db.String(50)) #db.Column(db.String(100))
+    genre = db.Column(db.String(50))  # db.Column(db.String(100))
     release_date = db.Column(db.String(15))
     album_cover_url = db.Column(db.String(200))
     label = db.Column(db.String(100))
@@ -162,12 +173,12 @@ class Album(db.Model):
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.album
     artists = db.relationship('Artist_Album_Association',
-                           order_by=Artist_Album_Association.id, backref='album')
+                              order_by=Artist_Album_Association.id, backref='album')
 
     # db.relationship to tracks table
     # Auto-populates Track.album
     tracks = db.relationship('Track',
-                          order_by=Track.popularity, backref='album')
+                             order_by=Track.popularity, backref='album')
 
     # Creates an Album manually
     def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks, spotify_uri):
@@ -193,6 +204,8 @@ class Album(db.Model):
 
 # Models a Concert object
 # Populated via Bandsintown
+
+
 class Concert(db.Model):
     __tablename__ = 'concerts'
 
@@ -210,7 +223,7 @@ class Concert(db.Model):
     # db.relationship to artist_album_pairs table
     # Auto-populates Concert_AA_Association.concert
     artist_album_pairs = db.relationship('Concert_AA_Association',
-                                      order_by=Concert_AA_Association.id, backref='concert')
+                                         order_by=Concert_AA_Association.id, backref='concert')
 
     # Create a Concert manually
     def __init__(self, name, event_link, date, time):
@@ -230,6 +243,8 @@ class Concert(db.Model):
 
 # Models a Venue object
 # Populated via Bandsintown
+
+
 class Venue(db.Model):
     __tablename__ = 'venues'
 
@@ -272,4 +287,3 @@ class Venue(db.Model):
 
 # Commit changes
 db.session.commit()
-
