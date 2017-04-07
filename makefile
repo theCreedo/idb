@@ -5,9 +5,9 @@ FILES :=                              \
 	app/tests.py                      \
 	.gitignore                        \
 	.travis.yml                       \
-	IDB2.html                         \
-	IDB2.log                          \
-	IDB2.tmp
+	IDB1.html                         \
+	IDB1.log                          \
+	IDB1.tmp
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -47,11 +47,11 @@ endif
 
 IDB1.html: app/models.py
 	pydoc3 -w app/models.py
-	mv models.html IDB2.html
+	mv models.html IDB1.html
 
 
 IDB1.log:
-	git log > IDB2.log
+	git log > IDB1.log
 
 # RunCollatz.tmp: Collatz.py RunCollatz.in RunCollatz.out RunCollatz.py .pylintrc
 # 	-$(PYLINT) Collatz.py
