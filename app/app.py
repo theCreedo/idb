@@ -1,11 +1,11 @@
 #!flask/bin/python
-from flask import Flask, jsonify, redirect, url_for, request
-import flask.ext.restless
+from flask import Flask, jsonify, url_for, redirect, render_template
+import flask_restless
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Venue, Concert, Album, Artist, Track, app
 
 # Create the Flask-Restless API manager.
-manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
+manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 
 # Create API endpoints, which will be available at /api/<tablename> by
 # default. Allowed HTTP methods can be specified as well.
@@ -16,15 +16,26 @@ manager.create_api(Artist, methods=['GET', 'POST'], results_per_page=9)
 manager.create_api(Track, methods=['GET', 'POST'], results_per_page=9)
 
 
-'''
-Still need to figure out this function
-Have to render the home.html correctly
-'''
-# @app.route('/')
-# def index():
-#     return redirect(url_for('static', filename='sweBootstrap/home.html'))
+@app.route('/')
+@app.route('/home')
+@app.route('/home.html')
+def index():
+	return render_template('home.html')
 
 
+
+@app.route('/about')
+@app.route('/about.html')
+def about_page():
+	return render_template('sweBootstrap/about.html')
+
+# @app.route('/boswe')
+# def api():
+#     return "Welcome!"
+
+@app.errorhandler(404)
+def not_found(e):
+	return render_template('404.html'), 404
 '''
 Three ways of approaching this:
 1. http://flask.pocoo.org/docs/0.12/quickstart/#http-methods

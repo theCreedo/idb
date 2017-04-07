@@ -1,197 +1,250 @@
-# """
-# models.py
+#! python
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import json
 
-# App Engine datastore models
-
-# """
-
-
-from google.appengine.ext import ndb
-
-
-
-class ExampleModel(ndb.Model):
-    """Example Model"""
-    example_name = ndb.StringProperty(required=True)
-    example_description = ndb.TextProperty(required=True)
-    added_by = ndb.UserProperty()
-    timestamp = ndb.DateTimeProperty(auto_now_add=True)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:swe2017@35.184.149.32/boswe'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app) 
 
 
+class Track(db.Model):
+    __tablename__ = 'tracks'
 
-# #! python
-# from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy import create_engine, Column, ForeignKey,\
-# 	Integer, Boolean, Key, Table, Float
-# from sqlalchemy.orm import relationship
-# from sqlalchemy.ext.declarative import declarative_base
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    genre = db.Column(db.String(25))
+    release_date = db.Column(db.String(15))
+    duration = db.Column(db.Integer)
+    popularity = db.Column(db.Integer)
+    preview_url = db.Column(db.String(200))
+    explicit = db.Column(db.Boolean)
+    spotify_uri = db.Column(db.String(100))
 
-# # SQLAlchemy Declarative Base
-# Base = declarative_base()
+    # Reference to artists table
+    # Auto-populates Artist.tracks
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
-# class Track(ndb.Model) :
-# 	__tablename__ = 'tracks'
-	
-# 	id = ndb.IntegerProperty(required=True) #look into making this a primary key
-# 	name = ndb.StringProperty(required=True)
-# 	genre = ndb.StringProperty(required=True)
-# 	release_date = ndb.StringProperty(required=True)
-# 	duration = ndb.IntegerProperty(required=True)
-# 	popularity = ndb.IntegerProperty(required=True)
-# 	preview_url = ndb.StringProperty(required=True)
-# 	explicit = ndb.BooleanProperty(required=True)
+    # Reference to albums table
+    # Auto-populates Album.tracks
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
-# 	# Reference to artists table 
-# 	# Auto-populates Artist.tracks
-# 	artist_id = Column(Integer, ForeignKey('artists.id'))
-# 	artist = relationship('Artist', back_populates='tracks')
-	
-# 	# Reference to albums table
-# 	# Auto-populates Album.tracks
-# 	album_id = Column(Integer, ForeignKey('albums.id'))
-# 	album = relationship('Album', back_populates='tracks')
+    def __init__(self, name, genre, release_date, duration,
+                 popularity, preview_url, explicit, spotify_uri):
+        assert (name != "")
+        assert (genre != "")
+        assert (release_date != "")
+        assert (duration > 0)
+        assert (popularity >= 0 and popularity <= 100)
+        assert (preview_url != "")
+        assert (explicit != "")
+        assert (spotify_uri != "")
 
-# 	def __repr__(self) :
-# 		return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
+        self.name = name
+        self.genre = genre
+        self.release_date = release_date
+        self.duration = duration
+        self.popularity = popularity
+        self.preview_url = preview_url
+        self.explicit = explicit
+        self.spotify_uri = spotify_uri
 
-# class Artist(Base) :
-# 	__tablename__ = 'artists'
+    def __repr__(self):
+        return "<Track(name='%s', artist='%s')>" % (self.name, self.artist.name)
 
-# 	id = ndb.IntegerProperty(required=True)
-# 	name = ndb.StringProperty(required=True)
-# 	image_url = ndb.StringProperty(required=True)
-# 	country = ndb.StringProperty(required=True)
-# 	decade = ndb.StringProperty(required=True)
-# 	genre = ndb.StringProperty(required=True)
+# Association class to model the many-to-many db.relationship between
+# Concerts and Artists and Albums
+class Concert_AA_Association(db.Model):
+    __tablename__ = 'concert_aa_pairs'
 
-# 	# Reference to an artist's most popular track
-# 	most_popular_track_id = Column(Integer, ForeignKey('tracks.id'))
-# 	most_popular_track = relationship('Track')
+    id = db.Column(db.Integer, primary_key=True)
 
-# 	# Relationship to artist_album_pairs table 
-# 	# Auto-populates Artist_Album_Association.artist
-# 	albums = relationship('Artist_Album_Association', 
-# 		order_by=Artist_Album_Association.id, back_populates='artist')
+    # Reference to concerts table
+    # Auto-populates Concert.artist_album_pairs
+    concert_id = db.Column(db.Integer, db.ForeignKey('concerts.id'))
 
-# 	# Relationship to tracks table
-# 	# Auto-populates Track.artist
-# 	tracks = relationship('Track', 
-# 		order_by=Track.id, back_populates='artist')
+    # Reference to artist_album_pairs table
+    aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
 
-# 	def __repr__(self) :
-# 		return "<Artist(name='%s')>" % (self.name)
+    def __repr__(self):
+        return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
+            )>" % (self.concert.name, self.artist_album.artist.name,
+            self.artist_album.album.name)
 
-# class Album(Base) :
-# 	__tablename__ = 'albums'
+# Association Class to model the many-to-many db.relationship between
+# Artists and Albums
+class Artist_Album_Association(db.Model):
+    __tablename__ = 'artist_album_pairs'
 
-# 	id = ndb.IntegerProperty(required=True)
-# 	name = ndb.StringProperty(required=True)
-# 	genre = ndb.StringProperty(required=True)
-# 	release_date = ndb.StringProperty(required=True)
-# 	album_cover_url = ndb.StringProperty(required=True)
-# 	label = ndb.StringProperty(required=True)
-# 	number_of_tracks = ndb.IntegerProperty(required=True)
+    id = db.Column(db.Integer, primary_key=True)
 
-# 	# Relationship to artist_album_pairs table
-# 	# Auto-populates Artist_Album_Association.album
-# 	artists = relationship('Artist_Album_Association',
-# 		order_by=Artist_Album_Association.id, back_populates='album')
+    # Reference to artists table
+    # Auto-populates Artist.albums
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
-# 	# Relationship to tracks table
-# 	# Auto-populates Track.album
-# 	tracks = relationship('Track', 
-# 		order_by=Track.id, back_populates='album')
+    # Reference to albums table
+    # Auto-populates Album.artists
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
-# 	def __repr__(self) :
-# 		return "<Album(name='%s', label=%s)>" % (self.name, self.label)
+    # Reference to Concert_AA_Association table
+    concerts = db.relationship('Concert_AA_Association',
+        order_by=Concert_AA_Association.id, backref='aa_association')
 
-# # Association Class to model the many-to-many relationship between 
-# # Artists and Albums
-# class Artist_Album_Association(Base) :
-# 	__tablename__ = artist_album_pairs
+    def __repr__(self):
+        return "<Artist_Album_Association(artist='%s', album='%s')>" %\
+            (self.artist.name, self.album.name)
 
-# 	id = ndb.IntegerProperty(required=True)
 
-# 	# Reference to artists table
-# 	# Auto-populates Artist.albums
-# 	artist_id = Column(Integer, ForeignKey('artists.id'))
-# 	artist = relationship('Artist', back_populates='albums')
+class Artist(db.Model):
+    __tablename__ = 'artists'
 
-# 	# Reference to albums table
-# 	# Auto-populates Album.artists
-# 	album_id = Column(Integer, ForeignKey('albums.id'))
-# 	album = relationship('Album', back_populates='artists')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    image_url = db.Column(db.String(200))
+    country = db.Column(db.String(50))
+    decade = db.Column(db.String(100))
+    genre = db.Column(db.String(100)) #db.Column(db.PickleType(mutable=True)) 
 
-# 	def __repr__(self) :
-# 		return "<Artist_Album_Association(artist='%s', album='%s')>" % (self.artist.name, self.album.name)
+    # Reference to an artist's most popular track
+    # most_popular_track_id = db.Column(db.Integer, db.ForeignKey('tracks.id'))
+    # most_popular_track = db.relationship('Track', foreign_keys=[most_popular_track_id])
 
-# class Concert(Base) :
-# 	__tablename__ = 'concerts'
+    # db.relationship to artist_album_pairs table
+    # Auto-populates Artist_Album_Association.artist
+    albums = db.relationship('Artist_Album_Association',
+                          order_by=Artist_Album_Association.id, backref='artist')
 
-# 	id = ndb.IntegerProperty(required=True)
-# 	name = ndb.StringProperty(required=True)
-# 	event_link = ndb.StringProperty(required=True)
-# 	date = ndb.StringProperty(required=True)
-# 	time = ndb.StringProperty(required=True)
+    # db.relationship to tracks table
+    # Auto-populates Track.artist
+    tracks = db.relationship('Track',
+                          order_by=Track.popularity, backref='artist', foreign_keys=[])
 
-# 	# Reference to venues table
-# 	# Auto-populates Venue.concerts
-# 	venue_id = Column(Integer, ForeignKey('venues.id'))
-# 	venue = relationship('Venue', back_populates='concerts')
+    def __init__(self, name, image_url, country, decade, genre):
+        assert (name != "")
+        assert (image_url != "")
+        assert (country != "")
+        assert (decade != "")
+        assert (genre != "")
 
-# 	# Relationship to artist_album_pairs table
-# 	# Auto-populates Concert_AA_Association.concert
-# 	artist_album_pairs = relationship('Concert_AA_Association',
-# 		order_by=Concert_AA_Association.id, back_populates='concert')
+        self.name = name
+        self.image_url = image_url
+        self.country = country
+        self.decade = decade
+        self.genre = genre
 
-# 	def __repr__(self) :
-# 		return "<Concert(name='%s')>" % (self.name)
+    def __repr__(self):
+        return "<Artist(name='%s')>" % (self.name)
 
-# # Association class to model the many-to-many relationship between
-# # Concerts and Artists and Albums
-# class Concert_AA_Association(Base) :
-# 	__tablename__ = 'concert_aa_pairs'
 
-# 	id = ndb.IntegerProperty(required=True)
+class Album(db.Model):
+    __tablename__ = 'albums'
 
-# 	# Reference to concerts table
-# 	# Auto-populates Concert.artist_album_pairs
-# 	concert_id = Column(Integer, ForeignKey('concerts.id'))
-# 	concert = relationship('Concert', 
-# 		back_populates='artist_album_pairs')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    genre = db.Column(db.String(50)) #db.Column(db.String(100))
+    release_date = db.Column(db.String(15))
+    album_cover_url = db.Column(db.String(200))
+    label = db.Column(db.String(100))
+    number_of_tracks = db.Column(db.Integer, nullable=True)
+    spotify_uri = db.Column(db.String(100))
 
-# 	# Reference to artist_album_pairs table
-# 	aa_id = Column(Integer, ForeignKey('artist_album_pairs.id'))
-# 	artist_album = relationship('Artist_Album_Association')
+    # db.relationship to artist_album_pairs table
+    # Auto-populates Artist_Album_Association.album
+    artists = db.relationship('Artist_Album_Association',
+                           order_by=Artist_Album_Association.id, backref='album')
 
-# 	def __repr__(self) :
-# 		return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
-# 			)>" % (self.concert.name, self.artist_album.artist.name,
-# 			self.artist_album.album.name)
+    # db.relationship to tracks table
+    # Auto-populates Track.album
+    tracks = db.relationship('Track',
+                          order_by=Track.popularity, backref='album')
 
-# class Venue(Base) :
-# 	__tablename__ = 'venues'
+    def __init__(self, name, genre, release_date, album_cover_url, label, number_of_tracks, spotify_uri):
+        assert (name != "")
+        assert (genre != "")
+        assert (release_date != "")
+        assert (album_cover_url != "")
+        assert (label != "")
+        assert (number_of_tracks > 0)
+        assert (spotify_uri != "")
 
-# 	id = ndb.IntegerProperty(required=True)
-# 	name = ndb.StringProperty(required=True)
-# 	image_url = ndb.StringProperty(required=True)
-# 	city = ndb.StringProperty(required=True)
-# 	region = ndb.StringProperty(required=True)
-# 	country = ndb.StringProperty(required=True)
-# 	latitude = ndb.FloatProperty(required=True)
-# 	longitude = ndb.FloatProperty(required=True)
+        self.name = name
+        self.genre = genre
+        self.release_date = release_date
+        self.album_cover_url = album_cover_url
+        self.label = label
+        self.number_of_tracks = number_of_tracks
+        self.spotify_uri = spotify_uri
 
-# 	# Relationship with concerts table
-# 	# Auto-populates Concert.venue
-# 	concerts = relationship('Concert', back_populates='venue')
+    def __repr__(self):
+        return "<Album(name='%s', label=%s)>" % (self.name, self.label)
 
-# 	def __repr__(self) :
-# 		return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
+class Concert(db.Model):
+    __tablename__ = 'concerts'
 
-# # SQLAlchemy's connection to database
-# # See SQLAlchemy's documation on PostgreSQL format
-# engine = create_engine('POSTGRESQL_DATABASE_HERE')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    event_link = db.Column(db.String(200))
+    date = db.Column(db.String(15))
+    time = db.Column(db.String(10))
 
-# # Create tables in database from classes
-# Base.metadata.create_all(engine)
+    # Reference to venues table
+    # Auto-populates Venue.concerts
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'))
+
+    # db.relationship to artist_album_pairs table
+    # Auto-populates Concert_AA_Association.concert
+    artist_album_pairs = db.relationship('Concert_AA_Association',
+                                      order_by=Concert_AA_Association.id, backref='concert')
+
+    def __init__(self, name, event_link, date, time):
+        assert (name != "")
+        assert (event_link != "")
+        assert (date != "")
+        assert (time != "")
+
+        self.name = name
+        self.event_link = event_link
+        self.date = date
+        self.time = time
+
+    def __repr__(self):
+        return "<Concert(name='%s')>" % (self.name)
+
+
+class Venue(db.Model):
+    __tablename__ = 'venues'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    city = db.Column(db.String(50))
+    region = db.Column(db.String(50))
+    country = db.Column(db.String(50))
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+
+    # db.relationship with concerts table
+    # Auto-populates Concert.venue
+    concerts = db.relationship('Concert', backref='venue')
+
+    def __init__(self, name, city, region, country, latitude, longitude):
+        assert (name != "")
+        assert (city != "")
+        assert (country != "")
+
+        self.name = name
+        self.city = city
+        self.region = region
+        self.country = country
+        self.latitude = latitude
+        self.longitude = longitude
+
+    def __repr__(self):
+        return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
+
+# Create the tables
+db.create_all()
+# db.reflect()
+# db.drop_all()
+db.session.commit()
 
