@@ -21,6 +21,8 @@ db = SQLAlchemy(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
+
+
 class Track(db.Model):
     __tablename__ = 'tracks'
 
