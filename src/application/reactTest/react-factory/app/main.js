@@ -3,21 +3,76 @@ import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
-
+// import Modal from './modalTest';w
 //var Pagination = require('rc-pagination');
+
+class SortingForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {sortMode: 'az',
+                 filterMode: 'name'};
+
+    this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSortChange(event) {
+    this.setState({sortMode: event.target.value});
+  }
+
+  handleFilterChange(event) {
+    this.setState({filterMode: event.target.value});
+  }
+    
+  handleSubmit(event) {
+    alert('Sorting ' + this.state.sortMode + " with filter " + this.state.filterMode);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Sort:
+          <select value={this.state.value} onChange={this.handleSortChange}>
+            <option value="az">A to Z</option>
+            <option value="za">Z to A</option>
+          </select>
+        </label>
+        <label>
+          Filter: 
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Artist Name</option>
+            <option value="country">Country</option>
+            <option value="decade">Decade</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
 
 export default class ReactGrid extends React.Component {
     
     constructor(props){
         super(props);
         this.state = {
+          filterMode: 0,
+          sortMode: 0,
           currentPage: 1,
+          pageSize: 1,
           gridType: props.gridType,
-          data: JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
+          data: ''
         };
         
         this.updateGridData = this.updateGridData.bind(this);
+        this.triggerFiltering = this.triggerFiltering.bind(this);
+        this.triggerSorting = this.triggerSorting.bind(this);
     }
+    
+//    JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
 
     // componentDidMount() {
     //     this.refs.nv.addEventListener("nv-enter", this.updateGridData);
@@ -29,10 +84,14 @@ export default class ReactGrid extends React.Component {
     
    updateGridData(current, pageSize) {
         console.log("State current " + this.state.currentPage + " passed current " + current + " this is " + this.state.data + " and this " + pageSize);
-        this.state.currentPage = current;
+        this.setState({currentPage: current});
         this.pageChange(current);
    }
 
+   makeSortFilter() {
+       console.log("Sort " + this.state.sortMode + " filter " + this.state.filterMode);   
+   }
+    
    pageChange(current) {
         console.log("I am on change listenr", current);
         
@@ -66,14 +125,19 @@ export default class ReactGrid extends React.Component {
       page of results. We can use page size if needed? */
     }
     
-    triggerFiltering(type) {
-        alert("Filtering of type " + type);
+    triggerFiltering(a) {
+        
+//        this.setState({filterMode: a});
+//        this.preventDefault();
+//        alert("Filtering of type " + a + " sort is " + this.state.sortMode);
         // Change data
         // Reset/Rerender?
     }
     
-    triggerSorting(type) {
-        alert("Sorting of type " + type);
+    triggerSorting(b) {
+//        this.setState({sortMode: b});
+//        this.preventDefault();
+//        alert("Sorting of type " + type + " filtering is " + this.state.filterMode);
     }
     
     /* Returns parsed JSON object of API results */
@@ -81,8 +145,11 @@ export default class ReactGrid extends React.Component {
         var xmlHTTP = new XMLHttpRequest();
 
 //        xmlHTTP.open('GET',"https://api-content.dropbox.com/1/files/auto/" + file + "?access_token=" + auth,false);
+        xmlHTTP.overrideMimeType("application/json");
         xmlHTTP.open('GET',call,false);
 
+        xmlHTTP.setRequestHeader("Access-Control-Allow-Origin","http://boswemianrhapsody.me/");
+        xmlHTTP.setRequestHeader("Content-Type","application/json");
 
         // Arraybuffer response to put into B64
         //xmlHTTP.responseType = 'text';
@@ -90,14 +157,32 @@ export default class ReactGrid extends React.Component {
         var data;
         xmlHTTP.onload = function(e)
         {
-            console.log(this.response);
+            // console.log(this.response);
             data = this.response;
         }
 
         // Send request
         xmlHTTP.send();
+        
+        // console.log(data);
 
         return data;
+    }
+    
+    fetchData( url ) {
+        fetch("www.boswemianrhapsody.me/api/artists", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(function(response) {
+          console.log(response.status);
+          console.log(response.text());
+//          console.log(response.json());
+          return response.json();
+        }, function(error) {
+          console.log(error.message);
+        })
     }
     
     /* Function that gets the spotlight JSON */
@@ -105,10 +190,11 @@ export default class ReactGrid extends React.Component {
 
         var xobj = new XMLHttpRequest();
             xobj.overrideMimeType("application/json");
-        xobj.open('GET', 'resources/js/artistsTest.json', true); // Replace 'my_data' with the path to your file
+        xobj.open('GET', 'www.boswemianrhapsody.me/api/artists', true); // Replace 'my_data' with the path to your file
         xobj.onreadystatechange = function () {
               if (xobj.readyState == 4 && xobj.status == "200") {
                 // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                console.log(xobj.responseText);
                 callback(xobj.responseText);
               }
         };
@@ -174,31 +260,35 @@ export default class ReactGrid extends React.Component {
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
         
-        console.log(data.name + " Size: " + data.tracks);
+        console.log(data.name + " Size: " + data.tracks.length);
         
         var mostPopularTrack;
         if (data.tracks != undefined)
-            mostPopularTrack = data.tracks[data.tracks.size];
+            mostPopularTrack = data.tracks[data.tracks.length-1];
         else {
             mostPopularTrack = {
                 id: -1,
                 name: "none"
             }
         }
+        // onclick={openTrackModal(mostPopularTrack.id)}
+        // onclick={openArtistModal(data.id)}
         
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a onclick={openArtistModal(data.id)}>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a onclick={openTrackModal(mostPopularTrack.id)}>{mostPopularTrack.name}</a></p>
+                onclick={openTrackModal(mostPopularTrack.id)}
+                <p className="sweGridItemContent">Popular Song: <a>{mostPopularTrack.name}</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
         );    
     }
+    
     
     pagination(size, num_results) {
 //        const getTotal = this.getTotal();
@@ -211,7 +301,7 @@ export default class ReactGrid extends React.Component {
         
         var gridItems = [];
 //        var that = this;
-//        this.loadSpotlightJSON(function(response) {
+//        this.makeAPIcallJSON(function(response) {
 //          // Parse JSON string into object
 //          var actual_JSON = JSON.parse(response);
 ////          console.log(actual_JSON);
@@ -229,16 +319,19 @@ export default class ReactGrid extends React.Component {
         
 //        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
-        var actual_JSON = this.state.data;
+//        var actual_JSON = this.state.data;
+        var actual_JSON = JSON.parse(this.makeAPIcall( 'http://www.boswemianrhapsody.me/api/artists' ));
+//        var actual_JSON = this.fetchData('www.boswemianrhapsody.me/api/artists');
         var that = this;
         
         if (actual_JSON == undefined) {
             
         }
         
-        console.log(this.state.data);
+        // console.log(actual_JSON);
         
         const num_results = actual_JSON.num_results;
+        const pageSize = this.state.pageSize;
 
         for (var x in actual_JSON.objects) {
             console.log(actual_JSON.objects[x]);
@@ -264,31 +357,9 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">Artist Table</h1>
                     </div>
                 </div>
-                <div className="row sweGridSorts">
-                    <div className="col-xs-12">
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort <span className="caret"></span>
-                          </button>
-                          <ul className="dropdown-menu sweSortDropdown">
-                              <li className=""><a onClick={() => this.triggerSorting('az')}>A to Z</a></li>
-                              <li className=""><a onClick={() => this.triggerSorting('za')}>Z to A</a></li>
-                            </ul>
-                        </div>
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter <span className="caret"></span>
-                          </button>
-                          <ul className="dropdown-menu sweSortDropdown">
-                              <li className=""><a onClick={() => this.triggerFiltering('name')}>Artist Name</a></li>
-                              <li className=""><a onClick={() => this.triggerFiltering('country')}>Country</a></li>
-                              <li className=""><a onClick={() => this.triggerFiltering('decade')}>Decade</a></li>
-                            </ul>
-                        </div>
-                    </div> 
-                </div>
+                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={this.makeSortFilter}/>
                 <div className="row">{gridItems}</div>
-                <Pagination pageSize={1} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
+                <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={num_results}/>
             </div>
         );
     }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
-import Modal from './modalTest';
+// import Modal from './modalTest';w
 //var Pagination = require('rc-pagination');
 
 class SortingForm extends React.Component {
@@ -157,14 +157,14 @@ export default class ReactGrid extends React.Component {
         var data;
         xmlHTTP.onload = function(e)
         {
-            console.log(this.response);
+            // console.log(this.response);
             data = this.response;
         }
 
         // Send request
         xmlHTTP.send();
         
-        console.log(data);
+        // console.log(data);
 
         return data;
     }
@@ -260,26 +260,29 @@ export default class ReactGrid extends React.Component {
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
         
-        console.log(data.name + " Size: " + data.tracks);
+        console.log(data.name + " Size: " + data.tracks.length);
         
         var mostPopularTrack;
         if (data.tracks != undefined)
-            mostPopularTrack = data.tracks[data.tracks.size];
+            mostPopularTrack = data.tracks[data.tracks.length-1];
         else {
             mostPopularTrack = {
                 id: -1,
                 name: "none"
             }
         }
+        // onclick={openTrackModal(mostPopularTrack.id)}
+        // onclick={openArtistModal(data.id)}
         
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a onclick={openArtistModal(data.id)}>{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a>{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a onclick={openTrackModal(mostPopularTrack.id)}>{mostPopularTrack.name}</a></p>
+                onclick={openTrackModal(mostPopularTrack.id)}
+                <p className="sweGridItemContent">Popular Song: <a>{mostPopularTrack.name}</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
@@ -317,7 +320,7 @@ export default class ReactGrid extends React.Component {
 //        var actual_JSON = JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}');
         
 //        var actual_JSON = this.state.data;
-        var actual_JSON = this.makeAPIcall( 'http://www.boswemianrhapsody.me/api/artists' );
+        var actual_JSON = JSON.parse(this.makeAPIcall( 'http://www.boswemianrhapsody.me/api/artists' ));
 //        var actual_JSON = this.fetchData('www.boswemianrhapsody.me/api/artists');
         var that = this;
         
@@ -325,7 +328,7 @@ export default class ReactGrid extends React.Component {
             
         }
         
-        console.log(actual_JSON);
+        // console.log(actual_JSON);
         
         const num_results = actual_JSON.num_results;
         const pageSize = this.state.pageSize;
@@ -363,7 +366,7 @@ export default class ReactGrid extends React.Component {
 }
 
 
-//ReactDOM.render(
-//  <ReactGrid/>,
-//  document.getElementById('reactTgt')
-//);
+ReactDOM.render(
+ <ReactGrid/>,
+ document.getElementById('content')
+);
