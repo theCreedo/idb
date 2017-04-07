@@ -4,7 +4,7 @@ HOST: http://polls.apiblueprint.org/
 # BoSWEmian Rhapsody (BR) API
 
 BR is a simple API allowing consumers to get information on Artists, 
-Albums, Tracks, and Concerts.
+Albums, Tracks, Concerts, and Venues.
 
 ## Key
 
@@ -14,175 +14,116 @@ R = Required
 
 NR = Not Required
 
+    Filter Query Operations (op)
+    
+    ==, eq, equals, equals_to
+    !=, neq, does_not_equal, not_equal_to
+    >, gt, <, lt
+    >=, ge, gte, geq, <=, le, lte, leq
+    in, not_in
+    is_null, is_not_null
+    like
+    has
+    any
+
+    
+
 ## Artists Collection [/artists]
 
 ### List All Artists [GET]
 
-    You can make queries to the artists collection in order
-    to get artists associated to the artistID, trackID or albumID:
-        
-    artistID
+    You can make queries to the artists collection in order to do
+    search, sort, and filter requests.
     
-    the id of a given artist. Provide 1 artistID.
+    queries:
     
-    ex. /artists?artistID=1
+    Sort
+    field - contains the key name that will be sorted on.
+    (country, genre, id, name)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/artists?q={"order_by":[{"field":"country","direction":"asc"}]}
     
     ---
+    
+    Filter:
+    name - contains the key name that will be sorted on.
+    (country, genre, id, name)
+    
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
+    
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/artists?q={"filters":[{"name":"name","op":"eq","val":"Smash%20Mouth"},...]}
 
-    albumID
     
-    an associated album to the artists. Provide 1 albumID.
     
-    ex. /artists?albumID=1
-    
-    ---
-    
-    trackID
-
-    an associated track to the artists. Provide 1 trackID.
-
-    ex. /artists?trackID=1
 
 + Response 200 (application/json)
-
-        [
-            {
-                "artistID": 1,
-                "name": "Taylor Swift",
-                "picture": "www.taylorswift.com/picture",
-                "country": "US",
-                "decade": "90s",
-                "popSongID": 1,
-                "genre": ["genre1","genre2"]
-            },
-            {
-                "artistID": 2,
-                "name": "Michael Jackson",
-                "picture": "www.michaeljackson.com/picture",
-                "country": "US",
-                "decade": "10s",
-                "popSongID": 2,
-                "genre": ["genre1","genre2"]
-            },
-            {
-                "artistID": 3,
-                "name": "Katie Perry",
-                "picture": "www.katieperry.com/picture",
-                "country": "US",
-                "decade": "10s",
-                "popSongID": 3,
-                "genre": ["genre1","genre2"]
-            }
-        ]
-
-
-### Create a New Artist [POST]
-
-    You may create your own artist using this action.
-    Create an artist object by providing a JSON object
-    with the following attributes:
     
-    name of the artist (R),
-
-    a url leading to a picture of the artist (NR),
-
-    country (NR),
-
-    decade (NR),
-
-    and a list of genres pertaining to the artist (NR)
-
-
-+ Request (application/json)
-
         {
+            "num_results": 24, 
+            "objects": [
             {
-                "name": "John Doe",
-                "picture": "N/A",
-                "country": "US",
-                "popSongID": 0,
-                "decade": "90s",
-                "genre": ["genre1","genre2"]
+                "albums": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "id": 1
+                }
+                ], 
+                "country": "United States of America", 
+                "decade": "1990s / 2000s / 2010s", 
+                "genre": "Alternative/Indie", 
+                "id": 1, 
+                "image_url": "https://i.scdn.co/image/8f037146240aad64f589b1448fcd703ba515cc24", 
+                "name": "Smash Mouth", 
+                "tracks": [
+                {
+                    "album_id": 1, 
+                    "artist_id": 1, 
+                    "duration": 182266, 
+                    "explicit": false, 
+                    "genre": "Alternative/Indie", 
+                    "id": 9, 
+                    "name": "Then The Morning Comes", 
+                    "popularity": 34, 
+                    "preview_url": "https://p.scdn.co/mp3-preview/6d91d00cdad4baeb504f65b3a944701190ac4e7f?cid=null", 
+                    "release_date": "1999-01-01", 
+                    "spotify_uri": "spotify:track:50MfV7a1pnOEcf2t9kobxW"
+                },
+                {
+                    "album_id": 1, 
+                    "artist_id": 1, 
+                    "duration": 200373, 
+                    "explicit": false, 
+                    "genre": "Alternative/Indie", 
+                    "id": 5, 
+                    "name": "All Star", 
+                    "popularity": 73, 
+                    "preview_url": "https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=null", 
+                    "release_date": "1999-01-01", 
+                    "spotify_uri": "spotify:track:3cfOd4CMv2snFaKAnMdnvK"
+                }
+                ]
             }
+            ], 
+            "page": 1, 
+            "total_pages": 24
         }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /artists/5
-
-    + Body
-
-            
-            {
-                "artistID": 5,
-                "name": "John Doe",
-                "picture": "N/A",
-                "country": "US",
-                "popSongID": 0,
-                "decade": "90s",
-                "genre": ["genre1","genre2"]
-            }
-            
-            
-### Update an Artist [PUT]
-
-    Update an artist object by providing a JSON object with the following attributes:
-    
-    the artist's ID (R)
-    
-    name of artist (R),
-
-    a url leading to a picture of the artist (NR),
-
-    country (NR),
-
-    decade (NR),
-
-    and a list of genres pertaining to the artist (NR)
-
-If the artistID provided does not exist, the call will fail.
-
-+ Request (application/json)
-
-        {
-            {
-                "artistID": 5,
-                "name": "John Doe",
-                "picture": "N/A",
-                "country": "US",
-                "popSongID": 0,
-                "decade": "90s",
-                "genre": ["genre1","genre2"]
-            }
-        }
-
-+ Response 200
-
-    + Headers
-
-            status: success
-
-+ Request (application/json)
-
-        {
-            {
-                "artistID": 2000,
-                "name": "John Doe",
-                "picture": "N/A",
-                "country": "US",
-                "popSongID": 0,
-                "decade": "90s",
-                "genre": ["genre1","genre2"]
-            }
-        }
-
-+ Response 400
-
-    + Headers
-
-            status: fail
 
 
 ## Single Artist [/artists/{id}]
@@ -196,173 +137,491 @@ A single Artist object with all its details
 
     + Headers
 
-            Location: /artists/5
+            Location: /artists/1
             
     + Body
 
             {
-                "artistID": 5,
-                "name": "John Doe",
-                "picture": "N/A",
-                "country": "US",
-                "popSongID": 0,
-                "decade": "90s",
-                "genre": ["genre1","genre2"]
+              "albums": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "id": 1
+                }
+              ], 
+              "country": "United States of America", 
+              "decade": "1990s / 2000s / 2010s", 
+              "genre": "Alternative/Indie", 
+              "id": 1, 
+              "image_url": "https://i.scdn.co/image/8f037146240aad64f589b1448fcd703ba515cc24", 
+              "name": "Smash Mouth", 
+              "tracks": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 192160, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 14, 
+                  "name": "Home", 
+                  "popularity": 26, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/ec1ede504f504dd1b94ecc33fd69daba30ac9eef?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:6fg2fVOaHd2oQQEzik3PRf"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151826, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 13, 
+                  "name": "Come On, Come On", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/eadc556adf461f2cfaebe81520fb35f70036ecc0?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2iYcHbdJ7DrE0o9iOqMW8p"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 197960, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 7, 
+                  "name": "Radio", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d94fe1314f4a36cc1a8f2cac9c974355ebf2e72?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1poMC8EEh2mvjo9Xohwae3"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 244666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 11, 
+                  "name": "Fallen Horses", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/f13ee5759c5fa47b603aa7aa9430e36390ffce24?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1RXThE5xrloqJud64bI3kv"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 214366, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 1, 
+                  "name": "Who's There", 
+                  "popularity": 29, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/c0ee60b1060e60ab0471d03b1db978c26eeae570?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2DDBGX5qlbBRZsAqAWfILT"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 233666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 12, 
+                  "name": "Defeat You", 
+                  "popularity": 30, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/de62d3712201ed6f10c45e1f2a2c4405dde134b6?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3y9l6k1sTwXgJ3L80IfrS9"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 221360, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 3, 
+                  "name": "I Just Wanna See", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/d633a56081d6bf6ddc0897996506aef45f452763?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:4R4HHwbrMb4Fttzrfccmh7"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 189093, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 2, 
+                  "name": "Diggin' Your Scene", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/53ee7796c25dd4da75b9618de2002fce57af2c65?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:5VL3c4UjMFR8BcPqoFVTNc"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151106, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 10, 
+                  "name": "Road Man", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d9f5f8c417560fa80af363f2faf3ad88f7314df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50uYYNVsBYbg8ZuGWN3JSd"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 217866, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 6, 
+                  "name": "Satellite", 
+                  "popularity": 32, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/874d9cf96ef76b6234f9ea1c19260496d8216007?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7E6bQMVRpYsM8oDhha3nv8"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 205200, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 4, 
+                  "name": "Waste", 
+                  "popularity": 33, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/5bfed88deb512812d1b9e6b9d8c8aa07edbbe3df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2Wo9IRlgSTeQs76VuuYnpw"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 182266, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 9, 
+                  "name": "Then The Morning Comes", 
+                  "popularity": 34, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/6d91d00cdad4baeb504f65b3a944701190ac4e7f?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50MfV7a1pnOEcf2t9kobxW"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 248293, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 8, 
+                  "name": "Stoned", 
+                  "popularity": 38, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/4e0d598a6fe24c0e66d592fdb619e156674a56c3?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7bFstEkOysInloEcaHzMUM"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 150773, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 15, 
+                  "name": "Can't Get Enough Of You Baby", 
+                  "popularity": 46, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/3833bb556769e584e21ef8f31b34ea86ee953419?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:0UVIXwqfTjefBbDyY60MWB"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 200373, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 5, 
+                  "name": "All Star", 
+                  "popularity": 73, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3cfOd4CMv2snFaKAnMdnvK"
+                }
+              ]
             }
-            
 
 ## Albums Collection [/albums]
 
 ### List All Albums [GET]
 
-    You can make queries to the albums collection in order
-    to get albums associated to the albumID, trackID or artistID:
+    You can make queries to the albums collection in order to do
+    search, sort, and filter requests.
     
-    albumID
+    queries:
     
-    the id of a given album. Provide 1 albumID.
+    Sort
+    field - contains the key name that will be sorted on.
+    (genre, id, label, name, number_of_tracks, release_date)
     
-    ex. /albums?albumID=1
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/albums?q={"order_by":[{"field":"label","direction":"asc"}]}
     
     ---
     
-    artistID 
+    Filter:
+    name - contains the key name that will be sorted on.
+    (genre, id, label, name, number_of_tracks, release_date)
     
-    an associated artist to the albums. Provide 1 artistID.
-
-    ex. /albums?artistID=1
-
-    ---
-
-    trackID
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
     
-    an associated track to the album. Provide 1 trackID
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/albums?q={"filters":[{"name":"name","op":"eq","val":"Astro%20Lounge"},...]}
 
-    ex. /albums?trackID=1
+   
 
 + Response 200 (application/json)
 
-        [
-            {
-                "albumID": 1,
-                "name": "Broken Hearts",
-                "genre": "pop",
-                "dateReleased": "2014-08-05",
-                "albumCover": "picture_url1",
-                "label": "Idk what this is",
-                "numberOfSongs": 12
-            }
-        ]
-
-### Create a New Album [POST]
-
-    You may create your own album using this action.
-    Create an album object by providing a JSON object
-    with the following attributes:
-    
-    name of the album (R),
-    
-    genre of album (NR), 
-    
-    date created (NR),
-    
-    a url leading to a picture of the album cover (NR),
-    
-    the label (NR),
-    
-    and number of songs (NR)
-
-+ Request (application/json)
-
         {
+            "num_results": 24, 
+            "objects": [
             {
-                "name": "John Doe's Album",
-                "genre": "Rock",
-                "dateReleased": "2017-03-15",
-                "albumCover": "picture_url1",
-                "label": "I still don't know what this is",
-                "numberOfSongs": 15
+              "album_cover_url": "https://i.scdn.co/image/ede1f1d01b8024ef1f9ae3fea1b25bfe083783bd", 
+              "artists": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "id": 1
+                }
+              ], 
+              "genre": "Alternative/Indie", 
+              "id": 1, 
+              "label": "Interscope", 
+              "name": "Astro Lounge", 
+              "number_of_tracks": 15, 
+              "release_date": "1999-01-01", 
+              "spotify_uri": "spotify:album:2kyTLcEZe6nc1s6ve0zW9P", 
+              "tracks": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 192160, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 14, 
+                  "name": "Home", 
+                  "popularity": 26, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/ec1ede504f504dd1b94ecc33fd69daba30ac9eef?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:6fg2fVOaHd2oQQEzik3PRf"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151826, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 13, 
+                  "name": "Come On, Come On", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/eadc556adf461f2cfaebe81520fb35f70036ecc0?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2iYcHbdJ7DrE0o9iOqMW8p"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 197960, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 7, 
+                  "name": "Radio", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d94fe1314f4a36cc1a8f2cac9c974355ebf2e72?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1poMC8EEh2mvjo9Xohwae3"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 244666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 11, 
+                  "name": "Fallen Horses", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/f13ee5759c5fa47b603aa7aa9430e36390ffce24?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1RXThE5xrloqJud64bI3kv"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 214366, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 1, 
+                  "name": "Who's There", 
+                  "popularity": 29, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/c0ee60b1060e60ab0471d03b1db978c26eeae570?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2DDBGX5qlbBRZsAqAWfILT"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 233666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 12, 
+                  "name": "Defeat You", 
+                  "popularity": 30, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/de62d3712201ed6f10c45e1f2a2c4405dde134b6?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3y9l6k1sTwXgJ3L80IfrS9"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 221360, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 3, 
+                  "name": "I Just Wanna See", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/d633a56081d6bf6ddc0897996506aef45f452763?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:4R4HHwbrMb4Fttzrfccmh7"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 189093, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 2, 
+                  "name": "Diggin' Your Scene", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/53ee7796c25dd4da75b9618de2002fce57af2c65?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:5VL3c4UjMFR8BcPqoFVTNc"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151106, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 10, 
+                  "name": "Road Man", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d9f5f8c417560fa80af363f2faf3ad88f7314df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50uYYNVsBYbg8ZuGWN3JSd"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 217866, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 6, 
+                  "name": "Satellite", 
+                  "popularity": 32, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/874d9cf96ef76b6234f9ea1c19260496d8216007?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7E6bQMVRpYsM8oDhha3nv8"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 205200, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 4, 
+                  "name": "Waste", 
+                  "popularity": 33, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/5bfed88deb512812d1b9e6b9d8c8aa07edbbe3df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2Wo9IRlgSTeQs76VuuYnpw"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 182266, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 9, 
+                  "name": "Then The Morning Comes", 
+                  "popularity": 34, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/6d91d00cdad4baeb504f65b3a944701190ac4e7f?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50MfV7a1pnOEcf2t9kobxW"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 248293, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 8, 
+                  "name": "Stoned", 
+                  "popularity": 38, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/4e0d598a6fe24c0e66d592fdb619e156674a56c3?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7bFstEkOysInloEcaHzMUM"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 150773, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 15, 
+                  "name": "Can't Get Enough Of You Baby", 
+                  "popularity": 46, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/3833bb556769e584e21ef8f31b34ea86ee953419?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:0UVIXwqfTjefBbDyY60MWB"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 200373, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 5, 
+                  "name": "All Star", 
+                  "popularity": 73, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3cfOd4CMv2snFaKAnMdnvK"
+                }
+              ]
             }
-        }
+            ], 
+          "page": 1, 
+          "total_pages": 24
+          }
 
-+ Response 201 (application/json)
 
-    + Headers
-
-            Location: /albums/2
-
-    + Body
-
-            
-            {
-                "albumID": 2,
-                "name": "John Doe's Album",
-                "genre": "Rock",
-                "dateReleased": "2017-03-15",
-                "albumCover": "picture_url1",
-                "label": "I still don't know what this is",
-                "numberOfSongs": 15
-            }
-            
-### Update an Album [PUT]
-
-    Update an album object by providing a JSON object with the following attributes:
-    
-    the album's ID (R),
-    
-    name of the album (NR),
-    
-    genre of album (NR), 
-    
-    date created (NR),
-    
-    a url leading to a picture of the album cover (NR),
-    
-    the label (NR),
-    
-    and number of songs (NR)
-
-If the albumID provided does not exist, the call will fail.
-
-+ Request (application/json)
-
-        {
-            {
-                "albumID": 1,
-                "name": "John Doe's Album",
-                "genre": "Rock",
-                "dateReleased": "2017-03-15",
-                "albumCover": "picture_url1",
-                "label": "I still don't know what this is",
-                "numberOfSongs": 15
-            }
-        }
-
-+ Response 200
-
-    + Headers
-
-            status: success
-
-+ Request (application/json)
-
-        {
-            {
-                "albumID": 2000,
-                "name": "John Doe's Album",
-                "genre": "Rock",
-                "dateReleased": "2017-03-15",
-                "albumCover": "picture_url1",
-                "label": "I still don't know what this is",
-                "numberOfSongs": 15
-            }
-        }
-
-+ Response 400
-
-    + Headers
-
-            status: fail
 
 ## Single Album [/albums/{id}]
 A single Album object with all its details
@@ -375,199 +634,307 @@ A single Album object with all its details
 
     + Headers
 
-            Location: /albums/2
+            Location: /albums/1
             
     + Body
 
             {
-                "albumID": 2,
-                "name": "John Doe's Album",
-                "genre": "Rock",
-                "dateReleased": "2017-03-15",
-                "albumCover": "picture_url1",
-                "label": "I still don't know what this is",
-                "numberOfSongs": 15
+              "album_cover_url": "https://i.scdn.co/image/ede1f1d01b8024ef1f9ae3fea1b25bfe083783bd", 
+              "artists": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "id": 1
+                }
+              ], 
+              "genre": "Alternative/Indie", 
+              "id": 1, 
+              "label": "Interscope", 
+              "name": "Astro Lounge", 
+              "number_of_tracks": 15, 
+              "release_date": "1999-01-01", 
+              "spotify_uri": "spotify:album:2kyTLcEZe6nc1s6ve0zW9P", 
+              "tracks": [
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 192160, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 14, 
+                  "name": "Home", 
+                  "popularity": 26, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/ec1ede504f504dd1b94ecc33fd69daba30ac9eef?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:6fg2fVOaHd2oQQEzik3PRf"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151826, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 13, 
+                  "name": "Come On, Come On", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/eadc556adf461f2cfaebe81520fb35f70036ecc0?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2iYcHbdJ7DrE0o9iOqMW8p"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 197960, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 7, 
+                  "name": "Radio", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d94fe1314f4a36cc1a8f2cac9c974355ebf2e72?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1poMC8EEh2mvjo9Xohwae3"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 244666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 11, 
+                  "name": "Fallen Horses", 
+                  "popularity": 28, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/f13ee5759c5fa47b603aa7aa9430e36390ffce24?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:1RXThE5xrloqJud64bI3kv"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 214366, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 1, 
+                  "name": "Who's There", 
+                  "popularity": 29, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/c0ee60b1060e60ab0471d03b1db978c26eeae570?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2DDBGX5qlbBRZsAqAWfILT"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 233666, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 12, 
+                  "name": "Defeat You", 
+                  "popularity": 30, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/de62d3712201ed6f10c45e1f2a2c4405dde134b6?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3y9l6k1sTwXgJ3L80IfrS9"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 221360, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 3, 
+                  "name": "I Just Wanna See", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/d633a56081d6bf6ddc0897996506aef45f452763?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:4R4HHwbrMb4Fttzrfccmh7"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 189093, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 2, 
+                  "name": "Diggin' Your Scene", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/53ee7796c25dd4da75b9618de2002fce57af2c65?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:5VL3c4UjMFR8BcPqoFVTNc"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 151106, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 10, 
+                  "name": "Road Man", 
+                  "popularity": 31, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/7d9f5f8c417560fa80af363f2faf3ad88f7314df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50uYYNVsBYbg8ZuGWN3JSd"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 217866, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 6, 
+                  "name": "Satellite", 
+                  "popularity": 32, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/874d9cf96ef76b6234f9ea1c19260496d8216007?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7E6bQMVRpYsM8oDhha3nv8"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 205200, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 4, 
+                  "name": "Waste", 
+                  "popularity": 33, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/5bfed88deb512812d1b9e6b9d8c8aa07edbbe3df?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:2Wo9IRlgSTeQs76VuuYnpw"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 182266, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 9, 
+                  "name": "Then The Morning Comes", 
+                  "popularity": 34, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/6d91d00cdad4baeb504f65b3a944701190ac4e7f?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:50MfV7a1pnOEcf2t9kobxW"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 248293, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 8, 
+                  "name": "Stoned", 
+                  "popularity": 38, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/4e0d598a6fe24c0e66d592fdb619e156674a56c3?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:7bFstEkOysInloEcaHzMUM"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 150773, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 15, 
+                  "name": "Can't Get Enough Of You Baby", 
+                  "popularity": 46, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/3833bb556769e584e21ef8f31b34ea86ee953419?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:0UVIXwqfTjefBbDyY60MWB"
+                }, 
+                {
+                  "album_id": 1, 
+                  "artist_id": 1, 
+                  "duration": 200373, 
+                  "explicit": false, 
+                  "genre": "Alternative/Indie", 
+                  "id": 5, 
+                  "name": "All Star", 
+                  "popularity": 73, 
+                  "preview_url": "https://p.scdn.co/mp3-preview/baf18743c412db2c1fcff31fac079c1c982637d2?cid=null", 
+                  "release_date": "1999-01-01", 
+                  "spotify_uri": "spotify:track:3cfOd4CMv2snFaKAnMdnvK"
+                }
+              ]
             }
 
 ## Tracks Collection [/tracks]
 
 ### List All Tracks [GET]
 
-    You can make queries to the tracks collection in order
-    to get tracks associated to the trackID, albumID, or artistID:
-        
-    trackID
+    You can make queries to the tracks collection in order to do
+    search, sort, and filter requests.
     
-    the id of a given track. Provide 1 artistID.
+    queries:
     
-    ex. /tracks?trackID=1
+    Sort
+    field - contains the key name that will be sorted on.
+    (album_id, artist_id, duration, explicit, genre, id, name, popularity, release_date)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/tracks?q={"order_by":[{"field":"genre","direction":"asc"}]}
     
     ---
     
-    albumID
+    Filter:
+    name - contains the key name that will be sorted on.
+    (album_id, artist_id, duration, explicit, genre, id, name, popularity, release_date)
     
-    an associated album to the tracks. Provide 1 albumID.
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
     
-    ex. /tracks?albumID=1
+    value - contains the specific data to be filtered on
+    (<name_data>)
     
-    ---
-    
-    artistID - an associated artist to the tracks.
-    Provide 1 artistID
-    
-    ex. /tracks?artistID=1
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/tracks?q={"filters":[{"name":"name","op":"eq","val":"Who's%20There"},...]}
+
 
 + Response 200 (application/json)
 
-        [
-            {
-                "trackID": 1,
-                "name": "Love Shack",
-                "genre": "pop",
-                "dateReleased": "2014-08-05",
-                "duration": 3.46,
-                "popularity": 8,
-                "preview": "picture_url1",
-                "explicit": false,
-                "artistID": 1,
-                "albumID": 1
-            }
-        ]
-
-### Create a New Track [POST]
-
-    You may create your own track using this action. 
-    Create a track object by providing a JSON object 
-    with the following attributes:
-    
-    name of the track (R),
-    
-    genre of track (NR), 
-    
-    date released (NR),
-    
-    duration (NR),
-    
-    popularity (NR),
-    
-    a url leading to a preview of the track (NR),
-    
-    whether it's explicit (NR),
-    
-    artistID it's related to (NR),
-    
-    and albumID it's related to (NR).
-
-
-+ Request (application/json)
-
         {
+          "num_results": 347, 
+          "objects": [
             {
-                "name": "John Doe's Track",
-                "genre": "pop",
-                "dateReleased": "2017-03-15",
-                "duration": 4.5,
-                "popularity": 3,
-                "preview": "picture_url1",
-                "explicit": true,
-                "artistID": 1,
-                "albumID": 1
+              "album": {
+                "album_cover_url": "https://i.scdn.co/image/ede1f1d01b8024ef1f9ae3fea1b25bfe083783bd", 
+                "genre": "Alternative/Indie", 
+                "id": 1, 
+                "label": "Interscope", 
+                "name": "Astro Lounge", 
+                "number_of_tracks": 15, 
+                "release_date": "1999-01-01", 
+                "spotify_uri": "spotify:album:2kyTLcEZe6nc1s6ve0zW9P"
+              }, 
+              "album_id": 1, 
+              "artist": {
+                "country": "United States of America", 
+                "decade": "1990s / 2000s / 2010s", 
+                "genre": "Alternative/Indie", 
+                "id": 1, 
+                "image_url": "https://i.scdn.co/image/8f037146240aad64f589b1448fcd703ba515cc24", 
+                "name": "Smash Mouth"
+              }, 
+              "artist_id": 1, 
+              "duration": 214366, 
+              "explicit": false, 
+              "genre": "Alternative/Indie", 
+              "id": 1, 
+              "name": "Who's There", 
+              "popularity": 29, 
+              "preview_url": "https://p.scdn.co/mp3-preview/c0ee60b1060e60ab0471d03b1db978c26eeae570?cid=null", 
+              "release_date": "1999-01-01", 
+              "spotify_uri": "spotify:track:2DDBGX5qlbBRZsAqAWfILT"
             }
+          ], 
+          "page": 1, 
+          "total_pages": 347
         }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /tracks/2
-
-    + Body
-
-            
-            {
-                "trackID": 2,
-                "name": "John Doe's Track",
-                "genre": "pop",
-                "dateReleased": "2017-03-15",
-                "duration": 4.5,
-                "popularity": 3,
-                "preview": "picture_url1",
-                "explicit": true,
-                "artistID": 1,
-                "albumID": 1
-            }
-
-### Update a Track [PUT]
-
-    Update a track object by providing a JSON object with the following attributes:
-    
-    the track's ID (R)
-    
-    name of the track (R),
-    
-    genre of track (NR), 
-    
-    date released (NR),
-    
-    duration (NR),
-    
-    popularity (NR),
-    
-    a url leading to a preview of the track (NR),
-    
-    whether it's explicit (NR),
-    
-    artistID it's related to (NR),
-    
-    and albumID it's related to (NR).
-
-If the trackID provided does not exist, the call will fail.
-
-+ Request (application/json)
-
-        {
-            {
-                "trackID": 1,
-                "name": "John Doe's Track",
-                "genre": "pop",
-                "dateReleased": "2017-03-15",
-                "duration": 4.5,
-                "popularity": 3,
-                "preview": "picture_url1",
-                "explicit": true,
-                "artistID": 1,
-                "albumID": 1
-            }
-        }
-+ Response 200
-
-    + Headers
-
-            status: success
-
-+ Request (application/json)
-
-        {
-            {
-                "trackID": 2000,
-                "name": "John Doe's Track",
-                "genre": "pop",
-                "dateReleased": "2017-03-15",
-                "duration": 4.5,
-                "popularity": 3,
-                "preview": "picture_url1",
-                "explicit": true,
-                "artistID": 1,
-                "albumID": 1
-            }
-        }
-
-+ Response 400
-
-    + Headers
-
-            status: fail
-            
 
 ## Single Track [/tracks/{id}]
 A single Track object with all its details
@@ -580,168 +947,117 @@ A single Track object with all its details
 
     + Headers
 
-            Location: /tracks/2
+            Location: /tracks/1
             
     + Body
 
             {
-                "trackID": 2,
-                "name": "John Doe's Track",
-                "genre": "pop",
-                "dateReleased": "2017-03-15",
-                "duration": 4.5,
-                "popularity": 3,
-                "preview": "picture_url1",
-                "explicit": true,
-                "artistID": 1,
-                "albumID": 1
+              "album": {
+                "album_cover_url": "https://i.scdn.co/image/ede1f1d01b8024ef1f9ae3fea1b25bfe083783bd", 
+                "genre": "Alternative/Indie", 
+                "id": 1, 
+                "label": "Interscope", 
+                "name": "Astro Lounge", 
+                "number_of_tracks": 15, 
+                "release_date": "1999-01-01", 
+                "spotify_uri": "spotify:album:2kyTLcEZe6nc1s6ve0zW9P"
+              }, 
+              "album_id": 1, 
+              "artist": {
+                "country": "United States of America", 
+                "decade": "1990s / 2000s / 2010s", 
+                "genre": "Alternative/Indie", 
+                "id": 1, 
+                "image_url": "https://i.scdn.co/image/8f037146240aad64f589b1448fcd703ba515cc24", 
+                "name": "Smash Mouth"
+              }, 
+              "artist_id": 1, 
+              "duration": 214366, 
+              "explicit": false, 
+              "genre": "Alternative/Indie", 
+              "id": 1, 
+              "name": "Who's There", 
+              "popularity": 29, 
+              "preview_url": "https://p.scdn.co/mp3-preview/c0ee60b1060e60ab0471d03b1db978c26eeae570?cid=null", 
+              "release_date": "1999-01-01", 
+              "spotify_uri": "spotify:track:2DDBGX5qlbBRZsAqAWfILT"
             }
 
 ## Concerts Collection [/concerts]
 
 ### List All Concerts [GET]
 
-    You can make queries to the concert collection in order
-    to get concerts associated to the concertID, venueID, or artistID:
+    You can make queries to the concert collection in order to do
+    search, sort, and filter requests.
     
-    concertID
+    queries:
     
-    the id of a given concert. Provide 1 concertID.
+    Sort
+    field - contains the key name that will be sorted on.
+    (date, id, name, time, venue_id)
     
-    ex. /concerts?concertID=1
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/concerts?q={"order_by":[{"field":"name","direction":"asc"}]}
     
     ---
     
-    venueID 
+    Filter:
+    name - contains the key name that will be sorted on.
+    (date, id, name, time, venue_id)
     
-    an associated venue to the concerts. Provide 1 venueID.
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
     
-    ex. /concerts?venueID=1
+    value - contains the specific data to be filtered on
+    (<name_data>)
     
-    ---
-    
-    artistID
-    
-    an associated artist to the concerts. Provide 1 artistID.
-    
-    ex. /concerts?artistID=1
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/concerts?q={"filters":[{"name":"name","op":"eq","val":"Smash%20Mouth"},...]}
 
 
 + Response 200 (application/json)
 
-        [
-            {
-                "concertID": 1,
-                "name": "SXSW Pop Event",
-                "link": "concert_link",
-                "date/time": "2016-09-02T08:40:51.620Z",
-                "lineup": "list of artists",
-                "venueID": 1
-            }
-        ]
-
-### Create a New Concert [POST]
-
-    You may create your own concert using this action.
-    Create a concert object by providing a JSON object
-    with the following attributes:
-    
-    name of the concert (R),
-    
-    concert link (NR),
-    
-    date/time (NR), 
-
-    lineup (NR),
-    
-    and the associated venue's ID (NR)
-
-
-+ Request (application/json)
-
         {
+          "num_results": 1091, 
+          "objects": [
             {
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
-            }
+              "artist_album_pairs": [
+                {
+                  "aa_id": 1, 
+                  "concert_id": 1, 
+                  "id": 1
+                }
+              ], 
+              "date": "2017-05-13", 
+              "event_link": "http://www.bandsintown.com/event/13940407?app_id=boswemianrhapsody&artist=Smash+Mouth&came_from=67", 
+              "id": 1, 
+              "name": "Smash Mouth", 
+              "time": "19:00:00", 
+              "venue": {
+                "city": "Peachtree City", 
+                "country": "United States", 
+                "id": 1, 
+                "latitude": 33.384111, 
+                "longitude": -84.57109, 
+                "name": "THE FRED ", 
+                "region": "GA"
+              }, 
+              "venue_id": 1
+            }, 
+          ], 
+          "page": 1, 
+          "total_pages": 122
         }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /concerts/2
-
-    + Body
-
-            
-            {
-                "concertID": 2,
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
-            }
-            
-### Update a Concert [PUT]
-
-    Update a concert object by providing a JSON object with the following attributes:
-    
-    the concert's ID (R),
-    
-    name of the concert (R),
-    
-    concert link (NR),
-    
-    date/time (NR), 
-
-    lineup (NR),
-    
-    and the associated venue's ID (NR)
-
-If the concertID provided does not exist, the call will fail.
-
-+ Request (application/json)
-
-        {
-            {
-                "concertID": 2,
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
-            }
-        }
-
-+ Response 200
-
-    + Headers
-
-            status: success
-
-+ Request (application/json)
-
-        {
-            {
-                "concertID": 5000,
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
-            }
-        }
-
-+ Response 400
-
-    + Headers
-
-            status: fail
 
 ## Single Concert [/concerts/{id}]
 A single Concert object with all its details
@@ -754,177 +1070,108 @@ A single Concert object with all its details
 
     + Headers
 
-            Location: /concerts/2
+            Location: /concerts/1
             
     + Body
 
             {
-                "concertID": 2,
-                "name": "John Doe's Event",
-                "link": "concert_link",
-                "date/time": "2017-03-05T08:40:51.620Z",
-                "lineup": "list of John Doe's Artists",
-                "venueID": 5
+              "artist_album_pairs": [
+                {
+                  "aa_id": 1, 
+                  "concert_id": 1, 
+                  "id": 1
+                }
+              ], 
+              "date": "2017-05-13", 
+              "event_link": "http://www.bandsintown.com/event/13940407?app_id=boswemianrhapsody&artist=Smash+Mouth&came_from=67", 
+              "id": 1, 
+              "name": "Smash Mouth", 
+              "time": "19:00:00", 
+              "venue": {
+                "city": "Peachtree City", 
+                "country": "United States", 
+                "id": 1, 
+                "latitude": 33.384111, 
+                "longitude": -84.57109, 
+                "name": "THE FRED ", 
+                "region": "GA"
+              }, 
+              "venue_id": 1
             }
 
 ## Venues Collection [/venues]
 
 ### List All Venues [GET]
 
-    You can make queries to the venues collection in order
-    to get venues associated to the venueID or concertID:
-        
-    venueID
+    You can make queries to the venues collection in order to do
+    search, sort, and filter requests.
     
-    the id of a given venue. Provide 1 venueID.
+    queries:
     
-    ex. /venues?venueID=1
+    Sort
+    field - contains the key name that will be sorted on.
+    (city, country, id, latitude, longitude, name, region)
+    
+    direction - tells either ascending or descending.
+    (asc, desc)
+    
+    q={"order_by":[{"field":    <field-name>,
+                    "direction":<direction>}]}
+                   
+    Example: 
+    /api/concerts?q={"order_by":[{"field":"name","direction":"asc"}]}
     
     ---
     
-    concertID
+    Filter:
+    name - contains the key name that will be sorted on.
+    (city, country, id, latitude, longitude, name, region)
     
-    an associated concert to the venue. Provide 1 concertID.
+    op - operation to check for equivalence
+    (Look at Filter Query Operations at Key)
     
-    ex. /venues?concertID=1
+    value - contains the specific data to be filtered on
+    (<name_data>)
+    
+    q={"filters":[{"name": <name>,
+                   "op":   <op>,
+                   "val":  <value>},...]}
+                   
+    Example:
+    /api/concerts?q={"filters":[{"name":"name","op":"eq","val":"THE%20FRED"},...]}
+
 
 + Response 200 (application/json)
 
-        [
-            {
-                "venueID": 1,
-                "name": "Techspace",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
-            }
-        ]
-
-### Create a New Venue [POST]
-
-    You may create your own venue using this action.
-    Create a venue object by providing a JSON object
-    with the following attributes:
-
-    name of the venue (R),
-    
-    a url leading to a picture of the venue (NR),
-    
-    the city (NR),
-    
-    the region (NR),
-    
-    the country (NR),
-    
-    latitude (NR),
-    
-    and longitude (NR)
-
-
-+ Request (application/json)
-
         {
+          "num_results": 84, 
+          "objects": [
             {
-                "name": "John Doe's Venue",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
-            }
+              "city": "Peachtree City", 
+              "concerts": [
+                {
+                  "date": "2017-05-13", 
+                  "event_link": "http://www.bandsintown.com/event/13940407?app_id=boswemianrhapsody&artist=Smash+Mouth&came_from=67", 
+                  "id": 1, 
+                  "name": "Smash Mouth", 
+                  "time": "19:00:00", 
+                  "venue_id": 1
+                }
+              ], 
+              "country": "United States", 
+              "id": 1, 
+              "latitude": 33.384111, 
+              "longitude": -84.57109, 
+              "name": "THE FRED ", 
+              "region": "GA"
+            } 
+          ], 
+          "page": 1, 
+          "total_pages": 84
         }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /venues/2
-
-    + Body
-
-            
-            {
-                "venueID": 2,
-                "name": "John Doe's Venue",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
-            }
-            
-### Update a Venue [PUT]
-
-    Update a venue object by providing a JSON object with the following attributes:
-    
-    the venue's ID (R),
-
-    name of the venue (R),
-    
-    a url leading to a picture of the venue (NR),
-    
-    the city (NR),
-    
-    the region (NR),
-    
-    the country (NR),
-    
-    latitude (NR),
-    
-    and longitude (NR)
-
-If the venueID provided does not exist, the call will fail.
-
-+ Request (application/json)
-
-        {
-            {
-                "venueID": 2,
-                "name": "John Doe's Venue",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
-            }
-        }
-
-+ Response 200
-
-    + Headers
-
-            status: success
-
-+ Request (application/json)
-
-        {
-            {
-                "venueID": 10000,
-                "name": "John Doe's Venue",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
-            }
-        }
-
-+ Response 400
-
-    + Headers
-
-            status: fail
-
 
 ## Single Venue [/venues/{id}]
-A single Venue object with all its details
+A single Venue object with all its details 
 
 + Parameters
     + id (required, Number, `1`) ... Numeric `id` of the Venue to perform action with.
@@ -934,17 +1181,26 @@ A single Venue object with all its details
 
     + Headers
 
-            Location: /venues/2
+            Location: /venues/1
             
     + Body
 
             {
-                "venueID": 2,
-                "name": "John Doe's Venue",
-                "picture": "venue_picture",
-                "city": "Austin",
-                "region": "TX",
-                "country": "U.S",
-                "latitude": 67.436,
-                "longitude": 154.32
+              "city": "Peachtree City", 
+              "concerts": [
+                {
+                  "date": "2017-05-13", 
+                  "event_link": "http://www.bandsintown.com/event/13940407?app_id=boswemianrhapsody&artist=Smash+Mouth&came_from=67", 
+                  "id": 1, 
+                  "name": "Smash Mouth", 
+                  "time": "19:00:00", 
+                  "venue_id": 1
+                }
+              ], 
+              "country": "United States", 
+              "id": 1, 
+              "latitude": 33.384111, 
+              "longitude": -84.57109, 
+              "name": "THE FRED ", 
+              "region": "GA"
             }
