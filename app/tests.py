@@ -235,7 +235,7 @@ class TestCase(unittest.TestCase):
         # assert (track_result is track)
         # assert (album_result is album)
         assert (album.tracks[0].id == track_result.id)
-        assert (track.album_id == albu,_result.id)
+        assert (track.album_id == album_result.id)
 
     def test_db_delete_track_album_relationship(self):
         track_result = db.session.query(Track).filter_by(name='track_name').first()
@@ -307,7 +307,7 @@ class TestCase(unittest.TestCase):
         # assert (album_result is album)
         assert (concert_result.artist_album_pairs[0].id == aa_result.id)
         assert (aa_result.concerts[0].id == concert_result.id)
-        assert (c_aa_result.concert_id = concert_result.id)
+        assert (c_aa_result.concert_id == concert_result.id)
         assert (c_aa_result.aa_id == aa_result.id)
 
     def test_db_delete_concert_aa_relationship(self):
