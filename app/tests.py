@@ -241,7 +241,7 @@ class TestCase(unittest.TestCase):
         assert Track.query.filter_by(name='track_name').first() is None
         assert Album.query.filter_by(name='album_name').first() is None
 
-    def test_db_relationship(self):
+    def test_db_aa_relationship(self):
         artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
         album = Album('album_name', 'genre', 'release',
                       'url', 'label', 1, 'uri')
@@ -277,7 +277,7 @@ class TestCase(unittest.TestCase):
             Artist.id == artist_result.id).filter(Album.id == album_result.id).
             first() is None)
 
-    def test_db_relationship(self):
+    def test_db_cc_a_relationship(self):
         artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
         album = Album('album_name', 'genre', 'release',
                       'url', 'label', 1, 'uri')
