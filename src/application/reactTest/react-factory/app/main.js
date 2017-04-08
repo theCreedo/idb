@@ -49,14 +49,9 @@ class SortingForm extends React.Component {
         <label>
           Filter: 
           <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Track Name</option>
-            <option value="artist_id">Group by Artist</option>
-            <option value="album_id">Group by Album</option>
-            <option value="genre">Genre</option>
-            <option value="popularity">Popularity</option>
-            <option value="explicit">Is explicit</option>
-            <option value="duration">Length</option>
-            <option value="release_date">Release</option>
+            <option value="name">Artist</option>
+            <option value="date">Country</option>
+            <option value="time">Start Time</option>
           </select>
         </label>
         <input type="submit" value="Submit" />
@@ -75,7 +70,7 @@ export default class ReactGrid extends React.Component {
           currentPage: 1,
           pageSize: 1,
           gridType: props.gridType,
-          data: JSON.parse(this.makeAPIcall("/api/tracks"))
+          data: JSON.parse(this.makeAPIcall("/api/concerts"))
         };
         
         this.updateGridData = this.updateGridData.bind(this);
@@ -214,8 +209,8 @@ export default class ReactGrid extends React.Component {
 //     }
     
     createGridItemConcert(data) {
-        var aap = JSON.parse(modalAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
-        var artist = JSON.parse(modalAPIcall("/api/artists/" + aap.artist_id));
+        var aap = JSON.parse(this.makeAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
+        var artist = JSON.parse(this.makeAPIcall("/api/artists/" + aap.artist_id));
 //        var artist = {
 //            id: -1,
 //            name: 'frontend',
@@ -358,37 +353,37 @@ export default class ReactGrid extends React.Component {
         
         /* CONCERT OK */
         
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//          }
+       for (var x in actual_JSON.objects) {
+           console.log(x);
+           if(x < 3)
+               gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+           else if(x < 6)
+               gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+           else
+               gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+         }
         
         /* TRACK */
         
-        for (var x in actual_JSON.objects) {
-            console.log(x);
-            if(x < 3)
-                gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
-            else if(x < 6)
-                gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
-            else
-                gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
-          }
+        // for (var x in actual_JSON.objects) {
+        //     console.log(x);
+        //     if(x < 3)
+        //         gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
+        //     else if(x < 6)
+        //         gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
+        //     else
+        //         gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
+        //   }
         
-//        const pagination = this.pagination(1, num_results);
-//        gridItems.push(this.createGridItem(actual_JSON[x]));
+       // const pagination = this.pagination(1, num_results);
+       // gridItems.push(this.createGridItem(actual_JSON[x]));
         
-//        const length = 9;
-//        var gridItems = [];
-//        
-//        for (var i = 0; i < links.length; i++) {
-//            gridItems.push(this.createGridItem(jsonData[i]));
-//        }
+       // const length = 9;
+       // var gridItems = [];
+       
+       // for (var i = 0; i < links.length; i++) {
+       //     gridItems.push(this.createGridItem(jsonData[i]));
+       // }
         
         console.log("Lookit: griditems: " + gridItems.length);
         var curState = this.state;
@@ -411,6 +406,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"tracks"}/>,
+ <ReactGrid gridType={"concerts"}/>,
  document.getElementById('content')
 );
