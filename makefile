@@ -7,7 +7,7 @@ FILES :=                              \
 	.travis.yml                       \
 	IDB1.html                         \
 	IDB1.log                          \
-	IDB1.tmp
+	app/tests.out
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -59,11 +59,13 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-IDB2.tmp: app/models.py app/tests.py app/main.py .pylintrc
-	-$(PYLINT) app/tests.py
-	$(COVERAGE) run    --branch app/tests.py >  tests.tmp 2>&1
-	$(COVERAGE) report -m                      >> tests.tmp
-	cat tests.tmp 
+.PHONY: IDB1.out
+IDB1.out: .pylintrc
+	-$(PYLINT) ./app/tests.py
+	-$(COVERAGE) run    --branch app/tests.py >  app/tests.tmp 2>&1
+	-$(COVERAGE) report -m                      >> app/tests.tmp
+	mv app/tests.tmp app/tests.out
+	cat app/tests.out
 
 check:
 	@not_found=0;                                 \
@@ -105,7 +107,7 @@ status:
 	git status
 # 	make clean
 
-test: IDB2.html IDB2.log format IDB2.tmp
+test: IDB1.html IDB1.log IDB1.out
 	ls -al
 	make check
 

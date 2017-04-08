@@ -1,3 +1,129 @@
+commit 02329714850d15b2c18e1a8ee520564042fd5812
+Merge: 21356af 89500b1
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 20:43:57 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 21356af239b968d6fb248cda4064908122831b95
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 20:43:23 2017 -0500
+
+    fixed naming issues
+
+commit 89500b1486279261ef5a83b23dc579933b9c7248
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:52:06 2017 -0500
+
+    Changed IDB2.out to tests.out
+
+commit 4351bdea16a99d7aaa6d28bbafee1363779529a0
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:43:39 2017 -0500
+
+    updated makefile and fixed some minor issues
+
+commit b53565a4b279edbdb0b4b81ea81b79667eb73bce
+Merge: fee9756 98d8051
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:15:32 2017 -0500
+
+    added coverage to makefile
+
+commit fee9756115e6e892d862e56ef78737e6b872a114
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:13:23 2017 -0500
+
+    added coverage to makefile
+
+commit 98d8051793e9626485ebc89ff1b3de4e3286445f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 18:47:32 2017 -0500
+
+    merge create and delete tests for safety
+
+commit e991b7f39ac12a303c38c135073d3666387ae9dc
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 17:07:28 2017 -0500
+
+    Add makefile changes so files sustain IDB1 name
+
+commit 55ff8f7c9ebf8e3fc48e776caade915e73b4ecd5
+Merge: 4baf58d e867c20
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:52:09 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 4baf58dcb39321779194ecdea35ac384d72b57b3
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:51:48 2017 -0500
+
+    modified makefile
+
+commit e867c202da3a67c4859d8e334b4fb8654bd2eb57
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 16:31:51 2017 -0500
+
+    Add files via upload
+
+commit c5f28f5add9dbdcfe0ab8174cef6cc87c5f9f873
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:27:29 2017 -0500
+
+    added some dependencies to makefile for coverage
+
+commit 3d4a64de8b2caa05a2d281113eb05ac49a79783c
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:24:35 2017 -0500
+
+    dummy commit to synch makefile changes for nandhini
+
+commit 2bc254b09286f9e4fcd7da53eddd72bb11392d36
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:46:49 2017 -0500
+
+    removed some files, changed makefile to start running coverage
+
+commit 33a69425ed3a6a3251a1539e42e8cca4b725d1cb
+Merge: 0b3070d 9edada6
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:34:47 2017 -0500
+
+    Merge branch 'ben-dev'
+
+commit 9edada67098a6dde29eeabeabeac0af72bb2fd97
+Merge: 6fe6ab8 59fd607
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 15:32:02 2017 -0500
+
+    Merge branch 'ben-dev' of https://github.com/theCreedo/idb into ben-dev
+
+commit 6fe6ab80dd663d7074c7215cf9b97f4c07569289
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 15:31:54 2017 -0500
+
+    updated the makefile to say IDB2 instead
+
+commit 0b3070d5b662f8d3e25845cd430e57ef488a4969
+Merge: d1630e2 59fd607
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:31:48 2017 -0500
+
+    Merge branch 'ben-dev'
+
+commit 59fd6073e11fa0d906aab835a41fd5e7d8bb21ce
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:31:28 2017 -0500
+
+    removed extra files
+
+commit d1630e2a63455d2dac3a64da9307077368a65f4d
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 14:34:42 2017 -0500
+
+    Added pagination into url
+
 commit 5ff522aad1ad6734d7e6780491f6f7f7d851b951
 Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
 Date:   Fri Apr 7 14:15:45 2017 -0500
