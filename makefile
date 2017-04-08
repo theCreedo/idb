@@ -5,8 +5,8 @@ FILES :=                              \
 	app/tests.py                      \
 	.gitignore                        \
 	.travis.yml                       \
-	IDB2.html                         \
-	IDB2.log                          \
+	IDB1.html                         \
+	IDB1.log                          \
 	app/tests.out
 
 ifeq ($(shell uname), Darwin)          # Apple
@@ -59,9 +59,9 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-.PHONY: IDB2.out
-IDB2.out: .pylintrc
-	-$(PYLINT) app/tests.py
+.PHONY: IDB1.out
+IDB1.out: .pylintrc
+	-$(PYLINT) ./app/tests.py
 	-$(COVERAGE) run    --branch app/tests.py >  app/tests.tmp 2>&1
 	-$(COVERAGE) report -m                      >> app/tests.tmp
 	mv app/tests.tmp app/tests.out
@@ -90,8 +90,8 @@ clean:
 	rm -f  .coverage
 	rm -f  .pylintrc
 	rm -f  *.pyc
-	rm -f  IDB2.html
-	rm -f  IDB2.log
+	rm -f  IDB1.html
+	rm -f  IDB1.log
 	rm -rf __pycache__
 
 config:
@@ -107,7 +107,7 @@ status:
 	git status
 # 	make clean
 
-test: IDB2.html IDB2.log IDB2.out
+test: IDB1.html IDB1.log IDB1.out
 	ls -al
 	make check
 
