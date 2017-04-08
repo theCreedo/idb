@@ -44,20 +44,20 @@ def artist_table():
 @app.route('/albumTable.html')
 @app.route('/albumsTable.html')
 def albums_table():
-	return render_template('sweBootstrap/albumsTable.html')
+	return render_template('/albumsTable.html')
 
 @app.route('/tracksTable')
 @app.route('/static/tracksTable.html')
 @app.route('/tracksTable.html')
 def tracks_table():
-	return render_template('sweBootstrap/tracksTable.html')
+	return render_template('/tracksTable.html')
 
 
 @app.route('/concertsTable')
 @app.route('/static/concertsTable.html')
 @app.route('/concertsTable.html')
 def concerts_table():
-	return render_template('sweBootstrap/concertsTable.html')
+	return render_template('/concertsTable.html')
 
 
 
