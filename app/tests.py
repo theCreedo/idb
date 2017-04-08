@@ -275,7 +275,7 @@ class TestCase(unittest.TestCase):
         assert (Album.query.filter_by(name='album_name').first() is None)
         assert (db.session.query(Artist_Album_Association).filter(
             Artist.id == artist_result.id).filter(Album.id == album_result.id).
-            first() is None)
+                first() is None)
 
     def test_db_cc_a_relationship(self):
         artist = Artist('artist_name', 'url', 'country', 'decade', 'genre')
@@ -325,12 +325,12 @@ class TestCase(unittest.TestCase):
         assert (db.session.query(Artist_Album_Association).filter(
             Artist_Album_Association.artist_id == artist_result.id).filter(
                 Artist_Album_Association.album_id == album_result.id).first()
-            is None)
+                is None)
         assert (Concert.query.filter_by(name='concert_name').first() is None)
         assert (db.session.query(Concert_AA_Association).filter(
             Concert_AA_Association.aa_id == aa_result.id).filter(
                 Concert_AA_Association.concert_id == concert_result.id).first()
-            is None)
+                is None)
         assert (Artist.query.filter_by(name='artist_name').first() is None)
         assert (Album.query.filter_by(name='album_name').first() is None)
 

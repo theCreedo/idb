@@ -134,7 +134,7 @@ class Artist(db.Model):
     image_url = db.Column(db.String(200))
     country = db.Column(db.String(50))
     decade = db.Column(db.String(100))
-    genre = db.Column(db.String(100))  # db.Column(db.PickleType(mutable=True))
+    genre = db.Column(db.String(100))
 
     # db.relationship to artist_album_pairs table
     # Auto-populates Artist_Album_Association.artist
