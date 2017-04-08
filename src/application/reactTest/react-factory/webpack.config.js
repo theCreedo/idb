@@ -5,6 +5,10 @@ var config = {
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist",
+        publicPath: "http://boswemianrhapsody.me"
+    },
+    devServer: {
+      host: "www.boswemianrhapsody.me"
     },
     module: {
         loaders: [
