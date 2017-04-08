@@ -16,7 +16,6 @@
 
     <link href="resources/css/landing-page.css" rel="stylesheet">
     <link href="resources/css/sweStyle.css" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/navBar.css">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -33,108 +32,345 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="yamm navbar navbar-default default" style="background: #212020; padding-left: 55px;" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <div class="basic-wrapper"> <a class="btn responsive-menu" data-toggle="collapse" data-target=".navbar-collapse"><i></i></a>
-        <!-- PUT A LOGO HERE -->
-          <div class="navbar-brand"><a href="index.html"><img src="" alt="" data-src="" data-ret="" class="retina" /></a></div>
-        </div>
-        <!-- /.basic-wrapper --> 
-      </div>
-      <!-- /.navbar-header -->
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="home.html" style="text-shadow: 3px 3px 0px #000;">Home</a></li>
-          <li><a href="about.html" style="text-shadow: 3px 3px 0px #000;">About</a></li>
-          <li><a href="tracksTable.html" style="text-shadow: 3px 3px 0px #000;">Tracks Table</a></li>
-          <li><a href="artistTable.html" style="text-shadow: 3px 3px 0px #000;">Artists Table</a></li>
-          <li><a href="albumsTable.html" style="text-shadow: 3px 3px 0px #000;">Album Table</a></li>
-          <li><a href="concertsTable.html" style="text-shadow: 3px 3px 0px #000;">Concerts Table</a></li>
-        </ul>
-        <!-- /.navbar-nav --> 
-      </div>
-      <!-- /.navbar-collapse --> 
-    </div>
-    <!-- /.container --> 
-  </nav>
-  <!-- /.navbar -->
-    <div class="content-section-a">
-        <div class="container sweGridContainer">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1 class="sweGridTitle">Albums Table</h1>
-                    <h3 class="sweGridSubtitle">Alright albums, man.</h3>
-                </div>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background: #333;">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <div class="row sweGridSorts">
-                <div class="col-xs-12">
-                    <h3 class="sweGridSubtitle">Sort by:</h3>
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                      <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-large dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Sorts
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu sweSortDropdown">
-                          <li class="disabled"><a href="#">Album Name</a></li>
-                          <li class="disabled"><a href="#">Artist Name</a></li>
-                          <li class="disabled"><a href="#">Release Date</a></li>
-                          <li class="disabled"><a href="#">Label</a></li>
-                          <li class="disabled"><a href="#">Genre</a></li>
-                          <li class="disabled"><a href="#">No. Songs</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a style ="color: white;" href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a style="color: #FFFFFF;" href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a style="color: #FFFFFF;" href="tracksTable.html">Tracks Table</a>
+                    </li>
+                    <li>
+                        <a style="color: #FFFFFF;" href="artistTable.html">Artist Table</a>
+                    </li >
+                    <li style="background: rgb(74, 162, 209);">
+                        <a style="color: #FFFFFF;" href="albumsTable.html">Albums Table</a>
+                    </li>
+                    <li>
+                        <a style="color: #FFFFFF;" href="concertsTable.html">Concerts Table</a>
+                        </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-sm-4 col-xs-12 sweGridItem">
-                    <hr class="sweGridItemSpacer">
-                    <div class="clearfix"></div>
-                    <img class="sweGridImage" src="https://i.scdn.co/image/2f66abbf986dcc2fb1dca9bceb892123d5d10c3a">
-                    <h2 class="sweGridItemHeading"><a href="coldplayAlbumPage.html">A Head Full Of Dreams</a><br></h2>
-                    <hr>
-                    <p class="sweGridItemContent">Artist: <a href="coldplayArtistPage.html">Coldplay</a> <a data-toggle="tooltip" data-placement="top" title="Yet to implement">Tove Lo</a></p>
-                    <p class="sweGridItemContent">Released: 2015-12-04</p>
-                    <p class="sweGridItemContent">Label: Parlophone UK</p>
-                    <p class="sweGridItemContent">Genre: Pop</p>
-                    <p class="sweGridItemContent">Number of Songs: 11</p>
-                </div>
-                <div class="col-sm-4 col-xs-12 sweGridItem">
-                    <hr class="sweGridItemSpacer">
-                    <div class="clearfix"></div>
-                    <img class="sweGridImage" src="https://i.scdn.co/image/5210fc4d42dce2104eb2dfcf0d221d5c16631a4f">
-                    <h2 class="sweGridItemHeading"><a href="b52AlbumPage.html">Cosmic Thing</a><br></h2>
-                    <hr>
-                    <p class="sweGridItemContent">Artist: <a href="b52ArtistPage.html">The B-52's</a></p>
-                    <p class="sweGridItemContent">Released: 1989-06-23</p>
-                    <p class="sweGridItemContent">Label: Warner Bros.</p>
-                    <p class="sweGridItemContent">Genre: Pop</p>
-                    <p class="sweGridItemContent">Number of Songs: 10</p>
-                </div>
-                <div class="col-sm-4 col-xs-12 sweGridItem">
-                    <hr class="sweGridItemSpacer">
-                    <div class="clearfix"></div>
-                    <img class="sweGridImage" src="https://i.scdn.co/image/f6e02ce8bc9e91afa0e220703072c20bf72c72c5">
-                    <h2 class="sweGridItemHeading"><a href="queenAlbumPage.html">A Night At The Opera(...)</a><br></h2>
-                    <hr>
-                    <p class="sweGridItemContent">Artist: <a href="queenArtistPage.html">Queen</a></p>
-                    <p class="sweGridItemContent">Released: 1975-11-21</p>
-                    <p class="sweGridItemContent">Label: Hollywood Records</p>
-                    <p class="sweGridItemContent">Genre: Rock</p>
-                    <p class="sweGridItemContent">Number of Songs: 18</p>
-                </div>
-            </div>
+            <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
+    </nav>
+    <div id="content" class="content-section-a">
+        
     </div>
+
+    <div class="modal fade sweModal" id="artistModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header popupInfoHeader">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="artistHeaderTgt"></h4>
+          </div>
+          <div class="modal-body">
+            <div class="content-section-b">
+                <div id="artistImgTgt" class="artistInfoCoverImg" style="background: url(http://az616578.vo.msecnd.net/files/2016/08/01/636056495668781938-884755758_coldplay.jpg) no-repeat center center; background-size: cover;"></div>
+            </div>
+            <div class="content-section-a">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <hr class="popupHeaderSpacer">
+                            <div class="clearfix"></div>
+                            <h2 class="popupDetailHeader">Country</h2>
+                            <h3 id="artistCountryTgt" class="popupDetailContent"><em>England</em></h3>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <hr class="popupHeaderSpacer">
+                            <div class="clearfix"></div>
+                            <h2 class="popupDetailHeader">Decade</h2>
+                            <h3 id="artistDecadeTgt" class="popupDetailContent"><em>Years</em></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <hr class="popupHeaderSpacer">
+                            <div class="clearfix"></div>
+                            <h2 class="popupDetailHeader">Genres</h2>
+                            <h3 id="artistGenreTgt" class="popupDetailContent">
+                                <em>England</em><br><em>England</em><br><em>England</em>
+                            </h3>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <hr class="popupHeaderSpacer">
+                            <div class="clearfix"></div>
+                            <h2 class="popupDetailHeader">Most Popular</h2>
+                            <div class="spotifyContainer">
+                                <iframe id="artistSpotifyEmbed" class="popupSpotifyEmbed" src="https://embed.spotify.com/?uri=spotify:track:1FfWWHxzVGUDT1rjhidzAj"frameborder="0" allowtransparency="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <hr class="popupHeaderSpacer">
+                            <div class="clearfix"></div>
+                            <h2 class="popupDetailHeader">Albums</h2>
+                            <div id="artistGridTgt" class="container-fluid grid"></div>
+<!--                            <ul id="artistAlbumTgt"></ul>-->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade sweModal" id="albumModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header popupInfoHeader">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="albumHeaderTgt"></h4>
+          </div>
+          <div class="modal-body">
+                <div class="content-section-b">
+                    <div id ="albumCoverArtTgt" class="albumInfoCoverImg" style="background: url(http://static.idolator.com/uploads/2015/11/coldplay-a-head-full-of-dreams-album-art-640x640.jpg) no-repeat center center;"></div>
+                </div>
+                <div class="content-section-a">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Artists</h2>
+<!--                                <ul id="albumArtistTgt"></ul>-->
+                                <div id="albumGridTgt" class="grid">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Genre</h2>
+                                <h3 id ="albumGenreTgt" class="popupDetailContent"><em>England</em></h3>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Label</h2>
+                                <h3 id="albumLabelTgt" class="popupDetailContent">
+                                    <em>AAA Label</em>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Date</h2>
+                                <h3 id="albumDateTgt" class="popupDetailContent"><em>Years</em></h3>
+                            </div>
+                            <div class="col-xs-12 col-md-8">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Songs</h2>
+                                <h3 id="albumSongTgt" class="popupDetailContent"><em>11 Songs</em></h3>
+                                <div class="spotifyContainer">
+                                    <iframe id ="albumSpotifyEmbed" class="popupSpotifyPlaylist" src="https://embed.spotify.com/?uri=spotify:album:3cfAM8b8KqJRoIzt3zLKqw" frameborder="0" allowtransparency="true"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="concertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header popupInfoHeader">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="concertHeaderTgt"></h4>
+          </div>
+          <div class="modal-body">
+                <div class="content-section-b">
+                    <div id="concertArtistImgTgt" class="artistInfoCoverImg" style="background: url(http://az616578.vo.msecnd.net/files/2016/08/01/636056495668781938-884755758_coldplay.jpg) no-repeat center center; background-size: cover;"></div>
+                </div>
+                <div class="content-section-a">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Venue</h2>
+                                <h3 id="concertVenueTgt" class="popupDetailContent"></h3>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Date</h2>
+                                <h3 id="concertDateTgt" class="popupDetailContent">
+                                    <em>Date</em>
+                                </h3>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Time</h2>
+                                <h3 id="concertTimeTgt" class="popupDetailContent">
+                                    <em>Time</em>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Link</h2>
+                                <h3 class="popupDetailContent">
+                                    <em><a id="concertLinkTgt" href="">More Info</a></em>
+                                </h3>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Lineup</h2>
+<!--                                <ul id="albumArtistTgt"></ul>-->
+                                <div id="concertLineupTgt" class="grid container-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="trackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header popupInfoHeader">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="trackHeaderTgt"></h4>
+          </div>
+          <div class="modal-body">
+            <div class="content-section-a">
+                    <div class="container popupInfoHeader">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h1 id="trackTitleTgt" class="popupInfoTitle">Adventure Of A Lifetime<span id="trackExplicitTgt" class="label label-danger popupExplicitMarker">Explicit</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                </div>
+                <div class="content-section-b">
+                    <div id="trackArtistImgTgt" class="albumInfoCoverImg" style="background: url(http://static.idolator.com/uploads/2015/11/coldplay-a-head-full-of-dreams-album-art-640x640.jpg) no-repeat center center;"></div>
+                </div>
+                <div class="content-section-a">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Genre</h2>
+                                <h3 id="trackGenreTgt" class="popupDetailContent"><em>England</em></h3>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Date Released</h2>
+                                <h3 id="trackDateTgt" class="popupDetailContent"><em>Years</em></h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Duration</h2>
+                                <h3 id="trackDurationTgt" class="popupDetailContent">
+                                    <em>x minutes</em>
+                                </h3>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Popularity</h2>
+                                <h3 id="trackPopularityTgt" class="popupDetailContent">
+                                    <em>99 (Maybe put something neat here)</em>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Artists</h2>
+                                <div id="trackArtistsTgt" class="grid container-fluid">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Albums</h2>
+                                <div id="trackAlbumsTgt" class="grid container-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <hr class="popupHeaderSpacer">
+                                <div class="clearfix"></div>
+                                <h2 class="popupDetailHeader">Song</h2>
+                                <div class="spotifyContainer">
+                                    <iframe id="trackSpotifyEmbed" class="popupSpotifyEmbed" src="https://embed.spotify.com/?uri=spotify:track:69uxyAqqPIsUyTO8txoP2M"frameborder="0" allowtransparency="true"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container -->
+                </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
     <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/js/masonry.js"></script>
     <script type="text/javascript" src="resources/js/scripts.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="resources/js/albumBundle.js"></script>
+    <script src="resources/js/modalListeners.js"></script>
 
 </body>
 
