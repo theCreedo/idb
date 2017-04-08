@@ -2,6 +2,8 @@
   "name": "tester-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://www.boswemianrhapsody.me",
+  "homepage": "http://www.boswemianrhapsody.me",
   "dependencies": {
     "rc-pagination": "^1.8.2",
     "react": "^15.4.2",
