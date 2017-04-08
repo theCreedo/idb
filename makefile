@@ -7,7 +7,7 @@ FILES :=                              \
 	.travis.yml                       \
 	IDB2.html                         \
 	IDB2.log                          \
-	IDB2.out
+	app/tests.out
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -62,10 +62,10 @@ IDB1.log:
 .PHONY: IDB2.out
 IDB2.out: .pylintrc
 	-$(PYLINT) app/tests.py
-	-$(COVERAGE) run    --branch app/tests.py >  tests.tmp 2>&1
-	-$(COVERAGE) report -m                      >> tests.tmp
-	mv tests.tmp IDB2.out
-	cat IDB2.out
+	-$(COVERAGE) run    --branch app/tests.py >  app/tests.tmp 2>&1
+	-$(COVERAGE) report -m                      >> app/tests.tmp
+	mv app/tests.tmp app/tests.out
+	cat app/tests.out
 
 check:
 	@not_found=0;                                 \

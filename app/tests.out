@@ -1,4 +1,4 @@
-EFE........FEEEFF
+EFEF..E.F..FEEEFF
 ======================================================================
 ERROR: test_404 (__main__.TestCase)
 ----------------------------------------------------------------------
@@ -14,6 +14,14 @@ Traceback (most recent call last):
   File "app/tests.py", line 106, in test_album_table_redirect
     test_post_album()
 NameError: name 'test_post_album' is not defined
+
+======================================================================
+ERROR: test_db_relationship (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 308, in test_db_relationship
+    Concert_AA_Association.aa_id == aa_result.id).filter(
+AttributeError: 'NoneType' object has no attribute 'id'
 
 ======================================================================
 ERROR: test_post_album (__main__.TestCase)
@@ -48,6 +56,22 @@ Traceback (most recent call last):
 AssertionError
 
 ======================================================================
+FAIL: test_db_album (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 170, in test_db_album
+    assert (album_result is album)
+AssertionError
+
+======================================================================
+FAIL: test_db_track_artist_relationship (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 210, in test_db_track_artist_relationship
+    assert (artist_result is artist)
+AssertionError
+
+======================================================================
 FAIL: test_home_redirects (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
@@ -72,12 +96,12 @@ Traceback (most recent call last):
 AssertionError
 
 ----------------------------------------------------------------------
-Ran 17 tests in 3.681s
+Ran 17 tests in 2.543s
 
-FAILED (failures=4, errors=5)
+FAILED (failures=6, errors=6)
 Name            Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------
 app/models.py     150      7      0      0    95%   71, 92, 121, 168, 219, 259, 298
-app/tests.py      206     65      2      1    68%   62, 68-80, 89-91, 96-101, 107-109, 119-121, 133, 221-242, 245-276, 337->exit
+app/tests.py      206     93      2      1    55%   62, 68-80, 89-91, 96-101, 107-109, 119-121, 133, 172-174, 211-218, 221-242, 245-276, 311-335, 337->exit
 -----------------------------------------------------------
-TOTAL             356     72      2      1    80%
+TOTAL             356    100      2      1    72%
