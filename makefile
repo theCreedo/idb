@@ -59,11 +59,13 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-IDB2.tmp: models.py tests.py main.py .pylintrc
-	-$(PYLINT) tests.py
-	$(COVERAGE) run    --branch tests.py >  tests.tmp 2>&1
-	$(COVERAGE) report -m                      >> tests.tmp
-	cat tests.tmp 
+.PHONY: IDB2.tmp
+IDB2.out: .pylintrc
+	-$(PYLINT) app/tests.py
+	-$(COVERAGE) run    --branch app/tests.py >  tests.tmp 2>&1
+	-$(COVERAGE) report -m                      >> tests.tmp
+	mv tests.tmp IDB2.out
+	cat IDB2.out
 
 check:
 	@not_found=0;                                 \
@@ -105,7 +107,7 @@ status:
 	git status
 # 	make clean
 
-test: IDB2.html IDB2.log format IDB2.tmp
+test: IDB2.html IDB2.log IDB2.out
 	ls -al
 	make check
 
