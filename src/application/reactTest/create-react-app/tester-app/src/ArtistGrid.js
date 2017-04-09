@@ -256,7 +256,7 @@ export default class ReactGrid extends React.Component {
     }
     
     createGridItemAlbum(data) {
-        var albumArtist = this.makeAPIcall("/api/artist/" + data.artists[0].artist_id);
+        var albumArtist = this.makeAPIcall("/api/artists/" + data.artists[0].artist_id);
 //        var albumArtist = {
 //            id: 'foo',
 //            name: 'bar'

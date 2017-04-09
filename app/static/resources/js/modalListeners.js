@@ -44,6 +44,24 @@ function makeArtistModal(id) {
 	$('#artistModal').modal("show");
 }
 
+function runTests() {
+  var xmlHTTP = new XMLHttpRequest();
+  xmlHTTP.open('GET', '/tests', false);
+
+  var data;
+  
+  xmlHTTP.onload = function(e)
+  {
+      data = this.response;
+  }
+
+  // Send request
+  xmlHTTP.send();
+
+  // console.log(data);
+
+$("#run_tests_button").text(data[0]);
+}
 function makeTrackModal(id) {
 	closeModals();
 	var data = JSON.parse(modalAPIcall("http://www.boswemianrhapsody.me/api/tracks/"+ id));
@@ -134,20 +152,14 @@ function closeModals() {
 function modalAPIcall( call ) {
         var xmlHTTP = new XMLHttpRequest();
 
-//        xmlHTTP.open('GET',"https://api-content.dropbox.com/1/files/auto/" + file + "?access_token=" + auth,false);
-        // xmlHTTP.overrideMimeType("application/json");
         xmlHTTP.open('GET',call,false);
 
-        // xmlHTTP.setRequestHeader("Content-Type","application/json");
-        // xmlHTTP.setRequestHeader("Access-Control-Allow-Origin","boswemianrhapsody.me");
 
-        // Arraybuffer response to put into B64
-        //xmlHTTP.responseType = 'text';
 
         var data;
         xmlHTTP.onload = function(e)
         {
-            // console.log(this.response);
+
             data = this.response;
         }
 

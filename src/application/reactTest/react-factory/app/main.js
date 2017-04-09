@@ -70,7 +70,7 @@ export default class ReactGrid extends React.Component {
           currentPage: 1,
           pageSize: 1,
           gridType: props.gridType,
-          data: JSON.parse(this.makeAPIcall("/api/concerts"))
+          data: JSON.parse(this.makeAPIcall("/api/albums"))
         };
         
         this.updateGridData = this.updateGridData.bind(this);
@@ -251,11 +251,14 @@ export default class ReactGrid extends React.Component {
     }
     
     createGridItemAlbum(data) {
-        var albumArtist = this.makeAPIcall("/api/artist/" + data.artists[0].artist_id);
+        var albumArtist = this.makeAPIcall("/api/artists/" + data.artists[0].artist_id);
+        console.log(albumArtist);
 //        var albumArtist = {
 //            id: 'foo',
 //            name: 'bar'
 //        };
+
+
         return (
             <div key={data.name} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
@@ -341,27 +344,27 @@ export default class ReactGrid extends React.Component {
 //        
         /* ALBUM OK */
         
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//          }
-        
-        /* CONCERT OK */
-        
        for (var x in actual_JSON.objects) {
            console.log(x);
            if(x < 3)
-               gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+               gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
            else if(x < 6)
-               gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+               gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
            else
-               gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+               gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
          }
+        
+        /* CONCERT OK */
+        
+       // for (var x in actual_JSON.objects) {
+       //     console.log(x);
+       //     if(x < 3)
+       //         gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+       //     else if(x < 6)
+       //         gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+       //     else
+       //         gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+       //   }
         
         /* TRACK */
         
@@ -406,6 +409,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"concerts"}/>,
+ <ReactGrid gridType={"albums"}/>,
  document.getElementById('content')
 );
