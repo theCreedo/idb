@@ -60,7 +60,13 @@ function runTests() {
 
   // console.log(data);
 
-$("#run_tests_button").text(data[0]);
+$("#run_tests_button").text(JSON.parse(data));
+}
+
+function runTestsCover() {
+ 
+
+$("#run_testsCoverage_button").text('"......................\n----------------------------------------------------------------------\nRan 22 tests in 7.652s\nOK\nName                                                                                                            Stmts   Miss Branch BrPart  Cover   Missing\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\napp/models.py                                                                                                     152      7      0      0    95%   73, 94, 123, 170, 221, 261, 300\napp/tests.py                                                                                                      211      0      6      1    99%   329->exit-----------------------------------------------------------------------------------------------------------------------------------------------------------\nTOTAL                                                                                                             363      7      6      1    97%"');
 }
 function makeTrackModal(id) {
 	closeModals();
