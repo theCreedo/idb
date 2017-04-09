@@ -163,7 +163,7 @@ export default class ReactGrid extends React.Component {
         var data;
         xmlHTTP.onload = function(e)
         {
-            console.log("Getting on load: " + this.response);
+            // console.log("Getting on load: " + this.response);
             data = this.response;
         }
 
@@ -398,7 +398,7 @@ export default class ReactGrid extends React.Component {
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
-                <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={Math.ceil(num_results/9)}/>
+                <Pagination className={"paginationBar"} pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={Math.ceil(num_results/9)}/>
             </div>
         );
     }
