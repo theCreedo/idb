@@ -1,8 +1,9 @@
 #!flask/bin/python
 from flask import Flask, jsonify, url_for, redirect, render_template
-import flask_restless
+import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Venue, Concert, Album, Artist, Track, Artist_Album_Association, app
+from io import StringIO
 
 # Create the Flask-Restless API manager.
 manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
@@ -23,7 +24,6 @@ manager.create_api(Artist_Album_Association, methods=['GET'], results_per_page=9
 @app.route('/home.html')
 def index():
 	return render_template('home.html')
-
 
 
 @app.route('/about')
@@ -59,8 +59,11 @@ def tracks_table():
 def concerts_table():
 	return render_template('/concertsTable.html')
 
-
-
+@app.route('/tests')
+def run_tests():
+	with StringIO() as io:
+		unittest.TextTestRunner(stream=io, verbosity=2).run(unittest.TestLoader().loadTestsFromTestCase(tests.TestCase))
+		return json.dumps('{output:' + io.getvalue() + '}')
 
 # @app.route('/boswe')
 # def api():
