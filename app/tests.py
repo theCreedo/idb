@@ -280,6 +280,52 @@ class TestCase(unittest.TestCase):
         response = requests.get(url + 'nothing')
         self.assertEqual(response.status_code, 404)
 
+    def test_api_redirect(self):
+        response = requests.get(url + 'api')
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_artist_data(self):
+        response = requests.get(url + 'api/artists')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_get_tracks_data(self):
+        response = requests.get(url + 'api/tracks')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_get_albums_data(self):
+        response = requests.get(url + 'api/albums')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_get_concerts_data(self):
+        response = requests.get(url + 'api/concerts')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_get_venues_data(self):
+        response = requests.get(url + 'api/venues')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_sorting(self):
+        attributes = ['artists', 'venues', 'albums', 'concerts', 'tracks']
+        for i in attributes:
+            response = requests.get(url + 'api/sort/'+ i +'/1/name/asc')
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(response.json()["num_results"] > 0)
+
+    def test_filtering(self):
+        attributes = ['artists', 'venues', 'albums', 'concerts', 'tracks']
+        for i in attributes:
+            response = requests.get(url + 'api/filter/' + i + '/1/name/eq/Smash Mouth')
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(response.json()["num_results"] >= 0)
+
+
+
+        
 
 if __name__ == '__main__':
     unittest.main()
