@@ -14,6 +14,7 @@
 
 # import os
 import unittest
+import requests
 
 # from google.appengine.ext import testbed
 
@@ -22,7 +23,7 @@ import unittest
 from models import Track, Artist, Album, Concert, Artist_Album_Association, \
     Concert_AA_Association, db, app, Venue
 
-
+url = 'http://boswemianrhapsody.me/'
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -238,6 +239,46 @@ class TestCase(unittest.TestCase):
                 is None)
         assert (Artist.query.filter_by(name='artist_name').first() is None)
         assert (Album.query.filter_by(name='album_name').first() is None)
+
+    def test_home_redirects(self):
+        response = requests.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    #Tests to see if boswemianrhapsody.me and boswemianrhapsody.me/home.html
+    #are the same page
+    def test_home_default(self):
+        rv = requests.get(url)
+        rv1 = requests.get(url + 'home.html')
+        self.assertEqual(rv.content, rv1.content)
+
+    #Tests to see if routing to about page works
+    def test_about_redirect(self):
+        response = requests.get(url + 'about')
+        self.assertEqual(response.status_code, 200)
+
+
+    #Tests to see if all the tables are accessible
+    def test_table_redirect(self):
+        response = requests.get(url + 'tracksTable')
+        self.assertEqual(response.status_code, 200)
+
+
+        response = requests.get(url + 'artistTable')
+        self.assertEqual(response.status_code, 200)
+
+
+        response = requests.get(url + 'albumsTable')
+        self.assertEqual(response.status_code, 200)
+
+
+        response = requests.get(url + 'concertsTable')
+        self.assertEqual(response.status_code, 200)
+
+
+    #Tests 404 page.
+    def test_404(self):
+        response = requests.get(url + 'nothing')
+        self.assertEqual(response.status_code, 404)
 
 
 if __name__ == '__main__':
