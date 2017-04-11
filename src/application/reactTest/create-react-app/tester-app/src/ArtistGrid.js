@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
+import {Modal} from 'react-bootstrap';
+import {Button} from 'react-bootstrap/lib';
 import 'rc-pagination/assets/index.css';
-import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
+//import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
 import './resources/css/sweStyle.css';
-import Modal from './modalTest';
-import SWEModal from './sweModal.js';
+import './resources/css/pagePO.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import Modal from './modalTest';
+//import SWEModal from './sweModal.js';
 //var Pagination = require('rc-pagination');
 
 class SortingForm extends React.Component {
@@ -93,12 +97,15 @@ export default class ReactGrid extends React.Component {
           currentPage: 1,
           pageSize: 1,
           gridType: props.gridType,
+          modalHTML: '',
           data: JSON.parse(this.makeAPIcall("/api/tracks")),
           showModal: false,
-          modalData: ''
+          modalData: JSON.parse(this.makeAPIcall("/api/artists/3")),
+          modalType: this.props.gridType
         };
         
         this.updateGridData = this.updateGridData.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     
 //    data: JSON.parse(this.makeAPIcall("/api/artists"))
@@ -107,22 +114,25 @@ export default class ReactGrid extends React.Component {
     
    openTrackModal(id) {
        alert('opening track modal ' + id);
-       this.setState({modalData: JSON.parse(makeAPIcall("/api/tracks/" + id))});
+       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/tracks/" + id))});
    }
     
   openArtistModal(id) {
        alert('opening artist modal ' + id);
-       this.setState({modalData: JSON.parse(makeAPIcall("/api/artists/" + id))});
+       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/artists/" + id)),
+                      modalType: 'artists',
+                      showModal: true,
+                      modalHTML: this.artistModal()});
    }
     
    openAlbumModal(id) {
        alert('opening album modal ' + id);
-       this.setState({modalData: JSON.parse(makeAPIcall("/api/albums/" + id))});
+       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/albums/" + id))});
    }
     
   openConcertModal(id) {
        alert('opening concert modal ' + id);
-       this.setState({modalData: JSON.parse(makeAPIcall("/api/concerts/" + id))});
+       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/concerts/" + id))});
    }
     
    closeModal() {
@@ -168,16 +178,7 @@ export default class ReactGrid extends React.Component {
     makeAPIcall( call ) {
         var xmlHTTP = new XMLHttpRequest();
 
-//        call = "www.boswemianrhapsody.me" + call;
-//        xmlHTTP.open('GET',"https://api-content.dropbox.com/1/files/auto/" + file + "?access_token=" + auth,false);
-//        xmlHTTP.overrideMimeType("application/json");
         xmlHTTP.open('GET',call,false);
-
-//        xmlHTTP.setRequestHeader("Access-Control-Allow-Origin","*");
-//        xmlHTTP.setRequestHeader("Content-Type","application/json");
-
-        // Arraybuffer response to put into B64
-        //xmlHTTP.responseType = 'text';
 
         var data;
         xmlHTTP.onload = function(e)
@@ -199,11 +200,7 @@ export default class ReactGrid extends React.Component {
     createGridItemConcert(data) {
         var aap = JSON.parse(this.makeAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
         var artist = JSON.parse(this.makeAPIcall("/api/artists/" + aap.artist_id));
-//        var artist = {
-//            id: -1,
-//            name: 'frontend',
-//            image_url: 'http://thedosemusic.com/wp-content/uploads/2016/03/Screen-Shot-2016-03-02-at-1.51.37-PM.png'
-//        };
+       
         return (
             <div key={data.id} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
@@ -228,7 +225,7 @@ export default class ReactGrid extends React.Component {
                 <img className="sweGridImage" src={data.album.album_cover_url}></img>
                 <h2 className="sweGridItemHeading"><a onClick={() =>{this.openTrackModal(data.id)}} id={data.id} className="trackModalTgt">{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Artist: <a id={data.artist.id} className="artistModalTgt">{data.artist.name}</a></p>
+                <p className="sweGridItemContent">Artist: <a onClick={() =>{this.openArtistModal(data.artist.id)}} id={data.artist.id} className="artistModalTgt">{data.artist.name}</a></p>
                 <p className="sweGridItemContent">Album: <a id={data.album.id} className="albumModalTgt">{data.album.name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
                 <p className="sweGridItemContent">Duration: {(data.duration/1000)} Seconds</p>
@@ -249,7 +246,7 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.album_cover_url}></img>
-                 <h2 className="sweGridItemHeading"><a id={data.id} className="albumModalTgt">{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a onClick={() =>{this.openAlbumModal(data.id)}} id={data.id} className="albumModalTgt">{data.name}</a></h2>
                 <hr></hr>
                 <p className="sweGridItemContent">Artist: <a id={albumArtist.id} className="artistModalTgt">{albumArtist.name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
@@ -292,6 +289,121 @@ export default class ReactGrid extends React.Component {
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
             </div>
         );    
+    }
+
+    makeAlbumMasonry(imgUrl, albumTitle, albumId) {
+        return (
+            <div key={albumTitle+albumId} className='grid-item'>
+                <div className='grid-item-content'>
+                    <div className='MartistCellImgContainer'><img src={imgUrl}/></div>
+                    <div className='MartistCellInfoContainer'>
+                        <h3 className='artistInfo-title'>{albumTitle}</h3>
+                        <br></br>
+                        <button onClick={() => this.props.albumModalFn(albumId)} className='btn btn-default'>Go to Album</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    
+    makeArtistMasonry(imgUrl, artistName, artistId) {
+        return (
+            <div key={artistName+artistId} className='grid-item'>
+                <div className='grid-item-content'>
+                    <div className='MartistCellImgContainer'><img src={imgUrl}/></div>
+                    <div className='MartistCellInfoContainer'>
+                        <h3 className='artistInfo-title'>{artistName}</h3>
+                        <br></br>
+                        <button onClick={() => this.props.artistModalFn(artistId)} className='btn btn-default'>Artist</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    artistModal() {
+        var data, pop_track, albums, albumMasonry;
+        var backgroundStyle;
+        
+        data = this.state.modalData;
+        pop_track = data.tracks[data.tracks.length-1];
+        albums = data.albums;
+        albumMasonry = [];
+        
+        console.log("Album in artist modal: " + data.album);
+        
+        /* Set image for header */
+        backgroundStyle = {
+            background: 'url(' + data.image_url + ') no-repeat center center'
+        };
+//                    background-size: 'cover' 
+
+        
+        for (var x in albums) {
+            var alb = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/albums/"+ albums[x].album_id));
+            albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id));
+        }
+        
+        console.log("Returning artist modal with artist " + data.id);
+        
+        return (
+            <Modal.Body>
+            <div className="content-section-a">
+                <div className="container popupInfoHeader">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <h1 className="popupInfoTitle">{data.name}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="content-section-b">
+                <div className="artistInfoCoverImg" style={backgroundStyle}></div>
+            </div>
+            <div className="content-section-a">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-12 col-md-6">
+                            <hr className="popupHeaderSpacer"></hr>
+                            <div className="clearfix"></div>
+                            <h2 className="popupDetailHeader">Country</h2>
+                            <h3 className="popupDetailContent">{data.country}</h3>
+                        </div>
+                        <div className="col-xs-12 col-md-6">
+                            <hr className="popupHeaderSpacer"></hr>
+                            <div className="clearfix"></div>
+                            <h2 className="popupDetailHeader">Decade</h2>
+                            <h3 className="popupDetailContent">{data.decade}</h3>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-md-6">
+                            <hr className="popupHeaderSpacer"></hr>
+                            <div className="clearfix"></div>
+                            <h2 className="popupDetailHeader">Genres</h2>
+                            <h3 className="popupDetailContent">{data.genre}</h3>
+                        </div>
+                        <div className="col-xs-12 col-md-6">
+                            <hr className="popupHeaderSpacer"></hr>
+                            <div className="clearfix"></div>
+                            <h2 className="popupDetailHeader">Most Popular</h2>
+                            <div className="spotifyContainer">
+                                <iframe className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + pop_track.spotify_uri} frameborder={"0"} allowtransparency={"true"}></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <hr className="popupHeaderSpacer"></hr>
+                            <div className="clearfix"></div>
+                            <h2 className="popupDetailHeader">Albums</h2>
+                            <div className="container-fluid grid">{albumMasonry}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </Modal.Body>
+        );
     }
     
     render() {
@@ -372,8 +484,29 @@ export default class ReactGrid extends React.Component {
 //        for (var i = 0; i < links.length; i++) {
 //            gridItems.push(this.createGridItem(jsonData[i]));
 //        }
+//        var modalHTML;
+//        console.log("Modal type " + this.state.modalType);
+//        if (this.state.type == 'tracks') {
+////            modalHTML = this.trackModal();
+//            modalHTML = this.artistModal();
+//        }
+//        else if (this.state.type == 'albums') {
+//            modalHTML = this.albumModal();
+//        }
+//        else if (this.state.type == 'artists') {
+//            modalHTML = this.artistModal();
+//        }
+//        else {
+////            modalHTML = this.concertModal();
+//        }
         
-        console.log("Lookit: griditems: " + gridItems.length);
+
+        
+//        console.log("Lookit: griditems: " + gridItems.length);
+//        console.log("Modal data " + this.state.modalData);
+        console.log("Modal show " + this.state.showModal);
+//        console.log("Modal HTML " + modalHTML);
+//        this.setState({showModal: true});
         var curState = this.state;
         return (
             <div className="container sweGridContainer">
@@ -383,15 +516,36 @@ export default class ReactGrid extends React.Component {
                     </div>
                 </div>
                 <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode) => this.makeSortFilter(sortMode, filterMode)}/>
+                <Button
+                  bsStyle="primary"
+                  bsSize="large"
+                  onClick={this.modalOpen}
+                >
+                  Launch demo modal
+                </Button>
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
                 <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={Math.ceil(num_results/9)}/>
-                <SWEModal type={this.state.gridType} data={this.state.modalData} modalOpen={this.state.showModal} close={this.closeModal} artistModalFn={this.openArtistModal} albumModalFn={this.openAlbumModal} />
+                <Modal bsSize="large" show={this.state.showModal} onHide={this.closeModal}>
+                    {this.state.modalHTML}          
+                  <Modal.Footer>
+                    <Button onClick={this.closeModal}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
             </div>
         );
     }
 }
+
+//<SWEModal type={this.state.modalType} data={this.state.modalData} modalOpen={this.state.showModal} close={this.closeModal} artistModalFn={this.openArtistModal} albumModalFn={this.openAlbumModal} />
+
+//<Modal bsSize={"large"} show={this.state.modalOpen} onHide={this.closeModal}>
+//                  {modalHTML}            
+//                  <Modal.Footer>
+//                    <Button onClick={this.closeModal}>Close</Button>
+//                  </Modal.Footer>
+//                </Modal>
 
 
 ReactDOM.render(

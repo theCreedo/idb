@@ -1,8 +1,9 @@
 import React from 'react';
-import Modal from 'react-bootstrap';
+import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap';
 
 export default class SWEModal extends React.Component {
-    constructor() {
+    constructor(props) {
         super(props);
         this.state = {
             type: this.props.type,
@@ -110,15 +111,17 @@ export default class SWEModal extends React.Component {
         albums = data.albums;
         albumMasonry = [];
         
+        console.log("Album in artist modal: " + data.album);
+        
         /* Set image for header */
         backgroundStyle = {
-            background: 'url(' + data.album.album_cover_url + ') no-repeat center center'
+            background: 'url(' + data.image_url + ') no-repeat center center'
         };
 //                    background-size: 'cover' 
 
         
         for (var x in albums) {
-            var alb = JSON.parse(makeAPIcall("http://www.boswemianrhapsody.me/api/albums/"+ albums[x].album_id));
+            var alb = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/albums/"+ albums[x].album_id));
             albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id));
         }
         
@@ -184,18 +187,22 @@ export default class SWEModal extends React.Component {
     
     render() {
         var modalHTML;
-        if (this.state.type == 'track') {
-            modalHTML = this.trackModal();
+        console.log("Modal type " + this.state.type);
+        if (this.state.type == 'tracks') {
+//            modalHTML = this.trackModal();
+            modalHTML = this.artistModal();
         }
-        else if (this.state.type == 'album') {
+        else if (this.state.type == 'albums') {
             modalHTML = this.albumModal();
         }
-        else if (this.state.type == 'artist') {
+        else if (this.state.type == 'artists') {
             modalHTML = this.artistModal();
         }
         else {
-            modalHTML = this.concertModal();
+//            modalHTML = this.concertModal();
         }
+        
+        this.setState({modalOpen: true});
         
         return (
             <Modal bsSize={"large"} show={this.state.modalOpen} onHide={this.props.close}>
@@ -207,3 +214,5 @@ export default class SWEModal extends React.Component {
         );
     }
 }
+
+//<SWEModal type={this.state.modalType} data={this.state.modalData} modalOpen={this.state.showModal} close={this.closeModal} artistModalFn={this.openArtistModal} albumModalFn={this.openAlbumModal} />

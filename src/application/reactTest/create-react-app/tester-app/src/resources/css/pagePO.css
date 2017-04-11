@@ -37,8 +37,8 @@
 /* General header for details */
 .popupDetailHeader {
 	text-align: center;
-	color: font-size: 4em;
-    color: rgb(74, 162, 209);;
+    font-size: 4em;
+    color: rgb(74, 162, 209);
     text-shadow:#000 1px 1px 1px;
     margin-bottom: 30px;
 }
