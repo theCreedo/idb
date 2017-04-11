@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
-import './resources/css/sweStyle.css'
-// import Modal from './modalTest';w
+import './resources/css/sweStyle.css';
+import Modal from './modalTest';
+import SWEModal from './sweModal.js';
 //var Pagination = require('rc-pagination');
 
 class SortingForm extends React.Component {
@@ -65,6 +66,23 @@ class SortingForm extends React.Component {
   }
 }
 
+/* React Bootstrap REQUIRES these imports 
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"> (WE IMPORT THIS)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/<react-version>/react.min.js"></script> (GOT IT)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/<react-version>/react-dom.min.js"></script> (GOT IT)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/<version>/react-bootstrap.min.js"></script> (NPM THIS npm install react-bootstrap)
+    
+    https://react-bootstrap.github.io/components.html#modals
+*/
+
+//class SWEModal extends React.Component {
+//    constructor(props) {
+//        
+//    }
+//}
+
 export default class ReactGrid extends React.Component {
     
     constructor(props){
@@ -75,7 +93,9 @@ export default class ReactGrid extends React.Component {
           currentPage: 1,
           pageSize: 1,
           gridType: props.gridType,
-          data: JSON.parse(this.makeAPIcall("/api/tracks"))
+          data: JSON.parse(this.makeAPIcall("/api/tracks")),
+          showModal: false,
+          modalData: ''
         };
         
         this.updateGridData = this.updateGridData.bind(this);
@@ -84,34 +104,50 @@ export default class ReactGrid extends React.Component {
 //    data: JSON.parse(this.makeAPIcall("/api/artists"))
     
 //    JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
-
-    // componentDidMount() {
-    //     this.refs.nv.addEventListener("nv-enter", this.updateGridData);
-    // }
-
-    // componentWillUnmount() {
-    //     this.refs.nv.removeEventListener("nv-enter", this.updateGridData);
-    // }
+    
+   openTrackModal(id) {
+       alert('opening track modal ' + id);
+       this.setState({modalData: JSON.parse(makeAPIcall("/api/tracks/" + id))});
+   }
+    
+  openArtistModal(id) {
+       alert('opening artist modal ' + id);
+       this.setState({modalData: JSON.parse(makeAPIcall("/api/artists/" + id))});
+   }
+    
+   openAlbumModal(id) {
+       alert('opening album modal ' + id);
+       this.setState({modalData: JSON.parse(makeAPIcall("/api/albums/" + id))});
+   }
+    
+  openConcertModal(id) {
+       alert('opening concert modal ' + id);
+       this.setState({modalData: JSON.parse(makeAPIcall("/api/concerts/" + id))});
+   }
+    
+   closeModal() {
+       this.setState({showModal: false});
+   }
     
    updateGridData(current, pageSize) {
        var cur = current;
        if(cur == undefined)
            cur = 1;
-        console.log("State current " + this.state.currentPage + " passed current " + cur + " this is " + this.state.data + " and this " + pageSize);
+//        console.log("State current " + this.state.currentPage + " passed current " + cur + " this is " + this.state.data + " and this " + pageSize);
         this.setState({currentPage: cur});
         this.pageChange(cur);
    }
 
    makeSortFilter(sortMode, filterMode) {
-       console.log("Sort from the grid " + sortMode + " filter " + filterMode);
+//       console.log("Sort from the grid " + sortMode + " filter " + filterMode);
        this.setState({sortMode: sortMode});
        this.setState({filterMode: filterMode});
-       console.log("And here from my state: Sort: " + this.state.sortMode + " and filter " + this.state.filterMode);
+//       console.log("And here from my state: Sort: " + this.state.sortMode + " and filter " + this.state.filterMode);
        this.updateGridData(this.state.currentPage);
    }
     
    pageChange(current) {
-       console.log("I am on change listenr", current);
+       //console.log("I am on change listenr", current);
        var sort;
        var filter = this.state.filterMode;
        var page = current;
@@ -127,28 +163,6 @@ export default class ReactGrid extends React.Component {
 //       this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page))});
         // console.log(props);
    }
-    
-//  componentDidMount() {
-//     this.updateGridData();
-//  }
-
-    onChange(current, pageSize) {
-      console.log('onChange:current=', current);
-      console.log('onChange:pageSize=', pageSize);
-      console.log(this);
-        
-//      this.pageChange(current);
-
-      // onChangeListener(this);
-      // this.setState({
-      //   currentPage: current
-      // });
-      // this.setState({currentPage: current});
-//      this.setState({data: })
-    
-      /* Using the current, we can change the query to ask for this specific 
-      page of results. We can use page size if needed? */
-    }
     
     /* Returns parsed JSON object of API results */
     makeAPIcall( call ) {
@@ -168,7 +182,7 @@ export default class ReactGrid extends React.Component {
         var data;
         xmlHTTP.onload = function(e)
         {
-            console.log("Getting on load: " + this.response);
+//            console.log("Getting on load: " + this.response);
             data = this.response;
         }
 
@@ -180,42 +194,11 @@ export default class ReactGrid extends React.Component {
         return data;
     }
     
-//    fetchData( url ) {
-//        fetch("www.boswemianrhapsody.me/api/artists", {
-//          method: "GET",
-//          headers: {
-//            "Content-Type": "application/json",
-//            "Access-Control-Allow-Origin": "http://boswemianrhapsody.me/"
-//          }
-//        }).then(function(response) {
-//          console.log(response.status);
-//          console.log(response.text());
-////          console.log(response.json());
-//          return response.json();
-//        }, function(error) {
-//          console.log(error.message);
-//        })
-//    }
-//    
-//    /* Function that gets the spotlight JSON */
-//    makeAPIcallJSON(callback) {
-//
-//        var xobj = new XMLHttpRequest();
-//            xobj.overrideMimeType("application/json");
-//        xobj.open('GET', 'www.boswemianrhapsody.me/api/artists', true); // Replace 'my_data' with the path to your file
-//        xobj.onreadystatechange = function () {
-//              if (xobj.readyState == 4 && xobj.status == "200") {
-//                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-//                console.log(xobj.responseText);
-//                callback(xobj.responseText);
-//              }
-//        };
-//        xobj.send(null);
-//     }
+    
     
     createGridItemConcert(data) {
-        var aap = JSON.parse(modalAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
-        var artist = JSON.parse(modalAPIcall("/api/artists/" + aap.artist_id));
+        var aap = JSON.parse(this.makeAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
+        var artist = JSON.parse(this.makeAPIcall("/api/artists/" + aap.artist_id));
 //        var artist = {
 //            id: -1,
 //            name: 'frontend',
@@ -243,7 +226,7 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.album.album_cover_url}></img>
-                 <h2 className="sweGridItemHeading"><a id={data.id} className="trackModalTgt">{data.name}</a></h2>
+                <h2 className="sweGridItemHeading"><a onClick={() =>{this.openTrackModal(data.id)}} id={data.id} className="trackModalTgt">{data.name}</a></h2>
                 <hr></hr>
                 <p className="sweGridItemContent">Artist: <a id={data.artist.id} className="artistModalTgt">{data.artist.name}</a></p>
                 <p className="sweGridItemContent">Album: <a id={data.album.id} className="albumModalTgt">{data.album.name}</a></p>
@@ -282,7 +265,7 @@ export default class ReactGrid extends React.Component {
         
 //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
         
-        console.log(data.name + " Size: " + data.tracks.length);
+//        console.log(data.name + " Size: " + data.tracks.length);
         
         var mostPopularTrack;
         if (data.tracks != undefined)
@@ -326,7 +309,7 @@ export default class ReactGrid extends React.Component {
             alert("'CRAP. Could not load data! RUINING THE APP! Sorry!' - Alex Jones");
         }
         
-        console.log(actual_JSON);
+//        console.log(actual_JSON);
         
         const num_results = actual_JSON.num_results;
         const pageSize = this.state.pageSize;
@@ -404,6 +387,7 @@ export default class ReactGrid extends React.Component {
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
                 <Pagination pageSize={this.state.pageSize} defaultCurrent={1} current={this.state.currentPage} onChange={this.updateGridData} total={Math.ceil(num_results/9)}/>
+                <SWEModal type={this.state.gridType} data={this.state.modalData} modalOpen={this.state.showModal} close={this.closeModal} artistModalFn={this.openArtistModal} albumModalFn={this.openAlbumModal} />
             </div>
         );
     }
