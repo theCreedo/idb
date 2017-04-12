@@ -118,12 +118,13 @@ export default class ReactGrid extends React.Component {
    }
     
   openArtistModal(id) {
-       alert('opening artist modal ' + id);
-       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/artists/" + id)),
-                      modalType: 'artists',
-                      showModal: true,
-                      modalHTML: this.artistModal()});
-   }
+      alert('opening artist modal ' + id);
+      var data = JSON.parse(this.makeAPIcall("/api/artists/" + id));
+//      this.setState({modalData: data});
+      this.setState({modalData: 'artistis'});
+      this.setState({modalHTML: this.artistModal(data)});
+      this.setState({showModal: true});
+  }
     
    openAlbumModal(id) {
        alert('opening album modal ' + id);
@@ -321,11 +322,11 @@ export default class ReactGrid extends React.Component {
         );
     }
 
-    artistModal() {
-        var data, pop_track, albums, albumMasonry;
+    artistModal(data) {
+        var pop_track, albums, albumMasonry;
         var backgroundStyle;
         
-        data = this.state.modalData;
+//        data = this.state.modalData;
         pop_track = data.tracks[data.tracks.length-1];
         albums = data.albums;
         albumMasonry = [];
