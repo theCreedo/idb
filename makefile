@@ -59,8 +59,8 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-.PHONY: IDB1.out
-IDB1.out: .pylintrc
+.PHONY: tests.out
+tests.out: .pylintrc
 	-$(PYLINT) ./app/tests.py
 	-$(COVERAGE) run    --branch app/tests.py >  app/tests.tmp 2>&1
 	-$(COVERAGE) report -m                      >> app/tests.tmp
@@ -107,9 +107,14 @@ status:
 	git status
 # 	make clean
 
-test: IDB1.html IDB1.log IDB1.out
+test: IDB1.html IDB1.log tests.out
 	ls -al
 	make check
+
+build:
+	cd ./app
+	pip install -r requirements.txt
+	cd ./..
 
 versions:
 	which make

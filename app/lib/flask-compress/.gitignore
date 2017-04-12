@@ -1,0 +1,8 @@
+*.pyc
+*build/
+dist/
+*egg*/
+venv*/
+*~
+cover/
+.coverage

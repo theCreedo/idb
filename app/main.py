@@ -1,10 +1,14 @@
 #!flask/bin/python
+
+from flask_compress import Compress
 from flask import Flask, jsonify, url_for, redirect, render_template
 import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Venue, Concert, Album, Artist, Track, Artist_Album_Association, app
 from io import StringIO
 
+Compress(app)
+compress = Compress()
 # Create the Flask-Restless API manager.
 manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 
