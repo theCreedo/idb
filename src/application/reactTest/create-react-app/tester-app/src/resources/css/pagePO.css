@@ -61,7 +61,7 @@
 .albumInfoCoverImg {
 	min-height: 300px;
 	min-width: 100%;
-
+    background-size: cover;
 	max-height: 300px;
 }
 
@@ -83,6 +83,7 @@
 .artistInfoCoverImg {
 	min-height: 300px;
 	min-width: 100%;
+    background-size: cover;
 	max-height: 300px;
 }
 

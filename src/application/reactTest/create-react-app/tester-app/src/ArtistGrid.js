@@ -130,13 +130,19 @@ export default class ReactGrid extends React.Component {
   }
     
    openAlbumModal(id) {
-       alert('opening album modal ' + id);
-       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/albums/" + id))});
+      alert('opening album modal ' + id);
+      var data = JSON.parse(this.makeAPIcall("/api/albums/" + id));
+      this.setState({modalData: 'albums'});
+      this.setState({modalHTML: this.albumModal(data)});
+      this.setState({showModal: true});
    }
     
   openConcertModal(id) {
        alert('opening concert modal ' + id);
-       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/concerts/" + id))});
+      var data = JSON.parse(this.makeAPIcall("/api/concerts/" + id));
+      this.setState({modalData: 'concerts'});
+      this.setState({modalHTML: this.concertModal(data)});
+      this.setState({showModal: true});
    }
     
    closeModal() {
@@ -325,6 +331,142 @@ export default class ReactGrid extends React.Component {
         );
     }
     
+    albumModal(data) {
+        var backgroundStyle, artistMasonry;
+        var art = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artists/"+ data.artists[0].artist_id));
+        
+        artistMasonry = this.makeArtistMasonry(art.image_url, art.name, art.id);
+        
+        backgroundStyle = {
+            background: 'url(' + data.album_cover_url + ') no-repeat center center'
+        };
+        
+        return (
+            <Modal.Body>
+                <div className="content-section-a">
+                    <div className="container popupInfoHeader">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <h1 className="popupInfoTitle">{data.name}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="content-section-b">
+                    <div id ="albumCoverArtTgt" className="albumInfoCoverImg" style={backgroundStyle}></div>
+                </div>
+                <div className="content-section-a">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Artists</h2>
+                                <div id="albumGridTgt" className="grid container-fluid">{artistMasonry}</div>
+                            </div>
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Genre</h2>
+                                <h3 id ="albumGenreTgt" className="popupDetailContent">{data.genre}</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Label</h2>
+                                <h3 id="albumLabelTgt" className="popupDetailContent">{data.label}</h3>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Date</h2>
+                                <h3 id="albumDateTgt" className="popupDetailContent">{data.release_date}</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-8">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Songs</h2>
+                                <h3 id="albumSongTgt" className="popupDetailContent">{data.number_of_tracks}</h3>
+                                <div className="spotifyContainer">
+                                    <iframe id ="albumSpotifyEmbed" className="popupSpotifyPlaylist" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal.Body>
+        );
+    }
+    
+    concertModal(data) {
+        var backgroundStyle, artistMasonry;
+        var aaid = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
+	    var art = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artists/"+ aaid.artist_id));
+        
+        artistMasonry = this.makeArtistMasonry(art.image_url, data.name, art.id);
+        
+        backgroundStyle = {
+            background: 'url(' + data.album.album_cover_url + ') no-repeat center center'
+        };
+        
+        return (
+            <Modal.Body>
+                <div className="content-section-a">
+                    <div className="container popupInfoHeader">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <h1 className="popupInfoTitle">{data.name}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="content-section-b">
+                    <div id ="albumCoverArtTgt" className="albumInfoCoverImg" style={backgroundStyle}></div>
+                </div>
+                <div className="content-section-a">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Venue</h2>
+                                <h3 id="concertVenueTgt" className="popupDetailContent">{data.venue.name}</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Date</h2>
+                                <h3 id="concertDateTgt" className="popupDetailContent">{data.date}</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Time</h2>
+                                <h3 id="concertTimeTgt" className="popupDetailContent">{data.time}</h3>
+                            </div>
+                        </div>
+                        <div claclassNamess="row">
+                            <div className="col-xs-12 col-md-4">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Link</h2>
+                                <h3 className="popupDetailContent"><a target={"_blank"} href={data.event_link}>More Info</a></h3>
+                            </div>
+                            <div className="col-xs-12 col-md-12">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Lineup</h2>
+                                <div id="concertLineupTgt" className="grid container-fluid">{artistMasonry}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal.Body>
+        );
+    }
+    
     trackModal(data) {
         
         var explicitStyle, backgroundStyle, masonryAlbums, masonryArtists; 
@@ -413,7 +555,7 @@ export default class ReactGrid extends React.Component {
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Song</h2>
                                 <div className="spotifyContainer">
-                                    <iframe id="trackSpotifyEmbed" className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameborder={"0"} allowtransparency={"true"}></iframe>
+                                    <iframe id="trackSpotifyEmbed" className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
                                 </div>
                             </div>
                         </div>
@@ -490,7 +632,7 @@ export default class ReactGrid extends React.Component {
                             <div className="clearfix"></div>
                             <h2 className="popupDetailHeader">Most Popular</h2>
                             <div className="spotifyContainer">
-                                <iframe className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + pop_track.spotify_uri} frameborder={"0"} allowtransparency={"true"}></iframe>
+                                <iframe className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + pop_track.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
                             </div>
                         </div>
                     </div>
