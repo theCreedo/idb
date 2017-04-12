@@ -442,7 +442,7 @@ html { overflow-y:scroll; }
 }
 
 .aboutImage {
-    border:1px solid #021a40;
+    border:1px solid black;
     object-fit: cover;
     width: 200px;
     height: 200px;
