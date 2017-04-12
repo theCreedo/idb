@@ -113,8 +113,11 @@ export default class ReactGrid extends React.Component {
 //    JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
     
    openTrackModal(id) {
-       alert('opening track modal ' + id);
-       this.setState({modalData: JSON.parse(this.makeAPIcall("/api/tracks/" + id))});
+      alert('opening track modal ' + id);
+      var data = JSON.parse(this.makeAPIcall("/api/tracks/" + id));
+      this.setState({modalData: 'tracks'});
+      this.setState({modalHTML: this.trackModal(data)});
+      this.setState({showModal: true});
    }
     
   openArtistModal(id) {
@@ -227,7 +230,7 @@ export default class ReactGrid extends React.Component {
                 <h2 className="sweGridItemHeading"><a onClick={() =>{this.openTrackModal(data.id)}} id={data.id} className="trackModalTgt">{data.name}</a></h2>
                 <hr></hr>
                 <p className="sweGridItemContent">Artist: <a onClick={() =>{this.openArtistModal(data.artist.id)}} id={data.artist.id} className="artistModalTgt">{data.artist.name}</a></p>
-                <p className="sweGridItemContent">Album: <a id={data.album.id} className="albumModalTgt">{data.album.name}</a></p>
+                <p className="sweGridItemContent">Album: <a onClick={() =>{this.openAlbumModal(data.album.id)}} id={data.album.id} className="albumModalTgt">{data.album.name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
                 <p className="sweGridItemContent">Duration: {(data.duration/1000)} Seconds</p>
                 <p className="sweGridItemContent">Popularity: {data.popularity}</p>
@@ -319,6 +322,104 @@ export default class ReactGrid extends React.Component {
                     </div>
                 </div>
             </div>
+        );
+    }
+    
+    trackModal(data) {
+        
+        var explicitStyle, backgroundStyle, masonryAlbums, masonryArtists; 
+        
+        /* Set explicit tag */
+        if (data.explicit == false) {
+            explicitStyle = {
+                display: 'none'
+            };
+        }
+        else {
+            explicitStyle = {
+                display: 'block'
+            }
+        }
+        
+        /* Set image for header */
+        backgroundStyle = {
+            background: 'url(' + data.album.album_cover_url + ') no-repeat center center'
+        };
+        
+        masonryAlbums = this.makeAlbumMasonry(data.album.album_cover_url, data.album.name, data.album.id);
+        masonryArtists = this.makeArtistMasonry(data.artist.image_url, data.artist.name, data.artist.id);
+        
+        return (
+            <Modal.Body>
+                <div className="content-section-a">
+                    <div className="container popupInfoHeader">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <h1 id="trackTitleTgt" className="popupInfoTitle">{data.name}<span style={explicitStyle} className="label label-danger popupExplicitMarker">Explicit</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="content-section-b">
+                    <div id="trackArtistImgTgt" className="albumInfoCoverImg" style={backgroundStyle}></div>
+                </div>
+                <div className="content-section-a">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-xs-12 col-md-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Genre</h2>
+                                <h3 id="trackGenreTgt" className="popupDetailContent">{data.genre}</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Date Released</h2>
+                                <h3 id="trackDateTgt" className="popupDetailContent">{data.release_date}</h3>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12 col-md-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Duration</h2>
+                                <h3 id="trackDurationTgt" className="popupDetailContent">{data.duration/1000} seconds</h3>
+                            </div>
+                            <div className="col-xs-12 col-md-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Popularity</h2>
+                                <h3 id="trackPopularityTgt" className="popupDetailContent">{data.popularity}</h3>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Artists</h2>
+                                <div id="trackArtistsTgt" className="grid container-fluid">{masonryArtists}</div>
+                            </div>
+                            <div className="col-xs-6">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Albums</h2>
+                                <div id="trackAlbumsTgt" className="grid container-fluid">{masonryAlbums}</div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12 col-md-12">
+                                <hr className="popupHeaderSpacer"></hr>
+                                <div className="clearfix"></div>
+                                <h2 className="popupDetailHeader">Song</h2>
+                                <div className="spotifyContainer">
+                                    <iframe id="trackSpotifyEmbed" className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameborder={"0"} allowtransparency={"true"}></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal.Body>
         );
     }
 
@@ -517,13 +618,6 @@ export default class ReactGrid extends React.Component {
                     </div>
                 </div>
                 <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode) => this.makeSortFilter(sortMode, filterMode)}/>
-                <Button
-                  bsStyle="primary"
-                  bsSize="large"
-                  onClick={this.modalOpen}
-                >
-                  Launch demo modal
-                </Button>
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
