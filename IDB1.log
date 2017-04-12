@@ -1,3 +1,173 @@
+commit 31da19ff4c114b91372971b2e6a4eed842bfffcb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 21:35:27 2017 -0500
+
+    Fixed it to be one click update the modal.
+
+commit 36b417f8802270d811f7ff00aceb07b900ad69ee
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 21:24:19 2017 -0500
+
+    Very rough artist modal via react bootstrap in tester-app
+
+commit 36723c8da79903bd1d9d0160be269f7276f073ef
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 19:02:39 2017 -0500
+
+    Added everything so far. Starting to debug
+
+commit 3d80caa32d8ce880c72e57572e4eb7e2b763dc4f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:58:30 2017 -0500
+
+    put in test coverage
+
+commit ff7238fd24bce69396bdbbe3de1f442938095308
+Merge: 35b0578 a3c817a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:52:10 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 35b0578ea88a6331b858fcb0d6d45f1ecf4b685a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:52:01 2017 -0500
+
+    put in the button for run test on about page
+
+commit a3c817a23d19bf26b86556b38699e6e97f0522a9
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:44:27 2017 -0500
+
+    Added more tests
+
+commit f78a684f7ad6512cdd9e2760d341eea866da0d59
+Merge: 2a1c392 f593cd0
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:12:14 2017 -0500
+
+    Merged branch master into master
+
+commit 2a1c392e6712ebb36d0448b43b58d0dfb0e614c9
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:12:07 2017 -0500
+
+    Added backend unit tests
+
+commit f593cd080c873df74e640d8ab4c69178d49aae8b
+Merge: e01e4d5 66b404c
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:05:00 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e01e4d55436b35f2b47c21abc1f435794311de78
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:04:57 2017 -0500
+
+    updating modal titles for each page
+
+commit 66b404c01d651c0764b9bb584a305731cbb9cb1c
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 21:01:55 2017 -0500
+
+    Update modal listeners to take out logs and reflect on Tracy's new html
+
+commit 334998c5792ebf139fe95521cb4b8ec8f396e0fd
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Sat Apr 8 19:33:41 2017 -0500
+
+    added endpoint to flask-restless api to run tests and return output in json format
+
+commit c716d25666c8fbaf27969d6dbbb2383f45b8ead7
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 19:03:56 2017 -0500
+
+    removing static bootstrap + pagination center for concerts
+
+commit d7d99f97b1b4ef8c19ba3043cbc19608d34d77a2
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:52:27 2017 -0500
+
+    Put the about template back
+
+commit e7ce5e1d0362731c20caa9bebdecc4f163af2876
+Merge: 29b6637 76426ed
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:30:43 2017 -0500
+
+    Merge branch 'frontend'
+
+commit 29b663770ad4f9cf7e2c73249f441089d9007683
+Merge: 65b4198 e88100e
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 17:23:30 2017 -0500
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+    
+    Conflicts:
+    	app/tests.py
+
+commit 65b4198eeff9acefe5b8ec3465bc3995d576e3b0
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 17:22:40 2017 -0500
+
+    Added all frontend files
+
+commit 76426ed23053ec0920533e827239a8c27715a6ad
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:01:36 2017 -0500
+
+    concert bundle
+
+commit 08d64bde3f3a96b22aa192389bc206e4aab45b19
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 15:00:26 2017 -0500
+
+    Replaced the stuff. Put in the app static portion
+
+commit 98d2fdfdf9743e7e3f8838ae1efd33e1a699d980
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:45:17 2017 -0500
+
+    Removed non-db related tests
+
+commit 38a69a9a760f0c706c4f8c83800ff25d27d8820d
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:44:09 2017 -0500
+
+    Added 404 content
+
+commit d1cfccdd2d872c562d574bd68f604f80507ec52e
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:43:27 2017 -0500
+
+    Added CORS support, added new API endpoint
+
+commit 5a19c234a1328a6b4db8c1c85ec10d02c1fc00b6
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 13:41:32 2017 -0500
+
+    Got a lottle stuck in the mud.. Can't remember everything but I know that I finished a bunch of listeners and the models here in the .js for each element. Configured with prop for gridtype trying to test to see if I did the concerts modals right
+
+commit e88100ec3b6ccb1387e6f854a50a440167805e37
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 21:58:57 2017 -0500
+
+    Add files
+
+commit bf89d702f97ba84922dde439392ba46b1a7a13c0
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 21:58:35 2017 -0500
+
+    commit finish
+
+commit 51e32b3922a3ccb206352f5434739d1957ba6c45
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 21:46:44 2017 -0500
+
+    Done with modal templates for artists, albums and concerts. Kinda done with the java, which currently kinda lives in my aswaggyp local.
+
 commit 02329714850d15b2c18e1a8ee520564042fd5812
 Merge: 21356af 89500b1
 Author: brodgers <rodgers.benjamin@utexas.edu>
@@ -42,6 +212,24 @@ Date:   Fri Apr 7 18:47:32 2017 -0500
 
     merge create and delete tests for safety
 
+commit eec286e89a6c28e8e0dd39ed8f5584369261c5a2
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 18:13:54 2017 -0500
+
+    Quote production ready for artists complete with api calls quote ready for tracy to test on his magic computer
+
+commit 00863816cb1c6da62947baaf66253d257b121568
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 17:32:14 2017 -0500
+
+    Tracks are good to go! All we lack are modals and API calls
+
+commit 0f8966b28c6f5389bb73ad28e19b9b96de6ef1e3
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 17:19:55 2017 -0500
+
+    Concerts grid is ready to go. Updated the event link
+
 commit e991b7f39ac12a303c38c135073d3666387ae9dc
 Author: Eric Lee <hownl96@gmail.com>
 Date:   Fri Apr 7 17:07:28 2017 -0500
@@ -61,6 +249,12 @@ Date:   Fri Apr 7 16:51:48 2017 -0500
 
     modified makefile
 
+commit d7f0ef6513162f97c1759f39acc665a8e9664efb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 16:41:28 2017 -0500
+
+    Just added the grid populators for the other types. About to test albums
+
 commit e867c202da3a67c4859d8e334b4fb8654bd2eb57
 Author: Eric Lee <hownl96@gmail.com>
 Date:   Fri Apr 7 16:31:51 2017 -0500
@@ -78,6 +272,12 @@ Author: brodgers <rodgers.benjamin@utexas.edu>
 Date:   Fri Apr 7 16:24:35 2017 -0500
 
     dummy commit to synch makefile changes for nandhini
+
+commit 7c2486d6cb7447d4bfc569713eecb33da8e2f7a5
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 16:18:58 2017 -0500
+
+    Sort buttons work! Just can occasionally take more than one click sometimeessssssss
 
 commit 2bc254b09286f9e4fcd7da53eddd72bb11392d36
 Author: brodgers <rodgers.benjamin@utexas.edu>
@@ -179,6 +379,12 @@ Date:   Fri Apr 7 10:56:25 2017 -0500
 
     changed all the id checks to is checks
 
+commit c8312d114f97f24d84e3af9508a3472c7be2b42f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Fri Apr 7 10:51:07 2017 -0500
+
+    Got the grid static working
+
 commit 0b5501e03e436e67da7baf77cf9780dd7c9979cc
 Merge: e14794c 9dcaf0c
 Author: brodgers <rodgers.benjamin@utexas.edu>
@@ -192,11 +398,36 @@ Date:   Fri Apr 7 10:48:20 2017 -0500
 
     imposed ordering on tests for db so tests are passing
 
+commit 7bf5c6c7e0f77b8e2e0a32fe9f76d955384bec9a
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 10:27:42 2017 -0500
+
+    Added cors workaround?
+
 commit 9dcaf0cac9c9e41fcb6edd55473f342a15bec60c
 Author: Nandhini Lakuduva <Nandhini@wireless-10-147-29-115.public.utexas.edu>
 Date:   Fri Apr 7 10:06:37 2017 -0500
 
     changed ordering of deletion to avoid cascading errors
+
+commit b2a13d624c12957aed3c74eb6b440becfc604a06
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 10:04:24 2017 -0500
+
+    Request WAS NOT working. Try tracy TRY
+
+commit abc5a02d876917e318e2b6f46b10c32cfd01bdca
+Merge: 4a9397f 73e1aeb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 08:50:08 2017 -0500
+
+    Merge branch 'master' into frontend
+
+commit 4a9397feaf7043826da17933d8c4919457267082
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 08:46:13 2017 -0500
+
+    Not sure where my last commit was. Saving here with the sort and filter responding to the submit correctly and the pagination working.
 
 commit 73e1aeb264eafe76848772315f557483fdca6ccb
 Author: Emran Shafaq <emran.shafaq@gmail.com>
@@ -285,6 +516,24 @@ Date:   Thu Apr 6 20:32:53 2017 -0500
 
     added 'uri' to track and albums constructors
 
+commit 39a4cbbeaf432ae9be6ff5fb7e0fb66c8b413814
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 20:28:30 2017 -0500
+
+    Tracy assumed so here is his ass-um-ingly working modal in the artist grid
+
+commit 09ea45411573c62ac2d768f06ca9195a5a7b6100
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 20:13:22 2017 -0500
+
+    The modal module
+
+commit a8af8208b5c45ae7f3d05d86dd926bb024b9318b
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 20:12:15 2017 -0500
+
+    Redid sorting with a form. Seems to work correctly.
+
 commit a11b27c0ef3e4856a4508826193882c5368243bf
 Author: Nandhini Lakuduva <Nandhini@wireless-10-147-251-160.public.utexas.edu>
 Date:   Thu Apr 6 19:49:06 2017 -0500
@@ -297,11 +546,35 @@ Date:   Thu Apr 6 19:31:03 2017 -0500
 
     Added query formats for API sort and filter
 
+commit 0446ddeb083787cbb12a585daa1108ae37db279c
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:51:58 2017 -0500
+
+    Fixed pagination. Now working yeet.
+
+commit 8899fdf9c8bdda10ae7874fd20e9670a74f4ad00
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:24:22 2017 -0500
+
+    Mostly working paginationish kinda. Initial state of page one is not working
+
+commit c8976773457a6ef8a8d4cbded1c98660d0afa129
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:12:46 2017 -0500
+
+    Working on pagination having incorrect this
+
 commit 1ed75d50f1cfc76cb44d90cd88b4bd7265f97ae1
 Author: Eric Lee <hownl96@utexas.edu>
 Date:   Thu Apr 6 18:09:24 2017 -0500
 
     Refactored API calls to represent correct JSON output
+
+commit a55b1e685fbba6be999363597873cb076022453f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 17:15:41 2017 -0500
+
+    exported modal functions
 
 commit c483b1e261fce16b555b79a5c3c9b830bbf26675
 Author: brodgers <rodgers.benjamin@utexas.edu>
@@ -316,12 +589,127 @@ Date:   Thu Apr 6 17:09:35 2017 -0500
 
     Merge branch 'master' into ben-dev
 
+commit 2081e55d5b6922c94eb652f7844e0fcaf4524abc
+Merge: 8b9a8a0 e8a399e
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 16:40:34 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit 8b9a8a01f3982a62f62139c38c65af76162be5fe
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 16:40:01 2017 -0500
+
+    Finishing up work on the grid html instanced. Finishing up the concerts.
+
+commit e8a399eac219488598c22ae06a38a9d610a61dd4
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:41:28 2017 -0500
+
+    Changed props to state
+
+commit 767f635e48ed72702047a29123a2cdd31f900c8c
+Merge: 43f573b 98a2b85
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:25:43 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit 43f573bcedd24d6e87122137988638bce2de7d54
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:25:31 2017 -0500
+
+    updating webpack to build css
+
+commit 98a2b855ca9268b04f3843c1a1199b17cff5fc15
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 15:24:52 2017 -0500
+
+    Trying to figure out data state.
+
+commit fd24a4d5ef02d55c37cf56a1d5d6eb768c79fc27
+Merge: fe6f2a4 40c2c6e
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 14:18:56 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit fe6f2a4868c4ed17d7c92d6e1846972576e33d04
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 14:18:52 2017 -0500
+
+    webpack bundler
+    
+    put exportable module into main.js and run webpack (npm install first if not done so). Should give a bundle.js into dist that imports under the id ="content"
+
+commit 40c2c6ea687b58c957c9e0a24522246103f8aa70
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 14:17:10 2017 -0500
+
+    Added pagination and listeners to the artistGrid.js item
+
 commit 2f6602013fdb3a4abf43951f62447903791baf44
 Merge: ee0dccb 3bbf811
 Author: Emran Shafaq <emran.shafaq@gmail.com>
 Date:   Thu Apr 6 14:04:22 2017 -0500
 
     Merged branch master into master
+
+commit d1eb0352d4d0f3da8464e1d3bdd0f16483fdb804
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 12:07:28 2017 -0500
+
+    Pushing now with nav bar losely applied. Looks like we need to figure out how to package the CSS
+
+commit 79f76fb6b7a35ed69df31893fe882c54fd65ba0d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 11:36:10 2017 -0500
+
+    Kinda functioning singular example now! in tester app
+
+commit e8f6c2a4a466c92087176898f5bcb5aba816ab38
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 11:35:01 2017 -0500
+
+    removed a  thing
+
+commit 8e4282fea9987f9239e624ce5d0bc593821e4a04
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 11:10:47 2017 -0500
+
+    update package.json to include router-dom and rc-pagination
+
+commit fe27105a6dc497b2af3119bacdb3d890a282ec55
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 10:54:40 2017 -0500
+
+    Trying to work with different things. Trying to render the component from different file.
+
+commit 39db058fc805a01b77df3377585991e62fef6103
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 10:14:14 2017 -0500
+
+    Getting started with create react app and also react router
+
+commit 311271d77797e84a57f29dc3cea09a7abd0c69c8
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 09:30:56 2017 -0500
+
+    Working on the different types now... Looking more and more favorable for a one page app now. Artist table essentially done.
+
+commit c898bfde25cc8918ace995e34b99cf846186d704
+Merge: 56a0be2 3bbf811
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 08:36:10 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb into frontend
+
+commit 56a0be27f596c9799fb20bb5fad2f3f19e3c66d2
+Merge: 816b264 60f2f3d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 08:32:39 2017 -0500
+
+    Merge branch 'master' into frontend
 
 commit 3bbf8114f71848a113dc0eecd0be83dcee198544
 Author: Eric Lee <hownl96@gmail.com>
@@ -347,6 +735,18 @@ Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
 Date:   Thu Apr 6 00:52:33 2017 -0500
 
     Added tests checking deleting associations
+
+commit 816b2648480cced89dc3689e89290f930e201581
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 00:45:15 2017 -0500
+
+    Fixed decades not working  due to extra s
+
+commit 6c5d99559f56a70b02cb55cdb6aba59596a7d0a5
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 00:42:21 2017 -0500
+
+    FIRST WORKING GRID EXAMPLE
 
 commit 56404b46c9e2922e0a9a6e97bddcf8630770f14f
 Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
@@ -385,6 +785,12 @@ Date:   Wed Apr 5 23:07:25 2017 -0500
 
     pushed json files for example artists query for frontend testing
 
+commit cc4183be9ed5e2f1f066436ae4aef72b76dcfb1f
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 5 22:28:11 2017 -0500
+
+    Added the simple stupid react example.
+
 commit a1f8aac0f4552c423c1246d5e4318f09eb90b52f
 Author: brodgers <rodgers.benjamin@utexas.edu>
 Date:   Wed Apr 5 21:51:46 2017 -0500
@@ -409,6 +815,12 @@ Author: brodgers <rodgers.benjamin@utexas.edu>
 Date:   Wed Apr 5 21:41:19 2017 -0500
 
     added spotify_uri to track and album
+
+commit 366b023b1bba31d655ed712788526a84fb5ce106
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 5 21:12:54 2017 -0500
+
+    material UI webpack + node framework
 
 commit 765c0fbedc3bbdf6217d295222c52bc0401b7330
 Merge: 034a52b 0195a7f
@@ -646,6 +1058,12 @@ Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
 Date:   Thu Mar 30 17:21:59 2017 -0500
 
     added postgres connection models.py, reformatted models.py and tests.py with make format
+
+commit b79f85edd510af3a303441d2eae190b30a6a1519
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Mar 29 21:59:34 2017 -0500
+
+    Added our little react tester. We have the filter bar working?
 
 commit ec0109058c6e585956a7461112ec9eb722c5d9f4
 Author: Benjamin Rodgers <rodgers.benjamin@utexas.edu>
