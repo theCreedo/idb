@@ -112,9 +112,7 @@ test: IDB1.html IDB1.log tests.out
 	make check
 
 build:
-	cd ./app
-	pip install -r requirements.txt
-	cd ./..
+	pip install -r ./app/requirements.txt
 
 versions:
 	which make
