@@ -252,7 +252,7 @@ class Venue(db.Model):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-# db.create_all()
+db.create_all()
 
 # Drop Tables when necessary
 # db.reflect()

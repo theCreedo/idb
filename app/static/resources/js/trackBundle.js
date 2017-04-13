@@ -326,9 +326,9 @@
 	            sortMode: 'az',
 	            currentPage: 1,
 	            pageSize: 1,
-	            gridType: props.gridType,
+	            gridType: _this2.props.gridType,
 	            modalHTML: '',
-	            data: JSON.parse(_this2.makeAPIcall("/api/" + _this2.props.gridType)),
+	            data: JSON.parse(_this2.makeAPIcall("/api/" + _this2.props.gridType + "?page=" + 1 + "&q={\"order_by\":[{\"field\":\"name\",\"direction\":\"asc\"}]}")),
 	            showModal: false,
 	            modalData: '',
 	            modalType: _this2.props.gridType
@@ -652,6 +652,8 @@
 	    }, {
 	        key: 'createGridItemArtist',
 	        value: function createGridItemArtist(data) {
+	            var _this6 = this;
+
 	            //const popularSong = getSongInfo(data.popularSong);
 
 	            //        <h2 className="sweGridItemHeading"><a onClick={() => this.handleClick({data})}>{data.name}</a></h2>
@@ -679,7 +681,9 @@
 	                    { className: 'sweGridItemHeading' },
 	                    _react2.default.createElement(
 	                        'a',
-	                        { id: data.id, className: 'artistModalTgt' },
+	                        { id: data.id, onClick: function onClick() {
+	                                _this6.openArtistModal(data.id);
+	                            }, className: 'artistModalTgt' },
 	                        data.name
 	                    )
 	                ),
@@ -690,7 +694,9 @@
 	                    'Popular Song: ',
 	                    _react2.default.createElement(
 	                        'a',
-	                        { id: mostPopularTrack.id, className: 'trackModalTgt' },
+	                        { id: mostPopularTrack.id, onClick: function onClick() {
+	                                _this6.openTrackModal(mostPopularTrack.id);
+	                            }, className: 'trackModalTgt' },
 	                        mostPopularTrack.name
 	                    )
 	                ),
@@ -717,7 +723,7 @@
 	    }, {
 	        key: 'makeAlbumMasonry',
 	        value: function makeAlbumMasonry(imgUrl, albumTitle, albumId) {
-	            var _this6 = this;
+	            var _this7 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -742,7 +748,7 @@
 	                        _react2.default.createElement(
 	                            'button',
 	                            { onClick: function onClick() {
-	                                    return _this6.openAlbumModal(albumId);
+	                                    return _this7.openAlbumModal(albumId);
 	                                }, className: 'btn btn-default' },
 	                            'Go to Album'
 	                        )
@@ -753,7 +759,7 @@
 	    }, {
 	        key: 'makeArtistMasonry',
 	        value: function makeArtistMasonry(imgUrl, artistName, artistId) {
-	            var _this7 = this;
+	            var _this8 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -778,7 +784,7 @@
 	                        _react2.default.createElement(
 	                            'button',
 	                            { onClick: function onClick() {
-	                                    return _this7.openArtistModal(artistId);
+	                                    return _this8.openArtistModal(artistId);
 	                                }, className: 'btn btn-default' },
 	                            'Artist'
 	                        )
@@ -1432,7 +1438,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this8 = this;
+	            var _this9 = this;
 
 	            var gridItems = [];
 	            var gridItems2 = [];
@@ -1533,7 +1539,7 @@
 	                    )
 	                ),
 	                _react2.default.createElement(SortingForm, { sortMode: this.state.sortMode, filterMode: this.state.filterMode, onChange: function onChange(sortMode, filterMode) {
-	                        return _this8.makeSortFilter(sortMode, filterMode);
+	                        return _this9.makeSortFilter(sortMode, filterMode);
 	                    } }),
 	                _react2.default.createElement(
 	                    'div',
