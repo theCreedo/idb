@@ -4,7 +4,7 @@ from flask_compress import Compress
 from flask import Flask, jsonify, url_for, redirect, render_template
 import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
-from models import db, Venue, Concert, Album, Artist, Track, Artist_Album_Association, app
+from models import db, Venue, Concert, Album, Artist, Track, app
 from io import StringIO
 
 Compress(app)
@@ -19,7 +19,6 @@ manager.create_api(Concert, methods=['GET'], results_per_page=9)
 manager.create_api(Album, methods=['GET'], results_per_page=9)
 manager.create_api(Artist, methods=['GET'], results_per_page=9)
 manager.create_api(Track, methods=['GET'], results_per_page=9)
-manager.create_api(Artist_Album_Association, methods=['GET'], results_per_page=9)
 
 
 @app.route('/')
