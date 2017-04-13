@@ -328,7 +328,7 @@
 	            pageSize: 1,
 	            gridType: props.gridType,
 	            modalHTML: '',
-	            data: JSON.parse(_this2.makeAPIcall("/api/tracks")),
+	            data: JSON.parse(_this2.makeAPIcall("/api/" + _this2.props.type)),
 	            showModal: false,
 	            modalData: '',
 	            modalType: _this2.props.gridType
@@ -445,6 +445,8 @@
 	    }, {
 	        key: 'createGridItemConcert',
 	        value: function createGridItemConcert(data) {
+	            var _this3 = this;
+
 	            var artist = data.artist;
 
 	            return _react2.default.createElement(
@@ -458,7 +460,9 @@
 	                    { className: 'sweGridItemHeading' },
 	                    _react2.default.createElement(
 	                        'a',
-	                        { id: data.id, className: 'concertModalTgt' },
+	                        { id: data.id, onClick: function onClick() {
+	                                _this3.openConcertModal(data.id);
+	                            }, className: 'concertModalTgt' },
 	                        data.name
 	                    )
 	                ),
@@ -475,7 +479,9 @@
 	                    'Artists: ',
 	                    _react2.default.createElement(
 	                        'a',
-	                        { id: artist.id, className: 'artistModalTgt' },
+	                        { id: artist.id, onClick: function onClick() {
+	                                _this3.openArtistModal(artist.id);
+	                            }, className: 'artistModalTgt' },
 	                        artist.name
 	                    )
 	                ),
@@ -506,7 +512,7 @@
 	    }, {
 	        key: 'createGridItemTrack',
 	        value: function createGridItemTrack(data) {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -520,7 +526,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { onClick: function onClick() {
-	                                _this3.openTrackModal(data.id);
+	                                _this4.openTrackModal(data.id);
 	                            }, id: data.id, className: 'trackModalTgt' },
 	                        data.name
 	                    )
@@ -533,7 +539,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { onClick: function onClick() {
-	                                _this3.openArtistModal(data.artist.id);
+	                                _this4.openArtistModal(data.artist.id);
 	                            }, id: data.artist.id, className: 'artistModalTgt' },
 	                        data.artist.name
 	                    )
@@ -545,7 +551,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { onClick: function onClick() {
-	                                _this3.openAlbumModal(data.album.id);
+	                                _this4.openAlbumModal(data.album.id);
 	                            }, id: data.album.id, className: 'albumModalTgt' },
 	                        data.album.name
 	                    )
@@ -580,7 +586,7 @@
 	    }, {
 	        key: 'createGridItemAlbum',
 	        value: function createGridItemAlbum(data) {
-	            var _this4 = this;
+	            var _this5 = this;
 
 	            var albumArtist = data.artist;
 	            //        var albumArtist = {
@@ -599,7 +605,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { onClick: function onClick() {
-	                                _this4.openAlbumModal(data.id);
+	                                _this5.openAlbumModal(data.id);
 	                            }, id: data.id, className: 'albumModalTgt' },
 	                        data.name
 	                    )
@@ -611,7 +617,9 @@
 	                    'Artist: ',
 	                    _react2.default.createElement(
 	                        'a',
-	                        { id: albumArtist.id, className: 'artistModalTgt' },
+	                        { id: albumArtist.id, onClick: function onClick() {
+	                                _this5.openArtistModal(albumArtist.id);
+	                            }, className: 'artistModalTgt' },
 	                        albumArtist.name
 	                    )
 	                ),
@@ -709,7 +717,7 @@
 	    }, {
 	        key: 'makeAlbumMasonry',
 	        value: function makeAlbumMasonry(imgUrl, albumTitle, albumId) {
-	            var _this5 = this;
+	            var _this6 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -734,7 +742,7 @@
 	                        _react2.default.createElement(
 	                            'button',
 	                            { onClick: function onClick() {
-	                                    return _this5.openAlbumModal(albumId);
+	                                    return _this6.openAlbumModal(albumId);
 	                                }, className: 'btn btn-default' },
 	                            'Go to Album'
 	                        )
@@ -745,7 +753,7 @@
 	    }, {
 	        key: 'makeArtistMasonry',
 	        value: function makeArtistMasonry(imgUrl, artistName, artistId) {
-	            var _this6 = this;
+	            var _this7 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -770,7 +778,7 @@
 	                        _react2.default.createElement(
 	                            'button',
 	                            { onClick: function onClick() {
-	                                    return _this6.openArtistModal(artistId);
+	                                    return _this7.openArtistModal(artistId);
 	                                }, className: 'btn btn-default' },
 	                            'Artist'
 	                        )
@@ -1424,7 +1432,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this7 = this;
+	            var _this8 = this;
 
 	            var gridItems = [];
 	            var gridItems2 = [];
@@ -1453,27 +1461,27 @@
 	            //        
 	            /* ALBUM OK */
 
-	            //        for (var x in actual_JSON.objects) {
-	            //            console.log(x);
-	            //            if(x < 3)
-	            //                gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //            else if(x < 6)
-	            //                gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //            else
-	            //                gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //          }
+	            // for (var x in actual_JSON.objects) {
+	            //     console.log(x);
+	            //     if(x < 3)
+	            //         gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //     else if(x < 6)
+	            //         gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //     else
+	            //         gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //   }
 
 	            /* CONCERT OK */
 
-	            //        for (var x in actual_JSON.objects) {
-	            //            console.log(x);
-	            //            if(x < 3)
-	            //                gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
-	            //            else if(x < 6)
-	            //                gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
-	            //            else
-	            //                gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
-	            //          }
+	            // for (var x in actual_JSON.objects) {
+	            //     console.log(x);
+	            //     if(x < 3)
+	            //         gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+	            //     else if(x < 6)
+	            //         gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+	            //     else
+	            //         gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+	            //   }
 
 	            /* TRACK */
 
@@ -1536,7 +1544,7 @@
 	                    )
 	                ),
 	                _react2.default.createElement(SortingForm, { sortMode: this.state.sortMode, filterMode: this.state.filterMode, onChange: function onChange(sortMode, filterMode) {
-	                        return _this7.makeSortFilter(sortMode, filterMode);
+	                        return _this8.makeSortFilter(sortMode, filterMode);
 	                    } }),
 	                _react2.default.createElement(
 	                    'div',
