@@ -90,7 +90,7 @@ class SortingForm extends React.Component {
   }
 
   render() {
-      var options = this.artistOptions();
+      var options = this.concertOptions();
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -465,7 +465,7 @@ export default class ReactGrid extends React.Component {
                     <div id ="albumCoverArtTgt" className="albumInfoCoverImg" style={backgroundStyle}></div>
                 </div>
                 <div className="content-section-a">
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row">
                             <div className="col-xs-12 col-md-4">
                                 <hr className="popupHeaderSpacer"></hr>
@@ -493,7 +493,7 @@ export default class ReactGrid extends React.Component {
                                 <h2 className="popupDetailHeader">Link</h2>
                                 <h3 className="popupDetailContent"><a target={"_blank"} href={data.event_link}>More Info</a></h3>
                             </div>
-                            <div className="col-xs-12 col-md-12">
+                            <div className="col-xs-12 col-md-8">
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Lineup</h2>
@@ -832,6 +832,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"artists"}/>,
+ <ReactGrid gridType={"concerts"}/>,
  document.getElementById('content')
 );
