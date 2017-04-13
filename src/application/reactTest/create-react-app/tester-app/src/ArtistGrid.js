@@ -90,7 +90,7 @@ class SortingForm extends React.Component {
   }
 
   render() {
-      var options = this.concertOptions();
+      var options = this.artistOptions();
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -136,9 +136,9 @@ export default class ReactGrid extends React.Component {
           sortMode: 'az',
           currentPage: 1,
           pageSize: 1,
-          gridType: props.gridType,
+          gridType: this.props.gridType,
           modalHTML: '',
-          data: JSON.parse(this.makeAPIcall("/api/" + this.props.gridType)),
+          data: JSON.parse(this.makeAPIcall("/api/" + this.props.gridType + "?page=" + 1 + "&q={\"order_by\":[{\"field\":\"name\",\"direction\":\"asc\"}]}")),
           showModal: false,
           modalData: '',
           modalType: this.props.gridType
@@ -330,9 +330,9 @@ export default class ReactGrid extends React.Component {
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={data.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a id={data.id} className="artistModalTgt">{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a id={data.id} onClick={() =>{this.openArtistModal(data.id)}} className="artistModalTgt">{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Popular Song: <a id={mostPopularTrack.id} className="trackModalTgt">{mostPopularTrack.name}</a></p>
+                <p className="sweGridItemContent">Popular Song: <a id={mostPopularTrack.id} onClick={() =>{this.openTrackModal(mostPopularTrack.id)}} className="trackModalTgt">{mostPopularTrack.name}</a></p>
                 <p className="sweGridItemContent">Artist Country: {data.country}</p>
                 <p className="sweGridItemContent">Genres: {data.genre}</p>
                 <p className="sweGridItemContent">Artist Decades: {data.decade}</p>
@@ -832,6 +832,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"albums"}/>,
+ <ReactGrid gridType={"artists"}/>,
  document.getElementById('content')
 );
