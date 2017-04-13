@@ -11,6 +11,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
+from flask_whooshee import Whooshee, AbstractWhoosheer
 
 # Establish connection between Flask app and Postgres database
 app = Flask(__name__)
@@ -20,11 +21,12 @@ app.config[
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
+whooshee = Whooshee(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
 
-
+# @whooshee.register_model('name', 'genre', '')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -252,7 +254,7 @@ class Venue(db.Model):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-db.create_all()
+# db.create_all()
 
 # Drop Tables when necessary
 # db.reflect()
@@ -260,4 +262,4 @@ db.create_all()
 
 
 # Commit changes
-db.session.commit()
+# db.session.commit()
