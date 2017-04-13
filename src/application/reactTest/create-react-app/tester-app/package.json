@@ -9,6 +9,7 @@
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
+    "react-masonry-component": "^5.0.4",
     "react-modal": "^1.7.3",
     "react-router-dom": "^4.0.0",
     "whatwg-fetch": "^2.0.3"

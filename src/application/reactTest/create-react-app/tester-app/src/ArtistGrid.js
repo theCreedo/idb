@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Pagination from 'rc-pagination';
 import {Modal} from 'react-bootstrap';
 import {Button} from 'react-bootstrap/lib';
+import Masonry from 'react-masonry-component';
 import 'rc-pagination/assets/index.css';
 //import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
  import './resources/css/sweStyle.css';
@@ -185,6 +186,7 @@ export default class ReactGrid extends React.Component {
       this.setState({modalData: 'concerts'});
       this.setState({modalHTML: this.concertModal(data)});
       this.setState({showModal: true});
+      
    }
     
    closeModal() {
@@ -377,6 +379,7 @@ export default class ReactGrid extends React.Component {
     
     makeArtistMasonry(imgUrl, artistName, artistId, state) {
         console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
+        
         return (
             <div key={artistName+artistId} className='grid-item'>
                 <div onClick={(e) => this.masonryClick(e)} className={this.state.masonryToggle ? 'grid-item-content expand-coverArt' : 'grid-item-content'}>
@@ -423,7 +426,7 @@ export default class ReactGrid extends React.Component {
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Artists</h2>
-                                <div id="albumGridTgt" data-masonry={"{'itemSelector':'.grid-item'}"}className="grid container-fluid">{artistMasonry}</div>
+                                <Masonry className={"grid container-fluid"} elementType={'div'}>{artistMasonry}</Masonry>
                             </div>
                             <div className="col-xs-12 col-md-4">
                                 <hr className="popupHeaderSpacer"></hr>
@@ -460,6 +463,8 @@ export default class ReactGrid extends React.Component {
             </Modal.Body>
         );
     }
+
+//<div id="albumGridTgt" data-masonry={"{'itemSelector':'.grid-item'}"}className="grid container-fluid">{artistMasonry}</div>
     
     concertModal(data) {
         var backgroundStyle, artistMasonry;
@@ -519,7 +524,7 @@ export default class ReactGrid extends React.Component {
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Lineup</h2>
-                                <div id="concertLineupTgt" className="grid container-fluid">{artistMasonry}</div>
+                                <Masonry className={"grid container-fluid"} elementType={'div'}>{artistMasonry}</Masonry>
                             </div>
                         </div>
                     </div>
@@ -527,6 +532,8 @@ export default class ReactGrid extends React.Component {
             </Modal.Body>
         );
     }
+
+//<div id="concertLineupTgt" className="grid container-fluid" data-masonry='{ "itemSelector": ".grid-item"}'>{artistMasonry}</div>
     
     trackModal(data) {
         
@@ -601,13 +608,13 @@ export default class ReactGrid extends React.Component {
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Artists</h2>
-                                <div id="trackArtistsTgt" className="grid container-fluid">{masonryArtists}</div>
+                                <Masonry className={"grid container-fluid"} elementType={'div'}>{masonryArtists}</Masonry>
                             </div>
                             <div className="col-xs-6">
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Albums</h2>
-                                <div id="trackAlbumsTgt" className="grid container-fluid">{masonryAlbums}</div>
+                                <Masonry className={"grid container-fluid"} elementType={'div'}>{masonryAlbums}</Masonry>
                             </div>
                         </div>
                         <div className="row">
@@ -702,7 +709,7 @@ export default class ReactGrid extends React.Component {
                             <hr className="popupHeaderSpacer"></hr>
                             <div className="clearfix"></div>
                             <h2 className="popupDetailHeader">Albums</h2>
-                            <div className="container-fluid grid">{albumMasonry}</div>
+                            <Masonry className={"grid container-fluid"} elementType={'div'}>{albumMasonry}</Masonry>
                         </div>
                     </div>
                 </div>
