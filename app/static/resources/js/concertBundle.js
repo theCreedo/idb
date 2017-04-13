@@ -328,7 +328,7 @@
 	            pageSize: 1,
 	            gridType: props.gridType,
 	            modalHTML: '',
-	            data: JSON.parse(_this2.makeAPIcall("/api/" + _this2.props.type)),
+	            data: JSON.parse(_this2.makeAPIcall("/api/" + _this2.props.gridType)),
 	            showModal: false,
 	            modalData: '',
 	            modalType: _this2.props.gridType
@@ -1452,48 +1452,37 @@
 	            var num_results = actual_JSON.num_results;
 	            var pageSize = this.state.pageSize;
 
-	            /* ARTIST OK */
+	            var gridType = this.state.gridType;
 
-	            // for (var x in actual_JSON.objects) {
-	            //     console.log(x);
-	            //     if(x < 3)
-	            //         gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
-	            //     else if(x < 6)
-	            //         gridItems2.push(this.createGridItemArtist(actual_JSON.objects[x]));
-	            //     else
-	            //         gridItems3.push(this.createGridItemArtist(actual_JSON.objects[x]));
-	            //   }
-	            //        
-	            /* ALBUM OK */
+	            if (gridType == "artists") {
+	                /* ARTIST OK */
 
-	            // for (var x in actual_JSON.objects) {
-	            //     console.log(x);
-	            //     if(x < 3)
-	            //         gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //     else if(x < 6)
-	            //         gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //     else
-	            //         gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //   }
+	                for (var x in actual_JSON.objects) {
+	                    console.log(x);
+	                    if (x < 3) gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));else if (x < 6) gridItems2.push(this.createGridItemArtist(actual_JSON.objects[x]));else gridItems3.push(this.createGridItemArtist(actual_JSON.objects[x]));
+	                }
+	            } else if (gridType == "albums") {
+	                //        
+	                /* ALBUM OK */
 
-	            /* CONCERT OK */
-
-	            for (var x in actual_JSON.objects) {
-	                console.log(x);
-	                if (x < 3) gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));else if (x < 6) gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));else gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+	                for (var x in actual_JSON.objects) {
+	                    console.log(x);
+	                    if (x < 3) gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));else if (x < 6) gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));else gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	                }
+	            } else if (gridType == "concerts") {
+	                for (var x in actual_JSON.objects) {
+	                    console.log(x);
+	                    if (x < 3) gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));else if (x < 6) gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));else gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+	                }
 	            }
 
 	            /* TRACK */
-
-	            // for (var x in actual_JSON.objects) {
-	            //     console.log(x);
-	            //     if(x < 3)
-	            //         gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
-	            //     else if(x < 6)
-	            //         gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
-	            //     else
-	            //         gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
-	            //   }
+	            else {
+	                    for (var x in actual_JSON.objects) {
+	                        console.log(x);
+	                        if (x < 3) gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));else if (x < 6) gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));else gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
+	                    }
+	                }
 
 	            //        const pagination = this.pagination(1, num_results);
 	            //        gridItems.push(this.createGridItem(actual_JSON[x]));
