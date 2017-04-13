@@ -141,11 +141,13 @@ export default class ReactGrid extends React.Component {
           data: JSON.parse(this.makeAPIcall("/api/" + this.props.gridType + "?page=" + 1 + "&q={\"order_by\":[{\"field\":\"name\",\"direction\":\"asc\"}]}")),
           showModal: false,
           modalData: '',
-          modalType: this.props.gridType
+          modalType: this.props.gridType,
+          masonryToggle: false
         };
         
         this.updateGridData = this.updateGridData.bind(this);
         this.closeModal = this.closeModal.bind(this);
+//        this.masonryClick = this.masonryClick.bind(this);
     }
     
 //    data: JSON.parse(this.makeAPIcall("/api/artists"))
@@ -186,7 +188,7 @@ export default class ReactGrid extends React.Component {
    }
     
    closeModal() {
-       this.setState({showModal: false});
+       this.setState({showModal: false, masonryToggle: false});
    }
     
    updateGridData(current, pageSize) {
@@ -339,13 +341,31 @@ export default class ReactGrid extends React.Component {
             </div>
         );    
     }
+    
+    masonryClick(e) {
+        var foo = e.currentTarget;
+        console.log("Masonry click! Current toggle: " + this.state.masonryToggle + " will be changed to opposite. This: " + e.currentTarget.children);
+//        for (var i = 0; i < foo.children.length; i++) {
+//            console.log(foo.children[i].tagName);
+//        }
+        if (this.state.masonryToggle) {
+            foo.children[0].className = 'MartistCellImgContainer expand-coverArt';
+            foo.children[1].className = 'MartistCellInfoContainer expand-description';
+        }
+        else {
+            foo.children[0].className = 'MartistCellImgContainer';
+            foo.children[1].className = 'MartistCellInfoContainer';
+        }
+        this.setState({masonryToggle: !this.state.masonryToggle});
+    }
 
-    makeAlbumMasonry(imgUrl, albumTitle, albumId) {
+    makeAlbumMasonry(imgUrl, albumTitle, albumId, state) {
+        console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
         return (
             <div key={albumTitle+albumId} className='grid-item'>
-                <div className='grid-item-content'>
-                    <div className='MartistCellImgContainer'><img src={imgUrl}/></div>
-                    <div className='MartistCellInfoContainer'>
+                <div onClick={(e) => this.masonryClick(e)} className='grid-item-content'>
+                    <div className={this.state.masonryToggle ? 'MartistCellImgContainer expand-coverArt' : 'MartistCellImgContainer'}><img src={imgUrl}/></div>
+                    <div className={this.state.masonryToggle ? 'MartistCellInfoContainer expand-description' : 'MartistCellInfoContainer'}>
                         <h3 className='artistInfo-title'>{albumTitle}</h3>
                         <br></br>
                         <button onClick={() => this.openAlbumModal(albumId)} className='btn btn-default'>Go to Album</button>
@@ -355,12 +375,13 @@ export default class ReactGrid extends React.Component {
         );
     }
     
-    makeArtistMasonry(imgUrl, artistName, artistId) {
+    makeArtistMasonry(imgUrl, artistName, artistId, state) {
+        console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
         return (
             <div key={artistName+artistId} className='grid-item'>
-                <div className='grid-item-content'>
-                    <div className='MartistCellImgContainer'><img src={imgUrl}/></div>
-                    <div className='MartistCellInfoContainer'>
+                <div onClick={(e) => this.masonryClick(e)} className={this.state.masonryToggle ? 'grid-item-content expand-coverArt' : 'grid-item-content'}>
+                    <div className={this.state.masonryToggle ? "MartistCellImgContainer expand-coverArt" : "MartistCellImgContainer"}><img src={imgUrl}/></div>
+                    <div className={this.state.masonryToggle ? "MartistCellInfoContainer expand-description" : "MartistCellInfoContainer"}>
                         <h3 className='artistInfo-title'>{artistName}</h3>
                         <br></br>
                         <button onClick={() => this.openArtistModal(artistId)} className='btn btn-default'>Artist</button>
@@ -375,7 +396,7 @@ export default class ReactGrid extends React.Component {
         var art = data.artist;
         
         
-        artistMasonry = this.makeArtistMasonry(art.image_url, art.name, art.id);
+        artistMasonry = this.makeArtistMasonry(art.image_url, art.name, art.id, this.state.masonryToggle);
         
         backgroundStyle = {
             background: 'url(' + data.album_cover_url + ') no-repeat center center'
@@ -444,7 +465,8 @@ export default class ReactGrid extends React.Component {
         var backgroundStyle, artistMasonry;
       var art = data.artist;
         
-        artistMasonry = this.makeArtistMasonry(art.image_url, data.name, art.id);
+        console.log("Making concert modal");
+        artistMasonry = this.makeArtistMasonry(art.image_url, data.name, art.id, this.state.masonryToggle);
         
         backgroundStyle = {
             background: 'url(' + data.album.album_cover_url + ') no-repeat center center'
@@ -486,7 +508,7 @@ export default class ReactGrid extends React.Component {
                                 <h3 id="concertTimeTgt" className="popupDetailContent">{data.time}</h3>
                             </div>
                         </div>
-                        <div claclassNamess="row">
+                        <div className="row">
                             <div className="col-xs-12 col-md-4">
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
@@ -527,8 +549,8 @@ export default class ReactGrid extends React.Component {
             background: 'url(' + data.album.album_cover_url + ') no-repeat center center'
         };
         
-        masonryAlbums = this.makeAlbumMasonry(data.album.album_cover_url, data.album.name, data.album.id);
-        masonryArtists = this.makeArtistMasonry(data.artist.image_url, data.artist.name, data.artist.id);
+        masonryAlbums = this.makeAlbumMasonry(data.album.album_cover_url, data.album.name, data.album.id, this.state.masonryToggle);
+        masonryArtists = this.makeArtistMasonry(data.artist.image_url, data.artist.name, data.artist.id, this.state.masonryToggle);
         
         return (
             <Modal.Body>
@@ -624,7 +646,7 @@ export default class ReactGrid extends React.Component {
         
         for (var x in albums) {
             var alb = albums[x];
-            albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id));
+            albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id,this.state.masonryToggle));
         }
         
         console.log("Returning artist modal with artist " + data.id);
