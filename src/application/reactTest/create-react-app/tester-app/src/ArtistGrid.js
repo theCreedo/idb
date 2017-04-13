@@ -5,9 +5,9 @@ import {Modal} from 'react-bootstrap';
 import {Button} from 'react-bootstrap/lib';
 import 'rc-pagination/assets/index.css';
 //import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
-import './resources/css/sweStyle.css';
-import './resources/css/pagePO.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+ import './resources/css/sweStyle.css';
+ import './resources/css/pagePO.css';
+ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Modal from './modalTest';
 //import SWEModal from './sweModal.js';
 //var Pagination = require('rc-pagination');
@@ -30,6 +30,54 @@ class SortingForm extends React.Component {
   handleFilterChange(event) {
     this.setState({filterMode: event.target.value});
   }
+
+  trackOptions() {
+      return (
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Track Name</option>
+            <option value="artist_id">Group by Artist</option>
+            <option value="album_id">Group by Album</option>
+            <option value="genre">Genre</option>
+            <option value="popularity">Popularity</option>
+            <option value="explicit">Explicit</option>
+            <option value="duration">Length</option>
+            <option value="release_date">Release</option>
+          </select>
+      );
+  }
+    
+  albumOptions() {
+      return (
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Album Name</option>
+            <option value="release_date">Release Date</option>
+            <option value="label">Label</option>
+            <option value="genre">Genre</option>
+            <option value="number_of_tracks">No. of Songs</option>
+          </select>
+      );
+  }
+    
+  artistOptions() {
+      return (
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Artist Name</option>
+            <option value="country">Country</option>
+            <option value="genre">Genre</option>
+            <option value="decade">Decade</option>
+          </select>
+      );
+  }
+    
+  concertOptions() {
+      return (
+          <select value={this.state.value} onChange={this.handleFilterChange}>
+            <option value="name">Artist</option>
+            <option value="date">Country</option>
+            <option value="time">Start Time</option>
+          </select>
+      );
+  }
     
   handleSubmit(event) {
     var sort = this.state.sortMode;
@@ -42,27 +90,19 @@ class SortingForm extends React.Component {
   }
 
   render() {
+      var options = this.concertOptions();
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Sort:
           <select value={this.state.value} onChange={this.handleSortChange}>
-            <option value="az">A to Z</option>
-            <option value="za">Z to A</option>
+            <option value="az">Ascending</option>
+            <option value="za">Descending</option>
           </select>
         </label>
         <label>
           Filter: 
-          <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Track Name</option>
-            <option value="artist_id">Group by Artist</option>
-            <option value="album_id">Group by Album</option>
-            <option value="genre">Genre</option>
-            <option value="popularity">Popularity</option>
-            <option value="explicit">Is explicit</option>
-            <option value="duration">Length</option>
-            <option value="release_date">Release</option>
-          </select>
+          {options}
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -98,9 +138,9 @@ export default class ReactGrid extends React.Component {
           pageSize: 1,
           gridType: props.gridType,
           modalHTML: '',
-          data: JSON.parse(this.makeAPIcall("/api/tracks")),
+          data: JSON.parse(this.makeAPIcall("/api/" + this.props.gridType)),
           showModal: false,
-          modalData: JSON.parse(this.makeAPIcall("/api/artists/3")),
+          modalData: '',
           modalType: this.props.gridType
         };
         
@@ -113,7 +153,7 @@ export default class ReactGrid extends React.Component {
 //    JSON.parse('{"num_results": 3, "objects": [{ "name": "Hans Zimmer","image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852","country": "Germany","decade": "1980s / 1990s / 2000s / 1970s / 2010s","genre": "Soundtracks"},{"name": "Bag Raiders","image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1","country": "Australia","decade": "2000s / 2010s","genre": "Electronica/Dance"},{"name": "Ramin Djawadi","image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6", "country": "Germany","decade": "2000s / 2010s","genre": "Soundtracks"}]}')
     
    openTrackModal(id) {
-      alert('opening track modal ' + id);
+//      alert('opening track modal ' + id);
       var data = JSON.parse(this.makeAPIcall("/api/tracks/" + id));
       this.setState({modalData: 'tracks'});
       this.setState({modalHTML: this.trackModal(data)});
@@ -121,7 +161,7 @@ export default class ReactGrid extends React.Component {
    }
     
   openArtistModal(id) {
-      alert('opening artist modal ' + id);
+//      alert('opening artist modal ' + id);
       var data = JSON.parse(this.makeAPIcall("/api/artists/" + id));
 //      this.setState({modalData: data});
       this.setState({modalData: 'artistis'});
@@ -130,7 +170,7 @@ export default class ReactGrid extends React.Component {
   }
     
    openAlbumModal(id) {
-      alert('opening album modal ' + id);
+//      alert('opening album modal ' + id);
       var data = JSON.parse(this.makeAPIcall("/api/albums/" + id));
       this.setState({modalData: 'albums'});
       this.setState({modalHTML: this.albumModal(data)});
@@ -138,7 +178,7 @@ export default class ReactGrid extends React.Component {
    }
     
   openConcertModal(id) {
-       alert('opening concert modal ' + id);
+//      alert('opening concert modal ' + id);
       var data = JSON.parse(this.makeAPIcall("/api/concerts/" + id));
       this.setState({modalData: 'concerts'});
       this.setState({modalHTML: this.concertModal(data)});
@@ -208,18 +248,17 @@ export default class ReactGrid extends React.Component {
     
     
     createGridItemConcert(data) {
-        var aap = JSON.parse(this.makeAPIcall("/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
-        var artist = JSON.parse(this.makeAPIcall("/api/artists/" + aap.artist_id));
+        var artist = data.artist;
        
         return (
             <div key={data.id} className="col-sm-4 col-xs-12 sweGridItem">
                 <hr className="sweGridItemSpacer"></hr>
                 <div className="clearfix"></div>
                 <img className="sweGridImage" src={artist.image_url}></img>
-                 <h2 className="sweGridItemHeading"><a id={data.id} className="concertModalTgt">{data.name}</a></h2>
+                 <h2 className="sweGridItemHeading"><a id={data.id} onClick={() =>{this.openConcertModal(data.id)}} className="concertModalTgt">{data.name}</a></h2>
                 <hr></hr>
                 <p className="sweGridItemContent">Venue: {data.venue.name}</p>
-                <p className="sweGridItemContent">Artists: <a id={artist.id} className="artistModalTgt">{artist.name}</a></p>
+                <p className="sweGridItemContent">Artists: <a id={artist.id} onClick={() =>{this.openArtistModal(artist.id)}} className="artistModalTgt">{artist.name}</a></p>
                 <p className="sweGridItemContent">Event Link: <a target={"_blank"} href={data.event_link}>Learn More</a></p>
                 <p className="sweGridItemContent">Date: {data.date}</p>
                 <p className="sweGridItemContent">Time: {data.time}</p>
@@ -246,7 +285,7 @@ export default class ReactGrid extends React.Component {
     }
     
     createGridItemAlbum(data) {
-        var albumArtist = this.makeAPIcall("/api/artists/" + data.artists[0].artist_id);
+        var albumArtist = data.artist;
 //        var albumArtist = {
 //            id: 'foo',
 //            name: 'bar'
@@ -258,7 +297,7 @@ export default class ReactGrid extends React.Component {
                 <img className="sweGridImage" src={data.album_cover_url}></img>
                  <h2 className="sweGridItemHeading"><a onClick={() =>{this.openAlbumModal(data.id)}} id={data.id} className="albumModalTgt">{data.name}</a></h2>
                 <hr></hr>
-                <p className="sweGridItemContent">Artist: <a id={albumArtist.id} className="artistModalTgt">{albumArtist.name}</a></p>
+                <p className="sweGridItemContent">Artist: <a id={albumArtist.id} onClick={() =>{this.openArtistModal(albumArtist.id)}} className="artistModalTgt">{albumArtist.name}</a></p>
                 <p className="sweGridItemContent">Released: {data.release_date}</p>
                 <p className="sweGridItemContent">Label: {data.label}</p>
                 <p className="sweGridItemContent">Genre: {data.genre}</p>
@@ -309,7 +348,7 @@ export default class ReactGrid extends React.Component {
                     <div className='MartistCellInfoContainer'>
                         <h3 className='artistInfo-title'>{albumTitle}</h3>
                         <br></br>
-                        <button onClick={() => this.props.albumModalFn(albumId)} className='btn btn-default'>Go to Album</button>
+                        <button onClick={() => this.openAlbumModal(albumId)} className='btn btn-default'>Go to Album</button>
                     </div>
                 </div>
             </div>
@@ -324,7 +363,7 @@ export default class ReactGrid extends React.Component {
                     <div className='MartistCellInfoContainer'>
                         <h3 className='artistInfo-title'>{artistName}</h3>
                         <br></br>
-                        <button onClick={() => this.props.artistModalFn(artistId)} className='btn btn-default'>Artist</button>
+                        <button onClick={() => this.openArtistModal(artistId)} className='btn btn-default'>Artist</button>
                     </div>
                 </div>
             </div>
@@ -333,7 +372,8 @@ export default class ReactGrid extends React.Component {
     
     albumModal(data) {
         var backgroundStyle, artistMasonry;
-        var art = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artists/"+ data.artists[0].artist_id));
+        var art = data.artist;
+        
         
         artistMasonry = this.makeArtistMasonry(art.image_url, art.name, art.id);
         
@@ -362,7 +402,7 @@ export default class ReactGrid extends React.Component {
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Artists</h2>
-                                <div id="albumGridTgt" className="grid container-fluid">{artistMasonry}</div>
+                                <div id="albumGridTgt" data-masonry={"{'itemSelector':'.grid-item'}"}className="grid container-fluid">{artistMasonry}</div>
                             </div>
                             <div className="col-xs-12 col-md-4">
                                 <hr className="popupHeaderSpacer"></hr>
@@ -390,7 +430,7 @@ export default class ReactGrid extends React.Component {
                                 <h2 className="popupDetailHeader">Songs</h2>
                                 <h3 id="albumSongTgt" className="popupDetailContent">{data.number_of_tracks}</h3>
                                 <div className="spotifyContainer">
-                                    <iframe id ="albumSpotifyEmbed" className="popupSpotifyPlaylist" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
+                                    <iframe id ="albumSpotifyEmbed" className="popupSpotifyPlaylist" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowTransparency={"true"}></iframe>
                                 </div>
                             </div>
                         </div>
@@ -402,8 +442,7 @@ export default class ReactGrid extends React.Component {
     
     concertModal(data) {
         var backgroundStyle, artistMasonry;
-        var aaid = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artist_album_pairs/"+ data.artist_album_pairs[0].aa_id));
-	    var art = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/artists/"+ aaid.artist_id));
+      var art = data.artist;
         
         artistMasonry = this.makeArtistMasonry(art.image_url, data.name, art.id);
         
@@ -555,7 +594,7 @@ export default class ReactGrid extends React.Component {
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Song</h2>
                                 <div className="spotifyContainer">
-                                    <iframe id="trackSpotifyEmbed" className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
+                                    <iframe id="trackSpotifyEmbed" className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + data.spotify_uri} frameBorder={"0"} allowTransparency={"true"}></iframe>
                                 </div>
                             </div>
                         </div>
@@ -584,7 +623,7 @@ export default class ReactGrid extends React.Component {
 
         
         for (var x in albums) {
-            var alb = JSON.parse(this.makeAPIcall("http://www.boswemianrhapsody.me/api/albums/"+ albums[x].album_id));
+            var alb = albums[x];
             albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id));
         }
         
@@ -632,7 +671,7 @@ export default class ReactGrid extends React.Component {
                             <div className="clearfix"></div>
                             <h2 className="popupDetailHeader">Most Popular</h2>
                             <div className="spotifyContainer">
-                                <iframe className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + pop_track.spotify_uri} frameBorder={"0"} allowtransparency={"true"}></iframe>
+                                <iframe className="popupSpotifyEmbed" src={"https://embed.spotify.com/?uri=" + pop_track.spotify_uri} frameBorder={"0"} allowTransparency={"true"}></iframe>
                             </div>
                         </div>
                     </div>
@@ -671,53 +710,60 @@ export default class ReactGrid extends React.Component {
         const pageSize = this.state.pageSize;
         
 
+        var gridType = this.state.gridType;
+        
+        if (gridType == "artists") {
         /* ARTIST OK */
         
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemArtist(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemArtist(actual_JSON.objects[x]));
-//          }
+            for (var x in actual_JSON.objects) {
+                console.log(x);
+                if(x < 3)
+                    gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
+                else if(x < 6)
+                    gridItems2.push(this.createGridItemArtist(actual_JSON.objects[x]));
+                else
+                    gridItems3.push(this.createGridItemArtist(actual_JSON.objects[x]));
+              }
+        }
+        else if (gridType == "albums") {
 //        
         /* ALBUM OK */
         
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-//          }
+            for (var x in actual_JSON.objects) {
+                console.log(x);
+                if(x < 3)
+                    gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+                else if(x < 6)
+                    gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+                else
+                    gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+              }
+        }
         
-        /* CONCERT OK */
-        
-//        for (var x in actual_JSON.objects) {
-//            console.log(x);
-//            if(x < 3)
-//                gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//            else if(x < 6)
-//                gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//            else
-//                gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
-//          }
+        else if(gridType == "concerts") {
+           for (var x in actual_JSON.objects) {
+               console.log(x);
+               if(x < 3)
+                   gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
+               else if(x < 6)
+                   gridItems2.push(this.createGridItemConcert(actual_JSON.objects[x]));
+               else
+                   gridItems3.push(this.createGridItemConcert(actual_JSON.objects[x]));
+             }
+        }
         
         /* TRACK */
-        
-        for (var x in actual_JSON.objects) {
-            console.log(x);
-            if(x < 3)
-                gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
-            else if(x < 6)
-                gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
-            else
-                gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
-          }
+        else {
+            for (var x in actual_JSON.objects) {
+             console.log(x);
+             if(x < 3)
+                 gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
+             else if(x < 6)
+                 gridItems2.push(this.createGridItemTrack(actual_JSON.objects[x]));
+             else
+                 gridItems3.push(this.createGridItemTrack(actual_JSON.objects[x]));
+            }
+        }
         
 //        const pagination = this.pagination(1, num_results);
 //        gridItems.push(this.createGridItem(actual_JSON[x]));
@@ -786,6 +832,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"tracks"}/>,
+ <ReactGrid gridType={"albums"}/>,
  document.getElementById('content')
 );
