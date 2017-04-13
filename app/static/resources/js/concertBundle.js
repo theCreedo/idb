@@ -330,7 +330,7 @@
 	            modalHTML: '',
 	            data: JSON.parse(_this2.makeAPIcall("/api/tracks")),
 	            showModal: false,
-	            modalData: JSON.parse(_this2.makeAPIcall("/api/artists/3")),
+	            modalData: '',
 	            modalType: _this2.props.gridType
 	        };
 
@@ -1458,15 +1458,15 @@
 	            //        
 	            /* ALBUM OK */
 
-	            //        for (var x in actual_JSON.objects) {
-	            //            console.log(x);
-	            //            if(x < 3)
-	            //                gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //            else if(x < 6)
-	            //                gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //            else
-	            //                gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
-	            //          }
+	            // for (var x in actual_JSON.objects) {
+	            //     console.log(x);
+	            //     if(x < 3)
+	            //         gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //     else if(x < 6)
+	            //         gridItems2.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //     else
+	            //         gridItems3.push(this.createGridItemAlbum(actual_JSON.objects[x]));
+	            //   }
 
 	            /* CONCERT OK */
 

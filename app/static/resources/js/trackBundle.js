@@ -330,7 +330,7 @@
 	            modalHTML: '',
 	            data: JSON.parse(_this2.makeAPIcall("/api/tracks")),
 	            showModal: false,
-	            modalData: JSON.parse(_this2.makeAPIcall("/api/artists/3")),
+	            modalData: '',
 	            modalType: _this2.props.gridType
 	        };
 
