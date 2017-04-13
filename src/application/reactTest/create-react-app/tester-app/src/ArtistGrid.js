@@ -91,7 +91,7 @@ class SortingForm extends React.Component {
   }
 
   render() {
-      var options = this.concertOptions();
+      var options = this.trackOptions();
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -346,26 +346,41 @@ export default class ReactGrid extends React.Component {
     
     masonryClick(e) {
         var foo = e.currentTarget;
-        console.log("Masonry click! Current toggle: " + this.state.masonryToggle + " will be changed to opposite. This: " + e.currentTarget.children);
+//        console.log("Masonry click! Current toggle: " + this.state.masonryToggle + " will be changed to opposite. This: " + e.currentTarget.children);
 //        for (var i = 0; i < foo.children.length; i++) {
 //            console.log(foo.children[i].tagName);
 //        }
-        if (this.state.masonryToggle) {
+        console.log("Foo value " + foo.getAttribute("data-open"));
+        if(foo.getAttribute("data-open") == 0) {
+//            alert("Elem was closed");
             foo.children[0].className = 'MartistCellImgContainer expand-coverArt';
             foo.children[1].className = 'MartistCellInfoContainer expand-description';
+            foo.setAttribute('data-open', "1");
         }
         else {
+//            alert("Elem was open");
             foo.children[0].className = 'MartistCellImgContainer';
             foo.children[1].className = 'MartistCellInfoContainer';
+            foo.setAttribute('data-open', "0");
         }
-        this.setState({masonryToggle: !this.state.masonryToggle});
+        
+//        if (this.state.masonryToggle) {
+//            foo.children[0].className = 'MartistCellImgContainer expand-coverArt';
+//            foo.children[1].className = 'MartistCellInfoContainer expand-description';
+//        }
+//        else {
+//            foo.children[0].className = 'MartistCellImgContainer';
+//            foo.children[1].className = 'MartistCellInfoContainer';
+//        }
+//        this.setState({masonryToggle: !this.state.masonryToggle});
+//        foo.setAttribute('data-open', "1");
     }
 
     makeAlbumMasonry(imgUrl, albumTitle, albumId, state) {
         console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
         return (
             <div key={albumTitle+albumId} className='grid-item'>
-                <div onClick={(e) => this.masonryClick(e)} className='grid-item-content'>
+                <div data-open={"0"} onClick={(e) => this.masonryClick(e)} className='grid-item-content'>
                     <div className={this.state.masonryToggle ? 'MartistCellImgContainer expand-coverArt' : 'MartistCellImgContainer'}><img src={imgUrl}/></div>
                     <div className={this.state.masonryToggle ? 'MartistCellInfoContainer expand-description' : 'MartistCellInfoContainer'}>
                         <h3 className='artistInfo-title'>{albumTitle}</h3>
@@ -382,7 +397,7 @@ export default class ReactGrid extends React.Component {
         
         return (
             <div key={artistName+artistId} className='grid-item'>
-                <div onClick={(e) => this.masonryClick(e)} className={this.state.masonryToggle ? 'grid-item-content expand-coverArt' : 'grid-item-content'}>
+                <div data-open={"0"} onClick={(e) => this.masonryClick(e)} className={this.state.masonryToggle ? 'grid-item-content expand-coverArt' : 'grid-item-content'}>
                     <div className={this.state.masonryToggle ? "MartistCellImgContainer expand-coverArt" : "MartistCellImgContainer"}><img src={imgUrl}/></div>
                     <div className={this.state.masonryToggle ? "MartistCellInfoContainer expand-description" : "MartistCellInfoContainer"}>
                         <h3 className='artistInfo-title'>{artistName}</h3>
@@ -861,6 +876,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"concerts"}/>,
+ <ReactGrid gridType={"tracks"}/>,
  document.getElementById('content')
 );
