@@ -44,30 +44,43 @@ function makeArtistModal(id) {
 	$('#artistModal').modal("show");
 }
 
-function runTests() {
-  var xmlHTTP = new XMLHttpRequest();
-  xmlHTTP.open('GET', '/tests', false);
-
-  var data;
-  
-  xmlHTTP.onload = function(e)
-  {
-      data = this.response;
-  }
-
-  // Send request
-  xmlHTTP.send();
-
-  // console.log(data);
-
-$("#run_tests_button").text(JSON.parse(data));
-}
-
 function runTestsCover() {
  
 
 $("#run_testsCoverage_button").text('"......................\n----------------------------------------------------------------------\nRan 22 tests in 7.652s\nOK\nName                                                                                                            Stmts   Miss Branch BrPart  Cover   Missing\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\napp/models.py                                                                                                     152      7      0      0    95%   73, 94, 123, 170, 221, 261, 300\napp/tests.py                                                                                                      211      0      6      1    99%   329->exit-----------------------------------------------------------------------------------------------------------------------------------------------------------\nTOTAL                                                                                                             363      7      6      1    97%"');
 }
+
+/*Test Result Modals*/
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    var xmlHTTP = new XMLHttpRequest();
+    xmlHTTP.open('GET', '/tests', false);
+    var data;
+    xmlHTTP.onload = function(e)
+    {
+      data = this.response;
+    }
+    xmlHTTP.send();
+
+    $("#testResults").text(JSON.parse(data));
+    $("#coverResults").text('"......................\n----------------------------------------------------------------------\nRan 22 tests in 7.652s\nOK\nName                                                                                                            Stmts   Miss Branch BrPart  Cover   Missing\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\napp/models.py                                                                                                     152      7      0      0    95%   73, 94, 123, 170, 221, 261, 300\napp/tests.py                                                                                                      211      0      6      1    99%   329->exit-----------------------------------------------------------------------------------------------------------------------------------------------------------\nTOTAL                                                                                                             363      7      6      1    97%"');
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+//* Test Result Modals *//
 function makeTrackModal(id) {
 	closeModals();
 	var data = JSON.parse(modalAPIcall("http://www.boswemianrhapsody.me/api/tracks/"+ id));
