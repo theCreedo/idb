@@ -100,6 +100,15 @@ class SortingForm extends React.Component {
 
   render() {
       var options = this.trackOptions();
+      var conditionalStyle;
+      
+      if (this.state.filterMode != "name"){
+            conditionalStyle = "invisible";
+        }
+        else {
+            conditionalStyle = "";
+        }
+      
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -113,9 +122,9 @@ class SortingForm extends React.Component {
           Filter: 
           {options}
         </label>
-        <label>
+        <label className={conditionalStyle}>
         Filter Query: 
-        <SWEAutocomplete onChange={this.updateFilterString} filterType={this.state.filterMode} filterString={this.state.filterString}/>
+        <SWEAutocomplete className={conditionalStyle} onChange={this.updateFilterString} filterType={this.state.filterMode} filterString={this.state.filterString}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
