@@ -4,6 +4,7 @@ import Pagination from 'rc-pagination';
 import {Modal} from 'react-bootstrap';
 import {Button} from 'react-bootstrap/lib';
 import Masonry from 'react-masonry-component';
+import SWEAutocomplete from './SweFilters.js'; 
 import 'rc-pagination/assets/index.css';
 //import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
  import './resources/css/sweStyle.css';
@@ -17,10 +18,12 @@ class SortingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sortMode: this.props.sortMode,
-                 filterMode: this.props.filterMode};
+                 filterMode: this.props.filterMode,
+                 filterString: this.props.filterString};
 
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.updateFilterString = this.updateFilterString.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -30,6 +33,21 @@ class SortingForm extends React.Component {
 
   handleFilterChange(event) {
     this.setState({filterMode: event.target.value});
+  }
+
+  updateFilterString(value) {
+      this.setState({filterString: value});
+  }
+    
+   handleSubmit(event) {
+    var sort = this.state.sortMode;
+    var filter = this.state.filterMode;
+    var filterString = this.state.filterString;
+//    alert('Sorting ' + sort + " with filter " + filter);
+    event.preventDefault();
+    this.props.onChange(sort, filter, filterString);
+    //this.onChange(event);
+    //event.preventDefault();
   }
 
   trackOptions() {
@@ -79,16 +97,6 @@ class SortingForm extends React.Component {
           </select>
       );
   }
-    
-  handleSubmit(event) {
-    var sort = this.state.sortMode;
-    var filter = this.state.filterMode;
-//    alert('Sorting ' + sort + " with filter " + filter);
-    event.preventDefault();
-    this.props.onChange(sort, filter);
-    //this.onChange(event);
-    //event.preventDefault();
-  }
 
   render() {
       var options = this.trackOptions();
@@ -104,6 +112,10 @@ class SortingForm extends React.Component {
         <label>
           Filter: 
           {options}
+        </label>
+        <label>
+        Filter Query: 
+        <SWEAutocomplete onChange={this.updateFilterString} filterType={this.state.filterMode} filterString={this.state.filterString}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -143,7 +155,8 @@ export default class ReactGrid extends React.Component {
           showModal: false,
           modalData: '',
           modalType: this.props.gridType,
-          masonryToggle: false
+          masonryToggle: false, 
+          filterParams: []
         };
         
         this.updateGridData = this.updateGridData.bind(this);
@@ -202,10 +215,12 @@ export default class ReactGrid extends React.Component {
         this.pageChange(cur);
    }
 
-   makeSortFilter(sortMode, filterMode) {
-//       console.log("Sort from the grid " + sortMode + " filter " + filterMode);
+   makeSortFilter(sortMode, filterMode, filterString) {
+       console.log("Sort from the grid " + sortMode + " field " + filterMode + " filter string " + filterString);
+       /* Check: Do I need to set the states here or is it already set for me through props?? */
        this.setState({sortMode: sortMode});
        this.setState({filterMode: filterMode});
+       this.setState({filterString: filterString});
 //       console.log("And here from my state: Sort: " + this.state.sortMode + " and filter " + this.state.filterMode);
        this.updateGridData(this.state.currentPage);
    }
@@ -849,7 +864,7 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">{this.state.gridType + " Table"}</h1>
                     </div>
                 </div>
-                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode) => this.makeSortFilter(sortMode, filterMode)}/>
+                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode, filterString) => this.makeSortFilter(sortMode, filterMode, filterString)}/>
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
