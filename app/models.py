@@ -26,7 +26,8 @@ whooshee = Whooshee(app)
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
 
-# @whooshee.register_model('name', 'genre', '')
+@whooshee.register_model('name', 'genre', 'release_date', 'duration', 
+    'popularity', 'preview_url', 'explicit', 'spotify_uri')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -74,6 +75,7 @@ class Track(db.Model):
 # Populated via Bandsintown
 
 
+@whooshee.register_model('name', 'event_link', 'date', 'time')
 class Concert(db.Model):
     __tablename__ = 'concerts'
 
@@ -116,7 +118,8 @@ class Concert(db.Model):
 # Models and Album object
 # Populated via Spotify and Musicgraph
 
-
+@whooshee.register_model('name', 'genre', 'release_date',
+    'album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
 class Album(db.Model):
     __tablename__ = 'albums'
 
@@ -170,7 +173,7 @@ class Album(db.Model):
 # Models an Artist object
 # Populated via Spotify and Musicgraph
 
-
+@whooshee.register_model('name', 'genre', 'image_url', 'country', 'decade')
 class Artist(db.Model):
     __tablename__ = 'artists'
 
@@ -217,7 +220,8 @@ class Artist(db.Model):
 # Models a Venue object
 # Populated via Bandsintown
 
-
+@whooshee.register_model('name', 'city', 'region', 'country', 
+    'latitude', 'longitude')
 class Venue(db.Model):
     __tablename__ = 'venues'
 
