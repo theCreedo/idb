@@ -16,7 +16,10 @@ const styles = {
   },
 
   menu: {
-    border: 'solid 1px #ccc'
+    border: 'solid 1px #ccc',
+    position: 'absolute',
+    maxHeight: '20%',
+    overflow: 'auto'
   }
 }
 
@@ -107,6 +110,7 @@ export default class SWEAutocomplete extends React.Component {
                 sortItems={this.sortFilters}
                 onChange={(event, value) => this.changeValue(value)}
                 onSelect={(event, value) => this.changeValue(value.name)}
+                menuStyle={styles.menu}
                 renderItem={
                     (item, isHighlighted) => (
                         <div style={isHighlighted ? styles.highlightedItem : styles.item} key={item.name}>{item.name}</div>
