@@ -53,7 +53,7 @@ class SortingForm extends React.Component {
   trackOptions() {
       return (
           <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Track Name</option>
+            <option value="trackname">Track Name</option>
             <option value="artist_id">Group by Artist</option>
             <option value="album_id">Group by Album</option>
             <option value="genre">Genre</option>
@@ -68,7 +68,7 @@ class SortingForm extends React.Component {
   albumOptions() {
       return (
           <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Album Name</option>
+            <option value="albumname">Album Name</option>
             <option value="release_date">Release Date</option>
             <option value="label">Label</option>
             <option value="genre">Genre</option>
@@ -80,7 +80,7 @@ class SortingForm extends React.Component {
   artistOptions() {
       return (
           <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Artist Name</option>
+            <option value="artistname">Artist Name</option>
             <option value="country">Country</option>
             <option value="genre">Genre</option>
             <option value="decade">Decade</option>
@@ -91,7 +91,7 @@ class SortingForm extends React.Component {
   concertOptions() {
       return (
           <select value={this.state.value} onChange={this.handleFilterChange}>
-            <option value="name">Artist</option>
+            <option value="artistname">Artist</option>
             <option value="date">Country</option>
             <option value="time">Start Time</option>
           </select>
@@ -100,10 +100,27 @@ class SortingForm extends React.Component {
 
   render() {
       var options = this.trackOptions();
+      var filter = this.state.filterMode;
+      var gridType = this.props.gridType;
       var conditionalStyle;
       
-      if (this.state.filterMode != "name"){
+      if (gridType == "tracks") {
+          options = this.trackOptions();
+      }
+      else if (gridType == "artists") {
+          options = this.artistOptions();
+      }
+      else if (gridType == "albums") {
+          options = this.albumOptions();
+      }
+      else {
+          options = this.concertOptions();
+      }
+      
+      if (filter != "artistname" && filter != "city" && filter != "label"
+            && filter != "genre" && filter != "country"){
             conditionalStyle = "invisible";
+            //this.setState({filterString: ''});
         }
         else {
             conditionalStyle = "";
@@ -112,14 +129,14 @@ class SortingForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Sort:
+          Ordering:
           <select value={this.state.value} onChange={this.handleSortChange}>
             <option value="az">Ascending</option>
             <option value="za">Descending</option>
           </select>
         </label>
         <label>
-          Filter: 
+          Sort: 
           {options}
         </label>
         <label className={conditionalStyle}>
@@ -165,10 +182,11 @@ export default class ReactGrid extends React.Component {
           modalData: '',
           modalType: this.props.gridType,
           masonryToggle: false, 
-          filterParams: []
+          filterString: ''
         };
         
         this.updateGridData = this.updateGridData.bind(this);
+        this.makeSortFilter = this.makeSortFilter.bind(this);
         this.closeModal = this.closeModal.bind(this);
 //        this.masonryClick = this.masonryClick.bind(this);
     }
@@ -240,11 +258,18 @@ export default class ReactGrid extends React.Component {
        var filter = this.state.filterMode;
        var page = current;
        var type = this.state.gridType;
+       var filterQuery = this.state.filterString;
        
        if(this.state.sortMode == "az")
            sort = "asc";
        else
            sort = "desc";
+       
+       if (filter == "trackname" || filter == "artistname" || filter == "albumname") {
+           filter = "name"
+       }
+       
+       console.log("Updating page with sort by type " + filter + " and query " + filterQuery);
 //       alert("Sort: " + sort + " filter " + filter + " page "  + current);
 //       this.setState({data: JSON.parse(this.makeAPIcall("/api/sort/" + type + "/" + page + "/" + filter + "/" + sort))});
        this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\""+filter+"\",\"direction\":\""+sort+"\"}]}"))});
@@ -272,8 +297,6 @@ export default class ReactGrid extends React.Component {
 
         return data;
     }
-    
-    
     
     createGridItemConcert(data) {
         var artist = data.artist;
@@ -374,7 +397,7 @@ export default class ReactGrid extends React.Component {
 //        for (var i = 0; i < foo.children.length; i++) {
 //            console.log(foo.children[i].tagName);
 //        }
-        console.log("Foo value " + foo.getAttribute("data-open"));
+        //console.log("Foo value " + foo.getAttribute("data-open"));
         if(foo.getAttribute("data-open") == 0) {
 //            alert("Elem was closed");
             foo.children[0].className = 'MartistCellImgContainer expand-coverArt';
@@ -401,7 +424,7 @@ export default class ReactGrid extends React.Component {
     }
 
     makeAlbumMasonry(imgUrl, albumTitle, albumId, state) {
-        console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
+        //console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
         return (
             <div key={albumTitle+albumId} className='grid-item'>
                 <div data-open={"0"} onClick={(e) => this.masonryClick(e)} className='grid-item-content'>
@@ -417,7 +440,7 @@ export default class ReactGrid extends React.Component {
     }
     
     makeArtistMasonry(imgUrl, artistName, artistId, state) {
-        console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
+        //console.log("Passed state is " + state + " while this.state is " + this.state.masonryToggle);
         
         return (
             <div key={artistName+artistId} className='grid-item'>
@@ -509,7 +532,7 @@ export default class ReactGrid extends React.Component {
         var backgroundStyle, artistMasonry;
       var art = data.artist;
         
-        console.log("Making concert modal");
+        //console.log("Making concert modal");
         artistMasonry = this.makeArtistMasonry(art.image_url, data.name, art.id, this.state.masonryToggle);
         
         backgroundStyle = {
@@ -681,7 +704,7 @@ export default class ReactGrid extends React.Component {
         albums = data.albums;
         albumMasonry = [];
         
-        console.log("Album in artist modal: " + data.album);
+        //console.log("Album in artist modal: " + data.album);
         
         /* Set image for header */
         backgroundStyle = {
@@ -695,7 +718,7 @@ export default class ReactGrid extends React.Component {
             albumMasonry.push(this.makeAlbumMasonry(alb.album_cover_url, alb.name, alb.id,this.state.masonryToggle));
         }
         
-        console.log("Returning artist modal with artist " + data.id);
+        //console.log("Returning artist modal with artist " + data.id);
         
         return (
             <Modal.Body>
@@ -862,7 +885,7 @@ export default class ReactGrid extends React.Component {
         
 //        console.log("Lookit: griditems: " + gridItems.length);
 //        console.log("Modal data " + this.state.modalData);
-        console.log("Modal show " + this.state.showModal);
+        //console.log("Modal show " + this.state.showModal);
 //        console.log("Modal HTML " + modalHTML);
 //        this.setState({showModal: true});
         var curState = this.state;
@@ -873,7 +896,7 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">{this.state.gridType + " Table"}</h1>
                     </div>
                 </div>
-                <SortingForm sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode, filterString) => this.makeSortFilter(sortMode, filterMode, filterString)}/>
+                <SortingForm gridType={this.state.gridType} sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode, filterString) => this.makeSortFilter(sortMode, filterMode, filterString)}/>
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
@@ -900,6 +923,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"tracks"}/>,
+ <ReactGrid gridType={"albums"}/>,
  document.getElementById('content')
 );
