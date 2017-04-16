@@ -96,6 +96,7 @@ class SortingForm extends React.Component {
             <option value="artistname">Artist</option>
             <option value="country">Country</option>
             <option value="time">Start Time</option>
+            <option value="city">City</option>
           </select>
       );
   }
