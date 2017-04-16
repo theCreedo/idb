@@ -4,6 +4,7 @@ from flask_compress import Compress
 from flask import Flask, jsonify, url_for, redirect, render_template
 import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
+from flask_whooshee import Whooshee
 from models import db, Venue, Concert, Album, Artist, Track, app
 from io import StringIO
 
@@ -97,6 +98,10 @@ it build correctly. This may be completely wrong in that you can't
 do a Get request with queries.
 ALMOST CONFIRMED 3 WILL PROBABLY NOT WORK, but WORTH A TRY IF 1 AND 2 DON'T
 '''
+value = Venue.query.\
+    	whooshee_search('Adele').\
+    	all()
+print(value)
 
 @app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>')
 @app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>/')
@@ -114,6 +119,46 @@ def collection_process(collection, page, attribute, direction='asc'):
 def collection_process1(collection, page, name, op, value):
 	string = "/api/%s?page=%s&q={\"filters\":[{\"name\":\"%s\",\"op\":\"%s\", \"val\":\"%s\"}]}" % (collection, page, name, op, value)
 	return redirect(string)
+
+class invalid_collection(Exception):
+	pass
+
+def get_collection(collection):
+	if(collection == 'Artist'):
+		return Artist
+	if(collection == 'Album'):
+		return Album
+	if(collection == 'Track'):
+		return Track
+	if(collection == 'Concert'):
+		return Concert
+	if(collection == 'Venue'):
+		return Venue
+	raise invalid_collection()
+
+@app.route('/api/search/<string:collection>/<string:query>')
+@app.route('/api/search/<string:collection>/<string:query>/')
+def search_process(collection, query):
+	try:
+		c = get_collection(collection)
+		values = c.query.\
+			whooshee_search(query).\
+			all()
+		return values
+	except invalid_collection:
+		return 'Error: Collection could not be found'
+	else:
+		return 'Error: Query could not be parsed'
+
+
+# @app.route('/api/search/<string:collection>/<string:query>')
+# @app.route('/api/search/<string:collection>/<string:query>/')
+# def search_process(collection, query):
+# 	try:
+# 		c = get_collection(collection)
+# 		return
+# 	except invalid_collection:
+
 
 @app.route('/api')
 @app.route('/api/')
