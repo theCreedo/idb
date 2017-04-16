@@ -21,7 +21,6 @@ app.config[
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
-whooshee = Whooshee(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs

@@ -8,8 +8,8 @@ from flask_whooshee import Whooshee
 from models import db, Venue, Concert, Album, Artist, Track, app
 from io import StringIO
 
+whooshee = Whooshee(app)
 Compress(app)
-compress = Compress()
 # Create the Flask-Restless API manager.
 manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 
@@ -98,10 +98,6 @@ it build correctly. This may be completely wrong in that you can't
 do a Get request with queries.
 ALMOST CONFIRMED 3 WILL PROBABLY NOT WORK, but WORTH A TRY IF 1 AND 2 DON'T
 '''
-value = Venue.query.\
-    	whooshee_search('Adele').\
-    	all()
-print(value)
 
 @app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>')
 @app.route('/api/sort/<string:collection>/<int:page>/<string:attribute>/')
@@ -120,9 +116,12 @@ def collection_process1(collection, page, name, op, value):
 	string = "/api/%s?page=%s&q={\"filters\":[{\"name\":\"%s\",\"op\":\"%s\", \"val\":\"%s\"}]}" % (collection, page, name, op, value)
 	return redirect(string)
 
+# Exception to raise when an unrecognizable collection
+# is given
 class invalid_collection(Exception):
 	pass
 
+# Gets the specific collection object to query
 def get_collection(collection):
 	if(collection == 'Artist'):
 		return Artist
@@ -136,9 +135,12 @@ def get_collection(collection):
 		return Venue
 	raise invalid_collection()
 
+# Query for front end to make specific collection requests.
 @app.route('/api/search/<string:collection>/<string:query>')
 @app.route('/api/search/<string:collection>/<string:query>/')
 def search_process(collection, query):
+	# Consider adding an "ALL" case in order to query
+	# all of the collections for data
 	try:
 		c = get_collection(collection)
 		values = c.query.\
@@ -149,15 +151,32 @@ def search_process(collection, query):
 		return 'Error: Collection could not be found'
 	else:
 		return 'Error: Query could not be parsed'
+'''
+This is the original version of wooshee search that I'm testing.
+We may need to look into the query_class, either to save the data
+or to carry out the query. This throws a StopIteration when called
 
+https://flask-whooshee.readthedocs.io/en/stable/#writing-queries
+'''
+value = Venue.query.\
+    	whooshee_search('Adele').\
+    	all()
+print(value)
 
-# @app.route('/api/search/<string:collection>/<string:query>')
-# @app.route('/api/search/<string:collection>/<string:query>/')
-# def search_process(collection, query):
-# 	try:
-# 		c = get_collection(collection)
-# 		return
-# 	except invalid_collection:
+'''
+This version catches the StopIteration, but I'm not sure what is
+going on and why there is a stop iteration
+Error output:
+whoosheer = next(w for w in _get_config(self)['whoosheers']
+StopIteration
+'''
+# value = ''
+# try:
+# 	value = Venue.query.\
+# 	    	whooshee_search('Adele').\
+# 	    	all()
+# except:
+# 	print(value)
 
 
 @app.route('/api')
