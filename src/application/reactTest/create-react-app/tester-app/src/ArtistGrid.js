@@ -94,7 +94,7 @@ class SortingForm extends React.Component {
       return (
           <select value={this.state.value} onChange={this.handleFilterChange}>
             <option value="artistname">Artist</option>
-            <option value="date">Country</option>
+            <option value="country">Country</option>
             <option value="time">Start Time</option>
           </select>
       );
@@ -239,13 +239,13 @@ export default class ReactGrid extends React.Component {
        var cur = current;
        if(cur == undefined)
            cur = 1;
-        console.log("UPDATE sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
+//        console.log("UPDATE sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
         this.setState({currentPage: cur});
         this.pageChange(cur);
    }
 
    makeSortFilter(sortMode, filterMode, filterString) {
-       console.log("MAKE sort " + sortMode + " field " + filterMode + " filter string " + filterString);
+//       console.log("MAKE sort " + sortMode + " field " + filterMode + " filter string " + filterString);
 
        this.setState({sortMode: sortMode});
        this.setState({filterMode: filterMode});
@@ -273,8 +273,8 @@ export default class ReactGrid extends React.Component {
            filter = "name"
        }
        
-       console.log("PAGECHG sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
-       console.log("----------------");
+//       console.log("PAGECHG sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
+//       console.log("----------------");
 //       console.log("Updating page with sort by type " + filter + " and query " + filterQuery);
 //       alert("Sort: " + sort + " filter " + filter + " page "  + current);
 //       this.setState({data: JSON.parse(this.makeAPIcall("/api/sort/" + type + "/" + page + "/" + filter + "/" + sort))});
@@ -929,6 +929,6 @@ export default class ReactGrid extends React.Component {
 
 
 ReactDOM.render(
- <ReactGrid gridType={"albums"}/>,
+ <ReactGrid gridType={"concerts"}/>,
  document.getElementById('content')
 );
