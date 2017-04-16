@@ -5,7 +5,9 @@ import Autocomplete from 'react-autocomplete';
 const styles = {
   item: {
     padding: '2px 6px',
-    cursor: 'default'
+    cursor: 'default',
+    background: 'grey',
+    zIndex: '2'
   },
 
   highlightedItem: {
@@ -19,7 +21,8 @@ const styles = {
     border: 'solid 1px #ccc',
     position: 'absolute',
     maxHeight: '20%',
-    overflow: 'auto'
+    overflow: 'auto',
+    zIndex: '2'
   }
 }
 
