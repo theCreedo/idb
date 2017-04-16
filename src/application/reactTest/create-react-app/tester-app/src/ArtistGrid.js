@@ -36,6 +36,7 @@ class SortingForm extends React.Component {
   }
 
   updateFilterString(value) {
+      console.log("Update filter string in sorting form with: " + value);
       this.setState({filterString: value});
   }
     
@@ -45,6 +46,7 @@ class SortingForm extends React.Component {
     var filterString = this.state.filterString;
 //    alert('Sorting ' + sort + " with filter " + filter);
     event.preventDefault();
+    console.log("SUBMIT sort " + sort + " filter " + filter + " filter string " + filterString);
     this.props.onChange(sort, filter, filterString);
     //this.onChange(event);
     //event.preventDefault();
@@ -237,19 +239,21 @@ export default class ReactGrid extends React.Component {
        var cur = current;
        if(cur == undefined)
            cur = 1;
-//        console.log("State current " + this.state.currentPage + " passed current " + cur + " this is " + this.state.data + " and this " + pageSize);
+        console.log("UPDATE sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
         this.setState({currentPage: cur});
         this.pageChange(cur);
    }
 
    makeSortFilter(sortMode, filterMode, filterString) {
-       console.log("Sort from the grid " + sortMode + " field " + filterMode + " filter string " + filterString);
-       /* Check: Do I need to set the states here or is it already set for me through props?? */
+       console.log("MAKE sort " + sortMode + " field " + filterMode + " filter string " + filterString);
+
        this.setState({sortMode: sortMode});
        this.setState({filterMode: filterMode});
-       this.setState({filterString: filterString});
-//       console.log("And here from my state: Sort: " + this.state.sortMode + " and filter " + this.state.filterMode);
-       this.updateGridData(this.state.currentPage);
+       
+       /* This synchronously(ish) calls the update to the grid data. Technically, only the filterString is guaranteed to be synch updated. */
+       this.setState({filterString: filterString}, function () {
+           this.updateGridData(this.state.currentPage);
+       });
    }
     
    pageChange(current) {
@@ -269,7 +273,9 @@ export default class ReactGrid extends React.Component {
            filter = "name"
        }
        
-       console.log("Updating page with sort by type " + filter + " and query " + filterQuery);
+       console.log("PAGECHG sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
+       console.log("----------------");
+//       console.log("Updating page with sort by type " + filter + " and query " + filterQuery);
 //       alert("Sort: " + sort + " filter " + filter + " page "  + current);
 //       this.setState({data: JSON.parse(this.makeAPIcall("/api/sort/" + type + "/" + page + "/" + filter + "/" + sort))});
        this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\""+filter+"\",\"direction\":\""+sort+"\"}]}"))});
@@ -807,7 +813,7 @@ export default class ReactGrid extends React.Component {
         /* ARTIST OK */
         
             for (var x in actual_JSON.objects) {
-                console.log(x);
+//                console.log(x);
                 if(x < 3)
                     gridItems.push(this.createGridItemArtist(actual_JSON.objects[x]));
                 else if(x < 6)
@@ -821,7 +827,7 @@ export default class ReactGrid extends React.Component {
         /* ALBUM OK */
         
             for (var x in actual_JSON.objects) {
-                console.log(x);
+//                console.log(x);
                 if(x < 3)
                     gridItems.push(this.createGridItemAlbum(actual_JSON.objects[x]));
                 else if(x < 6)
@@ -833,7 +839,7 @@ export default class ReactGrid extends React.Component {
         
         else if(gridType == "concerts") {
            for (var x in actual_JSON.objects) {
-               console.log(x);
+//               console.log(x);
                if(x < 3)
                    gridItems.push(this.createGridItemConcert(actual_JSON.objects[x]));
                else if(x < 6)
@@ -846,7 +852,7 @@ export default class ReactGrid extends React.Component {
         /* TRACK */
         else {
             for (var x in actual_JSON.objects) {
-             console.log(x);
+//             console.log(x);
              if(x < 3)
                  gridItems.push(this.createGridItemTrack(actual_JSON.objects[x]));
              else if(x < 6)
@@ -896,7 +902,7 @@ export default class ReactGrid extends React.Component {
                         <h1 className="sweGridTitle">{this.state.gridType + " Table"}</h1>
                     </div>
                 </div>
-                <SortingForm gridType={this.state.gridType} sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={(sortMode, filterMode, filterString) => this.makeSortFilter(sortMode, filterMode, filterString)}/>
+                <SortingForm gridType={this.state.gridType} sortMode={this.state.sortMode} filterMode={this.state.filterMode} onChange={this.makeSortFilter}/>
                 <div className="row">{gridItems}</div>
                 <div className="row">{gridItems2}</div>
                 <div className="row">{gridItems3}</div>
