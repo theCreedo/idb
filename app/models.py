@@ -11,7 +11,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
-from flask_whooshee import Whooshee, AbstractWhoosheer
+from flask_whooshee import Whooshee
+# from main import whooshee
 
 # Establish connection between Flask app and Postgres database
 app = Flask(__name__)
@@ -19,14 +20,15 @@ app.config[
     'SQLALCHEMY_DATABASE_URI'] =                                    \
     'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['WHOOSHEE_DIR'] = 'whooshee'
 CORS(app)
 db = SQLAlchemy(app)
+whooshee = Whooshee(app)
+
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
-
-@whooshee.register_model('name', 'genre', 'release_date', 'duration', 
-    'popularity', 'preview_url', 'explicit', 'spotify_uri')
+@whooshee.register_model('name', 'genre', 'release_date', 'duration','popularity', 'preview_url', 'explicit', 'spotify_uri')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -70,10 +72,9 @@ class Track(db.Model):
         self.explicit = explicit
         self.spotify_uri = spotify_uri
 
+
 # Models a Concert object
 # Populated via Bandsintown
-
-
 @whooshee.register_model('name', 'event_link', 'date', 'time')
 class Concert(db.Model):
     __tablename__ = 'concerts'
@@ -117,8 +118,7 @@ class Concert(db.Model):
 # Models and Album object
 # Populated via Spotify and Musicgraph
 
-@whooshee.register_model('name', 'genre', 'release_date',
-    'album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
+@whooshee.register_model('name', 'genre', 'release_date','album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
 class Album(db.Model):
     __tablename__ = 'albums'
 
