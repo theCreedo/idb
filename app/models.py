@@ -301,8 +301,8 @@ class Venue(db.Model):
 # db.create_all()
 
 # Drop Tables when necessary
-# db.reflect()
-# db.drop_all()
+db.reflect()
+db.drop_all()
 
 # Commit changes
 db.session.commit()
