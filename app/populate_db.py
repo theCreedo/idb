@@ -195,7 +195,8 @@ def main():
 	# db.session.query(Venue).delete()
 
 	url = "https://api.spotify.com/v1/users/signalgolfer/playlists/3kCH95laSLbxGPSOoOuxtg"
-	headers = {'Authorization' : 'Bearer BQDmoiqYUdAwbgvDtbetI7L5dwbdi45leOQwZGAp1MbRYJik9oCSNxKsh3Wv7xP-wXB_B3DpspCUZlW9Gic5edgJqVPGPzyEnPfFTxKAxHL1qiQih4E2ngRphmGu1bKH5CCyIIvyO5GuY-878JQa4fsNODSkCThHhgc'}
+
+	headers = {'Authorization' : 'Bearer BQAsFES1TjRX_NFc5dAlvSGpnRiBJETgezwmsSd2-K06ygx249bFkNrCXIuCZGsSXPIk71nK69CmI1DyvjSKfPY-AwkKFQ3VG4yLF-f9IwJceJmI-kPwHWZmwStD6qCDijfhpQGOqIow9yW2-FjW6mNGbs-P1vGjy7c'}
 
 	r = requests.get(url, headers=headers)
 	playlist = json.loads(r.text)
