@@ -159,7 +159,7 @@ or to carry out the query. This throws a StopIteration when called
 https://flask-whooshee.readthedocs.io/en/stable/#writing-queries
 '''
 value = Venue.query.\
-    	whooshee_search('Adele').\
+    	whooshee_search(u'Adele').\
     	all()
 print(value)
 
