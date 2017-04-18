@@ -96,12 +96,19 @@ export default class SWEAutocomplete extends React.Component {
         else if (filter == 'city') {
             inputItems = this.cityFilters();
         }
-//        else if (filter == 'artist') {
-//            inputItems = this.artistFilters();
-//        }
-        else {
-            inputItems = this.artistFilters();
-        }
+       else if (filter == 'artistname') {
+           inputItems = this.artistFilters();
+       }
+       else if (filter == 'explicit') {
+           inputItems = [{name: 'clean'}, {name: 'explicit'}];
+       }
+       else if (filter == 'venue') {
+           // inputItems = this.venueFilters();
+           inputItems = [];
+       }
+       else {
+           inputItems = [];
+       }
         
         return (
             <Autocomplete

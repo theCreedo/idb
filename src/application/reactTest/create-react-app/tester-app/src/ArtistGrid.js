@@ -120,7 +120,7 @@ class SortingForm extends React.Component {
       
       if (filter != "artistname" && filter != "city" && filter != "label"
             && filter != "genre" && filter != "country" && filter != "explicit"
-            && filter != "albumname" && filter != "venue"){
+            && filter != "venue"){
             conditionalStyle = "invisible";
             disabledStyle = false;
             //this.setState({filterString: ''});
@@ -282,6 +282,16 @@ export default class ReactGrid extends React.Component {
       if (filter == "trackname" || filter == "artistname" || filter == "albumname") {
            filter = "name"
        }
+
+      /* Format query for explicit */
+      if (filter == "explicit") {
+        if (filterQuery == "clean") {
+          filterQuery = "False";
+        }
+        else {
+          filterQuery = "True";
+        }
+      }
 
       /* Ben driving */
       /* filter npmor sort*/
