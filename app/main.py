@@ -5,7 +5,7 @@ from flask import Flask, jsonify, url_for, redirect, render_template
 import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
 from flask_whooshee import Whooshee
-from models import db, Venue, Concert, Album, Artist, Track, app
+from models import db, Venue, Concert, Album, Artist, Track, app, whooshee
 from io import StringIO
 
 # whooshee = Whooshee(app)
@@ -159,7 +159,7 @@ or to carry out the query. This throws a StopIteration when called
 https://flask-whooshee.readthedocs.io/en/stable/#writing-queries
 '''
 value = Venue.query.\
-    	whooshee_search('Adele').\
+    	whooshee_search(u'Adele').\
     	all()
 print(value)
 
