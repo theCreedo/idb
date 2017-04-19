@@ -20,10 +20,11 @@ app.config[
     'SQLALCHEMY_DATABASE_URI'] =                                    \
     'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['WHOOSHEE_DIR'] = 'whooshee'
+app.config['WHOOSHEE_MIN_STRING_LEN'] = 1
 CORS(app)
 db = SQLAlchemy(app)
 whooshee = Whooshee(app)
+whooshee.reindex()
 
 
 # Models a Track (Song) object
@@ -256,7 +257,7 @@ class Venue(db.Model):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-db.create_all()
+# db.create_all()
 
 # Drop Tables when necessary
 # db.reflect()
