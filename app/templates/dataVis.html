@@ -27,7 +27,8 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/landing-page.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/runTestModals.css') }}">
       <link href="{{ url_for('static', filename='resources/templates/type/icons.css') }}" rel="stylesheet">
-      <script src="{{ url_for('static', filename='resources/js/d3.min.js') }}"></script>
+      <!-- <script src="{{ url_for('static', filename='resources/js/d3.min.js') }}"></script> -->
+      <script src="//d3js.org/d3.v4.js"></script>
       <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
    </head>
@@ -91,51 +92,57 @@
                   <svg width="960" height="500"></svg>
                  <script>
 
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom;
+var diameter = 960,
+    format = d3.format(",d"),
+    color = d3.scaleOrdinal(d3.schemeCategory20c);
 
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-    y = d3.scaleLinear().rangeRound([height, 0]);
+var bubble = d3.pack()
+    .size([diameter, diameter])
+    .padding(1.5);
 
-var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
 
-d3.tsv("{{ url_for('static', filename='resources/js/data.tsv')}}", function(d) {
-  d.frequency = +d.frequency;
-  return d;
-}, function(error, data) {
+d3.json("http://magicdb.me/api/subtypes", function(error, data) {
   if (error) throw error;
 
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+  var root = d3.hierarchy(subtypes(data))
+      .sum(function(d) { return d.value; })
+      .sort(function(a, b) { return b.value - a.value; });
 
-  g.append("g")
-      .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+  bubble(root);
+  var node = svg.selectAll(".node")
+      .data(root.children)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-  g.append("g")
-  
-      .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y).ticks(10, "%"))
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("text-anchor", "end")
-      .text("Frequency");
+  node.append("title")
+      .text(function(d) { return d.data.id + ": " + format(d.value); });
 
-  g.selectAll(".bar")
-    .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.frequency); });
+  node.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { 
+        return color(d.data.id); 
+      });
+
+  node.append("text")
+      .attr("dy", ".3em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.data.id.substring(0, d.r / 3); });
 });
+
+function subtypes(root) {
+  var subtypes = [];
+  for (var i in root) {
+    subtypes.push({id: root[i].name, value: root[i].numCards});
+  }
+  return {children: subtypes};
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
 
 </script>
                  
