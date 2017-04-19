@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <style>
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
+</style>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>BoSWEmian Rhapsody</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/sweStyle.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/landing-page.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/runTestModals.css') }}">
+      <link href="{{ url_for('static', filename='resources/templates/type/icons.css') }}" rel="stylesheet">
+      <script src="{{ url_for('static', filename='resources/js/d3.min.js') }}"></script>
+      <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background: #333;">
+         <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                  <li>
+                     <a style ="color: white;" href="{{ url_for('index') }}">Home</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" href="{{ url_for('about_page') }}">About</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" href="{{ url_for('tracks_table') }}">Tracks Table</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" href="{{ url_for('artist_table') }}">Artist Table</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" href="{{ url_for('albums_table') }}">Albums Table</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" href="{{ url_for('concerts_table') }}">Concerts Table</a>
+                  </li>
+                 <li style="background: rgb(74, 162, 209);">
+                     <a style="color: #FFFFFF;" href="{{ url_for('data_vis') }}">Data Visualization</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container -->
+      </nav>
+      <div class="container aboutHeader">
+         <div class="row">
+            <div class="col-xs-12" style="padding-top: 40px;">
+               <h1 class="aboutTitle">Data <em class="aboutEmph">Vis</em>ualization</h1>
+            </div>
+         </div>
+      </div>
+     <div class="content-section-a" style="background-image: none;">
+         <div class="container text-center">
+            <div class="row">
+               <div class="col-sm-12 col-xs-12">
+                  <hr class="section-heading-spacer">
+                  <div class="clearfix"></div>
+                  <h2 class="section-heading">Bar Chart<br></h2>
+                  <svg width="960" height="500"></svg>
+                 <script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("{{ url_for('static', filename='resources/js/data.tsv')}}", function(d) {
+  d.frequency = +d.frequency;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.letter; }));
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+  
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.frequency); });
+});
+
+</script>
+                 
+                 
+                 
+                 
+               </div>
+            </div>
+         </div>
+         <!-- /.container -->
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
+      <script src="{{ url_for('static', filename='resources/js/modalListeners.js') }}"></script>
+
+   </body>
+</html>
+
+
+
+
