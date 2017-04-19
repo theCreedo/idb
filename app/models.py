@@ -11,7 +11,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
-from flask_whooshee import Whooshee, AbstractWhoosheer
+from flask_whooshee import Whooshee
+# from main import whooshee
 
 # Establish connection between Flask app and Postgres database
 app = Flask(__name__)
@@ -19,27 +20,28 @@ app.config[
     'SQLALCHEMY_DATABASE_URI'] =                                    \
     'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['WHOOSHEE_DIR'] = 'whooshee'
 CORS(app)
 db = SQLAlchemy(app)
+whooshee = Whooshee(app)
+
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
-
-@whooshee.register_model('name', 'genre', 'release_date', 'duration', 
-    'popularity', 'preview_url', 'explicit', 'spotify_uri')
+@whooshee.register_model('name', 'genre', 'release_date', 'preview_url', 'spotify_uri')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
     # Define columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
-    genre = db.Column(db.String(25))
-    release_date = db.Column(db.String(15))
+    name = db.Column(db.UnicodeText)
+    genre = db.Column(db.UnicodeText)
+    release_date = db.Column(db.UnicodeText)
     duration = db.Column(db.Integer)
     popularity = db.Column(db.Integer)
-    preview_url = db.Column(db.String(200))
+    preview_url = db.Column(db.UnicodeText)
     explicit = db.Column(db.Boolean)
-    spotify_uri = db.Column(db.String(100))
+    spotify_uri = db.Column(db.UnicodeText)
 
     # Reference to artists table
     # Auto-populates Artist.tracks
@@ -70,20 +72,19 @@ class Track(db.Model):
         self.explicit = explicit
         self.spotify_uri = spotify_uri
 
+
 # Models a Concert object
 # Populated via Bandsintown
-
-
 @whooshee.register_model('name', 'event_link', 'date', 'time')
 class Concert(db.Model):
     __tablename__ = 'concerts'
 
     # Define Columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
-    event_link = db.Column(db.String(200))
-    date = db.Column(db.String(15))
-    time = db.Column(db.String(10))
+    name = db.Column(db.UnicodeText)
+    event_link = db.Column(db.UnicodeText)
+    date = db.Column(db.UnicodeText)
+    time = db.Column(db.UnicodeText)
 
     # Reference to venues table
     # Auto-populates Venue.concerts
@@ -117,20 +118,19 @@ class Concert(db.Model):
 # Models and Album object
 # Populated via Spotify and Musicgraph
 
-@whooshee.register_model('name', 'genre', 'release_date',
-    'album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
+@whooshee.register_model('name', 'genre', 'release_date','album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
 class Album(db.Model):
     __tablename__ = 'albums'
 
     # Define Columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
-    genre = db.Column(db.String(50))  # db.Column(db.String(100))
-    release_date = db.Column(db.String(15))
-    album_cover_url = db.Column(db.String(200))
-    label = db.Column(db.String(100))
+    name = db.Column(db.UnicodeText)
+    genre = db.Column(db.UnicodeText)  # db.Column(db.UnicodeText(100))
+    release_date = db.Column(db.UnicodeText)
+    album_cover_url = db.Column(db.UnicodeText)
+    label = db.Column(db.UnicodeText)
     number_of_tracks = db.Column(db.Integer, nullable=True)
-    spotify_uri = db.Column(db.String(100))
+    spotify_uri = db.Column(db.UnicodeText)
 
     # db.relationship to artists table
     # Auto-populates Artist.albums
@@ -178,11 +178,11 @@ class Artist(db.Model):
 
     # Define columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
-    image_url = db.Column(db.String(200))
-    country = db.Column(db.String(50))
-    decade = db.Column(db.String(100))
-    genre = db.Column(db.String(100))
+    name = db.Column(db.UnicodeText)
+    image_url = db.Column(db.UnicodeText)
+    country = db.Column(db.UnicodeText)
+    decade = db.Column(db.UnicodeText)
+    genre = db.Column(db.UnicodeText)
 
     # db.relationship to albums table
     # Auto-populates Album.artist
@@ -219,17 +219,16 @@ class Artist(db.Model):
 # Models a Venue object
 # Populated via Bandsintown
 
-@whooshee.register_model('name', 'city', 'region', 'country', 
-    'latitude', 'longitude')
+@whooshee.register_model('name', 'city', 'region', 'country')
 class Venue(db.Model):
     __tablename__ = 'venues'
 
     # Define Columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
-    city = db.Column(db.String(50))
-    region = db.Column(db.String(50))
-    country = db.Column(db.String(50))
+    name = db.Column(db.UnicodeText)
+    city = db.Column(db.UnicodeText)
+    region = db.Column(db.UnicodeText)
+    country = db.Column(db.UnicodeText)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
 
@@ -257,7 +256,7 @@ class Venue(db.Model):
         return "<Venue(name='%s', city='%s')>" % (self.name, self.city)
 
 # Create the tables
-# db.create_all()
+db.create_all()
 
 # Drop Tables when necessary
 # db.reflect()
@@ -265,4 +264,4 @@ class Venue(db.Model):
 
 
 # Commit changes
-# db.session.commit()
+db.session.commit()

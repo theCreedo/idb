@@ -8,7 +8,7 @@ from flask_whooshee import Whooshee
 from models import db, Venue, Concert, Album, Artist, Track, app
 from io import StringIO
 
-whooshee = Whooshee(app)
+# whooshee = Whooshee(app)
 Compress(app)
 # Create the Flask-Restless API manager.
 manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
