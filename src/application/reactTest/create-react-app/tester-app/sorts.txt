@@ -1,0 +1,27 @@
+/* Artists */
+<option value="name">Artist Name</option>
+<option value="country">Country</option>
+<option value="genre">Genre</option>
+<option value="decade">Decade</option>
+
+/* Albums */
+<option value="name">Album Name</option>
+<option value="release_date">Release Date</option>
+<option value="label">Label</option>
+<option value="genre">Genre</option>
+<option value="number_of_tracks"># Songs</option>
+
+/* Concerts */
+<option value="name">Artist</option>
+<option value="date">Country</option>
+<option value="time">Start Time</option>
+
+/* Tracks */
+<option value="name">Track Name</option>
+<option value="artist_id">Group by Artist</option>
+<option value="album_id">Group by Album</option>
+<option value="genre">Genre</option>
+<option value="popularity">Popularity</option>
+<option value="explicit">Is explicit</option>
+<option value="duration">Length</option>
+<option value="release_date">Release</option>

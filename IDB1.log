@@ -1,0 +1,1286 @@
+commit 31da19ff4c114b91372971b2e6a4eed842bfffcb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 21:35:27 2017 -0500
+
+    Fixed it to be one click update the modal.
+
+commit 36b417f8802270d811f7ff00aceb07b900ad69ee
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 21:24:19 2017 -0500
+
+    Very rough artist modal via react bootstrap in tester-app
+
+commit 36723c8da79903bd1d9d0160be269f7276f073ef
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Mon Apr 10 19:02:39 2017 -0500
+
+    Added everything so far. Starting to debug
+
+commit 3d80caa32d8ce880c72e57572e4eb7e2b763dc4f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:58:30 2017 -0500
+
+    put in test coverage
+
+commit ff7238fd24bce69396bdbbe3de1f442938095308
+Merge: 35b0578 a3c817a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:52:10 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 35b0578ea88a6331b858fcb0d6d45f1ecf4b685a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:52:01 2017 -0500
+
+    put in the button for run test on about page
+
+commit a3c817a23d19bf26b86556b38699e6e97f0522a9
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:44:27 2017 -0500
+
+    Added more tests
+
+commit f78a684f7ad6512cdd9e2760d341eea866da0d59
+Merge: 2a1c392 f593cd0
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:12:14 2017 -0500
+
+    Merged branch master into master
+
+commit 2a1c392e6712ebb36d0448b43b58d0dfb0e614c9
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 21:12:07 2017 -0500
+
+    Added backend unit tests
+
+commit f593cd080c873df74e640d8ab4c69178d49aae8b
+Merge: e01e4d5 66b404c
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:05:00 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e01e4d55436b35f2b47c21abc1f435794311de78
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 21:04:57 2017 -0500
+
+    updating modal titles for each page
+
+commit 66b404c01d651c0764b9bb584a305731cbb9cb1c
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 21:01:55 2017 -0500
+
+    Update modal listeners to take out logs and reflect on Tracy's new html
+
+commit 334998c5792ebf139fe95521cb4b8ec8f396e0fd
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Sat Apr 8 19:33:41 2017 -0500
+
+    added endpoint to flask-restless api to run tests and return output in json format
+
+commit c716d25666c8fbaf27969d6dbbb2383f45b8ead7
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 19:03:56 2017 -0500
+
+    removing static bootstrap + pagination center for concerts
+
+commit d7d99f97b1b4ef8c19ba3043cbc19608d34d77a2
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:52:27 2017 -0500
+
+    Put the about template back
+
+commit e7ce5e1d0362731c20caa9bebdecc4f163af2876
+Merge: 29b6637 76426ed
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:30:43 2017 -0500
+
+    Merge branch 'frontend'
+
+commit 29b663770ad4f9cf7e2c73249f441089d9007683
+Merge: 65b4198 e88100e
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 17:23:30 2017 -0500
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+    
+    Conflicts:
+    	app/tests.py
+
+commit 65b4198eeff9acefe5b8ec3465bc3995d576e3b0
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 17:22:40 2017 -0500
+
+    Added all frontend files
+
+commit 76426ed23053ec0920533e827239a8c27715a6ad
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Sat Apr 8 17:01:36 2017 -0500
+
+    concert bundle
+
+commit 08d64bde3f3a96b22aa192389bc206e4aab45b19
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 15:00:26 2017 -0500
+
+    Replaced the stuff. Put in the app static portion
+
+commit 98d2fdfdf9743e7e3f8838ae1efd33e1a699d980
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:45:17 2017 -0500
+
+    Removed non-db related tests
+
+commit 38a69a9a760f0c706c4f8c83800ff25d27d8820d
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:44:09 2017 -0500
+
+    Added 404 content
+
+commit d1cfccdd2d872c562d574bd68f604f80507ec52e
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Sat Apr 8 14:43:27 2017 -0500
+
+    Added CORS support, added new API endpoint
+
+commit 5a19c234a1328a6b4db8c1c85ec10d02c1fc00b6
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sat Apr 8 13:41:32 2017 -0500
+
+    Got a lottle stuck in the mud.. Can't remember everything but I know that I finished a bunch of listeners and the models here in the .js for each element. Configured with prop for gridtype trying to test to see if I did the concerts modals right
+
+commit e88100ec3b6ccb1387e6f854a50a440167805e37
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 21:58:57 2017 -0500
+
+    Add files
+
+commit bf89d702f97ba84922dde439392ba46b1a7a13c0
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 21:58:35 2017 -0500
+
+    commit finish
+
+commit 51e32b3922a3ccb206352f5434739d1957ba6c45
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 21:46:44 2017 -0500
+
+    Done with modal templates for artists, albums and concerts. Kinda done with the java, which currently kinda lives in my aswaggyp local.
+
+commit 02329714850d15b2c18e1a8ee520564042fd5812
+Merge: 21356af 89500b1
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 20:43:57 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 21356af239b968d6fb248cda4064908122831b95
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 20:43:23 2017 -0500
+
+    fixed naming issues
+
+commit 89500b1486279261ef5a83b23dc579933b9c7248
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:52:06 2017 -0500
+
+    Changed IDB2.out to tests.out
+
+commit 4351bdea16a99d7aaa6d28bbafee1363779529a0
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:43:39 2017 -0500
+
+    updated makefile and fixed some minor issues
+
+commit b53565a4b279edbdb0b4b81ea81b79667eb73bce
+Merge: fee9756 98d8051
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:15:32 2017 -0500
+
+    added coverage to makefile
+
+commit fee9756115e6e892d862e56ef78737e6b872a114
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 19:13:23 2017 -0500
+
+    added coverage to makefile
+
+commit 98d8051793e9626485ebc89ff1b3de4e3286445f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 18:47:32 2017 -0500
+
+    merge create and delete tests for safety
+
+commit eec286e89a6c28e8e0dd39ed8f5584369261c5a2
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 18:13:54 2017 -0500
+
+    Quote production ready for artists complete with api calls quote ready for tracy to test on his magic computer
+
+commit 00863816cb1c6da62947baaf66253d257b121568
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 17:32:14 2017 -0500
+
+    Tracks are good to go! All we lack are modals and API calls
+
+commit 0f8966b28c6f5389bb73ad28e19b9b96de6ef1e3
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 17:19:55 2017 -0500
+
+    Concerts grid is ready to go. Updated the event link
+
+commit e991b7f39ac12a303c38c135073d3666387ae9dc
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 17:07:28 2017 -0500
+
+    Add makefile changes so files sustain IDB1 name
+
+commit 55ff8f7c9ebf8e3fc48e776caade915e73b4ecd5
+Merge: 4baf58d e867c20
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:52:09 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 4baf58dcb39321779194ecdea35ac384d72b57b3
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:51:48 2017 -0500
+
+    modified makefile
+
+commit d7f0ef6513162f97c1759f39acc665a8e9664efb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 16:41:28 2017 -0500
+
+    Just added the grid populators for the other types. About to test albums
+
+commit e867c202da3a67c4859d8e334b4fb8654bd2eb57
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 16:31:51 2017 -0500
+
+    Add files via upload
+
+commit c5f28f5add9dbdcfe0ab8174cef6cc87c5f9f873
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:27:29 2017 -0500
+
+    added some dependencies to makefile for coverage
+
+commit 3d4a64de8b2caa05a2d281113eb05ac49a79783c
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 16:24:35 2017 -0500
+
+    dummy commit to synch makefile changes for nandhini
+
+commit 7c2486d6cb7447d4bfc569713eecb33da8e2f7a5
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 16:18:58 2017 -0500
+
+    Sort buttons work! Just can occasionally take more than one click sometimeessssssss
+
+commit 2bc254b09286f9e4fcd7da53eddd72bb11392d36
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:46:49 2017 -0500
+
+    removed some files, changed makefile to start running coverage
+
+commit 33a69425ed3a6a3251a1539e42e8cca4b725d1cb
+Merge: 0b3070d 9edada6
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:34:47 2017 -0500
+
+    Merge branch 'ben-dev'
+
+commit 9edada67098a6dde29eeabeabeac0af72bb2fd97
+Merge: 6fe6ab8 59fd607
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 15:32:02 2017 -0500
+
+    Merge branch 'ben-dev' of https://github.com/theCreedo/idb into ben-dev
+
+commit 6fe6ab80dd663d7074c7215cf9b97f4c07569289
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 15:31:54 2017 -0500
+
+    updated the makefile to say IDB2 instead
+
+commit 0b3070d5b662f8d3e25845cd430e57ef488a4969
+Merge: d1630e2 59fd607
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:31:48 2017 -0500
+
+    Merge branch 'ben-dev'
+
+commit 59fd6073e11fa0d906aab835a41fd5e7d8bb21ce
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 15:31:28 2017 -0500
+
+    removed extra files
+
+commit d1630e2a63455d2dac3a64da9307077368a65f4d
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 14:34:42 2017 -0500
+
+    Added pagination into url
+
+commit 5ff522aad1ad6734d7e6780491f6f7f7d851b951
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 14:15:45 2017 -0500
+
+    added assertions for latitude and longitude
+
+commit 738882ac981e6a396930b24a1236cb832f6f1ced
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 14:09:29 2017 -0500
+
+    adjusted tests.py to comply with pylint
+
+commit 511193c9f50915e6916c5aac86f37f13b0ee12cc
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 14:08:45 2017 -0500
+
+    adjusted models.py to comply with pylint
+
+commit ecae9c76bc411dd469dad279bc7f8900cddcc18d
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 13:27:09 2017 -0500
+
+    confirmed models.py complies to autopep8
+
+commit a3ee920bb84d8f92ca48bf19e784bf5e2034722c
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-163-188.public.utexas.edu>
+Date:   Fri Apr 7 13:20:41 2017 -0500
+
+    confirmed tests.py complies to autopep8
+
+commit 91365c16cde3235a1eb1e6ab37350af18ac9d6ce
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 12:47:38 2017 -0500
+
+    uncommented emran's tests in tests.py, failing 9 tests
+
+commit 0f6f9a1edd66e51b02f7b4f85e63f2b5ea54b770
+Merge: 8198569 57ebb11
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 12:41:29 2017 -0500
+
+    fixed merge
+
+commit 8198569bab4bb32cd597cf5238614dd754475222
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 12:39:39 2017 -0500
+
+    all unit tests passing
+
+commit 57ebb1188512e557b837f0cafc489b73b8698cb8
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-29-115.public.utexas.edu>
+Date:   Fri Apr 7 10:56:25 2017 -0500
+
+    changed all the id checks to is checks
+
+commit c8312d114f97f24d84e3af9508a3472c7be2b42f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Fri Apr 7 10:51:07 2017 -0500
+
+    Got the grid static working
+
+commit 0b5501e03e436e67da7baf77cf9780dd7c9979cc
+Merge: e14794c 9dcaf0c
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 10:48:35 2017 -0500
+
+    Merge branch 'ben-dev' of https://github.com/theCreedo/idb into ben-dev
+
+commit e14794ccd722ef0abf1646e3f218a40b23a0660e
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Fri Apr 7 10:48:20 2017 -0500
+
+    imposed ordering on tests for db so tests are passing
+
+commit 7bf5c6c7e0f77b8e2e0a32fe9f76d955384bec9a
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 10:27:42 2017 -0500
+
+    Added cors workaround?
+
+commit 9dcaf0cac9c9e41fcb6edd55473f342a15bec60c
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-29-115.public.utexas.edu>
+Date:   Fri Apr 7 10:06:37 2017 -0500
+
+    changed ordering of deletion to avoid cascading errors
+
+commit b2a13d624c12957aed3c74eb6b440becfc604a06
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 10:04:24 2017 -0500
+
+    Request WAS NOT working. Try tracy TRY
+
+commit abc5a02d876917e318e2b6f46b10c32cfd01bdca
+Merge: 4a9397f 73e1aeb
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 08:50:08 2017 -0500
+
+    Merge branch 'master' into frontend
+
+commit 4a9397feaf7043826da17933d8c4919457267082
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 7 08:46:13 2017 -0500
+
+    Not sure where my last commit was. Saving here with the sort and filter responding to the submit correctly and the pagination working.
+
+commit 73e1aeb264eafe76848772315f557483fdca6ccb
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 05:09:23 2017 -0500
+
+    Implemented nicer routing for API
+
+commit e0fd1e4ece08c192acbc158f370fb2902488b215
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 03:35:44 2017 -0500
+
+    Removed unnecessary src files
+
+commit d458f4846f5891a5d5afb0a4ac594a41e38f8af5
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 03:32:57 2017 -0500
+
+    Added greeting page for API, included proxy server for local testing
+
+commit 558974e8ebce159e6a3623b569c624b2dc4f2c0a
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 03:21:43 2017 -0500
+
+    Added WSGI dependency
+
+commit b0d165ba5b0c6c1002d7119b82cdb8ccb02a159d
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 03:16:47 2017 -0500
+
+    Renamed main python file
+
+commit 18bbfcb235d8372348d8c028edebdc2dc1ab6a52
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 03:13:10 2017 -0500
+
+    Added necessary libs
+
+commit edddc40b01fe6b1e361dd465787e01f526dbf14d
+Merge: 174d386 9f34642
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Fri Apr 7 02:48:16 2017 -0500
+
+    Merged branch master into master
+
+commit 9f346427414e1afec211d0fdeb3b5eeae3bb2fe2
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Fri Apr 7 02:03:55 2017 -0500
+
+    Add comments in order to suggest possible steps for making sort and filter requests to API
+
+commit 174d3861269d3aead80f0bd1db59bfccc953336c
+Merge: 2f66020 e4dcb33
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 6 21:55:10 2017 -0500
+
+    Merged branch master into master
+
+commit e4dcb337bf1bd9a3212941c819e81f14c19acf76
+Merge: 6e7005c 0f0960c
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 6 21:36:51 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 6e7005c31d2e673a174e41d135dccb5b124034dc
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 6 21:36:17 2017 -0500
+
+    changed password, debugging tests.py
+
+commit 29a078167b62fd4c6180074d2f998380d732bcdc
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 6 20:40:20 2017 -0500
+
+    made tests.py runnable
+
+commit 086257f762e1a931a1dafb1da6bef35eaee9417d
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-251-160.public.utexas.edu>
+Date:   Thu Apr 6 20:39:24 2017 -0500
+
+    Fixed aa_associations tests
+
+commit eda81576a4bc3dd115ab2e3f00c36fa61804c559
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-251-160.public.utexas.edu>
+Date:   Thu Apr 6 20:32:53 2017 -0500
+
+    added 'uri' to track and albums constructors
+
+commit 39a4cbbeaf432ae9be6ff5fb7e0fb66c8b413814
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 20:28:30 2017 -0500
+
+    Tracy assumed so here is his ass-um-ingly working modal in the artist grid
+
+commit 09ea45411573c62ac2d768f06ca9195a5a7b6100
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 20:13:22 2017 -0500
+
+    The modal module
+
+commit a8af8208b5c45ae7f3d05d86dd926bb024b9318b
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 20:12:15 2017 -0500
+
+    Redid sorting with a form. Seems to work correctly.
+
+commit a11b27c0ef3e4856a4508826193882c5368243bf
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-251-160.public.utexas.edu>
+Date:   Thu Apr 6 19:49:06 2017 -0500
+
+    Fixed some typos
+
+commit 0f0960c7b22c687b69d65b99970aa7db990b59ee
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Apr 6 19:31:03 2017 -0500
+
+    Added query formats for API sort and filter
+
+commit 0446ddeb083787cbb12a585daa1108ae37db279c
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:51:58 2017 -0500
+
+    Fixed pagination. Now working yeet.
+
+commit 8899fdf9c8bdda10ae7874fd20e9670a74f4ad00
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:24:22 2017 -0500
+
+    Mostly working paginationish kinda. Initial state of page one is not working
+
+commit c8976773457a6ef8a8d4cbded1c98660d0afa129
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 18:12:46 2017 -0500
+
+    Working on pagination having incorrect this
+
+commit 1ed75d50f1cfc76cb44d90cd88b4bd7265f97ae1
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Apr 6 18:09:24 2017 -0500
+
+    Refactored API calls to represent correct JSON output
+
+commit a55b1e685fbba6be999363597873cb076022453f
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 17:15:41 2017 -0500
+
+    exported modal functions
+
+commit c483b1e261fce16b555b79a5c3c9b830bbf26675
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 6 17:11:37 2017 -0500
+
+    finished commenting models
+
+commit 0c6e2ff58edd4dad3d3f2365d6c7d4617c1f6616
+Merge: bcb288f 3bbf811
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 6 17:09:35 2017 -0500
+
+    Merge branch 'master' into ben-dev
+
+commit 2081e55d5b6922c94eb652f7844e0fcaf4524abc
+Merge: 8b9a8a0 e8a399e
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 16:40:34 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit 8b9a8a01f3982a62f62139c38c65af76162be5fe
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 16:40:01 2017 -0500
+
+    Finishing up work on the grid html instanced. Finishing up the concerts.
+
+commit e8a399eac219488598c22ae06a38a9d610a61dd4
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:41:28 2017 -0500
+
+    Changed props to state
+
+commit 767f635e48ed72702047a29123a2cdd31f900c8c
+Merge: 43f573b 98a2b85
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:25:43 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit 43f573bcedd24d6e87122137988638bce2de7d54
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 15:25:31 2017 -0500
+
+    updating webpack to build css
+
+commit 98a2b855ca9268b04f3843c1a1199b17cff5fc15
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 15:24:52 2017 -0500
+
+    Trying to figure out data state.
+
+commit fd24a4d5ef02d55c37cf56a1d5d6eb768c79fc27
+Merge: fe6f2a4 40c2c6e
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 14:18:56 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit fe6f2a4868c4ed17d7c92d6e1846972576e33d04
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 14:18:52 2017 -0500
+
+    webpack bundler
+    
+    put exportable module into main.js and run webpack (npm install first if not done so). Should give a bundle.js into dist that imports under the id ="content"
+
+commit 40c2c6ea687b58c957c9e0a24522246103f8aa70
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 14:17:10 2017 -0500
+
+    Added pagination and listeners to the artistGrid.js item
+
+commit 2f6602013fdb3a4abf43951f62447903791baf44
+Merge: ee0dccb 3bbf811
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 6 14:04:22 2017 -0500
+
+    Merged branch master into master
+
+commit d1eb0352d4d0f3da8464e1d3bdd0f16483fdb804
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 12:07:28 2017 -0500
+
+    Pushing now with nav bar losely applied. Looks like we need to figure out how to package the CSS
+
+commit 79f76fb6b7a35ed69df31893fe882c54fd65ba0d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 11:36:10 2017 -0500
+
+    Kinda functioning singular example now! in tester app
+
+commit e8f6c2a4a466c92087176898f5bcb5aba816ab38
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 11:35:01 2017 -0500
+
+    removed a  thing
+
+commit 8e4282fea9987f9239e624ce5d0bc593821e4a04
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 6 11:10:47 2017 -0500
+
+    update package.json to include router-dom and rc-pagination
+
+commit fe27105a6dc497b2af3119bacdb3d890a282ec55
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 10:54:40 2017 -0500
+
+    Trying to work with different things. Trying to render the component from different file.
+
+commit 39db058fc805a01b77df3377585991e62fef6103
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 10:14:14 2017 -0500
+
+    Getting started with create react app and also react router
+
+commit 311271d77797e84a57f29dc3cea09a7abd0c69c8
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 09:30:56 2017 -0500
+
+    Working on the different types now... Looking more and more favorable for a one page app now. Artist table essentially done.
+
+commit c898bfde25cc8918ace995e34b99cf846186d704
+Merge: 56a0be2 3bbf811
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 08:36:10 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb into frontend
+
+commit 56a0be27f596c9799fb20bb5fad2f3f19e3c66d2
+Merge: 816b264 60f2f3d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 08:32:39 2017 -0500
+
+    Merge branch 'master' into frontend
+
+commit 3bbf8114f71848a113dc0eecd0be83dcee198544
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Apr 6 04:10:59 2017 -0500
+
+    Added instructions for sorting
+
+commit 784857b1f326229dea1690c657ffa2366f8910e8
+Merge: 7243802 d70c3bb
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Apr 6 01:33:35 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 72438025186f007dcd92b0da76b01b8e27ee9e0a
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Apr 6 01:32:39 2017 -0500
+
+    Implement rest api communication
+
+commit bcb288f4fba1ee67027dd018812c12d25a0fdc0d
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Thu Apr 6 00:52:33 2017 -0500
+
+    Added tests checking deleting associations
+
+commit 816b2648480cced89dc3689e89290f930e201581
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 00:45:15 2017 -0500
+
+    Fixed decades not working  due to extra s
+
+commit 6c5d99559f56a70b02cb55cdb6aba59596a7d0a5
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 6 00:42:21 2017 -0500
+
+    FIRST WORKING GRID EXAMPLE
+
+commit 56404b46c9e2922e0a9a6e97bddcf8630770f14f
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Thu Apr 6 00:12:06 2017 -0500
+
+    fixed indentation issues
+
+commit ad24d97bb9b08a46343c46aa87369d9f1bc87e5b
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Thu Apr 6 00:10:35 2017 -0500
+
+    Added tests for checking associations
+
+commit ee0dccb9d25a149f71ee82d7c7879167fff937b4
+Merge: ef6994d d70c3bb
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 6 00:00:36 2017 -0500
+
+    Merged branch master into master
+
+commit 093d25ceff12eb958b26e70ed27bfbf24e475b48
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 23:36:47 2017 -0500
+
+    added basic tests for create/delete basic models
+
+commit ce6767ce6b3d11abf265733c9739020550187da3
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 23:17:19 2017 -0500
+
+    commented models
+
+commit d70c3bba296ddd7f2842df6f7e7bf772abb066e7
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 23:07:25 2017 -0500
+
+    pushed json files for example artists query for frontend testing
+
+commit cc4183be9ed5e2f1f066436ae4aef72b76dcfb1f
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 5 22:28:11 2017 -0500
+
+    Added the simple stupid react example.
+
+commit a1f8aac0f4552c423c1246d5e4318f09eb90b52f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:51:46 2017 -0500
+
+    added spotify_uri to populate_db.py
+
+commit 3e488e0c4119a12a911d98865122205fd1df232e
+Merge: 5db88c4 cce8593
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:44:06 2017 -0500
+
+    Merge branch 'master' into ben-dev
+
+commit 5db88c44883bd5c2eedcb337c9e46e627f227344
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:43:55 2017 -0500
+
+    added json stuff for frontend testing
+
+commit cce8593cdb8b276359038f472e2fdf4e005efbd4
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:41:19 2017 -0500
+
+    added spotify_uri to track and album
+
+commit 366b023b1bba31d655ed712788526a84fb5ce106
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 5 21:12:54 2017 -0500
+
+    material UI webpack + node framework
+
+commit 765c0fbedc3bbdf6217d295222c52bc0401b7330
+Merge: 034a52b 0195a7f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:01:04 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 034a52b7d13e53f1af46a8d1e448d2f76610a09e
+Merge: 60f2f3d 0d1aba8
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:00:26 2017 -0500
+
+    Merge branch 'ben-dev'
+
+commit 0d1aba8963242d2440048e0f0e72d3b8b95f57c4
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 21:00:04 2017 -0500
+
+    finished datascraping and database population, resolves #29, resolves #30, resolves #31, resolves #32
+
+commit fc9319b77391c5e8ae52df1091ab407dd63381ad
+Merge: 9384761 4f4bb90
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 20:58:27 2017 -0500
+
+    Merge branch 'ben-dev' of https://github.com/theCreedo/idb into ben-dev
+
+commit 9384761f41cfa822466c9a1ee809ce76ee2b37cb
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 20:58:09 2017 -0500
+
+    tried to get most_popular_track to work but foreign key relationships are not working correctly, sorting Artist.tracks based on popularity
+
+commit 4f4bb908219b9f12773745ebff08b2852e962f6d
+Merge: 4c3ddb6 6ed2046
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 20:41:57 2017 -0500
+
+    Merge branch 'ben-dev' of https://github.com/theCreedo/idb into ben-dev
+
+commit 4c3ddb6c1316410c44195a08d78e431d10a4eca1
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 20:41:07 2017 -0500
+
+    added 3 more database unit tests
+
+commit 6ed2046878d74fd001188ba0be7b123c615b5e70
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 20:08:31 2017 -0500
+
+    commented out delete calls in populate_db.py
+
+commit 3907b50082a354fc35c7ec77cec713d8e584485b
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 19:56:12 2017 -0500
+
+    Updated aquiring of explicit in tracks
+
+commit 88d0ddf791ae5c724b28bcf0069d17e691f65b0e
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 19:27:34 2017 -0500
+
+    Updated genre to come from MusicGraph API instead of Spotify API
+
+commit b653200fb1f99b2d8617839ef85fd2f1a02ac3db
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 18:49:41 2017 -0500
+
+    Modified genre to be in a try-except statement
+
+commit 0195a7faf9c963cca1f22f667e2e1a3d46467cb7
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 5 18:44:14 2017 -0500
+
+    Add app.py which contains the flask-restless api code
+
+commit f3a7454bb6ec63e112d2442e7ad05707b3a9a11f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 18:10:19 2017 -0500
+
+    got through all pages, uncommenting database.commits()
+
+commit 8b3d57d3035c0b3479f05bb7b4463f8ee45402b3
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 17:48:21 2017 -0500
+
+    fixed while loop and next page request
+
+commit ef6994d1571f8077fe300bd39698cf85a97fe417
+Merge: 22ea5e1 60f2f3d
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Wed Apr 5 17:48:18 2017 -0500
+
+    Merged branch master into master
+
+commit 58e31a2bdd4394cac77177886f089261b66580ec
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-199-13.public.utexas.edu>
+Date:   Wed Apr 5 17:22:17 2017 -0500
+
+    modularized main to handle multiple pages in a playlist
+
+commit 60f2f3dd12da4084fff7c082a259c064c15aef44
+Merge: c8a3eeb 888167d
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 12:48:56 2017 -0500
+
+    fixed merge
+
+commit 888167da69d0d14c7e3f3e6be47273dc6e98c2f9
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 12:47:40 2017 -0500
+
+    got through first page of playlist results, need to support multiple pages
+
+commit 6c7c6fab08242a59fc9dcd2c8b349c1d56a9f534
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Wed Apr 5 10:50:10 2017 -0500
+
+    added erro handling to concert input
+
+commit 1481b6aa9c07fa152f889467cac7d2c1d844ba4f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 10:08:08 2017 -0500
+
+    added error handling to album_decoder, fixed a few bugs in populate_db.py
+
+commit 8a8ea07327aaa4e4b4724b3bf5fb8f1a247d450a
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 10:05:14 2017 -0500
+
+    increased lengths of strings to support longer input, added (commented out) code to drop tables if necessary
+
+commit c6d7346685d8b982548a92c1a20314ba59166d61
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 5 08:02:09 2017 -0500
+
+    populate_db compiles
+
+commit 0d8fcf34a5feff86908ad327a180a6166e9d1a60
+Author: Nandhini Lakuduva <Nandhini@wireless-10-146-31-18.public.utexas.edu>
+Date:   Wed Apr 5 00:28:42 2017 -0500
+
+    Finalizing data-scraping process and updated album to accept num_tracks in __init__
+
+commit 59960674899e4860a571f71ab1daa85aa312544a
+Author: Nandhini Lakuduva <Nandhini@wireless-10-146-31-18.public.utexas.edu>
+Date:   Tue Apr 4 21:40:38 2017 -0500
+
+    working on converting json data scrape to python models
+
+commit c8a3eeb2ec1fb75432473bf7e9c19a701150674f
+Merge: 4c4521e d4dbc2b
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Mon Apr 3 17:41:32 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit d4dbc2b65bfbedd12d89ee32a84c82757de1d906
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-79-33.public.utexas.edu>
+Date:   Mon Apr 3 14:34:54 2017 -0500
+
+    added make format to make in case we forget
+
+commit 49fae93fbce1af6a7624dca9976c9bf06e88025b
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-79-33.public.utexas.edu>
+Date:   Mon Apr 3 14:27:14 2017 -0500
+
+    edited models.py to form c_aa and aa relationships and edited db.py to test associations - SUCCESS
+
+commit 88cd310b6bac4aa505db6f2483a50f04c23e68fd
+Author: Jerry Sun <Jerry@jerrys-MBP.lan>
+Date:   Sun Apr 2 17:39:10 2017 -0500
+
+    Trying to establish aa_associations and c_aa associations
+
+commit 840de2abcfcc71c28087c96b0ecbfe315efea87f
+Author: Nandhini Lakuduva <nlak@cs.utexas.edu>
+Date:   Fri Mar 31 18:15:40 2017 -0500
+
+    Trying to figure aa-association
+
+commit 64a0e6b8ee100eb2963c9ba454e1ac44be0b41ae
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 17:31:21 2017 -0500
+
+    test file to create dummy data to each model
+
+commit 40d82288aae32dfcfd83e6640577aa5c14180713
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 17:30:35 2017 -0500
+
+    added create_all and commit messages
+
+commit 1f1e822209e309760199cc4c94ccf63694a4a8b0
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Fri Mar 31 16:14:05 2017 -0500
+
+    changed IP address to point to Cloud SQL instance instead of VM
+
+commit edb208101fb4f9d097d57d50eeb6145f46dbdc8c
+Author: Benjamin Rodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Mar 30 19:37:07 2017 -0500
+
+    removed Ben's password from file
+
+commit 4c4521e01bfb12f1e3ca51bbac2a481b24b95f28
+Merge: 13370ad fec4446
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Mar 30 19:28:32 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 32835445a43b744c598924a4567ddec80a13c47f
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 19:28:00 2017 -0500
+
+    commented out db.create_all() call, added create_track test
+
+commit f5f8da1faf595914e2096d722851a5325b51d74d
+Merge: 623790f 9676d14
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 18:07:13 2017 -0500
+
+    fixed merge conflict
+
+commit 623790f86ea6ae88ae8554ece4de0fd3683614e8
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 18:05:20 2017 -0500
+
+    converted sqlalchemy code into flask_sqlalchemy code
+
+commit fec44464f2f3e2e60940da846f11cde0bfc5fa6b
+Author: Benjamin Rodgers <brodgers@cs.utexas.edu>
+Date:   Thu Mar 30 17:21:59 2017 -0500
+
+    added postgres connection models.py, reformatted models.py and tests.py with make format
+
+commit b79f85edd510af3a303441d2eae190b30a6a1519
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Mar 29 21:59:34 2017 -0500
+
+    Added our little react tester. We have the filter bar working?
+
+commit ec0109058c6e585956a7461112ec9eb722c5d9f4
+Author: Benjamin Rodgers <rodgers.benjamin@utexas.edu>
+Date:   Tue Mar 28 22:08:08 2017 -0500
+
+    dummy commit to test github integration with slack
+
+commit 72dabb171190273a008f47b422fafc9b0eaead9a
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Mar 23 21:40:08 2017 -0500
+
+    Add files via upload
+
+commit 22ea5e1eb4bb1d7044fcce7ede8369ad094fc662
+Merge: 6661ea4 836337c
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 21:05:05 2017 -0500
+
+    Merged emran-dev into master
+
+commit 836337c0d5cbeb73502bd374f8f07caa92a7b2b0
+Merge: c405e23 34220ed
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 21:04:50 2017 -0500
+
+    Merged branch emran-dev into emran-dev
+
+commit c405e23b9d0584e988a35f1d8054b4053d3ac4cf
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 21:04:45 2017 -0500
+
+    Added newer frontend files
+
+commit 19b08448aaea81d3a276ae20c5cd5308bcb1b761
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 20:49:53 2017 -0500
+
+    Final Phase 1 API docs Changes
+
+commit 2ea869c793dc7ae8db0289057c958a12d80b45cf
+Merge: 6661ea4 34220ed
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:41:43 2017 -0500
+
+    Merge pull request #27 from theCreedo/emran-dev
+    
+    Completed Flask integration, added frontend files
+
+commit 34220ed3d991f8fcb7cc0edbd67103439f8689a1
+Merge: b0dd014 6661ea4
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:39:55 2017 -0500
+
+    Merge branch 'master' into emran-dev
+
+commit b0dd014aad657bc8b8a0a249d1b908b87e710d65
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 20:23:58 2017 -0500
+
+    Completed Flask integration, added frontend files
+
+commit 6661ea4dc63a55fad218c6d82013715c8ddc389e
+Author: Nandhini Lakuduva <Nandhini@Nandhinis-MacBook-Pro.local>
+Date:   Thu Mar 23 19:47:02 2017 -0500
+
+    Closes #12: added __init__ implementations and assertions to models.py
+
+commit 168ef69f4183d65dc15a174d95dab4753e97366f
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 18:27:40 2017 -0500
+
+    Added unit tests for Flask routing
+
+commit 13370ad662d05747262f2b7efe4a022062874b7c
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Mar 23 17:32:45 2017 -0400
+
+    fixed typo in example artists/tracks calls
+
+commit 1a80a5553895cd3cb05661173df9bf839a2de902
+Merge: b25e55e 13996ec
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 15:22:09 2017 -0500
+
+    Merged branch emran-dev into master
+
+commit b25e55e17798a92f6b1a54623a072fd77132cc32
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 15:21:42 2017 -0500
+
+    Minor Text Changes
+
+commit 13996ec2b880da9662ad91c76adae328afe96afe
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Mar 23 15:21:14 2017 -0500
+
+    Modified models.py in src to comply with GCP
+
+commit 9d6fa3b5fd1c0954551632d21e98a6444f32e527
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Thu Mar 23 15:12:08 2017 -0500
+
+    Refactored to Contain 'PUT' requests, and added more formatted descriptions
+
+commit 867194b0863c5faf8719a7038bec7fd9405c8eae
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-34-197.public.utexas.edu>
+Date:   Thu Mar 23 14:37:42 2017 -0500
+
+    successfully added .html and fixed makefile accordingly
+
+commit 81b7983da46367027fff95f1b805af3f7263450c
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-34-197.public.utexas.edu>
+Date:   Thu Mar 23 12:15:57 2017 -0500
+
+    successfully added git log but having trouble with .html
+
+commit 9676d1486c3797a243dfe2ba4a0d63ec40d4812c
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-244-15.public.utexas.edu>
+Date:   Wed Mar 22 19:44:51 2017 -0500
+
+    Made slight adjustment to name by adding unique=True
+
+commit 21ad908118ee6b2b57ae4f44cf738d9a535e0ad4
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Mar 22 19:09:03 2017 -0400
+
+    commented out Base.metadata.create call (will be implemented in phase 2)
+
+commit 9ac0c6bb8626ba2caf27e7b2c05c1c69392efffc
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Mar 22 19:08:05 2017 -0400
+
+    commented out database connection create_engine call (will be implemeneted in phase 2)
+
+commit 8202df7ace5b54b90672a7f4727a7acd766d007f
+Merge: f7474f1 291f1ce
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Mar 22 19:06:04 2017 -0400
+
+    Merge branch 'ben-dev'
+
+commit 291f1ce466d0ca2d4324b189f9c119c53c9337ed
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Mar 22 19:03:18 2017 -0400
+
+    removed setup_db.py and moved contents into models.py
+
+commit 2a7f4c5cb394a17c41d0e919dfe381d697453ef2
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Wed Mar 22 16:17:42 2017 -0500
+
+    Added src folder from Flask/GCP boilerplate
+
+commit f7474f1d8799d0d9739e5daa4cde4e34a6944040
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-244-15.public.utexas.edu>
+Date:   Wed Mar 22 15:08:32 2017 -0500
+
+    Updated makefile to format models.py and tests.py
+
+commit 85fe0ee54cfe79d16f637f4246bc635964be46d6
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Mar 22 14:34:37 2017 -0500
+
+    Added more formatted makefile to check for all files.
+    
+    Still need to add IDB.* stuff
+
+commit 1f42fd943a6a14ff0e0920d284856d786cd4646c
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Tue Mar 21 19:21:34 2017 -0500
+
+    Added query documentation for all group Collections
+
+commit 93cf3178ca9697eed41d9d8ebb315b4fde6ccc45
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Mon Mar 20 18:45:33 2017 -0500
+
+    Added single instance GET docs for all models.
+
+commit 0943dc470b9191d728b35faf9a91b4ab50bac961
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Mon Mar 20 15:33:15 2017 -0500
+
+    Adding API Description for getting and creating Venues
+
+commit 68b4bf68ccac3ab030ed94011ee5e5114e038b00
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Mon Mar 20 10:50:39 2017 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit e5a0f1ce774944be951cbb3568f58e5cbeff51d9
+Author: Benjamin Rodgers <Benjamin Rodgers>
+Date:   Fri Mar 17 00:43:31 2017 -0500
+
+    first version of database tables from schema using SQLAlchemy
+
+commit 93f24bd48115b46be7146b75ffc5f176e370ef60
+Author: Benjamin Rodgers <Benjamin Rodgers>
+Date:   Mon Mar 13 12:28:49 2017 -0500
+
+    uploaded notes on APIs and example output for the REST API calls we will need to make
+
+commit c8ceba95b8aa50c72db149ab4445e79bd6885ea9
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Mon Mar 6 18:29:17 2017 -0600
+
+    Edit to remove make calls
+
+commit 68aea3be6382368eebbca34be13b5dfbf7499fda
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Mon Mar 6 18:27:11 2017 -0600
+
+    Edit readme
+
+commit 081fbc347f86025113ae4a4bb74d5f572bd6749e
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Mon Mar 6 18:26:13 2017 -0600
+
+    Add starter files. Need to add makefile and better .gitignore ignored files

@@ -1,9 +1,14 @@
 #!flask/bin/python
+
+from flask_compress import Compress
 from flask import Flask, jsonify, url_for, redirect, render_template
-import flask_restless
+import flask_restless, json, unittest, tests
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Venue, Concert, Album, Artist, Track, app
+from io import StringIO
 
+Compress(app)
+compress = Compress()
 # Create the Flask-Restless API manager.
 manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 
@@ -17,17 +22,51 @@ manager.create_api(Track, methods=['GET'], results_per_page=9)
 
 
 @app.route('/')
+@app.route('/static/home.html')
 @app.route('/home')
 @app.route('/home.html')
 def index():
 	return render_template('home.html')
 
 
-
 @app.route('/about')
+@app.route('/static/about.html')
 @app.route('/about.html')
 def about_page():
-	return render_template('sweBootstrap/about.html')
+	return render_template('/about.html')
+
+@app.route('/artistTable')
+@app.route('/static/artistTable.html')
+@app.route('/artistTable.html')
+def artist_table():
+	return render_template('/artistTable.html')
+
+@app.route('/albumTable')
+@app.route('/albumsTable')
+@app.route('/static/albumTable.html')
+@app.route('/albumTable.html')
+@app.route('/albumsTable.html')
+def albums_table():
+	return render_template('/albumsTable.html')
+
+@app.route('/tracksTable')
+@app.route('/static/tracksTable.html')
+@app.route('/tracksTable.html')
+def tracks_table():
+	return render_template('/tracksTable.html')
+
+
+@app.route('/concertsTable')
+@app.route('/static/concertsTable.html')
+@app.route('/concertsTable.html')
+def concerts_table():
+	return render_template('/concertsTable.html')
+
+@app.route('/tests')
+def run_tests():
+	with StringIO() as io:
+		unittest.TextTestRunner(stream=io, verbosity=2).run(unittest.TestLoader().loadTestsFromTestCase(tests.TestCase))
+		return json.dumps('{output:' + io.getvalue() + '}')
 
 # @app.route('/boswe')
 # def api():

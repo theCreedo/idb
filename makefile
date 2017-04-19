@@ -5,9 +5,9 @@ FILES :=                              \
 	app/tests.py                      \
 	.gitignore                        \
 	.travis.yml                       \
-	IDB2.html                         \
-	IDB2.log                          \
-	IDB2.tmp
+	IDB1.html                         \
+	IDB1.log                          \
+	app/tests.out
 
 ifeq ($(shell uname), Darwin)          # Apple
     PYTHON   := python3.5
@@ -47,11 +47,11 @@ endif
 
 IDB1.html: app/models.py
 	pydoc3 -w app/models.py
-	mv models.html IDB2.html
+	mv models.html IDB1.html
 
 
 IDB1.log:
-	git log > IDB2.log
+	git log > IDB1.log
 
 # RunCollatz.tmp: Collatz.py RunCollatz.in RunCollatz.out RunCollatz.py .pylintrc
 # 	-$(PYLINT) Collatz.py
@@ -59,11 +59,13 @@ IDB1.log:
 # 	$(PYTHON) RunCollatz.py < RunCollatz.in > RunCollatz.tmp
 # 	diff RunCollatz.tmp RunCollatz.out
 
-IDB2.tmp: app/models.py app/tests.py app/main.py .pylintrc
-	-$(PYLINT) app/tests.py
-	$(COVERAGE) run    --branch app/tests.py >  tests.tmp 2>&1
-	$(COVERAGE) report -m                      >> tests.tmp
-	cat tests.tmp 
+.PHONY: tests.out
+tests.out: .pylintrc
+	-$(PYLINT) ./app/tests.py
+	-$(COVERAGE) run    --branch app/tests.py >  app/tests.tmp 2>&1
+	-$(COVERAGE) report -m                      >> app/tests.tmp
+	mv app/tests.tmp app/tests.out
+	cat app/tests.out
 
 check:
 	@not_found=0;                                 \
@@ -105,9 +107,12 @@ status:
 	git status
 # 	make clean
 
-test: IDB2.html IDB2.log format IDB2.tmp
+test: IDB1.html IDB1.log tests.out
 	ls -al
 	make check
+
+build:
+	pip install -r ./app/requirements.txt
 
 versions:
 	which make

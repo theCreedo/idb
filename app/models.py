@@ -10,6 +10,8 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
+from flask_whooshee import Whooshee, AbstractWhoosheer
 
 # Establish connection between Flask app and Postgres database
 app = Flask(__name__)
@@ -17,12 +19,15 @@ app.config[
     'SQLALCHEMY_DATABASE_URI'] =                                    \
     'postgres://postgres:SoftwareEngineering!420@35.184.149.32/boswe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+CORS(app)
 db = SQLAlchemy(app)
+whooshee = Whooshee(app)
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
 
-
+@whooshee.register_model('name', 'genre', 'release_date', 'duration', 
+    'popularity', 'preview_url', 'explicit', 'spotify_uri')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -66,111 +71,55 @@ class Track(db.Model):
         self.explicit = explicit
         self.spotify_uri = spotify_uri
 
-    # Debug print method
-    def __repr__(self):
-        return "<Track(name='%s')>" % (self.name)
-
-# Association class to model the many-to-many db.relationship between
-# Concerts and Artists and Albums
+# Models a Concert object
+# Populated via Bandsintown
 
 
-class Concert_AA_Association(db.Model):
-    __tablename__ = 'concert_aa_pairs'
+@whooshee.register_model('name', 'event_link', 'date', 'time')
+class Concert(db.Model):
+    __tablename__ = 'concerts'
 
-    # Define columns
-    id = db.Column(db.Integer, primary_key=True)
-
-    # Reference to concerts table
-    # Auto-populates Concert.artist_album_pairs
-    concert_id = db.Column(db.Integer, db.ForeignKey('concerts.id'))
-
-    # Reference to artist_album_pairs table
-    aa_id = db.Column(db.Integer, db.ForeignKey('artist_album_pairs.id'))
-
-    # Debug print method
-    def __repr__(self):
-        return "<Concert_AA_Association(concert='%s', artist='%s', album='%s'\
-            )>" % (self.concert.name, self.artist_album.artist.name,
-                   self.artist_album.album.name)
-
-# Association Class to model the many-to-many db.relationship between
-# Artists and Albums
-
-
-class Artist_Album_Association(db.Model):
-    __tablename__ = 'artist_album_pairs'
-
-    # Define Column
-    id = db.Column(db.Integer, primary_key=True)
-
-    # Reference to artists table
-    # Auto-populates Artist.albums
-    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
-
-    # Reference to albums table
-    # Auto-populates Album.artists
-    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
-
-    # Reference to Concert_AA_Association table
-    concerts = db.relationship('Concert_AA_Association',
-                               order_by=Concert_AA_Association.id,
-                               backref='aa_association')
-
-    # Debug print method
-    def __repr__(self):
-        return "<Artist_Album_Association(artist='%s', album='%s')>" %\
-            (self.artist.name, self.album.name)
-
-# Models an Artist object
-# Populated via Spotify and Musicgraph
-
-
-class Artist(db.Model):
-    __tablename__ = 'artists'
-
-    # Define columns
+    # Define Columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
-    image_url = db.Column(db.String(200))
-    country = db.Column(db.String(50))
-    decade = db.Column(db.String(100))
-    genre = db.Column(db.String(100))  # db.Column(db.PickleType(mutable=True))
+    event_link = db.Column(db.String(200))
+    date = db.Column(db.String(15))
+    time = db.Column(db.String(10))
 
-    # db.relationship to artist_album_pairs table
-    # Auto-populates Artist_Album_Association.artist
-    albums = db.relationship('Artist_Album_Association',
-                             order_by=Artist_Album_Association.id,
-                             backref='artist')
+    # Reference to venues table
+    # Auto-populates Venue.concerts
+    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'))
 
-    # db.relationship to tracks table
-    # Auto-populates Track.artist
-    tracks = db.relationship('Track',
-                             order_by=Track.popularity,
-                             backref='artist',
-                             foreign_keys=[])
+    # db.relationship to artists table
+    # Auto-populates Artist.concerts
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
-    # Create an Artist manually
-    def __init__(self, name, image_url, country, decade, genre):
+    # db.relationship to albums table
+    # Auto-populates Album.concerts
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
+
+    # Create a Concert manually
+    def __init__(self, name, event_link, date, time):
         assert name != ""
-        assert image_url != ""
-        assert country != ""
-        assert decade != ""
-        assert genre != ""
+        assert event_link != ""
+        assert date != ""
+        assert time != ""
 
         self.name = name
-        self.image_url = image_url
-        self.country = country
-        self.decade = decade
-        self.genre = genre
+        self.event_link = event_link
+        self.date = date
+        self.time = time
 
     # Debug print method
     def __repr__(self):
-        return "<Artist(name='%s')>" % (self.name)
+        return "<Concert(name='%s')>" % (self.name)
+
 
 # Models and Album object
 # Populated via Spotify and Musicgraph
 
-
+@whooshee.register_model('name', 'genre', 'release_date',
+    'album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
 class Album(db.Model):
     __tablename__ = 'albums'
 
@@ -184,16 +133,19 @@ class Album(db.Model):
     number_of_tracks = db.Column(db.Integer, nullable=True)
     spotify_uri = db.Column(db.String(100))
 
-    # db.relationship to artist_album_pairs table
-    # Auto-populates Artist_Album_Association.album
-    artists = db.relationship('Artist_Album_Association',
-                              order_by=Artist_Album_Association.id,
-                              backref='album')
+    # db.relationship to artists table
+    # Auto-populates Artist.albums
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
     # db.relationship to tracks table
     # Auto-populates Track.album
     tracks = db.relationship('Track',
                              order_by=Track.popularity, backref='album')
+
+    # db.relationship to concerts table
+    # Auto-populates Concert.album
+    concerts = db.relationship('Concert',
+    						  order_by=Concert.date, backref='album')
 
     # Creates an Album manually
     def __init__(self, name, genre, release_date, album_cover_url, label,
@@ -218,50 +170,58 @@ class Album(db.Model):
     def __repr__(self):
         return "<Album(name='%s', label=%s)>" % (self.name, self.label)
 
-# Models a Concert object
-# Populated via Bandsintown
+# Models an Artist object
+# Populated via Spotify and Musicgraph
 
+@whooshee.register_model('name', 'genre', 'image_url', 'country', 'decade')
+class Artist(db.Model):
+    __tablename__ = 'artists'
 
-class Concert(db.Model):
-    __tablename__ = 'concerts'
-
-    # Define Columns
+    # Define columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
-    event_link = db.Column(db.String(200))
-    date = db.Column(db.String(15))
-    time = db.Column(db.String(10))
+    image_url = db.Column(db.String(200))
+    country = db.Column(db.String(50))
+    decade = db.Column(db.String(100))
+    genre = db.Column(db.String(100))
 
-    # Reference to venues table
-    # Auto-populates Venue.concerts
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'))
+    # db.relationship to albums table
+    # Auto-populates Album.artist
+    albums = db.relationship('Album', order_by=Album.release_date, backref='artist')
 
-    # db.relationship to artist_album_pairs table
-    # Auto-populates Concert_AA_Association.concert
-    artist_album_pairs = db.relationship('Concert_AA_Association',
-                                         order_by=Concert_AA_Association.id,
-                                         backref='concert')
+    # db.relationship to tracks table
+    # Auto-populates Track.artist
+    tracks = db.relationship('Track',
+                             order_by=Track.popularity,
+                             backref='artist')
 
-    # Create a Concert manually
-    def __init__(self, name, event_link, date, time):
+    # relationship to concerts table
+    # Auto-populates Concert.artist
+    concerts = db.relationship('Concert', order_by=Concert.date, backref='artist')
+
+    # Create an Artist manually
+    def __init__(self, name, image_url, country, decade, genre):
         assert name != ""
-        assert event_link != ""
-        assert date != ""
-        assert time != ""
+        assert image_url != ""
+        assert country != ""
+        assert decade != ""
+        assert genre != ""
 
         self.name = name
-        self.event_link = event_link
-        self.date = date
-        self.time = time
+        self.image_url = image_url
+        self.country = country
+        self.decade = decade
+        self.genre = genre
 
     # Debug print method
     def __repr__(self):
-        return "<Concert(name='%s')>" % (self.name)
+        return "<Artist(name='%s')>" % (self.name)
 
 # Models a Venue object
 # Populated via Bandsintown
 
-
+@whooshee.register_model('name', 'city', 'region', 'country', 
+    'latitude', 'longitude')
 class Venue(db.Model):
     __tablename__ = 'venues'
 
@@ -304,5 +264,6 @@ class Venue(db.Model):
 db.reflect()
 db.drop_all()
 
+
 # Commit changes
-db.session.commit()
+# db.session.commit()

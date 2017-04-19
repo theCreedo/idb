@@ -9,7 +9,7 @@
     left: 0;
     padding: 0;
     margin: 0;
-    background: rgba(31,33,36,0.45);
+    background: rgba(22, 24, 26, 0.87);
     box-shadow: none;
 }
 .navbar.light {
@@ -224,11 +224,11 @@
 	display: none;
 }
 
-.tp-bullets.simplebullets.navbar						{ 	border:1px solid #666; border-bottom:1px solid #444; background:url(../assets/boxed_bgtile.png); height:40px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px }
+.tp-bullets.simplebullets.navbar						{ 	border:1px solid #666; border-bottom:1px solid #444; background:url(../icons/navbar-tile.svg); height:40px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px }
 
 .tp-leftarrow.navbar									{	z-index:100;cursor:pointer; position:relative;	background:url(../assets/small_left_boxed.png) no-Repeat top left;	width:20px;	height:15px;   float:left;	margin-right:6px; margin-top:12px}
 
-.tp-rightarrow.navbar									{	z-index:100;cursor:pointer; position:relative;	background:url(../assets/small_right_boxed.png) no-Repeat top left;	width:20px;	height:15px;   float:left;	margin-left:6px; margin-top:12px}
+.tp-rightarrow.navbar									{	z-index:100;cursor:pointer; position:relative;	background:url(../icons/navbar-rightarrow.svg) no-Repeat top left;	width:20px;	height:15px;   float:left;	margin-left:6px; margin-top:12px}
 
 .btn:hover,
 .btn:focus,
@@ -245,3 +245,26 @@
 .vanilla-form label.custom-select span {
     background: #4aa2d1;
 }
+
+.btn.responsive-menu {
+    padding: 7px 0 0 0;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    display: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+.btn.responsive-menu {
+	    display: block
+	}
+
+.navbar .btn.responsive-menu {
+	    margin: 32px 0;
+	    float: right;
+	}
+	
+.navbar.fixed .btn.responsive-menu {
+	    margin: 15px 0 16px
+	}

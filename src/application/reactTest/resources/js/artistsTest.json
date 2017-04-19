@@ -1,0 +1,67 @@
+{
+  "Artists": [
+    {
+      "name": "Smash Mouth",
+      "image_url": "https://i.scdn.co/image/8f037146240aad64f589b1448fcd703ba515cc24",
+      "country": "United States of America",
+      "decade": "1990s / 2000s / 2010s",
+      "genre": "Alternative/Indie"
+    },
+    {
+      "name": "Ramin Djawadi",
+      "image_url": "https://i.scdn.co/image/7f2676e08576f569de15238efe3f2e3cc84c82b6",
+      "country": "Germany",
+      "decade": "2000s / 2010s",
+      "genre": "Soundtracks"
+    },
+    {
+      "name": "Bag Raiders",
+      "image_url": "https://i.scdn.co/image/eefd846c0b91dfdfd88bcfa1047469c052df0bf1",
+      "country": "Australia",
+      "decade": "2000s / 2010s",
+      "genre": "Electronica/Dance"
+    },
+    {
+      "name": "Woodkid",
+      "image_url": "https://i.scdn.co/image/5303ccc063af1a3c0f983bcd50353654d90591b4",
+      "country": "France",
+      "decade": "2010s",
+      "genre": "Alternative/Indie"
+    },
+    {
+      "name": "Michael Giacchino",
+      "image_url": "https://i.scdn.co/image/1812581eb241c95a81d5e571675e9d8f9aedf458",
+      "country": "United States of America",
+      "decade": "2000s / 1990s / 2010s",
+      "genre": "Soundtracks"
+    },
+    {
+      "name": "John Williams",
+      "image_url": "https://i.scdn.co/image/bde64350466df4aa41efb9b8b766deef6c46fd08",
+      "country": "United States of America",
+      "decade": "1960s / 1970s / 1980s / 1990s / 2000s / 1950s / 2010s",
+      "genre": "Soundtracks"
+    },
+    {
+      "name": "Bed\u0159ich Smetana",
+      "image_url": "https://i.scdn.co/image/8be0eaf79d574cae6f0b77384496fe22fade7b13",
+      "country": "Unavailable",
+      "decade": "Unavailable",
+      "genre": "Unavailable"
+    },
+    {
+      "name": "Hans Zimmer",
+      "image_url": "https://i.scdn.co/image/14657235e8724181f8b32c6bfa54cdbf86d70852",
+      "country": "Germany",
+      "decade": "1980s / 1990s / 2000s / 1970s / 2010s",
+      "genre": "Soundtracks"
+    },
+    {
+      "name": "The Head and the Heart",
+      "image_url": "https://i.scdn.co/image/65967525525081883b0337c91c369d6d4042e85b",
+      "country": "United States of America",
+      "decade": "2000s / 2010s",
+      "genre": "Alternative/Indie"
+    }
+  ]
+}
