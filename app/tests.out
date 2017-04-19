@@ -1,11 +1,7 @@
-......................
-----------------------------------------------------------------------
-Ran 22 tests in 8.663s
-
-OK
-Name            Stmts   Miss Branch BrPart  Cover   Missing
------------------------------------------------------------
-app/models.py     152      7      0      0    95%   73, 94, 123, 170, 221, 261, 300
-app/tests.py      211      0      6      1    99%   330->exit
------------------------------------------------------------
-TOTAL             363      7      6      1    98%
+Traceback (most recent call last):
+  File "app/tests.py", line 17, in <module>
+    import requests
+ImportError: No module named 'requests'
+Name           Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------
+app/tests.py     149    147      6      0     1%   23-330
