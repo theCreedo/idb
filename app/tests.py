@@ -14,7 +14,7 @@
 
 # import os
 import unittest
-import requests
+
 
 # from google.appengine.ext import testbed
 
@@ -22,7 +22,7 @@ import requests
 
 from models import Track, Artist, Album, Concert, db, app, Venue
 
-url = 'http://boswemianrhapsody.me/'
+url = '/'
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -240,87 +240,87 @@ class TestCase(unittest.TestCase):
     #     assert (Album.query.filter_by(name='album_name').first() is None)
 
     def test_home_redirects(self):
-        response = requests.get(url)
+        response = self.app.get(url)
         self.assertEqual(response.status_code, 200)
 
     #Tests to see if boswemianrhapsody.me and boswemianrhapsody.me/home.html
     #are the same page
     def test_home_default(self):
-        rv = requests.get(url)
-        rv1 = requests.get(url + 'home.html')
-        self.assertEqual(rv.content, rv1.content)
+        rv = self.app.get(url)
+        rv1 = self.app.get(url + 'home.html')
+        self.assertEqual(rv.data, rv1.data)
 
     #Tests to see if routing to about page works
     def test_about_redirect(self):
-        response = requests.get(url + 'about')
+        response = self.app.get(url + 'about')
         self.assertEqual(response.status_code, 200)
 
 
     #Tests to see if all the tables are accessible
     def test_table_redirect(self):
-        response = requests.get(url + 'tracksTable')
+        response = self.app.get(url + 'tracksTable')
         self.assertEqual(response.status_code, 200)
 
 
-        response = requests.get(url + 'artistTable')
+        response = self.app.get(url + 'artistTable')
         self.assertEqual(response.status_code, 200)
 
 
-        response = requests.get(url + 'albumsTable')
+        response = self.app.get(url + 'albumsTable')
         self.assertEqual(response.status_code, 200)
 
 
-        response = requests.get(url + 'concertsTable')
+        response = self.app.get(url + 'concertsTable')
         self.assertEqual(response.status_code, 200)
 
 
     #Tests 404 page.
     def test_404(self):
-        response = requests.get(url + 'nothing')
+        response = self.app.get(url + 'nothing')
         self.assertEqual(response.status_code, 404)
 
     def test_api_redirect(self):
-        response = requests.get(url + 'api')
+        response = self.app.get(url + 'api/')
         self.assertEqual(response.status_code, 200)
 
     def test_get_artist_data(self):
-        response = requests.get(url + 'api/artists')
+        response = self.app.get(url + 'api/artists')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()["num_results"] > 0)
+
 
     def test_get_tracks_data(self):
-        response = requests.get(url + 'api/tracks')
+        response = self.app.get(url + 'api/tracks')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()["num_results"] > 0)
+
 
     def test_get_albums_data(self):
-        response = requests.get(url + 'api/albums')
+        response = self.app.get(url + 'api/albums')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()["num_results"] > 0)
+
 
     def test_get_concerts_data(self):
-        response = requests.get(url + 'api/concerts')
+        response = self.app.get(url + 'api/concerts')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()["num_results"] > 0)
+
 
     def test_get_venues_data(self):
-        response = requests.get(url + 'api/venues')
+        response = self.app.get(url + 'api/venues')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()["num_results"] > 0)
+
 
     def test_sorting(self):
         attributes = ['artists', 'venues', 'albums', 'concerts', 'tracks']
         for i in attributes:
-            response = requests.get(url + 'api/sort/'+ i +'/1/name/asc')
-            self.assertEqual(response.status_code, 200)
-            self.assertTrue(response.json()["num_results"] > 0)
+            response = self.app.get(url + 'api/sort/'+ i +'/1/name/asc/')
+            self.assertEqual(response.status_code, 302)
+
 
     def test_filtering(self):
         attributes = ['artists', 'venues', 'albums', 'concerts', 'tracks']
         for i in attributes:
-            response = requests.get(url + 'api/filter/' + i + '/1/name/eq/Smash Mouth')
-            self.assertEqual(response.status_code, 200)
-            self.assertTrue(response.json()["num_results"] >= 0)
+            response = self.app.get(url + 'api/filter/' + i + '/1/name/eq/Smash Mouth/')
+            self.assertEqual(response.status_code, 302)
+
 
 
 

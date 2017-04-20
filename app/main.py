@@ -30,6 +30,17 @@ manager.create_api(Track, methods=['GET'], results_per_page=9)
 def index():
 	return render_template('home.html')
 
+@app.route('/coverage')
+def coverage():
+	return render_template('index.html')
+
+@app.route('/app_models_py.html')
+def app_models_py():
+	return render_template('app_models_py.html')
+
+@app.route('/app_tests_py.html')
+def app_tests_py():
+	return render_template('app_tests_py.html')
 
 @app.route('/about')
 @app.route('/static/about.html')
@@ -175,10 +186,6 @@ or to carry out the query. This throws a StopIteration when called
 
 https://flask-whooshee.readthedocs.io/en/stable/#writing-queries
 '''
-value = Artist.query.\
-    	whooshee_search('Adele').\
-    	all()
-print(value)
 
 '''
 This version catches the StopIteration, but I'm not sure what is
