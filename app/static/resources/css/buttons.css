@@ -77,5 +77,5 @@ a.animated-button.victoria-one:after {
 
 a.animated-button.victoria-one.cur {
     border: 0px solid none;
-    background: #4aa2d1;
+    background: #4aa2d1 !important;
 }

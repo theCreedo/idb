@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+     <style>
+      .btn {
+          background: none !important;
+      }
+     </style>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="">
@@ -11,7 +16,6 @@
       <link href="{{ url_for('static', filename='resources/templates/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='resources/templates/css/plugins.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='resources/templates/css/style.css') }}" rel="stylesheet">
-      <link href="{{ url_for('static', filename='resources/templates/css/blue.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='resources/templates/types/icons.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/buttons.css') }}">
      
@@ -42,7 +46,7 @@
                <ul class="nav navbar-nav navbar-right">
                   <li>
 
-                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('index') }}">Home</a>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one cur" href="{{ url_for('index') }}">Home</a>
                   </li>
                   <li>
                      <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('about_page') }}">About</a>
@@ -60,7 +64,7 @@
                      <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('concerts_table') }}">Concerts Table</a>
                   </li>
                  <li>
-                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one cur" href="{{ url_for('data_vis') }}">Data Visualization</a>
+                     <a style="color: #FFFFFF; margin-right: 10px;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('data_vis') }}">Data Visualization</a>
                   </li>
                </ul>
             </div>
