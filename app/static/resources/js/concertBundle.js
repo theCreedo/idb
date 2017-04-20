@@ -85,6 +85,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import SWESearch from './SweSearch.js';
+
 
 	//import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
 	// import './resources/css/sweStyle.css';
@@ -267,19 +269,14 @@
 	                _react2.default.createElement(
 	                    'option',
 	                    { value: 'city' },
-	                    'City'
-	                ),
-	                _react2.default.createElement(
-	                    'option',
-	                    { value: 'venue' },
-	                    'Venue'
+	                    'Group by City'
 	                )
 	            );
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var options = this.trackOptions();
+	            var options = this.concertOptions();
 	            var filter = this.state.filterMode;
 	            var gridType = this.props.gridType;
 	            var conditionalStyle;
@@ -294,8 +291,7 @@
 	            } else {
 	                options = this.concertOptions();
 	            }
-
-	            if (filter != "artistname" && filter != "city" && filter != "label" && filter != "genre" && filter != "country" && filter != "explicit" && filter != "venue") {
+	            if (filter != "artistname" && filter != "city" && filter != "label" && filter != "genre" && filter != "country" && filter != "explicit") {
 	                conditionalStyle = "invisible";
 	                disabledStyle = false;
 	                //this.setState({filterString: ''});
@@ -472,7 +468,7 @@
 
 	            /* Valid filtering options for artist, if the filtering selection is neither genre nor country, do not allow filtering.
 	            If the filterString is empty, default to sort */
-	            if (filter != "genre" && filter != "country" && filter != "artistname" && filter != "albumname" && filter != "explicit" && filter != "label" && filter != "city" && filter != "venue") {
+	            if (filter != "genre" && filter != "country" && filter != "artistname" && filter != "albumname" && filter != "explicit" && filter != "label" && filter != "city") {
 	                filtering = false;
 	            } else if (filterQuery == "" || filterQuery == undefined) {
 	                filtering = false;
@@ -492,12 +488,44 @@
 	                }
 	            }
 
+	            console.log("FILTER = " + filter);
+
 	            /* Ben driving */
-	            /* filter npmor sort*/
-	            if (filtering) {
-	                this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}")) });
+	            /* filter or sort*/
+	            if (type === 'concerts') {
+	                if (filtering) {
+	                    if (filter === 'city') {
+	                        /* What if the venue results span multiple pages? ASK ALEX*/
+	                        var done = false;
+	                        var p = 0;
+	                        var ids = [];
+	                        while (!done) {
+	                            p += 1;
+	                            var data = JSON.parse(this.makeAPIcall("/api/venues?page=" + p + "&q={\"filters\":[{\"name\":\"city\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}"));
+	                            var num_pages = data.total_pages;
+	                            for (var x in data.objects) {
+	                                console.log("obj array = " + x);
+	                                ids.push(data.objects[x].id);
+	                            }
+	                            done = p >= data.total_pages;
+	                        }
+	                        console.log("IDS = " + ids);
+	                        this.setState({ data: JSON.parse(this.makeAPIcall("/api/concerts?page=" + page + "&q={\"filters\":[{\"name\":\"venue_id\",\"op\":\"in\",\"val\":[" + ids + "]}]}")) });
+	                    } else {
+	                        this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}")) });
+	                    }
+	                } else {
+	                    if (filter === 'city') {
+	                        filter = 'venue_id';
+	                    }
+	                    this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\"" + filter + "\",\"direction\":\"" + sort + "\"}]}")) });
+	                }
 	            } else {
-	                this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\"" + filter + "\",\"direction\":\"" + sort + "\"}]}")) });
+	                if (filtering) {
+	                    this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}")) });
+	                } else {
+	                    this.setState({ data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\"" + filter + "\",\"direction\":\"" + sort + "\"}]}")) });
+	                }
 	            }
 
 	            // console.log("PAGECHG sort " + this.state.sortMode + " field " + this.state.filterMode + " filter string " + this.state.filterString);
@@ -1627,6 +1655,11 @@
 
 
 	_reactDom2.default.render(_react2.default.createElement(ReactGrid, { gridType: "concerts" }), document.getElementById('content'));
+
+	// ReactDOM.render(
+	//  <SWESearch/>,
+	//  document.getElementById('content')
+	// );
 
 /***/ },
 /* 1 */
