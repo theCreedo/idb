@@ -892,12 +892,12 @@ export default class ReactGrid extends React.Component {
     }
 }
 
-// ReactDOM.render(
-//  <ReactGrid gridType={"tracks"}/>,
-//  document.getElementById('content')
-// );
-
 ReactDOM.render(
- <SWESearch/>,
+ <ReactGrid gridType={"artists"}/>,
  document.getElementById('content')
 );
+
+// ReactDOM.render(
+//  <SWESearch/>,
+//  document.getElementById('content')
+// );

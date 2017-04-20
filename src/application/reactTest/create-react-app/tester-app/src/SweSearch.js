@@ -119,8 +119,10 @@ export default class SWESearch extends React.Component {
 		}
 
 		return (
-				<div key={data.name+data.id} className="col-xs-4 sweSearchResultCard">
-					<h3>Artist</h3>
+				<div key={data.name+data.id} className="col-xs-12 col-md-4 sweSearchResultCard">
+					<hr className="sweSearchItemSpacer"></hr>
+					<div className="clearfix"></div>
+					<h2 className="sweGridItemHeading">Artist</h2>
 					<h3><a onClick={() => {this.openArtistModal(data.id)}}>{data.name}</a></h3>
 					<div className="row">{hits}</div>
 				</div>
@@ -142,8 +144,10 @@ export default class SWESearch extends React.Component {
 		}
 
 		return (
-				<div key={data.name+data.id} className="col-xs-4 sweSearchResultCard">
-					<h3>Album</h3>
+				<div key={data.name+data.id} className="col-xs-12 col-md-4 sweSearchResultCard">
+					<hr className="sweSearchItemSpacer"></hr>
+					<div className="clearfix"></div>
+					<h2 className="sweGridItemHeading">Album</h2>
 					<h3><a onClick={() => {this.openAlbumModal(data.id)}}>{data.name}</a></h3>
 					<div className="row">{hits}</div>
 				</div>
@@ -165,8 +169,10 @@ export default class SWESearch extends React.Component {
 		}
 
 		return (
-				<div key={data.name+data.id} className="col-xs-4 sweSearchResultCard">
-					<h3>Track</h3>
+				<div key={data.name+data.id} className="col-xs-12 col-md-4 sweSearchResultCard">
+					<hr className="sweSearchItemSpacer"></hr>
+					<div className="clearfix"></div>
+					<h2 className="sweGridItemHeading">Track</h2>
 					<h3><a onClick={() => {this.openTrackModal(data.id)}}>{data.name}</a></h3>
 					<div className="row">{hits}</div>
 				</div>
@@ -188,8 +194,10 @@ export default class SWESearch extends React.Component {
 		}
 
 		return (
-				<div key={data.name+data.id} className="col-xs-4 sweSearchResultCard">
-					<h3>Concert</h3>
+				<div key={data.name+data.id} className="col-xs-12 col-md-4 sweSearchResultCard">
+					<hr className="sweSearchItemSpacer"></hr>
+					<div className="clearfix"></div>
+					<h2 className="sweGridItemHeading">Concert</h2>
 					<h3><a onClick={() => {this.openConcertModal(data.id)}}>{data.name}</a></h3>
 					<div className="row">{hits}</div>
 				</div>

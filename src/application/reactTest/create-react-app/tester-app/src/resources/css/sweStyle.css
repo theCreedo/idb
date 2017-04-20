@@ -22,7 +22,8 @@
   font-size: 3em;
   color: #FFF;
   text-align: center;
-    text-shadow: 3px 3px 3px #000;
+  text-shadow: 3px 3px 3px #000;
+  text-transform: capitalize;
 }
 
 /* SWE grid subtitle */
@@ -62,6 +63,9 @@
   color: rgb(74, 162, 209);
   text-shadow:#000 1px 1px 1px;
   margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Text content for grid item (Lead)*/
@@ -70,6 +74,9 @@
   font-size: 18px;
   font-weight: 400;
   text-shadow: 3px 3px 0px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: aliceblue;
 }
 
@@ -115,7 +122,7 @@ item-content is visible, and transitions size */
 }
 
 .grid-item:hover .grid-item-content {
-  border-color: white;
+  border-color: #3498DB;
   cursor: pointer;
 }
 
@@ -124,35 +131,35 @@ item-content is visible, and transitions size */
 /* Masonry ARTIST formatting */
 
 .MartistCellContainer {
-	padding: 0px;
-	margin: 0px;
-	background-color: red;
-	display: block;
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+  display: block;
     position: relative;
-	width: 100%;
-	height: 100px;
+  width: 100%;
+  height: 100px;
 }
 
 .MartistCellImgContainer {
-	background-color: blue;
-	height: 100%;
-	width: 100%;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
 }
 
 .MartistCellImgContainer > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
     object-fit: cover;
 }
 
 .MartistCellInfoContainer {
     display: none;
-	background-image: url('../images/bg-1.jpg');
+  background-image: url('../images/bg-1.jpg');
     color: grey;
     position: absolute;
-	height: 100px;
-	width: 50%;
-	left: 50%;
+  height: 100px;
+  width: 50%;
+  left: 50%;
     top: 0px;
 }
 
@@ -161,7 +168,7 @@ item-content is visible, and transitions size */
     text-align: center;
     font-family: arial;
     font-size: 1.5em;
-    color: #fff;
+    color: aliceblue;
 }
 
 .artistInfo-description {
@@ -172,24 +179,24 @@ item-content is visible, and transitions size */
 
 /* Masonry ALBUMS formatting */
 .MalbumCellImgContainer {
-	background-color: blue;
-	height: 100%;
-	width: 100%;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
 }
 
 .MalbumCellImgContainer > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .MalbumCellInfoContainer {
     display: none;
-	background-color: black;
+  background-color: black;
     color: springgreen;
     position: absolute;
-	height: 100px;
-	width: 50%;
-	left: 50%;
+  height: 100px;
+  width: 50%;
+  left: 50%;
     top: 0px;
 }
 
@@ -239,46 +246,107 @@ item-content is visible, and transitions size */
 }
 
 .btn.responsive-menu {
-	    display: block
-	}
+      display: block
+  }
 
 .navbar .btn.responsive-menu {
-	    margin: 32px 0;
-	    float: right;
-	}
-	
+      margin: 32px 0;
+      float: right;
+  }
+  
 .navbar.fixed .btn.responsive-menu {
-	    margin: 15px 0 16px
-	}
-
-  /* Search page */
-  .sweSearchContainer {
-
+      margin: 15px 0 16px
   }
 
-  .sweSearchHeader {
-    font-size:  4em;
-    text-align: center;
-  }
+.navbar-toggle {
+  border-color: #3191e3 !important;
+  background-color: #3191e3 !important;
+}
 
-  .sweSearchBar {
-    width: 100%;
-    text-align: center;
-    background-color: lightblue;
-  }
+.navbar-toggle:hover {
+  background-color: #3191e3 !important;
+  
+}
 
-  .sweSearchResultContainer {
-    text-align: center;
-    background-color: lightgreen;
-    height: 100%;
-  }
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white !important;
+}
+.paginationBar {
+        margin-left: 30%;
+}
 
-  .sweSearchResultCard {
-    max-height: 400px;
+form {
+  text-align: left;
+  width: 100%;
+  color: aliceblue;
+}
 
-    overflow: hidden;
-  }
+form > label {
+  color: aliceblue;
+  padding-right: 50px;
+}
 
-  .sweSearchHighlight {
-    background-color: palegreen;
-  }
+.tools-logo {
+  width: 256px;
+  height: 256px;
+  overflow: hidden;
+
+}
+
+/* tool section */
+.toolImage {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+/* Pagination for each grid page */
+ul.rc-pagination {
+  width: 40%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+/* Search page */
+.sweSearchContainer {
+
+}
+
+.sweSearchHeader {
+  font-size:  4em;
+  text-align: center;
+}
+
+.sweSearchBar {
+  width: 100%;
+  text-align: center;
+  background-color: lightblue;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.sweSearchResultContainer {
+  text-align: center;
+  background-color: lightgreen;
+  height: 100%;
+}
+
+.sweSearchResultCard {
+  max-height: 200px;
+  min-height: 200px;
+  border: 1px grey solid;
+  overflow: hidden;
+}
+
+.sweSearchHighlight {
+  background-color: palegreen;
+}
+
+/* Grid item spacer (Section heading spacer) */
+.sweSearchItemSpacer {
+  text-align: center;
+  width: 200px;
+  border-top: 3px solid rgb(74, 162, 209);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
