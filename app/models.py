@@ -10,7 +10,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from flask_whooshee import Whooshee
 # from main import whooshee
 
@@ -29,7 +29,8 @@ whooshee.reindex()
 
 # Models a Track (Song) object
 # Populated via Spotify and Musicgraph APIs
-@whooshee.register_model('name', 'genre', 'release_date', 'preview_url', 'spotify_uri')
+@whooshee.register_model('name', 'genre', 'release_date', 'preview_url',
+                         'spotify_uri')
 class Track(db.Model):
     __tablename__ = 'tracks'
 
@@ -119,7 +120,8 @@ class Concert(db.Model):
 # Models and Album object
 # Populated via Spotify and Musicgraph
 
-@whooshee.register_model('name', 'genre', 'release_date','album_cover_url', 'label', 'spotify_uri') #would we need to include number_of_tracks
+@whooshee.register_model('name', 'genre', 'release_date', 'album_cover_url',
+                         'label', 'spotify_uri')
 class Album(db.Model):
     __tablename__ = 'albums'
 
@@ -139,13 +141,13 @@ class Album(db.Model):
 
     # db.relationship to tracks table
     # Auto-populates Track.album
-    tracks = db.relationship('Track',
-                             order_by=Track.popularity, backref='album')
+    tracks = db.relationship(
+        'Track', order_by=Track.popularity, backref='album')
 
     # db.relationship to concerts table
     # Auto-populates Concert.album
-    concerts = db.relationship('Concert',
-    						  order_by=Concert.date, backref='album')
+    concerts = db.relationship(
+        'Concert', order_by=Concert.date, backref='album')
 
     # Creates an Album manually
     def __init__(self, name, genre, release_date, album_cover_url, label,
@@ -173,6 +175,7 @@ class Album(db.Model):
 # Models an Artist object
 # Populated via Spotify and Musicgraph
 
+
 @whooshee.register_model('name', 'genre', 'image_url', 'country', 'decade')
 class Artist(db.Model):
     __tablename__ = 'artists'
@@ -187,7 +190,8 @@ class Artist(db.Model):
 
     # db.relationship to albums table
     # Auto-populates Album.artist
-    albums = db.relationship('Album', order_by=Album.release_date, backref='artist')
+    albums = db.relationship(
+        'Album', order_by=Album.release_date, backref='artist')
 
     # db.relationship to tracks table
     # Auto-populates Track.artist
@@ -197,7 +201,8 @@ class Artist(db.Model):
 
     # relationship to concerts table
     # Auto-populates Concert.artist
-    concerts = db.relationship('Concert', order_by=Concert.date, backref='artist')
+    concerts = db.relationship(
+        'Concert', order_by=Concert.date, backref='artist')
 
     # Create an Artist manually
     def __init__(self, name, image_url, country, decade, genre):
@@ -219,6 +224,7 @@ class Artist(db.Model):
 
 # Models a Venue object
 # Populated via Bandsintown
+
 
 @whooshee.register_model('name', 'city', 'region', 'country')
 class Venue(db.Model):

@@ -206,7 +206,7 @@ StopIteration
 @app.route('/api')
 @app.route('/api/')
 def api():
-	return render_template('api.html')
+	return redirect('http://docs.boswemianrhapsody.apiary.io/#', code=302)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,34 +1,99 @@
-....................
-=========================================================
-test_404 (tests.TestCase) ... ok
-test_about_redirect (tests.TestCase) ... ok
-test_api_redirect (tests.TestCase) ... ok
-test_db_album (tests.TestCase) ... ok
-test_db_artist (tests.TestCase) ... ok
-test_db_concert (tests.TestCase) ... ok
-test_db_create_track (tests.TestCase) ... ok
-test_db_relationship (tests.TestCase) ... ok
-test_db_track_artist_relationship (tests.TestCase) ... ok
-test_db_venue (tests.TestCase) ... ok
-test_filtering (tests.TestCase) ... ok
-test_get_albums_data (tests.TestCase) ... ok
-test_get_artist_data (tests.TestCase) ... ok
-test_get_concerts_data (tests.TestCase) ... ok
-test_get_tracks_data (tests.TestCase) ... ok
-test_get_venues_data (tests.TestCase) ... ok
-test_home_default (tests.TestCase) ... ok
-test_home_redirects (tests.TestCase) ... ok
-test_sorting (tests.TestCase) ... ok
-test_table_redirect (tests.TestCase) ... ok
+.FF.......FFFFFF.FFF
+======================================================================
+FAIL: test_about_redirect (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 163, in test_about_redirect
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_api_redirect (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 191, in test_api_redirect
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_filtering (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 229, in test_filtering
+    self.assertEqual(response.status_code, 302)
+AssertionError: 404 != 302
+
+======================================================================
+FAIL: test_get_albums_data (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 205, in test_get_albums_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_get_artist_data (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 195, in test_get_artist_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_get_concerts_data (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 210, in test_get_concerts_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_get_tracks_data (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 200, in test_get_tracks_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_get_venues_data (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 215, in test_get_venues_data
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_home_redirects (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 151, in test_home_redirects
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
+
+======================================================================
+FAIL: test_sorting (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 222, in test_sorting
+    self.assertEqual(response.status_code, 302)
+AssertionError: 404 != 302
+
+======================================================================
+FAIL: test_table_redirect (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 169, in test_table_redirect
+    self.assertEqual(response.status_code, 200)
+AssertionError: 404 != 200
 
 ----------------------------------------------------------------------
-Ran 20 tests in 6.695s
+Ran 20 tests in 6.730s
 
-OK
-
+FAILED (failures=11)
 Name            Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------
 app/models.py     147      4     10      0    97%   116, 171, 218, 257
-app/tests.py      141      6      6      3    94%   265-274, 313->exit, 320->exit, 329->exit
+app/tests.py      141      6      6      3    94%   172-181, 220->exit, 227->exit, 236->exit
 -----------------------------------------------------------
 TOTAL             288     10     16      3    96%
