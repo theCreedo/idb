@@ -175,10 +175,6 @@ or to carry out the query. This throws a StopIteration when called
 
 https://flask-whooshee.readthedocs.io/en/stable/#writing-queries
 '''
-value = Artist.query.\
-    	whooshee_search('Adele').\
-    	all()
-print(value)
 
 '''
 This version catches the StopIteration, but I'm not sure what is
