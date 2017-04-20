@@ -691,13 +691,13 @@ export default class ReactGrid extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-6">
+                            <div className="col-xs-12 col-md-6">
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Artists</h2>
                                 <Masonry className={"grid container-fluid"} elementType={'div'}>{masonryArtists}</Masonry>
                             </div>
-                            <div className="col-xs-6">
+                            <div className="col-xs-12 col-md-6">
                                 <hr className="popupHeaderSpacer"></hr>
                                 <div className="clearfix"></div>
                                 <h2 className="popupDetailHeader">Albums</h2>
@@ -893,7 +893,7 @@ export default class ReactGrid extends React.Component {
 }
 
 ReactDOM.render(
- <ReactGrid gridType={"artists"}/>,
+ <ReactGrid gridType={"tracks"}/>,
  document.getElementById('content')
 );
 
