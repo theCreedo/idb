@@ -91,38 +91,6 @@
 	var albumAttrs = ["name", "genre", "release_date", "album_cover_url", "label", "spotify_uri"];
 	var artistAttrs = ["name", "genre", "image_url", "country", "decade"];
 
-	var style = {
-	    showMe: {
-	        backgroundColor: 'green'
-	    },
-	    header: {
-	        fontSize: '4em',
-	        textAlign: 'center'
-	    },
-	    search: {
-	        width: '100%',
-	        textAlign: 'center',
-	        backgroundColor: 'lightblue'
-	    },
-	    results: {
-	        textAlign: 'center',
-	        backgroundColor: 'lightgreen',
-	        height: '100%'
-	    },
-	    pagination: {
-	        textAlign: 'center',
-	        backgroundColor: 'sandybrown'
-	    },
-	    searchHit: {},
-	    searchHighlight: {
-	        backgroundColor: 'lightyellow'
-	    },
-	    resultCard: {
-	        height: '100px'
-	    },
-	    resultH3: {}
-	};
-
 	var SWESearch = function (_React$Component) {
 	    _inherits(SWESearch, _React$Component);
 
@@ -133,7 +101,7 @@
 
 	        _this.state = {
 	            searchString: _this.props.searchString,
-	            pageSize: 9,
+	            pageSize: 12,
 	            currentPage: 1,
 	            modalData: '',
 	            masonryToggle: false,
@@ -256,10 +224,12 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { key: data.name + data.id, className: 'col-xs-4 sweSearchResultCard' },
+	                { key: data.name + data.id, className: 'col-xs-12 col-md-4 sweSearchResultCard' },
+	                _react2.default.createElement('hr', { className: 'sweSearchItemSpacer' }),
+	                _react2.default.createElement('div', { className: 'clearfix' }),
 	                _react2.default.createElement(
-	                    'h3',
-	                    null,
+	                    'h2',
+	                    { className: 'sweGridItemHeading' },
 	                    'Artist'
 	                ),
 	                _react2.default.createElement(
@@ -299,10 +269,12 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { key: data.name + data.id, className: 'col-xs-4 sweSearchResultCard' },
+	                { key: data.name + data.id, className: 'col-xs-12 col-md-4 sweSearchResultCard' },
+	                _react2.default.createElement('hr', { className: 'sweSearchItemSpacer' }),
+	                _react2.default.createElement('div', { className: 'clearfix' }),
 	                _react2.default.createElement(
-	                    'h3',
-	                    null,
+	                    'h2',
+	                    { className: 'sweGridItemHeading' },
 	                    'Album'
 	                ),
 	                _react2.default.createElement(
@@ -342,10 +314,12 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { key: data.name + data.id, className: 'col-xs-4 sweSearchResultCard' },
+	                { key: data.name + data.id, className: 'col-xs-12 col-md-4 sweSearchResultCard' },
+	                _react2.default.createElement('hr', { className: 'sweSearchItemSpacer' }),
+	                _react2.default.createElement('div', { className: 'clearfix' }),
 	                _react2.default.createElement(
-	                    'h3',
-	                    null,
+	                    'h2',
+	                    { className: 'sweGridItemHeading' },
 	                    'Track'
 	                ),
 	                _react2.default.createElement(
@@ -385,10 +359,12 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { key: data.name + data.id, className: 'col-xs-4 sweSearchResultCard' },
+	                { key: data.name + data.id, className: 'col-xs-12 col-md-4 sweSearchResultCard' },
+	                _react2.default.createElement('hr', { className: 'sweSearchItemSpacer' }),
+	                _react2.default.createElement('div', { className: 'clearfix' }),
 	                _react2.default.createElement(
-	                    'h3',
-	                    null,
+	                    'h2',
+	                    { className: 'sweGridItemHeading' },
 	                    'Concert'
 	                ),
 	                _react2.default.createElement(
@@ -1210,9 +1186,9 @@
 
 	            var data = this.state.data;
 	            var array = data.results;
-	            var arrayStep = this.state.currentPage * 9;
+	            var arrayStep = this.state.currentPage * 12;
 	            var loopStart;
-	            var numberOfPages = Math.ceil(parseInt(data.num_results) / 9);
+	            var numberOfPages = Math.ceil(parseInt(data.num_results) / 12);
 
 	            if (data != '') {
 	                /* Handle case where step is larger than number of objects, use number of objects */
@@ -1221,14 +1197,15 @@
 	                }
 
 	                /* If the array step ends up less than 9 */
-	                if (arrayStep - 9 < 0) loopStart = 0;else loopStart = arrayStep - 9;
+	                if (arrayStep - 12 < 0) loopStart = 0;else loopStart = arrayStep - 12;
 
 	                // Math.ceil(data.num_results/9)
 	                console.log(data);
-	                console.log("Should be " + data.num_results / 9 + " pages. Serving indicies starting at " + (arrayStep - 9) + " to arrayStep " + arrayStep);
+	                console.log("Should be " + data.num_results / 12 + " pages. Serving indicies starting at " + (arrayStep - 12) + " to arrayStep " + arrayStep);
 	                var cardItems = [];
 	                var cardItems2 = [];
 	                var cardItems3 = [];
+	                var cardItems4 = [];
 
 	                var temp;
 	                var count = 0;
@@ -1246,7 +1223,7 @@
 	                        card = this.makeConcertCard(temp.data);
 	                    }
 
-	                    if (count < 3) cardItems.push(card);else if (count < 6) cardItems2.push(card);else cardItems3.push(card);
+	                    if (count < 3) cardItems.push(card);else if (count < 6) cardItems2.push(card);else if (count < 9) cardItems3.push(card);else cardItems4.push(card);
 	                    count++;
 	                }
 	            }
@@ -1303,6 +1280,11 @@
 	                    'div',
 	                    { className: 'row' },
 	                    cardItems3
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    cardItems4
 	                ),
 	                _react2.default.createElement(_rcPagination2.default, { pageSize: this.state.pageSize, defaultCurrent: 1, current: this.state.currentPage, onChange: this.updateGridData, total: data.num_results }),
 	                _react2.default.createElement(

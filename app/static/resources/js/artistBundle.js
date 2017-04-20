@@ -1343,7 +1343,7 @@
 	                            { className: 'row' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col-xs-6' },
+	                                { className: 'col-xs-12 col-md-6' },
 	                                _react2.default.createElement('hr', { className: 'popupHeaderSpacer' }),
 	                                _react2.default.createElement('div', { className: 'clearfix' }),
 	                                _react2.default.createElement(
@@ -1359,7 +1359,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col-xs-6' },
+	                                { className: 'col-xs-12 col-md-6' },
 	                                _react2.default.createElement('hr', { className: 'popupHeaderSpacer' }),
 	                                _react2.default.createElement('div', { className: 'clearfix' }),
 	                                _react2.default.createElement(
