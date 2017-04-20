@@ -6,13 +6,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='htmlcov/style.css') }}" type="text/css">
     
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="jquery.debounce.min.js"></script>
-    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="jquery.hotkeys.js"></script>
-    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='htmlcov/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='htmlcov/jquery.debounce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='htmlcov/jquery.tablesorter.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='htmlcov/jquery.hotkeys.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='htmlcov/coverage_html.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(coverage.index_ready);
     </script>
@@ -25,7 +25,7 @@
             <span class="pc_cov">96%</span>
         </h1>
 
-        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <img id="keyboard_icon" src="{{ url_for('static', filename='htmlcov/keybd_closed.png') }}" alt="Show keyboard shortcuts" />
 
         <form id="filter_container">
             <input id="filter" type="text" value="" placeholder="filter..." />
@@ -34,7 +34,7 @@
 </div>
 
 <div class="help_panel">
-    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <img id="panel_icon" src="{{ url_for('static', filename='htmlcov/keybd_open.png') }}" alt="Hide keyboard shortcuts" />
     <p class="legend">Hot-keys on this page</p>
     <div>
     <p class="keyhelp">
@@ -71,28 +71,28 @@
         <tfoot>
             <tr class="total">
                 <td class="name left">Total</td>
-                <td>288</td>
+                <td>287</td>
                 <td>10</td>
                 <td>0</td>
                 
                 <td>16</td>
                 <td>3</td>
                 
-                <td class="right" data-ratio="291 304">96%</td>
+                <td class="right" data-ratio="290 303">96%</td>
             </tr>
         </tfoot>
         <tbody>
             
             <tr class="file">
                 <td class="name left"><a href="app_models_py.html">app/models.py</a></td>
-                <td>147</td>
+                <td>146</td>
                 <td>4</td>
                 <td>0</td>
                 
                 <td>10</td>
                 <td>0</td>
                 
-                <td class="right" data-ratio="153 157">97%</td>
+                <td class="right" data-ratio="152 156">97%</td>
             </tr>
             
             <tr class="file">
@@ -119,7 +119,7 @@
     <div class="content">
         <p>
             <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2017-04-20 01:55
+            created at 2017-04-19 00:33
         </p>
     </div>
 </div>
