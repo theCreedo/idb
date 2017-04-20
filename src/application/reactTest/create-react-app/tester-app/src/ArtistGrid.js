@@ -93,14 +93,13 @@ class SortingForm extends React.Component {
           <select value={this.state.value} onChange={this.handleFilterChange}>
             <option value="artistname">Artist</option>
             <option value="time">Start Time</option>
-            <option value="city">City</option>
-            <option value="venue">Venue</option>
+            <option value="city">Group by City</option>
           </select>
       );
   }
 
   render() {
-      var options = this.trackOptions();
+      var options = this.concertOptions();
       var filter = this.state.filterMode;
       var gridType = this.props.gridType;
       var conditionalStyle;
@@ -118,10 +117,8 @@ class SortingForm extends React.Component {
       else {
           options = this.concertOptions();
       }
-      
       if (filter != "artistname" && filter != "city" && filter != "label"
-            && filter != "genre" && filter != "country" && filter != "explicit"
-            && filter != "venue"){
+            && filter != "genre" && filter != "country" && filter != "explicit"){
             conditionalStyle = "invisible";
             disabledStyle = false;
             //this.setState({filterString: ''});
@@ -270,10 +267,10 @@ export default class ReactGrid extends React.Component {
        else
            sort = "desc";
       
-          /* Valid filtering options for artist, if the filtering selection is neither genre nor country, do not allow filtering.
+      /* Valid filtering options for artist, if the filtering selection is neither genre nor country, do not allow filtering.
       If the filterString is empty, default to sort */
       if (filter != "genre" && filter != "country" && filter != "artistname" && filter != "albumname" && filter != "explicit" && filter != "label" 
-        && filter != "city" && filter != "venue") {
+        && filter != "city") {
          filtering = false;
       } else if (filterQuery == "" || filterQuery == undefined) {
          filtering = false;
@@ -294,12 +291,44 @@ export default class ReactGrid extends React.Component {
         }
       }
 
+      console.log("FILTER = " + filter);
+
       /* Ben driving */
-      /* filter npmor sort*/
-      if (filtering) {
-         this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}"))});
+      /* filter or sort*/
+      if (type === 'concerts') {
+        if (filtering) {
+          if (filter === 'city') {
+            /* What if the venue results span multiple pages? ASK ALEX*/
+            var done = false;
+            var p = 0;
+            var ids = [];
+            while (!done) {
+              p += 1;
+              var data = JSON.parse(this.makeAPIcall("/api/venues?page=" + p + "&q={\"filters\":[{\"name\":\"city\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}"));
+              var num_pages = data.total_pages;
+              for (var x in data.objects) {
+                console.log("obj array = " + x);
+                ids.push(data.objects[x].id);
+              }
+              done = p >= data.total_pages;
+            }
+            console.log("IDS = " + ids);
+            this.setState({data: JSON.parse(this.makeAPIcall("/api/concerts?page=" + page + "&q={\"filters\":[{\"name\":\"venue_id\",\"op\":\"in\",\"val\":[" + ids + "]}]}"))});
+          } else {
+            this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}"))});
+          }
+        } else {
+          if (filter === 'city') {
+            filter = 'venue_id';
+          }
+          this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\""+filter+"\",\"direction\":\""+sort+"\"}]}"))});
+        }
       } else {
-         this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\""+filter+"\",\"direction\":\""+sort+"\"}]}"))});
+        if (filtering) {
+           this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"filters\":[{\"name\":\"" + filter + "\",\"op\":\"eq\",\"val\":\"" + filterQuery + "\"}]}"))});
+        } else {
+           this.setState({data: JSON.parse(this.makeAPIcall("/api/" + type + "?page=" + page + "&q={\"order_by\":[{\"field\":\""+filter+"\",\"direction\":\""+sort+"\"}]}"))});
+        }
       }
 
 
