@@ -12,6 +12,8 @@
       <link href="{{ url_for('static', filename='resources/css/landing-page.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='resources/css/sweStyle.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='resources/css/pagePO.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static', filename='resources/css/buttons.css') }}">
+     
       <!-- Custom Fonts -->
       <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -24,8 +26,8 @@
    </head>
    <body>
       <!-- Navigation -->
-      <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background: #333;">
-         <div class="container topnav">
+      <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="background: #333; border-bottom: black;">
+         <div class="container topnav" style="margin-right: 0px;">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -39,26 +41,27 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav navbar-right">
                   <li>
-                     <a style ="color: white;" href="{{url_for('index') }}">Home</a>
+
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('index') }}">Home</a>
                   </li>
                   <li>
-                     <a style="color: #FFFFFF" href="{{url_for('about_page') }}">About</a>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('about_page') }}">About</a>
                   </li>
                   <li>
-                     <a style="color: #FFFFFF" href="{{url_for('tracks_table') }}">Tracks Table</a>
-                  </li>
-                  <li style="background: rgb(74, 162, 209);">
-                     <a style="color: #FFFFFF" href="{{url_for('artist_table') }}">Artist Table</a>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('tracks_table') }}">Tracks Table</a>
                   </li>
                   <li>
-                     <a style="color: #FFFFFF;" href="{{url_for('albums_table') }}">Albums Table</a>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one cur" href="{{ url_for('artist_table') }}">Artists Table</a>
                   </li>
                   <li>
-                     <a style="color: #FFFFFF;" href="{{url_for('concerts_table') }}">Concerts Table</a>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('albums_table') }}">Albums Table</a>
+                  </li>
+                  <li>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('concerts_table') }}">Concerts Table</a>
                   </li>
                  <li>
-                       <a style="color: #FFFFFF;" href="{{ url_for('data_vis') }}">Data Visualization</a>
-                    </li>
+                     <a style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-one" href="{{ url_for('data_vis') }}">Data Visualization</a>
+                  </li>
                </ul>
             </div>
             <!-- /.navbar-collapse -->
