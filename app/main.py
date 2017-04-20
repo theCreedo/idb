@@ -63,6 +63,11 @@ def tracks_table():
 @app.route('/concertsTable.html')
 def concerts_table():
 	return render_template('/concertsTable.html')
+  
+@app.route('/dataVis')
+@app.route('/dataVis.html')
+def data_vis():
+	return render_template('/dataVis.html')
 
 @app.route('/tests')
 def run_tests():
