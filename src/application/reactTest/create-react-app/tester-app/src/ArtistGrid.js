@@ -5,6 +5,7 @@ import {Modal} from 'react-bootstrap';
 import {Button} from 'react-bootstrap/lib';
 import Masonry from 'react-masonry-component';
 import SWEAutocomplete from './SweFilters.js'; 
+import SWESearch from './SweSearch.js';
 import 'rc-pagination/assets/index.css';
 //import {openConcertModal, openTrackModal, openArtistModal, openAlbumModal} from './modals.js';
  import './resources/css/sweStyle.css';
@@ -862,7 +863,12 @@ export default class ReactGrid extends React.Component {
     }
 }
 
+// ReactDOM.render(
+//  <ReactGrid gridType={"tracks"}/>,
+//  document.getElementById('content')
+// );
+
 ReactDOM.render(
- <ReactGrid gridType={"tracks"}/>,
+ <SWESearch/>,
  document.getElementById('content')
 );
