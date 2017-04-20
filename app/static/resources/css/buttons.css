@@ -96,6 +96,12 @@ a.animated-button.victoria-four:hover:after {
 	height: 600% !important;
 }
 
+.btn-default {
+  color: aliceblue;
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
 select {
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
   background-color:#3498DB;
