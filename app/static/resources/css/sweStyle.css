@@ -131,36 +131,47 @@ item-content is visible, and transitions size */
 /* Masonry ARTIST formatting */
 
 .MartistCellContainer {
-	padding: 0px;
-	margin: 0px;
-	background-color: red;
-	display: block;
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+  display: block;
     position: relative;
-	width: 100%;
-	height: 100px;
+  width: 100%;
+  height: 100px;
 }
 
 .MartistCellImgContainer {
-	background-color: blue;
-	height: 100%;
-	width: 100%;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
 }
 
 .MartistCellImgContainer > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
     object-fit: cover;
 }
 
 .MartistCellInfoContainer {
     display: none;
-	background-image: url('../images/bg-1.jpg');
+  background-image: url('../images/bg-1.jpg');
     color: grey;
     position: absolute;
-	height: 100px;
-	width: 50%;
-	left: 50%;
+  height: 100px;
+  width: 50%;
+  left: 50%;
     top: 0px;
+}
+
+/* Mobile Only formatting */
+@media (max-width: 992px) {
+  .artistInfo-title {
+      font-size: 1em;
+  }
+
+  .artistInfo-description {
+      font-size: 1em;
+  }
 }
 
 /* Inner Artist info formatting */
@@ -179,24 +190,24 @@ item-content is visible, and transitions size */
 
 /* Masonry ALBUMS formatting */
 .MalbumCellImgContainer {
-	background-color: blue;
-	height: 100%;
-	width: 100%;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
 }
 
 .MalbumCellImgContainer > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .MalbumCellInfoContainer {
     display: none;
-	background-color: black;
+  background-color: black;
     color: springgreen;
     position: absolute;
-	height: 100px;
-	width: 50%;
-	left: 50%;
+  height: 100px;
+  width: 50%;
+  left: 50%;
     top: 0px;
 }
 
@@ -246,17 +257,17 @@ item-content is visible, and transitions size */
 }
 
 .btn.responsive-menu {
-	    display: block
-	}
+      display: block
+  }
 
 .navbar .btn.responsive-menu {
-	    margin: 32px 0;
-	    float: right;
-	}
-	
+      margin: 32px 0;
+      float: right;
+  }
+  
 .navbar.fixed .btn.responsive-menu {
-	    margin: 15px 0 16px
-	}
+      margin: 15px 0 16px
+  }
 
 .navbar-toggle {
   border-color: #3191e3 !important;
@@ -300,9 +311,11 @@ form > label {
     height: 200px;
 }
 
+/* Pagination for each grid page */
 ul.rc-pagination {
   width: 40%;
   margin: auto;
+  margin-top: 30px;
 }
 
 /* Search page */
@@ -319,6 +332,8 @@ ul.rc-pagination {
   width: 100%;
   text-align: center;
   background-color: lightblue;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .sweSearchResultContainer {
@@ -328,11 +343,21 @@ ul.rc-pagination {
 }
 
 .sweSearchResultCard {
-  max-height: 400px;
-
+  max-height: 200px;
+  min-height: 200px;
+  /*border: 1px grey solid;*/
   overflow: hidden;
 }
 
 .sweSearchHighlight {
   background-color: palegreen;
+}
+
+/* Grid item spacer (Section heading spacer) */
+.sweSearchItemSpacer {
+  text-align: center;
+  width: 200px;
+  border-top: 3px solid rgb(74, 162, 209);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

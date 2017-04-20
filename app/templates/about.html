@@ -31,6 +31,12 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" role="search">
+                 <div class="form-group">
+                   <input type="text" id="searchTxt" class="form-control" placeholder="Search">
+                 </div>
+                 <a id="searchButton" class="btn btn-default">Search!</a>
+               </form>
                <ul class="nav navbar-nav navbar-right">
                   <li>
 
@@ -357,9 +363,19 @@
            </div>
          
         </div>
+      <script>
+         document.getElementById("searchButton").onclick = function () {
+            //alert("Hello " + document.getElementById("searchTxt").value);
+
+            var query = document.getElementById("searchTxt").value;
+            // window.location.href("/search/"+ query);
+            document.getElementById("searchButton").href = "/search/" + query;
+            document.getElementsById("searchButton").click();
+            // location.href = "www.yoursite.com";
+         };
+      </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
-      <script src="{{ url_for('static', filename='resources/js/modalListeners.js') }}"></script>
    </body>
 </html>

@@ -37,8 +37,8 @@
 /* General header for details */
 .popupDetailHeader {
 	text-align: center;
-	color: font-size: 4em;
-    color: rgb(74, 162, 209);;
+    font-size: 4em;
+    color: rgb(74, 162, 209);
     text-shadow:#000 1px 1px 1px;
     margin-bottom: 30px;
 }
@@ -61,7 +61,7 @@
 .albumInfoCoverImg {
 	min-height: 300px;
 	min-width: 100%;
-
+    background-size: cover;
 	max-height: 300px;
 }
 
@@ -83,13 +83,19 @@
 .artistInfoCoverImg {
 	min-height: 300px;
 	min-width: 100%;
+    background-size: cover;
 	max-height: 300px;
 }
 
 /* Mobile Only formatting */
 @media (max-width: 992px) {
-    .popupSpotifyPlaylist {
-        width: 300px;
-        height: 300px;
-    }
+  .popupSpotifyPlaylist {
+      width: 200px;
+      height: 300px;
+  }
+
+  .popupSpotifyEmbed {
+		width: 200px;
+		height: 150px;
+	}
 }
