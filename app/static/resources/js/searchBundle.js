@@ -132,7 +132,7 @@
 	        var _this = _possibleConstructorReturn(this, (SWESearch.__proto__ || Object.getPrototypeOf(SWESearch)).call(this, props));
 
 	        _this.state = {
-	            searchString: '',
+	            searchString: _this.props.searchString,
 	            pageSize: 9,
 	            currentPage: 1,
 	            modalData: '',
@@ -141,6 +141,7 @@
 	        };
 
 	        _this.updateSearchString = _this.updateSearchString.bind(_this);
+	        _this.callForUpdate = _this.callForUpdate.bind(_this);
 	        _this.makeSearch = _this.makeSearch.bind(_this);
 	        _this.updateGridData = _this.updateGridData.bind(_this);
 	        _this.closeModal = _this.closeModal.bind(_this);
@@ -166,6 +167,14 @@
 	        value: function updateSearchString(event) {
 	            // console.log("Search string: " + event.target.value);
 	            // this.setState({searchString: event.target.value});
+	        }
+	    }, {
+	        key: 'callForUpdate',
+	        value: function callForUpdate(searchString) {
+	            this.setState({ searchString: searchString });
+	            this.setState({ data: JSON.parse(this.makeAPIcall("/api/search/" + searchString)) }, function () {
+	                this.updateGridData(1);
+	            });
 	        }
 	    }, {
 	        key: 'makeSearch',
@@ -1194,6 +1203,11 @@
 	        key: 'render',
 	        value: function render() {
 
+	            if (this.state.data == '' && this.state.searchString != undefined) {
+	                // alert("Initial load with search string passed: " + this.state.searchString);
+	                this.callForUpdate(this.state.searchString);
+	            }
+
 	            var data = this.state.data;
 	            var array = data.results;
 	            var arrayStep = this.state.currentPage * 9;
@@ -1263,7 +1277,7 @@
 	                            { className: 'input-group-addon' },
 	                            'Search Across Models'
 	                        ),
-	                        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearchString, className: 'form-control text-center', placeholder: 'Input search here...' }),
+	                        _react2.default.createElement('input', { type: 'text', id: 'reactSearchBar', onChange: this.updateSearchString, className: 'form-control text-center', placeholder: 'Input search here...' }),
 	                        _react2.default.createElement(
 	                            'span',
 	                            { className: 'input-group-btn' },
@@ -1315,7 +1329,7 @@
 	exports.default = SWESearch;
 
 
-	_reactDom2.default.render(_react2.default.createElement(SWESearch, null), document.getElementById('content'));
+	_reactDom2.default.render(_react2.default.createElement(SWESearch, { searchString: document.getElementById('content').dataset.query }), document.getElementById('content'));
 
 /***/ },
 /* 1 */

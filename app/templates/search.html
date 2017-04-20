@@ -85,8 +85,9 @@
         var query = '{{searchQuery}}';
 
         document.getElementById('content').dataset.query = query;
+        // document.getElementById('reactSearchBar').value = query;
 
-        alert("Hello world! Here is the query: " + query);
+        // alert("Hello world! Here is the query: " + query);
 
     </script>
     <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>
@@ -95,7 +96,6 @@
     <script type="text/javascript" src="{{ url_for('static', filename='resources/js/scripts.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='resources/js/searchBundle.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='resources/js/modalListeners.js') }}"></script> -->
 
 </body>
 
