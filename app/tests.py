@@ -14,7 +14,7 @@
 
 # import os
 import unittest
-
+import json
 
 # from google.appengine.ext import testbed
 
@@ -281,7 +281,7 @@ class TestCase(unittest.TestCase):
 
     def test_api_redirect(self):
         response = self.app.get(url + 'api/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_artist_data(self):
         response = self.app.get(url + 'api/artists')
@@ -321,6 +321,15 @@ class TestCase(unittest.TestCase):
             response = self.app.get(url + 'api/filter/' + i + '/1/name/eq/Smash Mouth/')
             self.assertEqual(response.status_code, 302)
 
+    def test_search_exists(self):
+        response = self.app.get(url + 'api/search/Michael')
+        data = json.loads(response.data)
+        self.assertNotEqual(data['num_results'], 0)
+
+    def test_search_dne(self):
+        response = self.app.get(url + 'api/search/fdsafsd')
+        data = json.loads(response.data)
+        self.assertEqual(data['num_results'], 0)
 
 
 
