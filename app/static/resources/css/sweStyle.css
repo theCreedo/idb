@@ -63,6 +63,9 @@
   color: rgb(74, 162, 209);
   text-shadow:#000 1px 1px 1px;
   margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Text content for grid item (Lead)*/
@@ -71,6 +74,9 @@
   font-size: 18px;
   font-weight: 400;
   text-shadow: 3px 3px 0px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: aliceblue;
 }
 
