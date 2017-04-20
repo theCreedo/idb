@@ -304,3 +304,35 @@ ul.rc-pagination {
   width: 40%;
   margin: auto;
 }
+
+/* Search page */
+.sweSearchContainer {
+
+}
+
+.sweSearchHeader {
+  font-size:  4em;
+  text-align: center;
+}
+
+.sweSearchBar {
+  width: 100%;
+  text-align: center;
+  background-color: lightblue;
+}
+
+.sweSearchResultContainer {
+  text-align: center;
+  background-color: lightgreen;
+  height: 100%;
+}
+
+.sweSearchResultCard {
+  max-height: 400px;
+
+  overflow: hidden;
+}
+
+.sweSearchHighlight {
+  background-color: palegreen;
+}

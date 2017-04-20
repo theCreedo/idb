@@ -43,6 +43,12 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <form class="navbar-form navbar-left" role="search">
+                 <div class="form-group">
+                   <input type="text" id="searchTxt" class="form-control" placeholder="Search">
+                 </div>
+                 <button type="submit" id="searchButton" class="btn btn-default">Search!</button>
+               </form>
                <ul class="nav navbar-nav navbar-right">
                   <li>
 
@@ -106,6 +112,15 @@
          <!--/.light-wrapper -->
       </div>
       <!--/.body-wrapper --> 
+      <script>
+         document.getElementById("searchButton").onclick = function () {
+            //alert("Hello " + document.getElementById("searchTxt").value);
+
+            var query = document.getElementById("searchTxt").value;
+            window.location.replace("/search/"+ query);
+            // location.href = "www.yoursite.com";
+         };
+      </script>
       <script src="{{ url_for('static', filename='resources/templates/js/jquery.min.js') }}"></script> 
       <script src="{{ url_for('static', filename='resources/templates/js/bootstrap.min.js') }}"></script> 
       <script src="{{ url_for('static', filename='resources/templates/js/plugins.js')}}"></script> 
