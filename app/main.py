@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_whooshee import Whooshee
 from models import db, Venue, Concert, Album, Artist, Track, app
 from io import StringIO
+from search import query
 
 # whooshee = Whooshee(app)
 Compress(app)
@@ -151,6 +152,12 @@ def search_process(collection, query):
 		return 'Error: Collection could not be found'
 	else:
 		return 'Error: Query could not be parsed'
+
+
+@app.route('/api/search/<string:q>')
+def search(q):
+	return query(q)
+
 '''
 This is the original version of wooshee search that I'm testing.
 We may need to look into the query_class, either to save the data
