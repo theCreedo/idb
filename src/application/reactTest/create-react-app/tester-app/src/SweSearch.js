@@ -111,9 +111,22 @@ export default class SWESearch extends React.Component {
 		if (raw != null && ((raw.toLowerCase().indexOf(target)) != -1)) {
 			index = raw.toLowerCase().indexOf(target);
 			match = raw.substring(index, index + targetLength);
+			var split1;
+			var split2;
+			if (index >= 4) {
+				split1 = raw.substring(index - 4, index);
+			} else {
+				split1 = raw.substring(0, index);
+			}
+
+			if (index <= raw.length - 4) {
+				split2 = raw.substring(index + targetLength , index + targetLength + 4);
+			} else {
+				split2 = raw.substring(index + targetLength , raw.length);
+			}
 			console.log("Target: " + target + "Raw: " + raw);
 			console.log("Index: " + index + " Raw Call " + raw.toLowerCase().indexOf(target) + " Match: " + match);
-			result = (<div key={match+attr+raw.length} className="col-xs-6">{attr}: contains <span className="sweSearchHighlight">{match}</span><br/></div>);
+			result = (<div key={match+attr+raw.length} className="col-xs-12">{attr}: ...{split1}<span className="sweSearchHighlight">{match}</span>{split2}...<br/></div>);
 		}
 
 		return result;
