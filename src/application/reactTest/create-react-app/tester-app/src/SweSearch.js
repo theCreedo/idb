@@ -54,7 +54,7 @@ export default class SWESearch extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchString: '',
+			searchString: this.props.searchString,
 			pageSize: 9,
 			currentPage: 1,
 			modalData: '',
@@ -63,6 +63,7 @@ export default class SWESearch extends React.Component {
 		};
 
 		this.updateSearchString = this.updateSearchString.bind(this);
+		this.callForUpdate = this.callForUpdate.bind(this);
 		this.makeSearch = this.makeSearch.bind(this);
 		this.updateGridData = this.updateGridData.bind(this);
 		this.closeModal = this.closeModal.bind(this);
@@ -86,6 +87,13 @@ export default class SWESearch extends React.Component {
 	updateSearchString(event) {
 		// console.log("Search string: " + event.target.value);
 		// this.setState({searchString: event.target.value});
+	}
+
+	callForUpdate(searchString) {
+		this.setState({searchString: searchString});
+		this.setState({data: JSON.parse(this.makeAPIcall("/api/search/" + searchString))}, function () {
+			this.updateGridData(1);
+		});
 	}
 
 	makeSearch(event) {
@@ -644,6 +652,11 @@ export default class SWESearch extends React.Component {
 
 	render() {
 
+		if (this.state.data == '' && this.state.searchString != undefined) {
+			// alert("Initial load with search string passed: " + this.state.searchString);
+			this.callForUpdate(this.state.searchString);
+		}
+
 		var data = this.state.data;
 		var array = data.results;
 		var arrayStep = this.state.currentPage * 9;
@@ -707,7 +720,7 @@ export default class SWESearch extends React.Component {
 					<div className="sweSearchBar">
 						<div className="input-group">
 							<span className="input-group-addon">Search Across Models</span>
-							<input type="text" onChange={this.updateSearchString} className="form-control text-center" placeholder="Input search here..."/>
+							<input type="text" id="reactSearchBar" onChange={this.updateSearchString} className="form-control text-center" placeholder="Input search here..."/>
 							<span className="input-group-btn">
 								<button className="btn btn-default" onClick={this.makeSearch} type="button">Search!</button>
 							</span>
@@ -727,3 +740,8 @@ export default class SWESearch extends React.Component {
 			);
 	}	
 }
+
+ReactDOM.render(
+ <SWESearch searchString={document.getElementById('content').dataset.query}/>,
+ document.getElementById('content')
+);
