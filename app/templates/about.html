@@ -321,14 +321,22 @@
          </div>
       </div>
       <!-- run tests -->
-       <div class="content-section-a">
+       <div class="content-section-a2" style="padding: 50px 0; background-image:{{ url_for('static', filename='resources/images/subtle-grid-bg.jpg') }}">
            <div class="container text-center">
               <div class="row">
                  <div class="col-xs-12">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Test Results<br></h2>
-                    <button id="myBtn">Run Tests</button>
+                   
+                   <div class="col-sm-3">
+                   <a id="myBtn" style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-four">Run Tests</a>
+                   </div>
+                   <div class="col-sm-6"></div>
+                   <div class="col-sm-3">
+                   <a id="myBtn" style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-four">Run Tests</a>
+                   </div>
+                   
                     <div id="myModal" class="modal">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -341,10 +349,13 @@
                         </div>
                       </div>
                     </div>
+                   
                  </div>
                 
               </div>
+             
            </div>
+         
         </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

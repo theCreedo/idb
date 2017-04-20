@@ -1,9 +1,9 @@
 
 /* Global Button Styles */
-a.animated-button:link, a.animated-button:visited {
+a.animated-button, a.animated-button:visited {
 	position: relative;
 	display: block;
-	margin: 30px auto 0;
+	margin: 0px auto 0;
 	padding: 14px 15px;
 	color: #fff;
 	font-size:14px;
@@ -20,7 +20,7 @@ a.animated-button:link, a.animated-button:visited {
 	-o-transition: all 1s ease;
 	transition: all 1s ease;
 }
-a.animated-button:link:after, a.animated-button:visited:after {
+a.animated-button:after, a.animated-button:visited:after {
 	content: "";
 	position: absolute;
 	height: 0%;
@@ -33,14 +33,14 @@ a.animated-button:link:after, a.animated-button:visited:after {
 	-o-transition: all 0.75s ease 0s;
 	transition: all 0.75s ease 0s;
 }
-a.animated-button:link:hover, a.animated-button:visited:hover {
+a.animated-button:hover, a.animated-button:visited:hover {
 	color: #FFF;
 	text-shadow: none;
 }
-a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+a.animated-button:hover:after, a.animated-button:visited:hover:after {
 	height: 450%;
 }
-a.animated-button:link, a.animated-button:visited {
+a.animated-button, a.animated-button:visited {
 	position: relative;
 	display: block;
 	margin: 0px auto 0;
@@ -78,4 +78,20 @@ a.animated-button.victoria-one:after {
 a.animated-button.victoria-one.cur {
     border: 0px solid none;
     background: #4aa2d1 !important;
+}
+
+a.animated-button.victoria-four {
+	border: 2px solid green;
+}
+a.animated-button.victoria-four:after {
+	background: #65b37a;
+	opacity: .5;
+	-moz-transform: translateY(-50%) translateX(-50%) rotate(90deg);
+	-ms-transform: translateY(-50%) translateX(-50%) rotate(90deg);
+	-webkit-transform: translateY(-50%) translateX(-50%) rotate(90deg);
+	transform: translateY(-50%) translateX(-50%) rotate(90deg);
+}
+a.animated-button.victoria-four:hover:after {
+	opacity: 1;
+	height: 600% !important;
 }
