@@ -47,7 +47,7 @@
                  <div class="form-group">
                    <input type="text" id="searchTxt" class="form-control" placeholder="Search">
                  </div>
-                 <button type="submit" id="searchButton" class="btn btn-default">Search!</button>
+                 <a id="searchButton" class="btn btn-default">Search!</a>
                </form>
                <ul class="nav navbar-nav navbar-right">
                   <li>
@@ -117,7 +117,9 @@
             //alert("Hello " + document.getElementById("searchTxt").value);
 
             var query = document.getElementById("searchTxt").value;
-            window.location.replace("/search/"+ query);
+            // window.location.href("/search/"+ query);
+            document.getElementById("searchButton").href = "/search/" + query;
+            document.getElementsById("searchButton").click();
             // location.href = "www.yoursite.com";
          };
       </script>
