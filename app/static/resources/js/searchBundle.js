@@ -1204,7 +1204,7 @@
 	        value: function render() {
 
 	            if (this.state.data == '' && this.state.searchString != undefined) {
-	                alert("Initial load with search string passed: " + this.state.searchString);
+	                // alert("Initial load with search string passed: " + this.state.searchString);
 	                this.callForUpdate(this.state.searchString);
 	            }
 
