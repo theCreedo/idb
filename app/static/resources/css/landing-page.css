@@ -112,6 +112,8 @@ h6 {
     padding: 50px 0;
     background-color: #f8f8f8;
     background-image: url('../images/subtle-grid-bg.jpg');
+    position:relative;
+    z-index: 500;
 }
 
 .content-section-b {

@@ -27,7 +27,7 @@ a.animated-button:after, a.animated-button:visited:after {
 	left: 50%;
 	top: 50%;
 	width: 150%;
-	z-index: 0;
+	z-index: -1;
 	-webkit-transition: all 0.75s ease 0s;
 	-moz-transition: all 0.75s ease 0s;
 	-o-transition: all 0.75s ease 0s;
