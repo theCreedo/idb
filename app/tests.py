@@ -221,12 +221,12 @@ class TestCase(unittest.TestCase):
 
     def test_search_exists(self):
         response = self.app.get(url + 'api/search/Michael')
-        data = json.loads(response.data)
+        data = json.loads(response.text)
         self.assertNotEqual(data['num_results'], 0)
 
     def test_search_dne(self):
         response = self.app.get(url + 'api/search/fdsafsd')
-        data = json.loads(response.data)
+        data = json.loads(response.text)
         self.assertEqual(data['num_results'], 0)
 
 if __name__ == '__main__':
