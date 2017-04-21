@@ -80,9 +80,11 @@ def concerts_table():
 def data_vis():
 	return render_template('/dataVis.html')
 
+@app.route('/search/')
+@app.route('/search')
 @app.route('/search/<string:query>')
 @app.route('/search/<string:query>/')
-def render_search(query):
+def render_search(query="default"):
 	return render_template('/search.html', searchQuery=query)
 
 @app.route('/tests')
