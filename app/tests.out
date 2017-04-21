@@ -1,9 +1,37 @@
-.FF.......FFFFFF.FFF
+.FF.......FFFFFF.FEEFF
+======================================================================
+ERROR: test_search_dne (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 229, in test_search_dne
+    data = json.loads(bytes.decode(response.data))
+  File "/usr/local/lib/python3.5/json/__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python3.5/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/lib/python3.5/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_search_exists (__main__.TestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app/tests.py", line 224, in test_search_exists
+    data = json.loads(bytes.decode(response.data))
+  File "/usr/local/lib/python3.5/json/__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python3.5/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/lib/python3.5/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
 ======================================================================
 FAIL: test_about_redirect (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 163, in test_about_redirect
+  File "app/tests.py", line 164, in test_about_redirect
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -11,15 +39,15 @@ AssertionError: 404 != 200
 FAIL: test_api_redirect (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 191, in test_api_redirect
-    self.assertEqual(response.status_code, 200)
-AssertionError: 404 != 200
+  File "app/tests.py", line 187, in test_api_redirect
+    self.assertEqual(response.status_code, 302)
+AssertionError: 404 != 302
 
 ======================================================================
 FAIL: test_filtering (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 229, in test_filtering
+  File "app/tests.py", line 220, in test_filtering
     self.assertEqual(response.status_code, 302)
 AssertionError: 404 != 302
 
@@ -27,7 +55,7 @@ AssertionError: 404 != 302
 FAIL: test_get_albums_data (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 205, in test_get_albums_data
+  File "app/tests.py", line 199, in test_get_albums_data
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -35,7 +63,7 @@ AssertionError: 404 != 200
 FAIL: test_get_artist_data (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 195, in test_get_artist_data
+  File "app/tests.py", line 191, in test_get_artist_data
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -43,7 +71,7 @@ AssertionError: 404 != 200
 FAIL: test_get_concerts_data (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 210, in test_get_concerts_data
+  File "app/tests.py", line 203, in test_get_concerts_data
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -51,7 +79,7 @@ AssertionError: 404 != 200
 FAIL: test_get_tracks_data (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 200, in test_get_tracks_data
+  File "app/tests.py", line 195, in test_get_tracks_data
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -59,7 +87,7 @@ AssertionError: 404 != 200
 FAIL: test_get_venues_data (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 215, in test_get_venues_data
+  File "app/tests.py", line 207, in test_get_venues_data
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -67,7 +95,7 @@ AssertionError: 404 != 200
 FAIL: test_home_redirects (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 151, in test_home_redirects
+  File "app/tests.py", line 152, in test_home_redirects
     self.assertEqual(response.status_code, 200)
 AssertionError: 404 != 200
 
@@ -75,7 +103,7 @@ AssertionError: 404 != 200
 FAIL: test_sorting (__main__.TestCase)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "app/tests.py", line 222, in test_sorting
+  File "app/tests.py", line 213, in test_sorting
     self.assertEqual(response.status_code, 302)
 AssertionError: 404 != 302
 
@@ -88,12 +116,12 @@ Traceback (most recent call last):
 AssertionError: 404 != 200
 
 ----------------------------------------------------------------------
-Ran 20 tests in 6.730s
+Ran 22 tests in 4.732s
 
-FAILED (failures=11)
+FAILED (failures=11, errors=2)
 Name            Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------
-app/models.py     147      4     10      0    97%   116, 171, 218, 257
-app/tests.py      141      6      6      3    94%   172-181, 220->exit, 227->exit, 236->exit
+app/models.py     147      4     10      0    97%   117, 173, 223, 263
+app/tests.py      150      8      6      3    93%   171-178, 225, 230, 211->exit, 217->exit, 232->exit
 -----------------------------------------------------------
-TOTAL             288     10     16      3    96%
+TOTAL             297     12     16      3    95%

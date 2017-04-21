@@ -1,3 +1,820 @@
+commit f0ac70af438556acb01bfb13883956dbffb50e16
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 21:45:21 2017 -0500
+
+    really fixed tests this time
+
+commit 0d9cdd0c657f7f0d86368ec5e68bffd6494a307b
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 21:38:45 2017 -0500
+
+    fixing search tests
+
+commit 2b8e66969ab985632caa3b5136329c38333fcd3a
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 21:20:41 2017 -0500
+
+    Added search route
+
+commit 575d980a8db16716dc71e5e3fda36b0a3f972919
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 21:05:14 2017 -0500
+
+    fixing buttons and z-index
+
+commit dbe4daac70073c5b687ea79f1a5307c7f3e6c32a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 20:45:33 2017 -0500
+
+    updated about page for stats + presentation link + frame
+
+commit 96f3d9c81851e81cc202c1d724630731d7ac5bd9
+Merge: e1dcb6a d44b2f5
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 20:33:51 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e1dcb6ad1814873fbeb37ab526d91d4b3ec12a88
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 20:33:43 2017 -0500
+
+    Test and Coverage buttons
+
+commit d44b2f598622b038bfdf2bdd21009ce98d892171
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 20:03:33 2017 -0500
+
+    fixed typo in data vis description
+
+commit 4f200e233dcdeb3192c9319726ba7dfe4178e06d
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 19:53:38 2017 -0500
+
+    styling cards for search page
+
+commit 90e78e82dcb795ed2720bbbb41a94ce3d2e3807d
+Merge: 7a4ecfe 85ed5b7
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 17:37:07 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 7a4ecfe5e29760d9c64acfc152ce08e0435d6d74
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 17:36:54 2017 -0500
+
+    changed data visualization description
+
+commit 85ed5b7b6961902d3d88a2dcf452ad05a1d0359f
+Merge: a22db1f 97e2932
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 17:31:51 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a22db1f57a0cf615686dda955074b36782739486
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 17:31:48 2017 -0500
+
+    Added search tests
+
+commit 97e293294b60610d302c350872c208fd89a11659
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-234-168.public.utexas.edu>
+Date:   Thu Apr 20 17:08:29 2017 -0500
+
+    Checked and confirmed with pylint and pep8
+
+commit 91bf4d6cd59ce7033ccd7798f96b42e2796244fe
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 16:44:24 2017 -0500
+
+    Rerouted API endpoint
+
+commit 6accb92f918cbd671225b30a010832619f25cf0a
+Merge: 351ca98 df1885f
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 16:30:54 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 351ca983f964ca7989ac3a34d13f75e1219b9ea7
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 16:30:50 2017 -0500
+
+    new bundles, updated frontend components
+
+commit df1885fbb1a065a5f49c34d3e7cbc0a3a0129624
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 16:29:44 2017 -0500
+
+    Added coverage endpoint
+
+commit b4793ee9ed5f21a7fe1e98ea4210b4815331bd91
+Merge: 025cd0d c1435f1
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 16:25:51 2017 -0500
+
+    Merge branch 'frontend'
+
+commit 5025d70903cd890c496e9c46f3cab0358924bdf2
+Author: Emran Shafaq <emran.shafaq@gmail.com>
+Date:   Thu Apr 20 16:23:22 2017 -0500
+
+    Fixed tests
+
+commit c1435f14aa32e1b9635ebd36ff59ed5b25248b88
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 13:57:39 2017 -0500
+
+    Reflected CSS changes in the app static to pagePO and sweStyle
+
+commit 9c18790fa0f0ca33f62aa957f9b13533544fbd86
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 13:56:04 2017 -0500
+
+    Did some mobile changes for the spotify embeds and hopefully reduced text overflow for the masonry on mobile
+
+commit 2518189e847e9a7d848dea999e667f48f4ca6b28
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 13:23:40 2017 -0500
+
+    Updated deploy's css for swestyle
+
+commit 91dfac44ed5405bf6ab0256c3bae9c79de5f9976
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 13:21:47 2017 -0500
+
+    Removed the border on the cards for search
+
+commit d1d15e7128c00d347910586c5b7962cded9cc036
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 13:21:04 2017 -0500
+
+    Some CSS changes for the search page. Also tried to fix artist filter not showing on artist page for some reason??
+
+commit c27bd7de8575b17cff8f7abcf6d825639cd81e28
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 12:26:17 2017 -0500
+
+    Added search bar to each page. Removed modals from html and added the function as well. Removed modal listeners where applicable
+
+commit d620c971af450c5bd72c5b03fd8219ad522327cf
+Merge: 5a901fc 6c964f4
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 12:16:34 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit 5a901fcdeabbd1c9c0ec10335726941ed8c2e9fd
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 12:16:15 2017 -0500
+
+    Changed search page to 12 items per page
+
+commit 025cd0da7a3db0a25266fba93da39a1b5d43d217
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 11:26:05 2017 -0500
+
+    latest bundles
+
+commit 6c964f415c3c6c39d8c9aab4615901a11b0e4494
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 11:01:05 2017 -0500
+
+    new searchbundle
+
+commit 2116ef5c934daccb1999ce135091d129d910790b
+Merge: cf1e679 ad6747b
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 10:55:16 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit cf1e679c1781313ca6284d45efd3d27d44174719
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 10:55:12 2017 -0500
+
+    search kinda works
+
+commit ad6747b5a96baa0b6693bb0d2137f70fa377e5da
+Merge: 0566721 352c6e0
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 10:54:50 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit 0566721bb659576a4f4fe0cb2c0e33c16da8244a
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 10:53:41 2017 -0500
+
+    Got rid of the alert, seeing that our GACK ASS SHIT worked in getting the query into the search page
+
+commit 352c6e05ae011814d12988abdf1c105c1994b442
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 20 10:24:50 2017 -0500
+
+    very debug such wow much alex
+
+commit 754e61d4d09609df917ba4f3029ed4d7ee54ba64
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 20 09:52:42 2017 -0500
+
+    Working in the static area in the app folder. Added search page and bundle, added search css to the sweStyle file and some debugging/testing scripts to home.
+
+commit 104914c5a8afed9cdb565e91cfd7f4eb06c5a02d
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 04:07:07 2017 -0500
+
+    Handling text overflow --> elipsis to standardize grid format
+
+commit 2112d782480771eea1354290c52b6d09bbe218dd
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 03:54:35 2017 -0500
+
+    center pagination
+
+commit 00f9778574323c90afb8a202822f17a5e62f7e2b
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 03:29:52 2017 -0500
+
+    basic filter + sort button styling
+    
+    Ask Alex to input IDs or classes into the React for further customization.
+
+commit 39100e7fa120d1f88b74663456374f829def9e1c
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 02:42:44 2017 -0500
+
+    trying to make these buttons work for run tests
+
+commit 894fd99e577b5525157ef60d24fcaa95406fe92d
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 02:03:14 2017 -0500
+
+    Standardizing navbar on home page - removing a lot of CSS junk.
+
+commit 01da3a59397feaa04cec79f094a6f4bbdcef99cf
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 01:03:11 2017 -0500
+
+    Standardizing navbar across all pages except home
+
+commit 50c3b2bf2a3f37d84069070579b18ef95d20a790
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Thu Apr 20 00:30:21 2017 -0500
+
+    Animating the navbar + standardizing on dataVis as sample.
+
+commit 01fa28f32c94582945ac9cfd5e52f560a44c4cab
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 22:14:01 2017 -0500
+
+    added partial strings to beginning and end of matched string, changed highlight color
+
+commit 7425fbc33c713e8c103d180c0aeaf26598572cfd
+Merge: 826216e 1b03b81
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 21:42:28 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit 826216e9f0f70cc86749a9be6ae483dee68f6dd7
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 21:40:32 2017 -0500
+
+    Fixed the updating on typing change in the search function
+
+commit 1b03b81a2e244b9c9243375b1c8fb2434f06f2be
+Merge: 5600952 45262ec
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 19 21:33:59 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit 560095216d1db785a4bb7306882bfd66d5f85153
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 19 21:33:54 2017 -0500
+
+    Styling the data vis page.
+    
+    Need to fix mobile - it's spilling out the edge on mobile view.
+
+commit e733fce89250953dd1777793476aaed8ae8540c8
+Merge: 93a2f26 45262ec
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 20:34:02 2017 -0500
+
+    merge conflict
+
+commit 45262ecc90ccacec231fce4c9e99478f6478fab2
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 20:30:16 2017 -0500
+
+    Got rid of hardcoded search string despite dummy data
+
+commit 93a2f26807f59a965afa16bca3a99c8f1f434fcc
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 20:25:09 2017 -0500
+
+    added a search endpoint for all models, changed search.py to be a function callable from main
+
+commit 06dd6cd2ade5417912386c46e2fe5eee78ebeb30
+Merge: dced442 616c85d
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 20:12:15 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit 77dab87bd3d154e8fc1e30938c5b9107ec923b89
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 20:11:05 2017 -0500
+
+    added modals to searching
+
+commit 3558ca4f1e779f7fe9434c9e3ef803306af3b603
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 19:47:49 2017 -0500
+
+    Got everything except for modals and styling for the search page
+
+commit b88993060676114424d0ea5b6fe86aff67185752
+Merge: a349a3c bd9630d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 19:31:33 2017 -0500
+
+    Merge. Only change was SWESearch render for testing
+
+commit a349a3c7e6de06be87d86b95bd44a088383f0b49
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 19 19:25:45 2017 -0500
+
+    Working on search page. Have it almost working. Each card needs to be styled, modal code needs to be moved in and then the strings for the highlights are not displaying.
+
+commit bd9630d48585f7a28550084a4b723aa7da64c5ad
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 18:40:39 2017 -0500
+
+    added bubble graph scripts to dataVis.html
+
+commit 616c85dde9aa7bfdc5facc6907a75c56925640ee
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-16-78.public.utexas.edu>
+Date:   Wed Apr 19 18:20:06 2017 -0500
+
+    Accidentally added out.txt. Removing now
+
+commit ffcfeb5393e02c2d689b925ec51289b4713375a4
+Merge: 0d3cf99 b4e062e
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-16-78.public.utexas.edu>
+Date:   Wed Apr 19 18:15:26 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit 0d3cf9922e2f6d43bd29b38fef63e7bfd4ce4679
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-16-78.public.utexas.edu>
+Date:   Wed Apr 19 18:15:07 2017 -0500
+
+    Updated the minimum length of word for whooshee to 1
+
+commit b4e062ef8a9136e468fdb3db28cb4e1c7eb5df8d
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 19 17:30:39 2017 -0500
+
+    Add YUML diagram in IDB1.pdf
+
+commit 4ba576ec654a6fa77cd12711a676c3831e8e152a
+Merge: a61cf73 09a69ef
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 19 17:30:03 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb into whooshee
+
+commit a61cf73e3ec24306574e990539869d7a8460b2df
+Merge: 8b836e5 4472e68
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 19 17:27:34 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit 4472e68680765990c59147c17a0ce2a7638429d4
+Author: Nandhini Lakuduva <Nandhini@wireless-10-145-16-78.public.utexas.edu>
+Date:   Wed Apr 19 16:39:56 2017 -0500
+
+    Modified searching so that and results come before or results
+
+commit 09a69efe3573ade9fc8368d15461f9b49510e14b
+Author: Eric Lee <hownl96@utexas.edu>
+Date:   Wed Apr 19 13:24:10 2017 -0500
+
+    Formatted to have correct base url, and correct response JSON
+
+commit c7295fb8add0840f80164d0a0dc0aad876d3446c
+Merge: 7a56c68 fd9ccc2
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 10:39:48 2017 -0500
+
+    Merge branch 'frontend' of https://github.com/theCreedo/idb into frontend
+
+commit fd9ccc2ec4a15345bc1d22b64b365391e57b43f8
+Merge: 9e0269f 75ec9ff
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 19 10:18:36 2017 -0500
+
+    Merge remote-tracking branch 'origin/frontend' into frontend
+
+commit 9e0269fbd70e69bcca8f3f2d59a349b00713bdce
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 19 10:18:24 2017 -0500
+
+    Prototype of data vis page + added data vis page to navbar
+
+commit 7a56c680d4bf9fd43e78ab74accf6b1c1218bc4a
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 19 09:56:04 2017 -0500
+
+    fixed concert filtering
+
+commit b692be8c0e4eea92f50edfccfe98c68a7d49019c
+Author: Nandhini Lakuduva <Nandhini@Nandhinis-MacBook-Pro.local>
+Date:   Tue Apr 18 22:37:00 2017 -0500
+
+    modified main.py for the sample query to work
+
+commit 8b836e58fac4e7606c3e210d16fbd4685cf11a96
+Merge: 2026220 d670e8b
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Tue Apr 18 22:33:47 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit d670e8b8b6882de13ea013341d1babc0057019cc
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-101-163.public.utexas.edu>
+Date:   Tue Apr 18 21:46:39 2017 -0500
+
+    wrote the search to json decoder, but still need to integrate it in
+
+commit ad0cf3661a3a13c8b8d201495cb1facefe903bb7
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-101-163.public.utexas.edu>
+Date:   Tue Apr 18 21:03:37 2017 -0500
+
+    Got whooshee to work
+
+commit 6947a1b6b16d36ef0db7553b2de3498916c6a760
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-101-163.public.utexas.edu>
+Date:   Tue Apr 18 20:48:54 2017 -0500
+
+    Trying to fix whooshee
+
+commit 2eb15124d71150427986463a6c9020164cf28403
+Merge: 041277d c95aeeb
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-101-163.public.utexas.edu>
+Date:   Tue Apr 18 20:44:45 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit 041277d54111632672c2f15bd6712437e4b504c0
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-101-163.public.utexas.edu>
+Date:   Tue Apr 18 20:39:49 2017 -0500
+
+    revert to a56ac7a70173b117063d1a934cd8dafb52642678
+
+commit 2026220468671c8c2fb1608b1e9496403e9e095b
+Merge: cfddcf0 c95aeeb
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Tue Apr 18 20:18:13 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into whooshee
+
+commit cfddcf04d33833e7f0140e9017595ce9b73e0f6d
+Merge: 9527894 ac0f4a7
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Tue Apr 18 20:16:44 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb into whooshee
+
+commit c95aeebf594df7ccbaf9c6da909f7044c893c6bc
+Merge: f5fb5e4 5d13478
+Author: Nandhini Lakuduva <nlak@cs.utexas.edu>
+Date:   Tue Apr 18 20:14:05 2017 -0500
+
+    Merge branch 'whooshee' of https://github.com/theCreedo/idb into HEAD
+
+commit f5fb5e4906f59b1fe36613a2640c0c642c1daaa6
+Author: Nandhini Lakuduva <nlak@cs.utexas.edu>
+Date:   Tue Apr 18 20:11:27 2017 -0500
+
+    fixing some whooshee issues
+
+commit ac0f4a72a5f47140af9597a31e8ef6594171f9bd
+Merge: 0044b15 9d44d7d
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Tue Apr 18 17:55:22 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 0044b15a89b6ffd4a3290da9ddfdc5abf0ee5f5d
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Tue Apr 18 17:55:06 2017 -0500
+
+    latest bundles
+
+commit 75ec9ffa67063ad4f44afcc2ca96dc2c3b89a0fc
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Tue Apr 18 13:41:54 2017 -0500
+
+    Fixed filter queries for explicit. About to package for redeploy
+
+commit e2a798ff428b75eb64208ddcafbecc5352a97bd2
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Tue Apr 18 13:23:20 2017 -0500
+
+    Fixed filtering decision logic in changePage. Also cleaned up some of the code
+
+commit 5d134782f696fea6dec153b447818f6ec43cdaf1
+Author: Nandhini Lakuduva <Nandhini@wireless-10-148-123-51.public.utexas.edu>
+Date:   Tue Apr 18 10:48:27 2017 -0500
+
+    slightly modified main and search now works on it
+
+commit dced44257ea458f84ea6311937e23f7e51f36f04
+Merge: a162956 a56ac7a
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Mon Apr 17 17:24:08 2017 -0500
+
+    merge
+
+commit a162956f7c64ab58534290eade680fd4d00d9529
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Mon Apr 17 16:48:02 2017 -0500
+
+    minor changes
+
+commit a56ac7a70173b117063d1a934cd8dafb52642678
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-221-192.public.utexas.edu>
+Date:   Mon Apr 17 12:25:28 2017 -0500
+
+    Got whooshee working with python3. Still need to fix main
+
+commit 64409c13d0c143c5221ded1f0dd08f3dc7393776
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Sun Apr 16 23:31:09 2017 -0500
+
+    adding populate_db
+
+commit 7558bd06746c50804746a790261f8b483963867e
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Sun Apr 16 23:15:41 2017 -0500
+
+    minor changes to models
+
+commit 70427274fbcd213045bf535957b117575975d937
+Author: Nandhini Lakuduva <Nandhini@Nandhinis-MBP.lan>
+Date:   Sun Apr 16 22:57:57 2017 -0500
+
+    Fixed stop iteration error when running main.py
+
+commit deaf6834bba078d3e9c5743f3b94526f0838caad
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 18:42:25 2017 -0500
+
+    Fixed styles so that menu renders over grid items. Menu also has backgroud that is not transparent so that the menu also looks over the grid items
+
+commit c824b9e4154db0167bd4b1c1f1beeb03848ec893
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 18:35:11 2017 -0500
+
+    Fixed both autocomplete dropdown running with the screen and the dropdown being too long. Need to fix Z index
+
+commit 4189d7f9d80b2d816ce0db143b75f370d7452484
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 18:21:21 2017 -0500
+
+    Added city sort option to concerts table
+
+commit c5b2c605167a5973b9036ecb23851338567f4cf5
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 18:19:37 2017 -0500
+
+    For concerts table changed option values to correct values.
+
+commit c93d3b3de6d7858260786f4825bfe0e6a110e0ee
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 18:11:34 2017 -0500
+
+    Fixed overall two click update issue with the sort/filter bar. Next need to configure calls to actually filter
+
+commit f6ce0a8abd4e949d3c08ed35afe97fc1e9175b75
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Sun Apr 16 17:33:01 2017 -0500
+
+    Added automated setting of filters and such. Have filter query showing but, like some other issues, only truly updates on second click. Trying to see if I can get it in one click.
+
+commit 9527894ba46f5fea2960d3763f282abdec01b289
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Sun Apr 16 11:34:44 2017 -0500
+
+    Added comments explaining whooshee code in main.py and removed whooshee from models.py
+
+commit e3c1869fc7e40e52f112aa19976033382a0ef7d1
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Sun Apr 16 11:24:47 2017 -0500
+
+    Add whooshee implementation.
+
+commit 9d44d7dea44d336ad9b3b8638490b744772c9a23
+Author: Nandhini Lakuduva <Nandhini@Nandhinis-MacBook-Pro.local>
+Date:   Sat Apr 15 13:00:15 2017 -0500
+
+    added few wooshee lines
+
+commit dc4509782645e14bdfe06b12ade2d826c6cbe286
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 14 17:11:04 2017 -0500
+
+    Conditional class working for should I display the query entrance.
+
+commit 39ddad564fffa4ed363ca1898052cda923636f8d
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Fri Apr 14 16:50:44 2017 -0500
+
+    Got the BASE and jank auto complete to work and bubble up to update state
+
+commit 6b2715534ff227a5dff2c9dd58aef3f448691a10
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Fri Apr 14 10:20:00 2017 -0500
+
+    Separate CSS for runTest modals - fixing the blown up modals
+
+commit dec3ae3e7a977adb1fbe9310de6ebe390a4bc19b
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Fri Apr 14 09:35:56 2017 -0500
+
+    Forgot to remove the test coverage block. Run tests will display results + coverage
+
+commit a2dbbc1904dc90a6022973699700a26b5814d838
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Fri Apr 14 09:34:28 2017 -0500
+
+    Tools grid to About Page + nicer test button that use modal (might go back and do centering instead of locked at bottom)
+
+commit cc923dfb71b7ecd07674dc1113086bd7f2dc0d72
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Thu Apr 13 17:32:42 2017 -0500
+
+    Add flask-whooshee
+
+commit c12c2ef6aa82f2eee24f5a316f0ffa413f4c658a
+Author: Nandhini Lakuduva <Nandhini@wireless-10-147-18-103.public.utexas.edu>
+Date:   Thu Apr 13 17:31:21 2017 -0500
+
+    started adding Flask_Wooshee
+
+commit d9c26029c5daffe234cea011ab837679a403f2c0
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 13 17:10:02 2017 -0500
+
+    Masonry now is individually clicked, thanks to HTML5 data attributes
+
+commit e0fb68cfe220fa68681afaf44d7e4f96b27d17f7
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 13 16:29:01 2017 -0500
+
+    Added react-masonry-component to the project. Masonry WORKS AF. Need to do some styling to make it a lil more consistent.
+
+commit 9c1f395e2ce220d564604f6bf2d3b3ad77291ae0
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 13 14:45:49 2017 -0500
+
+    Basic listener for the masonry elems on click working. Takes two clicks to get going tho, one click after.
+
+commit 96994967ce23f458268e97981981d5cc78494986
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 13 12:43:30 2017 -0500
+
+    Concerts modal switched to fluid container and changed lineup to be on the same row with size change md from 12 to 8
+
+commit e85af7f896e1d6a571380f386ba09b714e854d09
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Thu Apr 13 12:26:36 2017 -0500
+
+    latest bundles, fixed artist
+
+commit 4ebaf2bc0cca2b24564095fb31f78def4c496ab4
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Thu Apr 13 11:18:28 2017 -0500
+
+    Programatically set the default grid data to a sorted call. Added the artist modal functions.
+
+commit c4b4f03882ec4609b032e134ec37f8786811a603
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 12 23:53:31 2017 -0500
+
+    Automated a lot of the bundling process inside artistGrid and finished refactoring a lot of the modal on click functions which apparently got lost
+
+commit 838a9a7cbb266ef49944a49dde003ae1765716ac
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 23:51:49 2017 -0500
+
+    these bundles arent shit?
+
+commit f8addda61c91d1de0f159797a3e4e371a9ad8276
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 23:25:44 2017 -0500
+
+    latest bundles
+
+commit c6b26fc4a7c71dc3240a63942a5eefee40cff755
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 22:50:47 2017 -0500
+
+    latest bundles
+
+commit 8b4d375b936d74047eaecc724a6ec4b955144ad9
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 22:35:33 2017 -0500
+
+    removed modalListener scripts
+
+commit fe9d039b0887e0485d061f5fb1edaf80536b2218
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 22:04:04 2017 -0500
+
+    more working bundles
+
+commit cae88a04ef6e383fe965ff79c41c21538ae6f1ef
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 21:13:13 2017 -0500
+
+    changed imports to reflect the changes in models
+
+commit e55c014b8b425da0fa7f102d08efc5b678ed1211
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 20:59:51 2017 -0500
+
+    updated requirements.txt to include flask_compress
+
+commit 0c9643e863a48b94f83159422a00c34e0c35d04d
+Author: brodgers <rodgers.benjamin@utexas.edu>
+Date:   Wed Apr 12 19:22:14 2017 -0500
+
+    refactored models.py to remove association tables because all relationships are now one-to-many at worst
+
+commit e7dc0d7331af112b539b024b5935c23548dc11f2
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 12 18:31:42 2017 -0500
+
+    Reimplemented all modals in react. Seems to be working. Also added background cover css to pagePO.css
+
+commit 34f1ade03fa046b521a5a65fb20fa83935e644fa
+Author: AswaggyP <apustil@utexas.edu>
+Date:   Wed Apr 12 14:33:01 2017 -0500
+
+    Added track modal.
+
+commit 9a9706e0d741fda6542bcb7919404cab5efa40c5
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 12 14:19:13 2017 -0500
+
+    make build commands works. Refactor requirements.txt for more dependencies.
+
+commit d361e5bbf917293112b65dba72e69f669e9c0359
+Merge: 0975e20 1bd2f2e
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 12 13:44:47 2017 -0500
+
+    Merge branch 'master' of https://github.com/theCreedo/idb
+
+commit 0975e20ed3d96c54f30649a92e4cfa9cd3f825c8
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 12 13:39:21 2017 -0500
+
+    Changes to makefile in order to run requirements and create files.
+    Added flask_compress in lib, and implementation in main.py
+
+commit 1bd2f2ea90dad5f717e7f9c934d751379498fcd5
+Author: Eric Lee <hownl96@gmail.com>
+Date:   Wed Apr 12 13:39:21 2017 -0500
+
+    Changes to makefile in order to run requirements and create files
+
+commit 85090f7a83a932cde908f6b0bea58556c50e3c82
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 12 02:11:27 2017 -0500
+
+    Added a few tools to the about page
+
+commit 84aff145ebd63306fb0f96b8d2de7924155acb7a
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Wed Apr 12 01:16:29 2017 -0500
+
+    Added tools icon grid to the about page + cleaned up unused images
+
+commit 818194208e33ba453f15f7c1cd3d89925f241303
+Author: Tracy Nguyen <apathetictracyn@gmail.com>
+Date:   Tue Apr 11 12:18:53 2017 -0500
+
+    Formatting our html templates so they're standardized
+
 commit 31da19ff4c114b91372971b2e6a4eed842bfffcb
 Author: AswaggyP <apustil@utexas.edu>
 Date:   Mon Apr 10 21:35:27 2017 -0500
