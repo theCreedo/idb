@@ -327,7 +327,7 @@
          </div>
       </div>
       <!-- run tests -->
-       <div class="content-section-a2" style="padding: 50px 0; background-image:{{ url_for('static', filename='resources/images/subtle-grid-bg.jpg') }}">
+       <div class="content-section-a" style="padding: 50px 0;">
            <div class="container text-center">
               <div class="row">
                  <div class="col-xs-12">
@@ -340,7 +340,7 @@
                    </div>
                    <div class="col-sm-6"></div>
                    <div class="col-sm-3">
-                   <a id="myBtn" style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-four">Run Coverage - Make New Button</a>
+                   <a id="myBtn2" style="color: #FFFFFF;" class="btn btn-sm animated-button victoria-four" href="{{url_for('coverage')}}">Coverage</a>
                    </div>
                    
                     <div id="myModal" class="modal">
@@ -374,6 +374,39 @@
             // location.href = "www.yoursite.com";
          };
       </script>
+     <script>
+           /*Test Result Modals*/
+      var modal = document.getElementById('myModal');
+      var btn = document.getElementById("myBtn");
+      var btn2 = document.getElementById("myBtn2");
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function() {
+          var xmlHTTP = new XMLHttpRequest();
+          xmlHTTP.open('GET', '/tests', false);
+          var data;
+          xmlHTTP.onload = function(e)
+          {
+            data = this.response;
+          }
+          xmlHTTP.send();
+        
+        
+          $("#testResults").text(JSON.parse(data));
+          
+          modal.style.display = "block";
+      }
+
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+     </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="http://use.edgefonts.net/vt323:n4:all.js"></script>

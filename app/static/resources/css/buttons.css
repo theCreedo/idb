@@ -27,7 +27,7 @@ a.animated-button:after, a.animated-button:visited:after {
 	left: 50%;
 	top: 50%;
 	width: 150%;
-	z-index: -1;
+	z-index: 0;
 	-webkit-transition: all 0.75s ease 0s;
 	-moz-transition: all 0.75s ease 0s;
 	-o-transition: all 0.75s ease 0s;
@@ -81,7 +81,8 @@ a.animated-button.victoria-one.cur {
 }
 
 a.animated-button.victoria-four {
-	border: 2px solid green;
+	border: 2px solid none;
+    background: rgba(120, 120, 120, 0.5);
 }
 a.animated-button.victoria-four:after {
 	background: #65b37a;
