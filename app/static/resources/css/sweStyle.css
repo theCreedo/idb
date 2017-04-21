@@ -326,6 +326,7 @@ ul.rc-pagination {
 .sweSearchHeader {
   font-size:  4em;
   text-align: center;
+  color: #337ab7;
 }
 
 .sweSearchBar {
@@ -345,12 +346,20 @@ ul.rc-pagination {
 .sweSearchResultCard {
   max-height: 200px;
   min-height: 200px;
-  /*border: 1px grey solid;*/
+  color: aliceblue;
+  border: 2px black solid;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: rgba(128, 162, 180, 0.50);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sweSearchHighlight {
-  background-color: palegreen;
+  background-color: #3498db;
 }
 
 /* Grid item spacer (Section heading spacer) */
